@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandpur Student Association — SUST</title>
+ <link rel="icon" type="image/png" href="pictures/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep-teal: #0a3d40;
+  --river-blue: #1a6b7a;
+  --gold: #c9963a;
+  --gold-light: #e8b84b;
+  --cream: #f5f0e8;
+  --warm-white: #faf7f2;
+  --dark: #0d1f1f;
+  --text-dark: #1a2e2e;
+  --text-mid: #3d5c5c;
+  --text-light: #7a9a9a;
+  --hilsha-silver: #c8d8d8;
+  --shadow-deep: 0 20px 60px rgba(10,40,40,0.25);
+  --shadow-card: 0 8px 32px rgba(10,40,40,0.15);
+  --ts: cubic-bezier(0.4,0,0.2,1);
+  --tspring: cubic-bezier(0.34,1.56,0.64,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Lora',Georgia,serif;color:var(--text-dark);overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--river-blue);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 3rem;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all 0.5s var(--ts);}
+nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(0,0,0,0.3);height:60px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:pointer;}
+.nav-logo-emblem{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;color:var(--deep-teal);box-shadow:0 4px 16px rgba(201,150,58,0.4);transition:transform 0.4s var(--tspring);flex-shrink:0;}
+.nav-logo:hover .nav-logo-emblem{transform:rotate(15deg) scale(1.1);}
+.nav-logo-text{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);line-height:1.3;}
+.nav-logo-text span{display:block;font-weight:300;font-size:0.7rem;color:var(--gold-light);letter-spacing:0.2em;}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Josefin Sans',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,240,232,0.85);text-decoration:none;position:relative;padding-bottom:4px;transition:color 0.3s;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--gold);transition:width 0.35s var(--ts);}
+.nav-links a:hover{color:var(--gold-light);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--gold-light);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:26px;height:2px;background:var(--cream);border-radius:2px;transition:all 0.3s var(--ts);}
+
+/* PAGES */
+.page-section{display:none;min-height:100vh;}
+.page-section.active{display:block;}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(26,107,122,0.35) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(201,150,58,0.15) 0%,transparent 50%),linear-gradient(160deg,#041818 0%,#0a3d40 35%,#0d2e35 60%,#041010 100%);z-index:0;}
+.hero-waves{position:absolute;bottom:0;left:0;right:0;height:200px;z-index:1;overflow:hidden;}
+.hero-waves svg{position:absolute;bottom:0;width:200%;animation:waveFlow 12s linear infinite;}
+.hero-waves svg:nth-child(2){opacity:0.5;animation-duration:16s;animation-direction:reverse;}
+@keyframes waveFlow{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.hero-particles{position:absolute;inset:0;z-index:1;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:floatP var(--dur,8s) var(--delay,0s) infinite ease-in-out;}
+@keyframes floatP{0%{opacity:0;transform:translateY(100vh) scale(0);}10%{opacity:var(--op,0.4);}90%{opacity:var(--op,0.4);}100%{opacity:0;transform:translateY(-10vh) scale(1);}}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem;max-width:900px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,150,58,0.15);border:1px solid rgba(201,150,58,0.3);padding:6px 18px;border-radius:30px;font-family:'Josefin Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.8rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.8s 0.3s var(--ts) forwards;}
+.hero-badge::before{content:'✦';font-size:0.6rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:800;color:var(--cream);line-height:1.05;margin-bottom:0.4rem;opacity:0;transform:translateY(30px);animation:fadeUp 0.9s 0.5s var(--ts) forwards;}
+.hero-title em{font-style:italic;color:var(--gold-light);}
+.hero-subtitle{font-family:'Josefin Sans',sans-serif;font-size:clamp(0.9rem,2vw,1.1rem);font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:var(--hilsha-silver);margin-bottom:2.5rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s 0.7s var(--ts) forwards;}
+.hero-desc{font-size:clamp(1rem,1.5vw,1.15rem);color:rgba(200,216,216,0.8);line-height:1.8;max-width:600px;margin:0 auto 3rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s 0.9s var(--ts) forwards;}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:fadeUp 0.9s 1.1s var(--ts) forwards;}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+.btn-primary{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;padding:14px 36px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep-teal);border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.35s var(--ts);box-shadow:0 6px 24px rgba(201,150,58,0.35);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(201,150,58,0.5);}
+.btn-outline{font-family:'Josefin Sans',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;padding:13px 36px;background:transparent;color:var(--cream);border:1.5px solid rgba(245,240,232,0.4);border-radius:2px;cursor:pointer;text-decoration:none;transition:all 0.35s var(--ts);}
+.btn-outline:hover{background:rgba(245,240,232,0.08);border-color:var(--cream);transform:translateY(-3px);}
+.hero-scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 0.9s 1.5s var(--ts) forwards;}
+.hero-scroll-indicator span{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(200,216,216,0.5);}
+.scroll-line{width:1.5px;height:50px;background:linear-gradient(to bottom,rgba(200,216,216,0.5),transparent);animation:scrollP 2s ease-in-out infinite;}
+@keyframes scrollP{0%,100%{transform:scaleY(1);opacity:0.5;}50%{transform:scaleY(1.2);opacity:1;}}
+
+/* ABOUT */
+.section-about{padding:8rem 3rem;background:var(--warm-white);position:relative;overflow:hidden;}
+.section-about::before{content:'চাঁদপুর';position:absolute;top:-2rem;right:-2rem;font-size:18rem;font-family:'Playfair Display',serif;color:rgba(26,107,122,0.04);line-height:1;pointer-events:none;user-select:none;}
+.container{max-width:1200px;margin:0 auto;}
+.section-label{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;}
+.section-label::before{content:'';width:30px;height:1.5px;background:var(--gold);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;color:var(--deep-teal);line-height:1.1;margin-bottom:1.5rem;}
+.section-title em{font-style:italic;color:var(--river-blue);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-top:5rem;}
+.about-text p{font-size:1.05rem;line-height:1.95;color:var(--text-mid);margin-bottom:1.4rem;}
+.about-text p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:800;color:var(--deep-teal);float:left;line-height:0.8;margin:0.1em 0.1em 0 0;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(26,107,122,0.1);}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:800;color:var(--deep-teal);line-height:1;display:block;}
+.stat-num span{color:var(--gold);}
+.stat-label{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);margin-top:0.4rem;display:block;}
+.about-visual{position:relative;}
+.about-img-placeholder{width:100%;aspect-ratio:4/5;background:linear-gradient(160deg,#0a3d40,#1a6b7a,#0d4d55);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;position:relative;overflow:hidden;box-shadow:var(--shadow-deep);}
+.about-img-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(201,150,58,0.2) 0%,transparent 50%),radial-gradient(circle at 70% 70%,rgba(26,107,122,0.3) 0%,transparent 50%);}
+.about-img-placeholder svg{width:80px;opacity:0.3;}
+.about-img-placeholder p{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,216,216,0.5);position:relative;}
+.about-img-accent{position:absolute;bottom:-1.5rem;right:-1.5rem;width:55%;aspect-ratio:1;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:2px;z-index:-1;opacity:0.2;}
+.about-img-frame{position:absolute;top:-1rem;left:-1rem;right:2rem;bottom:2rem;border:1.5px solid rgba(201,150,58,0.3);border-radius:2px;pointer-events:none;}
+
+/* CULTURE */
+.section-culture{padding:8rem 3rem;background:var(--deep-teal);position:relative;overflow:hidden;}
+.section-culture::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 0% 100%,rgba(26,107,122,0.5) 0%,transparent 60%),radial-gradient(ellipse at 100% 0%,rgba(201,150,58,0.1) 0%,transparent 50%);pointer-events:none;}
+.culture-intro{text-align:center;max-width:700px;margin:0 auto 5rem;}
+.culture-intro .section-label{justify-content:center;}
+.culture-intro .section-label::before{display:none;}
+.culture-intro .section-title{color:var(--cream);}
+.culture-intro .section-title em{color:var(--gold-light);}
+.culture-intro p{color:rgba(200,216,216,0.75);font-size:1.05rem;line-height:1.9;}
+.culture-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.culture-card{background:rgba(255,255,255,0.04);border:1px solid rgba(200,216,216,0.1);border-radius:4px;padding:2.5rem 2rem;text-align:center;transition:all 0.4s var(--ts);position:relative;overflow:hidden;}
+.culture-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transition:transform 0.4s var(--ts);}
+.culture-card:hover{background:rgba(255,255,255,0.08);transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.3);}
+.culture-card:hover::before{transform:scaleX(1);}
+.culture-icon{font-size:2.8rem;margin-bottom:1.2rem;display:block;}
+.culture-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--cream);margin-bottom:0.8rem;}
+.culture-card p{font-size:0.88rem;line-height:1.75;color:rgba(200,216,216,0.6);}
+
+/* PURPOSE */
+.section-purpose{padding:8rem 3rem;background:var(--cream);}
+.purpose-layout{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;}
+.purpose-sticky{position:sticky;top:6rem;}
+.purpose-list{display:flex;flex-direction:column;gap:3rem;}
+.purpose-item{display:flex;gap:2rem;align-items:flex-start;padding:2rem;background:var(--warm-white);border-radius:4px;box-shadow:0 4px 20px rgba(10,40,40,0.07);transition:all 0.4s var(--ts);border-left:3px solid transparent;}
+.purpose-item:hover{transform:translateX(8px);border-left-color:var(--gold);box-shadow:var(--shadow-card);}
+.purpose-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:rgba(26,107,122,0.12);line-height:1;flex-shrink:0;width:60px;transition:color 0.4s;}
+.purpose-item:hover .purpose-num{color:rgba(201,150,58,0.3);}
+.purpose-content h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep-teal);margin-bottom:0.6rem;}
+.purpose-content p{font-size:0.92rem;line-height:1.8;color:var(--text-mid);}
+
+/* PAGE HERO (blogs/members/events) */
+.page-hero{padding:10rem 3rem 5rem;position:relative;overflow:hidden;}
+#blogs .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#0d2e35);}
+#members .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#0d2e35);}
+#events .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#1a3520);}
+.page-hero-content{max-width:1200px;margin:0 auto;}
+.page-hero .section-label{color:var(--gold);margin-bottom:1rem;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;color:var(--cream);margin-bottom:1rem;}
+.page-hero p{font-size:1rem;color:rgba(200,216,216,0.7);max-width:500px;}
+
+/* BLOGS */
+.blog-grid{padding:5rem 3rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;}
+.blog-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 20px rgba(10,40,40,0.08);transition:all 0.4s var(--ts);border:1px solid rgba(26,107,122,0.08);}
+.blog-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-deep);}
+.blog-img-placeholder{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,var(--deep-teal),var(--river-blue));display:flex;align-items:center;justify-content:center;font-size:2.5rem;}
+.blog-body{padding:1.8rem;}
+.blog-tag{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--river-blue);background:rgba(26,107,122,0.08);padding:3px 10px;border-radius:30px;display:inline-block;margin-bottom:0.8rem;}
+.blog-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--deep-teal);line-height:1.4;margin-bottom:0.7rem;}
+.blog-card p{font-size:0.88rem;line-height:1.7;color:var(--text-mid);margin-bottom:1.2rem;}
+.blog-meta{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(26,107,122,0.1);font-family:'Josefin Sans',sans-serif;font-size:0.7rem;letter-spacing:0.08em;color:var(--text-light);}
+
+/* MEMBERS */
+.members-section{padding:5rem 3rem;max-width:1400px;margin:0 auto;}
+.members-section h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--deep-teal);margin-bottom:0.5rem;}
+.members-section > p,.section-desc{color:var(--text-light);font-size:0.9rem;margin-bottom:2.5rem;font-family:'Josefin Sans',sans-serif;letter-spacing:0.05em;}
+
+/* FILTER DROPDOWNS */
+.filter-bar{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:2.5rem;align-items:center;}
+.filter-bar label{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);}
+.filter-select{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;padding:9px 36px 9px 14px;border:1.5px solid rgba(26,107,122,0.25);background:var(--warm-white);color:var(--text-dark);border-radius:3px;cursor:pointer;transition:all 0.3s var(--ts);appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a6b7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;min-width:180px;}
+.filter-select:focus{outline:none;border-color:var(--river-blue);box-shadow:0 0 0 3px rgba(26,107,122,0.1);}
+.filter-select:hover{border-color:var(--river-blue);}
+.filter-reset{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:9px 16px;border:1.5px solid rgba(201,150,58,0.3);background:transparent;color:var(--gold);border-radius:3px;cursor:pointer;transition:all 0.3s var(--ts);}
+.filter-reset:hover{background:var(--gold);color:var(--deep-teal);}
+.members-count{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:var(--text-light);margin-left:auto;align-self:center;}
+
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.8rem;}
+.member-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);transition:all 0.4s var(--ts);position:relative;}
+.member-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
+.member-photo-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;cursor:pointer;}
+.member-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:0;transition:opacity 0.35s var(--ts);}
+.member-photo-wrap:hover::after{opacity:1;}
+.member-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
+.member-card:hover .member-photo-wrap img{transform:scale(1.06);}
+.member-position-badge{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep-teal);font-family:'Josefin Sans',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;z-index:5;max-width:calc(100% - 20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.member-info{padding:1rem 1rem 1.2rem;}
+.member-info h3{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--deep-teal);margin-bottom:0.2rem;}
+.member-dept{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--river-blue);display:block;margin-bottom:0.3rem;}
+.member-home{font-size:0.78rem;color:var(--text-light);display:flex;align-items:center;gap:4px;}
+.member-home::before{content:'📍';font-size:0.7rem;}
+.members-divider{border:none;border-top:1.5px solid rgba(26,107,122,0.1);margin:4rem 0 3rem;}
+
+/* TEACHERS */
+.teachers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2rem;}
+.teacher-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 20px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);display:flex;align-items:stretch;transition:all 0.4s var(--ts);}
+.teacher-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
+.teacher-photo-wrap{width:90px;flex-shrink:0;cursor:pointer;overflow:hidden;position:relative;min-height:110px;}
+.teacher-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.35s;}
+.teacher-photo-wrap:hover::after{opacity:1;}
+.teacher-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;transition:transform 0.5s var(--ts);}
+.teacher-card:hover .teacher-photo-wrap img{transform:scale(1.08);}
+.teacher-info{padding:1.2rem;flex:1;}
+.teacher-info h3{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--deep-teal);margin-bottom:0.3rem;}
+.teacher-dept{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--river-blue);display:block;margin-bottom:0.4rem;}
+.teacher-position{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;color:var(--text-light);padding:2px 8px;background:rgba(26,107,122,0.07);border-radius:30px;display:inline-block;}
+
+/* EVENTS */
+.events-container{padding:5rem 3rem;max-width:1200px;margin:0 auto;}
+.events-list{display:flex;flex-direction:column;gap:1.5rem;}
+.event-card{background:var(--warm-white);border-radius:4px;box-shadow:0 4px 16px rgba(10,40,40,0.07);border:1px solid rgba(26,107,122,0.08);overflow:hidden;transition:all 0.4s var(--ts);}
+.event-card:hover{box-shadow:var(--shadow-card);}
+.event-header{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:2rem;padding:1.5rem 2rem;cursor:pointer;transition:background 0.3s;}
+.event-header:hover{background:rgba(26,107,122,0.03);}
+.event-thumb{width:120px;height:80px;border-radius:3px;flex-shrink:0;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--deep-teal),var(--river-blue));display:flex;align-items:center;justify-content:center;font-size:2.2rem;}
+.event-thumb img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;}
+.event-meta{flex:1;}
+.event-date{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.event-meta h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--deep-teal);font-weight:600;margin-bottom:0.3rem;}
+.event-meta p{font-size:0.85rem;color:var(--text-light);font-family:'Josefin Sans',sans-serif;}
+.event-toggle{width:36px;height:36px;border-radius:50%;background:rgba(26,107,122,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.4s var(--ts);color:var(--river-blue);font-size:1.2rem;}
+.event-card.open .event-toggle{background:var(--deep-teal);color:var(--cream);transform:rotate(45deg);}
+.event-body{max-height:0;overflow:hidden;transition:max-height 0.6s var(--ts);}
+.event-card.open .event-body{max-height:2000px;}
+.event-body-inner{padding:2rem;border-top:1px solid rgba(26,107,122,0.08);}
+.event-body-inner p{font-size:0.92rem;line-height:1.8;color:var(--text-mid);margin-bottom:1.5rem;}
+.event-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;}
+.event-gallery-img{aspect-ratio:1;border-radius:3px;overflow:hidden;cursor:pointer;transition:all 0.35s var(--ts);position:relative;background:linear-gradient(135deg,var(--deep-teal),var(--river-blue));display:flex;align-items:center;justify-content:center;font-size:1.8rem;}
+.event-gallery-img img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;}
+.event-gallery-img::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.3s;z-index:2;}
+.event-gallery-img:hover{transform:scale(1.04);}
+.event-gallery-img:hover::after{opacity:1;}
+
+/* LIGHTBOX */
+#lightbox{position:fixed;inset:0;background:rgba(4,24,24,0);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all 0.45s var(--ts);backdrop-filter:blur(0px);}
+#lightbox.active{opacity:1;pointer-events:all;background:rgba(4,24,24,0.93);backdrop-filter:blur(16px);}
+.lightbox-inner{position:relative;max-width:90vw;max-height:90vh;transform:scale(0.85) translateY(20px);transition:transform 0.45s var(--tspring);}
+#lightbox.active .lightbox-inner{transform:scale(1) translateY(0);}
+.lightbox-img-wrap{max-width:90vw;max-height:85vh;overflow:hidden;border-radius:4px;display:flex;align-items:center;justify-content:center;background:var(--deep-teal);min-width:300px;min-height:200px;}
+.lightbox-img-wrap img{max-width:85vw;max-height:80vh;object-fit:contain;display:block;}
+.lightbox-placeholder{width:500px;height:400px;max-width:85vw;background:linear-gradient(160deg,#0a3d40,#1a6b7a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:3rem;}
+.lightbox-placeholder-icon{font-size:5rem;opacity:0.4;}
+.lightbox-placeholder-text{font-family:'Josefin Sans',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,216,216,0.4);text-align:center;}
+.lightbox-close{position:absolute;top:-18px;right:-18px;width:44px;height:44px;background:var(--gold);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--deep-teal);font-weight:700;transition:all 0.35s var(--tspring);box-shadow:0 4px 16px rgba(0,0,0,0.3);z-index:10;line-height:1;}
+.lightbox-close:hover{transform:rotate(90deg) scale(1.15);background:var(--gold-light);}
+.lightbox-caption{text-align:center;margin-top:1rem;font-family:'Josefin Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;color:rgba(200,216,216,0.5);text-transform:uppercase;}
+.lightbox-backdrop-click{position:absolute;inset:0;z-index:-1;}
+
+/* FOOTER */
+footer{background:var(--dark);padding:5rem 3rem 3rem;position:relative;overflow:hidden;}
+footer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(26,107,122,0.15) 0%,transparent 60%);}
+.footer-grid{max-width:1200px;margin:0 auto 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;position:relative;}
+.footer-brand p{font-size:0.88rem;line-height:1.8;color:rgba(200,216,216,0.5);max-width:280px;margin-top:1rem;}
+.footer-col h4{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem;}
+.footer-col ul li a{font-size:0.88rem;color:rgba(200,216,216,0.5);text-decoration:none;transition:color 0.3s;cursor:pointer;}
+.footer-col ul li a:hover{color:var(--cream);}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:2.5rem;border-top:1px solid rgba(200,216,216,0.08);display:flex;justify-content:space-between;align-items:center;position:relative;}
+.footer-bottom p{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:rgba(200,216,216,0.3);}
+.footer-bottom .sust-tag{color:var(--gold);font-weight:600;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s var(--ts),transform 0.7s var(--ts);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
+.reveal-delay-4{transition-delay:0.4s;}
+
+/* UTILITY */
+.separator-gold{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:1.5rem 0;}
+.gold-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.3;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .culture-cards{grid-template-columns:repeat(2,1fr);}
+  .about-grid{grid-template-columns:1fr;gap:3rem;}
+  .about-visual{display:none;}
+  .purpose-layout{grid-template-columns:1fr;}
+  .purpose-sticky{position:static;}
+  .blog-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:3rem;}
+}
+@media(max-width:768px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(10,61,64,0.98);padding:2rem;gap:1.5rem;backdrop-filter:blur(20px);}
+  .section-about,.section-culture,.section-purpose{padding:5rem 1.5rem;}
+  .culture-cards{grid-template-columns:1fr 1fr;}
+  .blog-grid{grid-template-columns:1fr;padding:3rem 1.5rem;}
+  .members-section{padding:3rem 1.5rem;}
+  .members-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+  .events-container{padding:3rem 1.5rem;}
+  .event-header{grid-template-columns:80px 1fr auto;gap:1rem;}
+  .event-gallery{grid-template-columns:repeat(3,1fr);}
+  footer{padding:4rem 1.5rem 2rem;}
+  .footer-grid{grid-template-columns:1fr;gap:2rem;}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center;}
+  .filter-bar{flex-direction:column;align-items:flex-start;}
+  .filter-select{width:100%;}
+  .members-count{margin-left:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" onclick="showPage('home')">
+    <img src="pictures/logo.png" alt="Logo"
+     style="width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+    <div class="nav-logo-text">Chandpur Association<span>SUST · Sylhet</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')" data-page="home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('blogs')" data-page="blogs">Blogs</a></li>
+    <li><a href="#" onclick="showPage('members')" data-page="members">Members</a></li>
+    <li><a href="#" onclick="showPage('events')" data-page="events">Events</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="page-section active">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-waves">
+      <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z" fill="rgba(10,61,64,0.8)"/>
+        <path d="M0,80 C360,40 720,120 1080,60 C1260,30 1380,80 1440,80 L1440,120 L0,120 Z" fill="rgba(10,61,64,0.95)"/>
+      </svg>
+      <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="bottom:30px">
+        <path d="M0,50 C180,90 360,10 540,50 C720,90 900,10 1080,50 C1260,90 1380,40 1440,50 L1440,120 L0,120 Z" fill="rgba(26,107,122,0.15)"/>
+      </svg>
+    </div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Shahjalal University of Science & Technology</div>
+      <h1 class="hero-title">Chandpur<br><em>Students' Association</em></h1>
+      <p class="hero-subtitle">Unity · Culture · Heritage · SUST</p>
+      <p class="hero-desc">Bringing together the sons and daughters of Chandpur — the land of great rivers, silver Hilsha, and timeless culture — under one roof at SUST, Sylhet.</p>
+      <div class="hero-cta">
+        <a class="btn-primary" onclick="showPage('members')">Meet Our Members ↗</a>
+        <a class="btn-outline" onclick="showPage('events')">View Events</a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
+  </div>
+
+  <div class="section-about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">About the Association</div>
+          <h2 class="section-title">Rooted in <em>Chandpur</em>,<br>Thriving at SUST</h2>
+          <div class="separator-gold"></div>
+          <p>The Chandpur Students' Association at Shahjalal University of Science and Technology (SUST), Sylhet, is a vibrant community of students hailing from the culturally rich district of Chandpur, Bangladesh. Founded to foster solidarity and belonging, we welcome every Chandpur student who walks through SUST's gates.</p>
+          <p>Far from home, we become each other's family — sharing stories of the Meghna and Dakatia rivers, the taste of fresh Hilsha, and the warmth of Chandpur's festivals. We bridge homesickness with brotherhood, turning a university corridor into a piece of Chandpur.</p>
+          <p>Beyond bonding, we represent Chandpur's voice across SUST's diverse association landscape — collaborating, contributing, and celebrating our heritage with pride.</p>
+          <div class="stats-row">
+            <div class="stat-item"><span class="stat-num">100<span>+</span></span><span class="stat-label">Active Members</span></div>
+            <div class="stat-item"><span class="stat-num">12<span>+</span></span><span class="stat-label">Departments</span></div>
+            <div class="stat-item"><span class="stat-num">8<span>+</span></span><span class="stat-label">Annual Events</span></div>
+          </div>
+        </div>
+       <div class="about-visual reveal">
+  <div class="about-img-frame"></div>
+  <img src="pictures/logo.jpeg" alt="Chandpur Association"
+       style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block;box-shadow:0 20px 60px rgba(10,40,40,0.25);">
+  <div class="about-img-accent"></div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-culture">
+    <div class="container">
+      <div class="culture-intro reveal">
+        <div class="section-label">The Land We Come From</div>
+        <h2 class="section-title">The <em>Rich Legacy</em> of Chandpur</h2>
+        <div class="separator-gold" style="margin:1.5rem auto"></div>
+        <p>Chandpur is no ordinary district. Nestled at the confluence of the mighty Meghna, Dakatia and Dhanagoda rivers, it is a land of extraordinary natural beauty, deep cultural heritage, and the crown jewel of Bangladesh's fisheries — the Ilish (Hilsha).</p>
+      </div>
+      <div class="culture-cards">
+        <div class="culture-card reveal reveal-delay-1"><span class="culture-icon">🐟</span><h3>Land of Ilish</h3><p>Chandpur is the Ilish (Hilsha) capital of Bangladesh. The Meghna river yields the finest Hilsha in the world — a fish so celebrated it's woven into Bengali identity and culture.</p></div>
+        <div class="culture-card reveal reveal-delay-2"><span class="culture-icon">🌊</span><h3>Great Rivers</h3><p>Bounded by Meghna, Dakatia, and Dhanagoda rivers, Chandpur's landscape is shaped by water — a flowing, breathing geography that gives life, trade, and poetry to the district.</p></div>
+        <div class="culture-card reveal reveal-delay-3"><span class="culture-icon">🎭</span><h3>Vibrant Culture</h3><p>From Baul music to riverine folklore, Chandpur's culture is a tapestry of traditions — jari gaan, shari gaan, and local festivals that echo centuries of Bengali heritage.</p></div>
+        <div class="culture-card reveal reveal-delay-4"><span class="culture-icon">🏛️</span><h3>Historical Richness</h3><p>Home to ancient mosques, temples, and colonial-era landmarks, Chandpur carries deep historical weight — from the liberation war to pre-Mughal architecture.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-purpose">
+    <div class="container">
+      <div class="purpose-layout">
+        <div class="purpose-sticky">
+          <div class="section-label">Our Mission</div>
+          <h2 class="section-title" style="color:var(--deep-teal)">Why We <em>Exist</em></h2>
+          <div class="separator-gold"></div>
+          <p style="color:var(--text-mid);line-height:1.9;font-size:0.95rem">Every Chandpur student at SUST deserves a home away from home. We exist to build that home — strong, warm, and unbreakable.</p>
+        </div>
+        <div class="purpose-list">
+          <div class="purpose-item reveal"><span class="purpose-num">01</span><div class="purpose-content"><h3>Connect & Build Community</h3><p>We connect Chandpur students across all departments and batches, creating a tight-knit network that transcends academic boundaries. No Chandpur student ever feels alone at SUST.</p></div></div>
+          <div class="purpose-item reveal reveal-delay-1"><span class="purpose-num">02</span><div class="purpose-content"><h3>Assert Our Cultural Identity</h3><p>We celebrate Chandpur's unique culture — from Hilsha festivals to river heritage events — ensuring our identity shines brightly within SUST's multicultural campus.</p></div></div>
+          <div class="purpose-item reveal reveal-delay-2"><span class="purpose-num">03</span><div class="purpose-content"><h3>Support & Mentor</h3><p>Senior members guide freshmen through academic and social challenges. We ensure every newcomer from Chandpur has a mentor, a friend, and a direction from their very first day.</p></div></div>
+          <div class="purpose-item reveal reveal-delay-3"><span class="purpose-num">04</span><div class="purpose-content"><h3>Represent at SUST</h3><p>We engage with other district associations, university bodies and student unions — making Chandpur's presence felt, respected, and valued across the entire university ecosystem.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOGS -->
+<section id="blogs" class="page-section">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label">From Our Community</div>
+      <h1>Our <em style="font-style:italic;color:var(--gold-light)">Stories</em></h1>
+      <p>Thoughts, reflections, and voices from the Chandpur community at SUST.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+  <div class="blog-grid">
+    <div class="blog-card reveal"><div class="blog-img-placeholder">🐟</div><div class="blog-body"><span class="blog-tag">Culture</span><h3>Why Ilish Is More Than Just a Fish — It's Our Soul</h3><p>When a Chandpur student smells Hilsha being cooked in the SUST mess, something awakens deep inside. It's the river, the home, the identity...</p><div class="blog-meta"><span>Md. Rahim Uddin</span><span>March 2025</span></div></div></div>
+    <div class="blog-card reveal reveal-delay-1"><div class="blog-img-placeholder">🌊</div><div class="blog-body"><span class="blog-tag">Reflections</span><h3>The Day I First Stood at the Banks of Meghna</h3><p>Growing up in Chandpur, the Meghna was always there — a silent giant. It was only after leaving for SUST that I realized how deeply it shaped me...</p><div class="blog-meta"><span>Fatema Akter</span><span>January 2025</span></div></div></div>
+    <div class="blog-card reveal reveal-delay-2"><div class="blog-img-placeholder">🎓</div><div class="blog-body"><span class="blog-tag">SUST Life</span><h3>Finding Chandpur in the Halls of SUST: A Freshman's Journey</h3><p>I was terrified on my first day. Everything was new, everyone spoke different dialects. Then I heard someone say "Chandpur" — and the world became smaller...</p><div class="blog-meta"><span>Arif Hossain</span><span>December 2024</span></div></div></div>
+    <div class="blog-card reveal"><div class="blog-img-placeholder">🏛️</div><div class="blog-body"><span class="blog-tag">Heritage</span><h3>Chandpur's Forgotten Mosques: Architecture Lost in Time</h3><p>Beyond the rivers and fish, Chandpur hides centuries of architectural heritage. Ancient mosques dot the landscape, whispering stories of Mughals and merchants...</p><div class="blog-meta"><span>Nusrat Jahan</span><span>October 2024</span></div></div></div>
+    <div class="blog-card reveal reveal-delay-1"><div class="blog-img-placeholder">🎭</div><div class="blog-body"><span class="blog-tag">Events</span><h3>Our Annual Chandpur Night: When the Campus Became Home</h3><p>The stage was lit, the aroma of Chandpur foods filled the air, and for one night, SUST transformed into a corner of our beloved district...</p><div class="blog-meta"><span>Tanvir Ahmed</span><span>September 2024</span></div></div></div>
+    <div class="blog-card reveal reveal-delay-2"><div class="blog-img-placeholder">🌿</div><div class="blog-body"><span class="blog-tag">Nature</span><h3>The Charlands of Chandpur: A Landscape Only We Know</h3><p>The char areas of Chandpur are unlike any place on earth. Seasonal islands of emerald green rising from the flood — fragile, temporary, and achingly beautiful...</p><div class="blog-meta"><span>Roksana Begum</span><span>August 2024</span></div></div></div>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="members" class="page-section">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label">The People of Chandpur at SUST</div>
+      <h1>Our <em style="font-style:italic;color:var(--gold-light)">Members</em></h1>
+      <p>100+ strong. One community. From every corner of Chandpur district.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+  <div class="members-section">
+
+    <!-- Executive Committee -->
+    <h2>Executive Committee</h2>
+    <p class="section-desc">The elected leadership guiding the association</p>
+    <div class="members-grid" id="executiveGrid"></div>
+
+    <hr class="members-divider">
+
+    <!-- General Members -->
+    <h2>General Members</h2>
+    <p class="section-desc">Our vibrant community of students from Chandpur</p>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <label for="deptFilter">Filter by Department</label>
+        <select class="filter-select" id="deptFilter" onchange="applyFilters()">
+          <option value="all">All Departments</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <label for="areaFilter">Filter by Area</label>
+        <select class="filter-select" id="areaFilter" onchange="applyFilters()">
+          <option value="all">All Areas</option>
+        </select>
+      </div>
+      <button class="filter-reset" onclick="resetFilters()">Reset</button>
+      <span class="members-count" id="membersCount"></span>
+    </div>
+
+    <div class="members-grid" id="membersGrid"></div>
+
+    <hr class="members-divider">
+    <h2>Teachers from Chandpur</h2>
+    <p class="section-desc">Faculty members at SUST hailing from our beloved district</p>
+    <div class="teachers-grid" id="teachersGrid"></div>
+
+    <hr class="members-divider" style="margin-bottom:2rem">
+    <h2>Staff from Chandpur</h2>
+    <p class="section-desc">University staff members who are proud Chandpur sons and daughters</p>
+    <div class="teachers-grid" id="staffGrid"></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="page-section">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label">Moments & Memories</div>
+      <h1>Our <em style="font-style:italic;color:var(--gold-light)">Events</em></h1>
+      <p>Every gathering is a reunion. Every event, a celebration of who we are.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+  <div class="events-container">
+    <div class="events-list" id="eventsList"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo-emblem" style="width:50px;height:50px;font-size:1.3rem">চ</div>
+      <p>Chandpur Students' Association at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('blogs')">Blogs</a></li><li><a onclick="showPage('members')">Members</a></li><li><a onclick="showPage('events')">Events</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.facebook.com/AssociationOfChandpurSUST">Facebook page</a></li><li><a href="gmail.com">Email Us <br>association.of.chandpur.sust@gmail.com</a></li>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Chandpur Students' Association · <span class="sust-tag">SUST, Sylhet</span></p>
+    <p>Land of Rivers · Land of Hilsha · Our Home</p>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img-wrap" id="lightboxContent"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+  <div class="lightbox-backdrop-click" onclick="closeLightbox()"></div>
+</div>
+
+<script>
+/* =============================================
+   UTILITY
+   ============================================= */
+function nameToFilename(name) {
+  return name.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
+}
+
+/* =============================================
+   DATA — EXECUTIVE MEMBERS
+   Every exec is ALSO shown in General Members (auto)
+   ============================================= */
+const executiveMembers = [
+  { name: 'Zakaria Talukdar Omio', dept: 'Public Administration', area: 'Chandpur Sadar', position: 'President' },
+  { name: 'Ali Ashraf Tanvir',     dept: 'CSE',                   area: 'Haimchar',       position: 'General Secretary' },
+  { name: 'Abdul Mannan Nirjon',   dept: 'Public Administration', area: 'Kachua',          position: 'Senior Vice President' },
+  { name: 'Mahin Ibrahim',         dept: 'Chemistry',             area: 'Faridganj',       position: 'Vice President' },
+  { name: 'Fakhrul Islam',         dept: 'IPE',                   area: 'Matlab Uttar',    position: 'Vice President' },
+  { name: 'Shahid Hasan Joy',      dept: 'IPE',                   area: 'Haziganj',        position: 'Vice President' },
+  { name: 'Tahsin Ornob',          dept: 'Physics',               area: 'Haziganj',        position: 'Organizing Secretary' },
+  { name: 'Sadman Zaman Litun',    dept: 'Statistics',            area: 'Haziganj',        position: 'Joint Secretary' },
+  { name: 'Nayeem Ahmed',          dept: 'MEE',                   area: 'Haziganj',        position: 'IT Secretary' },
+  { name: 'Farhann Ahmed Kafil',   dept: 'CEP',                   area: 'Haziganj',        position: 'Treasurer' },
+  { name: 'Rumman Ahmed',          dept: 'Chemistry',             area: 'Haziganj',        position: 'Deputy Treasurer' },
+  { name: 'Meher Afroz',           dept: 'MEE',                   area: 'Haziganj',        position: 'Office Secretary' },
+  { name: 'Tanvir Ahmed Emon',     dept: 'Statistics',            area: 'Haziganj',        position: 'Sports Secretary' },
+  { name: 'Shafin Ahmed',          dept: 'Public Administration', area: 'Haziganj',        position: 'Deputy Sports Secretary' },
+  { name: 'Jannatul Nayeema',      dept: 'English',               area: 'Haziganj',        position: 'Cultural Secretary' },
+  { name: 'Jayma Afrin',           dept: 'BBA',                   area: 'Haziganj',        position: 'Human Rights Secretary' },
+  { name: 'Mahbub Mahi',           dept: 'CEP',                   area: 'Haziganj',        position: 'Media Secretary' },
+  { name: 'Antik Chakraborty',     dept: 'Economics',             area: 'Haziganj',        position: 'Publication Secretary' },
+  { name: 'Navin Remo',            dept: 'Anthropology',          area: 'Haziganj',        position: 'Assistant General Secretary' },
+  { name: 'Bayezid Hossain',       dept: 'English',               area: 'Haziganj',        position: 'Assistant General Secretary' },
+  { name: 'Tarek Hossain',         dept: 'BMB',                   area: 'Haziganj',        position: 'Assistant IT Secretary' },
+  { name: 'Arzu Sultana Anon',     dept: 'CSE',                   area: 'Haziganj',        position: 'Assistant IT Secretary' },
+  { name: 'Wasimul Islam Rabbi',   dept: 'Statistics',            area: 'Haziganj',        position: 'Assistant Organizing Secretary' },
+  { name: 'Junaeid Hossain',       dept: 'CSE',                   area: 'Haziganj',        position: 'Assistant Organizing Secretary' },
+  { name: 'Mezbah Mahi',           dept: 'Statistics',            area: 'Haziganj',        position: 'Assistant Organizing Secretary' },
+  { name: 'Emon Hossain',          dept: 'Statistics',            area: 'Haziganj',        position: 'Assistant Treasurer' },
+  { name: 'Rakib Mamun',           dept: 'MEE',                   area: 'Haziganj',        position: 'Assistant Treasurer' },
+  { name: 'Fajlay Raiyan',         dept: 'MEE',                   area: 'Haziganj',        position: 'Assistant Office Secretary' },
+  { name: 'Ismail Hossain Tonmoy', dept: 'Geology',               area: 'Haziganj',        position: 'Assistant Office Secretary' },
+  { name: 'Mohammad Noman',        dept: 'MEE',                   area: 'Haziganj',        position: 'Assistant Media Secretary' },
+  { name: 'Fahim Ahammad Tanvir',  dept: 'Software Engineering',  area: 'Haziganj',        position: 'Assistant Publication Secretary' },
+  { name: 'Fabiha Bushra Dilshad', dept: 'GEB',                   area: 'Haziganj',        position: 'Assistant Publication Secretary' },
+  { name: 'Maryam Chowdhury',      dept: 'Economics',             area: 'Haziganj',        position: 'Assistant Human Rights Secretary' },
+  { name: 'Shahinur Akter Mitu',   dept: 'Economics',             area: 'Haziganj',        position: 'Assistant Cultural Secretary' },
+  { name: 'Takaful Islam Karima',  dept: 'CEE',                   area: 'Haziganj',        position: 'Assistant Cultural Secretary' },
+  { name: 'Samira Shaiba Athoi',   dept: 'Geology',               area: 'Haziganj',        position: 'Assistant Cultural Secretary' },
+  { name: 'Fardin Islam Rijvy',    dept: 'Software Engineering',  area: 'Haziganj',        position: 'Assistant Sports Secretary' },
+  { name: 'Nahid Hossain',         dept: 'GEB',                   area: 'Haziganj',        position: 'Assistant Sports Secretary' },
+  { name: 'Asm Raihanul Hasan',     dept: 'GEB',                   area: 'Haziganj',        position: 'Assistant Sports Secretary' },
+];
+
+/*
+  ── ADD GENERAL MEMBERS BELOW ──────────────────────────────────────────────
+  Format: { name: 'First Last', dept: 'Department', area: 'Area' }
+  Photo file: pictures/first_last.jpg  (auto-derived from name)
+  Exec members are already included automatically — don't re-add them here.
+  ───────────────────────────────────────────────────────────────────────── */
+const generalMembersOnly = [
+  // Add your members here, e.g.:
+  // { name: 'Raihan Islam',    dept: 'CSE',      area: 'Kachua'   },
+  // { name: 'Sumaiya Akter',   dept: 'Physics',  area: 'Haimchar' },
+];
+
+/* Build the full general list = execs + extras */
+const allGeneralMembers = [
+  ...executiveMembers.map(m => ({ name: m.name, dept: m.dept, area: m.area })),
+  ...generalMembersOnly
+];
+
+const teachers = [
+  { name: 'Prof. Dr. Abdul Mannan', dept: 'Computer Science & Engineering',   position: 'Professor' },
+  { name: 'Dr. Shahnaz Parvin',     dept: 'Mathematics',                       position: 'Associate Professor' },
+  { name: 'Md. Zahirul Haque',      dept: 'Physics',                           position: 'Assistant Professor' },
+  { name: 'Dr. Kamrul Hasan',       dept: 'Civil & Environmental Engineering', position: 'Professor' },
+  { name: 'Ms. Roksana Islam',      dept: 'Business Administration',           position: 'Lecturer' },
+  { name: 'Dr. Anowarul Kabir',     dept: 'Electrical & Electronic Eng.',      position: 'Associate Professor' },
+  { name: 'Tania Akter',            dept: 'Chemistry',                         position: 'Assistant Professor' },
+  { name: 'Md. Faruk Hossain',      dept: 'Architecture',                      position: 'Lecturer' },
+];
+
+const staffMembers = [
+  { name: 'Md. Shamsul Haque', dept: 'Registrar Office', position: 'Senior Staff' },
+  { name: 'Rubina Akter',      dept: 'Library',           position: 'Librarian' },
+  { name: 'Md. Jahangir Alam', dept: 'Computer Center',   position: 'Lab Technician' },
+  { name: 'Amena Begum',       dept: 'Finance Office',    position: 'Accounts Officer' },
+  { name: 'Kamal Uddin',       dept: 'Student Affairs',   position: 'Student Counselor' },
+  { name: 'Md. Belal Hossain', dept: 'Maintenance',       position: 'Engineer' },
+];
+
+/*
+  ── EVENTS DATA ──────────────────────────────────────────────────────────────
+  For event photos, add filenames to the `photos` array.
+  Put your photos in the  pictures/events/  folder.
+
+  Example:
+    photos: ['chandpur_night_1.jpg', 'chandpur_night_2.jpg', 'chandpur_night_3.jpg']
+
+  If a filename is left as an emoji string (like '🎤'), it shows as an emoji tile.
+  ─────────────────────────────────────────────────────────────────────────── */
+const events = [
+  {
+    title: 'Chandpur Night 2025 — An Evening of Culture',
+    date: 'February 14, 2025',
+    location: 'SUST Central Auditorium',
+    thumb: '',  // optional: put a photo filename here for the thumbnail, e.g. 'chandpur_night_thumb.jpg'
+    emoji: '🎭',
+    description: 'Our flagship annual event celebrating Chandpur\'s rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna. The event drew over 200 attendees including faculty and students from other associations.',
+    photos: [
+      // Replace emojis with your filenames, e.g. 'chandpur_night_1.jpg'
+      '🎤', '🍽️', '🎊', '💃', '🥁', '🌟', '📸'
+    ]
+  },
+  {
+    title: 'Freshman Welcome & Orientation 2024',
+    date: 'November 3, 2024',
+    location: 'SUST Academic Building',
+    thumb: '',
+    emoji: '🎓',
+    description: 'We welcomed the new batch of Chandpur students to SUST with open arms. Senior members shared their experiences, gave academic advice, and most importantly — made sure every freshman knew they had a family here.',
+    photos: ['🤝', '😊', '📚', '🎯', '🌱', '💡', '🏫', '🎉']
+  },
+  {
+    title: 'Ilish Mahotsob — Hilsha Fish Festival',
+    date: 'September 20, 2024',
+    location: 'SUST Campus Ground',
+    thumb: '',
+    emoji: '🐟',
+    description: 'A unique celebration honoring the most iconic symbol of Chandpur — the Ilish (Hilsha) fish. We organized a cooking competition, photo exhibition on Chandpur\'s river life, and a feast featuring Hilsha prepared in 8 traditional ways.',
+    photos: ['🍳', '🥘', '📷', '🎬', '🌊', '👨‍🍳', '🏆', '🎪']
+  },
+  {
+    title: 'Inter-Association Friendship Match 2024',
+    date: 'July 12, 2024',
+    location: 'SUST Sports Complex',
+    thumb: '',
+    emoji: '🏏',
+    description: 'A cricket and football tournament bringing together five district associations. Chandpur\'s team showcased exceptional teamwork and sportsmanship. The event strengthened bonds between associations and ended with a shared dinner.',
+    photos: ['🏏', '⚽', '🏆', '🤸', '👟', '📣', '🎽', '🌄']
+  },
+  {
+    title: 'Meghna River Heritage Exhibition',
+    date: 'April 5, 2024',
+    location: 'SUST Library Hall',
+    thumb: '',
+    emoji: '🌊',
+    description: 'A three-day photo and art exhibition dedicated to the Meghna river and its cultural significance to Chandpur. The exhibition featured over 60 photographs, 15 paintings, and a collection of river-inspired poetry.',
+    photos: ['🖼️', '📸', '✍️', '🎨', '📖', '🌅', '🚤', '🌿']
+  }
+];
+
+/* =============================================
+   CARD HTML BUILDERS
+   ============================================= */
+function memberCardHTML(m, showBadge) {
+  const file = nameToFilename(m.name);
+  const bgColors = [
+    'linear-gradient(160deg,#0a3d40,#1a6b7a)',
+    'linear-gradient(160deg,#1a3520,#2e6b3e)',
+    'linear-gradient(160deg,#2d1a40,#5a3a8c)',
+    'linear-gradient(160deg,#401a1a,#8c3a3a)',
+    'linear-gradient(160deg,#1a2d40,#3a6b8c)',
+  ];
+  const bg = bgColors[m.name.charCodeAt(0) % bgColors.length];
+  const badge = showBadge && m.position
+    ? `<div class="member-position-badge">${m.position}</div>` : '';
+
+  return `
+  <div class="member-card reveal" data-dept="${m.dept}" data-area="${m.area || ''}">
+    ${badge}
+    <div class="member-photo-wrap"
+         onclick="openLightboxImg('pictures/${file}.jpg','${m.name} · ${m.dept}')"
+         title="View photo">
+      <img src="pictures/${file}.jpg" alt="${m.name}"
+           onerror="this.src='pictures/default.jpg';this.onerror=null;">
+    </div>
+    <div class="member-info">
+      <h3>${m.name}</h3>
+      <span class="member-dept">${m.dept}</span>
+      <div class="member-home">${m.area || ''}</div>
+    </div>
+  </div>`;
+}
+
+function teacherCardHTML(t) {
+  const file = nameToFilename(t.name);
+  return `
+  <div class="teacher-card reveal">
+    <div class="teacher-photo-wrap"
+         onclick="openLightboxImg('pictures/${file}.jpg','${t.name} · ${t.dept}')"
+         title="View photo">
+      <img src="pictures/${file}.jpg" alt="${t.name}"
+           onerror="this.src='pictures/default.jpg';this.onerror=null;">
+    </div>
+    <div class="teacher-info">
+      <h3>${t.name}</h3>
+      <span class="teacher-dept">${t.dept}</span>
+      <span class="teacher-position">${t.position}</span>
+    </div>
+  </div>`;
+}
+
+/* =============================================
+   RENDER MEMBERS
+   ============================================= */
+function renderMembers() {
+  // Executive grid (with badge)
+  document.getElementById('executiveGrid').innerHTML =
+    executiveMembers.map(m => memberCardHTML(m, true)).join('');
+
+  // General grid (execs + extras, no badge)
+  document.getElementById('membersGrid').innerHTML =
+    allGeneralMembers.map(m => memberCardHTML(m, false)).join('');
+
+  // Populate dropdowns
+  populateFilterDropdowns();
+  updateCount();
+
+  document.getElementById('teachersGrid').innerHTML = teachers.map(t => teacherCardHTML(t)).join('');
+  document.getElementById('staffGrid').innerHTML    = staffMembers.map(s => teacherCardHTML(s)).join('');
+}
+
+function populateFilterDropdowns() {
+  const depts = [...new Set(allGeneralMembers.map(m => m.dept))].sort();
+  const areas = [...new Set(allGeneralMembers.map(m => m.area).filter(Boolean))].sort();
+
+  const deptSel = document.getElementById('deptFilter');
+  depts.forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d; opt.textContent = d;
+    deptSel.appendChild(opt);
+  });
+
+  const areaSel = document.getElementById('areaFilter');
+  areas.forEach(a => {
+    const opt = document.createElement('option');
+    opt.value = a; opt.textContent = a;
+    areaSel.appendChild(opt);
+  });
+}
+
+/* =============================================
+   FILTER LOGIC
+   ============================================= */
+function applyFilters() {
+  const dept = document.getElementById('deptFilter').value;
+  const area = document.getElementById('areaFilter').value;
+  let visible = 0;
+
+  document.querySelectorAll('#membersGrid .member-card').forEach(card => {
+    const deptMatch = dept === 'all' || card.dataset.dept === dept;
+    const areaMatch = area === 'all' || card.dataset.area === area;
+    const show = deptMatch && areaMatch;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  updateCount(visible);
+}
+
+function resetFilters() {
+  document.getElementById('deptFilter').value = 'all';
+  document.getElementById('areaFilter').value = 'all';
+  document.querySelectorAll('#membersGrid .member-card').forEach(c => c.style.display = '');
+  updateCount();
+}
+
+function updateCount(n) {
+  const total = allGeneralMembers.length;
+  const shown = n !== undefined ? n : total;
+  document.getElementById('membersCount').textContent =
+    shown === total ? `${total} members` : `${shown} of ${total} members`;
+}
+
+/* =============================================
+   RENDER EVENTS
+   Photos: if string ends in .jpg/.jpeg/.png/.webp → show as <img>
+           otherwise treat as emoji text
+   ============================================= */
+function isImageFile(s) {
+  return /\.(jpg|jpeg|png|webp|gif)$/i.test(s);
+}
+
+function renderEvents() {
+  document.getElementById('eventsList').innerHTML = events.map((ev, i) => {
+    const thumbHTML = isImageFile(ev.thumb || '')
+      ? `<div class="event-thumb"><img src="pictures/events/${ev.thumb}" alt="${ev.title}" onerror="this.parentElement.innerHTML='${ev.emoji}'"></div>`
+      : `<div class="event-thumb">${ev.emoji}</div>`;
+
+    const galleryHTML = ev.photos.map((p, pi) => {
+      if (isImageFile(p)) {
+        return `<div class="event-gallery-img"
+                     onclick="openLightboxImg('pictures/events/${p}','${ev.title} — Photo ${pi+1}')"
+                     title="View photo">
+                  <img src="pictures/events/${p}" alt="Photo ${pi+1}"
+                       onerror="this.parentElement.innerHTML='📷'">
+                </div>`;
+      } else {
+        return `<div class="event-gallery-img"
+                     onclick="openLightbox('${p}','${ev.title} — Photo ${pi+1}')"
+                     title="Photo slot">${p}</div>`;
+      }
+    }).join('');
+
+    return `
+    <div class="event-card reveal" id="event-${i}">
+      <div class="event-header" onclick="toggleEvent(${i})">
+        ${thumbHTML}
+        <div class="event-meta">
+          <div class="event-date">📅 ${ev.date} &nbsp;·&nbsp; 📍 ${ev.location}</div>
+          <h3>${ev.title}</h3>
+          <p>${ev.photos.filter(p => isImageFile(p)).length} photos · click to expand</p>
+        </div>
+        <div class="event-toggle">+</div>
+      </div>
+      <div class="event-body" id="event-body-${i}">
+        <div class="event-body-inner">
+          <p>${ev.description}</p>
+          <div class="event-gallery">${galleryHTML}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleEvent(i) {
+  const card = document.getElementById(`event-${i}`);
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.event-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) {
+    card.classList.add('open');
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+}
+
+/* =============================================
+   PAGE NAV
+   ============================================= */
+function showPage(page) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const section = document.getElementById(page);
+  if (section) section.classList.add('active');
+  const link = document.querySelector(`[data-page="${page}"]`);
+  if (link) link.classList.add('active');
+  window.scrollTo(0, 0);
+  document.getElementById('navLinks').classList.remove('open');
+  if (section) {
+    section.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      section.querySelectorAll('.reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), Math.min(i * 40, 700));
+      });
+    }));
+  }
+  return false;
+}
+
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+/* =============================================
+   NAVBAR SCROLL
+   ============================================= */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* =============================================
+   HERO PARTICLES
+   ============================================= */
+(function createParticles() {
+  const c = document.getElementById('heroParticles');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;--dur:${Math.random()*8+6}s;--delay:${Math.random()*8}s;--op:${Math.random()*0.3+0.1}`;
+    c.appendChild(p);
+  }
+})();
+
+/* =============================================
+   SCROLL REVEAL (home page)
+   ============================================= */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+/* =============================================
+   LIGHTBOX
+   ============================================= */
+function openLightbox(emoji, caption) {
+  document.getElementById('lightboxContent').innerHTML = `
+    <div class="lightbox-placeholder">
+      <div class="lightbox-placeholder-icon">${emoji}</div>
+      <div class="lightbox-placeholder-text">${caption || ''}</div>
+    </div>`;
+  document.getElementById('lightboxCaption').textContent = caption || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function openLightboxImg(src, caption) {
+  const content = document.getElementById('lightboxContent');
+  content.innerHTML = `<img src="pictures/default.jpg" alt="Loading…" style="max-width:85vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px;opacity:0.4">`;
+  document.getElementById('lightboxCaption').textContent = caption || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  const img = new Image();
+  img.onload  = () => { content.innerHTML = `<img src="${src}" alt="${caption}" style="max-width:85vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px">`; };
+  img.onerror = () => { content.innerHTML = `<img src="pictures/default.jpg" alt="${caption}" style="max-width:85vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px">`; };
+  img.src = src;
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => { document.getElementById('lightboxContent').innerHTML = ''; }, 450);
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+/* =============================================
+   INIT
+   ============================================= */
+document.getElementById('mainNav').classList.add('scrolled');
+renderMembers();
+renderEvents();
+setTimeout(() => {
+  document.querySelectorAll('#home .reveal').forEach(el => revealObserver.observe(el));
+}, 100);
+</script>
+</body>
+</html>
