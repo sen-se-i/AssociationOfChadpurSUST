@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chandpur Student Association — SUST</title>
- <link rel="icon" type="image/png" href="pictures/logo.png">
+<link rel="icon" type="image/png" href="pictures/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -37,8 +37,8 @@ body{font-family:'Lora',Georgia,serif;color:var(--text-dark);overflow-x:hidden;}
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 3rem;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all 0.5s var(--ts);}
 nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(0,0,0,0.3);height:60px;}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:pointer;}
-.nav-logo-emblem{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;color:var(--deep-teal);box-shadow:0 4px 16px rgba(201,150,58,0.4);transition:transform 0.4s var(--tspring);flex-shrink:0;}
-.nav-logo:hover .nav-logo-emblem{transform:rotate(15deg) scale(1.1);}
+.nav-logo img{transition:transform 0.4s var(--tspring);}
+.nav-logo:hover img{transform:rotate(15deg) scale(1.1);}
 .nav-logo-text{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);line-height:1.3;}
 .nav-logo-text span{display:block;font-weight:300;font-size:0.7rem;color:var(--gold-light);letter-spacing:0.2em;}
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
@@ -99,10 +99,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .stat-num span{color:var(--gold);}
 .stat-label{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);margin-top:0.4rem;display:block;}
 .about-visual{position:relative;}
-.about-img-placeholder{width:100%;aspect-ratio:4/5;background:linear-gradient(160deg,#0a3d40,#1a6b7a,#0d4d55);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;position:relative;overflow:hidden;box-shadow:var(--shadow-deep);}
-.about-img-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(201,150,58,0.2) 0%,transparent 50%),radial-gradient(circle at 70% 70%,rgba(26,107,122,0.3) 0%,transparent 50%);}
-.about-img-placeholder svg{width:80px;opacity:0.3;}
-.about-img-placeholder p{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,216,216,0.5);position:relative;}
 .about-img-accent{position:absolute;bottom:-1.5rem;right:-1.5rem;width:55%;aspect-ratio:1;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:2px;z-index:-1;opacity:0.2;}
 .about-img-frame{position:absolute;top:-1rem;left:-1rem;right:2rem;bottom:2rem;border:1.5px solid rgba(201,150,58,0.3);border-radius:2px;pointer-events:none;}
 
@@ -136,42 +132,38 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .purpose-content h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep-teal);margin-bottom:0.6rem;}
 .purpose-content p{font-size:0.92rem;line-height:1.8;color:var(--text-mid);}
 
-/* PAGE HERO (blogs/members/events) */
+/* PAGE HERO */
 .page-hero{padding:10rem 3rem 5rem;position:relative;overflow:hidden;}
-#blogs .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#0d2e35);}
 #members .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#0d2e35);}
-#events .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#1a3520);}
+#events  .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#1a3520);}
 .page-hero-content{max-width:1200px;margin:0 auto;}
 .page-hero .section-label{color:var(--gold);margin-bottom:1rem;}
 .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;color:var(--cream);margin-bottom:1rem;}
 .page-hero p{font-size:1rem;color:rgba(200,216,216,0.7);max-width:500px;}
 
-/* BLOGS */
-.blog-grid{padding:5rem 3rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;}
-.blog-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 20px rgba(10,40,40,0.08);transition:all 0.4s var(--ts);border:1px solid rgba(26,107,122,0.08);}
-.blog-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-deep);}
-.blog-img-placeholder{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,var(--deep-teal),var(--river-blue));display:flex;align-items:center;justify-content:center;font-size:2.5rem;}
-.blog-body{padding:1.8rem;}
-.blog-tag{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--river-blue);background:rgba(26,107,122,0.08);padding:3px 10px;border-radius:30px;display:inline-block;margin-bottom:0.8rem;}
-.blog-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--deep-teal);line-height:1.4;margin-bottom:0.7rem;}
-.blog-card p{font-size:0.88rem;line-height:1.7;color:var(--text-mid);margin-bottom:1.2rem;}
-.blog-meta{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(26,107,122,0.1);font-family:'Josefin Sans',sans-serif;font-size:0.7rem;letter-spacing:0.08em;color:var(--text-light);}
-
 /* MEMBERS */
 .members-section{padding:5rem 3rem;max-width:1400px;margin:0 auto;}
 .members-section h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--deep-teal);margin-bottom:0.5rem;}
-.members-section > p,.section-desc{color:var(--text-light);font-size:0.9rem;margin-bottom:2.5rem;font-family:'Josefin Sans',sans-serif;letter-spacing:0.05em;}
+.section-desc{color:var(--text-light);font-size:0.9rem;margin-bottom:2.5rem;font-family:'Josefin Sans',sans-serif;letter-spacing:0.05em;}
 
-/* FILTER DROPDOWNS */
-.filter-bar{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:2.5rem;align-items:center;}
+/* SESSION GROUPS */
+.session-group{margin-bottom:3rem;}
+.session-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.session-label-tag{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--deep-teal);background:rgba(201,150,58,0.12);border:1px solid rgba(201,150,58,0.25);padding:5px 14px;border-radius:30px;white-space:nowrap;}
+.session-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(26,107,122,0.2),transparent);}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:2.5rem;align-items:flex-end;}
+.filter-group{display:flex;flex-direction:column;gap:4px;}
 .filter-bar label{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);}
-.filter-select{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;padding:9px 36px 9px 14px;border:1.5px solid rgba(26,107,122,0.25);background:var(--warm-white);color:var(--text-dark);border-radius:3px;cursor:pointer;transition:all 0.3s var(--ts);appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a6b7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;min-width:180px;}
+.filter-select{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;padding:9px 36px 9px 14px;border:1.5px solid rgba(26,107,122,0.25);background:var(--warm-white);color:var(--text-dark);border-radius:3px;cursor:pointer;transition:all 0.3s var(--ts);appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a6b7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;min-width:220px;}
 .filter-select:focus{outline:none;border-color:var(--river-blue);box-shadow:0 0 0 3px rgba(26,107,122,0.1);}
 .filter-select:hover{border-color:var(--river-blue);}
-.filter-reset{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:9px 16px;border:1.5px solid rgba(201,150,58,0.3);background:transparent;color:var(--gold);border-radius:3px;cursor:pointer;transition:all 0.3s var(--ts);}
+.filter-reset{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:9px 16px;border:1.5px solid rgba(201,150,58,0.3);background:transparent;color:var(--gold);border-radius:3px;cursor:pointer;transition:all 0.3s var(--ts);align-self:flex-end;}
 .filter-reset:hover{background:var(--gold);color:var(--deep-teal);}
-.members-count{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:var(--text-light);margin-left:auto;align-self:center;}
+.members-count{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:var(--text-light);align-self:flex-end;padding-bottom:2px;}
 
+/* MEMBER CARDS */
 .members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.8rem;}
 .member-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);transition:all 0.4s var(--ts);position:relative;}
 .member-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
@@ -183,7 +175,8 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .member-position-badge{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep-teal);font-family:'Josefin Sans',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;z-index:5;max-width:calc(100% - 20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .member-info{padding:1rem 1rem 1.2rem;}
 .member-info h3{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--deep-teal);margin-bottom:0.2rem;}
-.member-dept{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--river-blue);display:block;margin-bottom:0.3rem;}
+.member-dept{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--river-blue);display:block;margin-bottom:0.2rem;}
+.member-session-tag{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;letter-spacing:0.08em;color:var(--gold);display:inline-block;margin-bottom:0.25rem;}
 .member-home{font-size:0.78rem;color:var(--text-light);display:flex;align-items:center;gap:4px;}
 .member-home::before{content:'📍';font-size:0.7rem;}
 .members-divider{border:none;border-top:1.5px solid rgba(26,107,122,0.1);margin:4rem 0 3rem;}
@@ -220,7 +213,7 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .event-body{max-height:0;overflow:hidden;transition:max-height 0.6s var(--ts);}
 .event-card.open .event-body{max-height:2000px;}
 .event-body-inner{padding:2rem;border-top:1px solid rgba(26,107,122,0.08);}
-.event-body-inner p{font-size:0.92rem;line-height:1.8;color:var(--text-mid);margin-bottom:1.5rem;}
+.event-body-inner > p{font-size:0.92rem;line-height:1.8;color:var(--text-mid);margin-bottom:1.5rem;}
 .event-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;}
 .event-gallery-img{aspect-ratio:1;border-radius:3px;overflow:hidden;cursor:pointer;transition:all 0.35s var(--ts);position:relative;background:linear-gradient(135deg,var(--deep-teal),var(--river-blue));display:flex;align-items:center;justify-content:center;font-size:1.8rem;}
 .event-gallery-img img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;}
@@ -233,15 +226,20 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 #lightbox.active{opacity:1;pointer-events:all;background:rgba(4,24,24,0.93);backdrop-filter:blur(16px);}
 .lightbox-inner{position:relative;max-width:90vw;max-height:90vh;transform:scale(0.85) translateY(20px);transition:transform 0.45s var(--tspring);}
 #lightbox.active .lightbox-inner{transform:scale(1) translateY(0);}
-.lightbox-img-wrap{max-width:90vw;max-height:85vh;overflow:hidden;border-radius:4px;display:flex;align-items:center;justify-content:center;background:var(--deep-teal);min-width:300px;min-height:200px;}
-.lightbox-img-wrap img{max-width:85vw;max-height:80vh;object-fit:contain;display:block;}
-.lightbox-placeholder{width:500px;height:400px;max-width:85vw;background:linear-gradient(160deg,#0a3d40,#1a6b7a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:3rem;}
-.lightbox-placeholder-icon{font-size:5rem;opacity:0.4;}
-.lightbox-placeholder-text{font-family:'Josefin Sans',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,216,216,0.4);text-align:center;}
+.lightbox-img-wrap{max-width:90vw;max-height:80vh;overflow:hidden;border-radius:4px;display:flex;align-items:center;justify-content:center;background:var(--deep-teal);min-width:300px;min-height:200px;}
+.lightbox-img-wrap img{max-width:85vw;max-height:78vh;object-fit:contain;display:block;}
 .lightbox-close{position:absolute;top:-18px;right:-18px;width:44px;height:44px;background:var(--gold);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--deep-teal);font-weight:700;transition:all 0.35s var(--tspring);box-shadow:0 4px 16px rgba(0,0,0,0.3);z-index:10;line-height:1;}
 .lightbox-close:hover{transform:rotate(90deg) scale(1.15);background:var(--gold-light);}
-.lightbox-caption{text-align:center;margin-top:1rem;font-family:'Josefin Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;color:rgba(200,216,216,0.5);text-transform:uppercase;}
+.lightbox-caption{text-align:center;margin-top:0.6rem;font-family:'Josefin Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;color:rgba(200,216,216,0.5);text-transform:uppercase;}
+.lightbox-counter{text-align:center;margin-top:0.3rem;font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.18em;color:rgba(200,216,216,0.3);}
 .lightbox-backdrop-click{position:absolute;inset:0;z-index:-1;}
+
+/* LIGHTBOX ARROW BUTTONS */
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--cream);font-size:1.2rem;transition:all 0.3s var(--ts);z-index:10;backdrop-filter:blur(6px);line-height:1;}
+.lb-arrow:hover{background:rgba(201,150,58,0.3);border-color:var(--gold);color:var(--gold-light);}
+.lb-arrow.lb-prev{right:calc(100% + 16px);}
+.lb-arrow.lb-next{left:calc(100% + 16px);}
+.lb-arrow[hidden]{display:none;}
 
 /* FOOTER */
 footer{background:var(--dark);padding:5rem 3rem 3rem;position:relative;overflow:hidden;}
@@ -275,7 +273,6 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .about-visual{display:none;}
   .purpose-layout{grid-template-columns:1fr;}
   .purpose-sticky{position:static;}
-  .blog-grid{grid-template-columns:repeat(2,1fr);}
   .footer-grid{grid-template-columns:1fr 1fr;gap:3rem;}
 }
 @media(max-width:768px){
@@ -285,7 +282,6 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(10,61,64,0.98);padding:2rem;gap:1.5rem;backdrop-filter:blur(20px);}
   .section-about,.section-culture,.section-purpose{padding:5rem 1.5rem;}
   .culture-cards{grid-template-columns:1fr 1fr;}
-  .blog-grid{grid-template-columns:1fr;padding:3rem 1.5rem;}
   .members-section{padding:3rem 1.5rem;}
   .members-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
   .events-container{padding:3rem 1.5rem;}
@@ -295,8 +291,9 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .footer-grid{grid-template-columns:1fr;gap:2rem;}
   .footer-bottom{flex-direction:column;gap:1rem;text-align:center;}
   .filter-bar{flex-direction:column;align-items:flex-start;}
-  .filter-select{width:100%;}
-  .members-count{margin-left:0;}
+  .filter-select{width:100%;min-width:unset;}
+  .lb-arrow.lb-prev{right:auto;left:4px;top:auto;bottom:-56px;transform:none;}
+  .lb-arrow.lb-next{left:auto;right:4px;top:auto;bottom:-56px;transform:none;}
 }
 </style>
 </head>
@@ -305,15 +302,13 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 <!-- NAV -->
 <nav id="mainNav">
   <a class="nav-logo" onclick="showPage('home')">
-    <img src="pictures/logo.png" alt="Logo"
-     style="width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+    <img src="pictures/logo.png" alt="Logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
     <div class="nav-logo-text">Chandpur Association<span>SUST · Sylhet</span></div>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#" onclick="showPage('home')" data-page="home" class="active">Home</a></li>
-    <li><a href="#" onclick="showPage('blogs')" data-page="blogs">Blogs</a></li>
+    <li><a href="#" onclick="showPage('home')"    data-page="home"    class="active">Home</a></li>
     <li><a href="#" onclick="showPage('members')" data-page="members">Members</a></li>
-    <li><a href="#" onclick="showPage('events')" data-page="events">Events</a></li>
+    <li><a href="#" onclick="showPage('events')"  data-page="events">Events</a></li>
   </ul>
   <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
@@ -339,7 +334,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
       <p class="hero-desc">Bringing together the sons and daughters of Chandpur — the land of great rivers, silver Hilsha, and timeless culture — under one roof at SUST, Sylhet.</p>
       <div class="hero-cta">
         <a class="btn-primary" onclick="showPage('members')">Meet Our Members ↗</a>
-        <a class="btn-outline" onclick="showPage('events')">View Events</a>
+        <a class="btn-outline"  onclick="showPage('events')">View Events</a>
       </div>
     </div>
     <div class="hero-scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
@@ -357,16 +352,16 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
           <p>Beyond bonding, we represent Chandpur's voice across SUST's diverse association landscape — collaborating, contributing, and celebrating our heritage with pride.</p>
           <div class="stats-row">
             <div class="stat-item"><span class="stat-num">100<span>+</span></span><span class="stat-label">Active Members</span></div>
-            <div class="stat-item"><span class="stat-num">12<span>+</span></span><span class="stat-label">Departments</span></div>
+            <div class="stat-item"><span class="stat-num">28<span></span></span><span class="stat-label">Departments</span></div>
             <div class="stat-item"><span class="stat-num">8<span>+</span></span><span class="stat-label">Annual Events</span></div>
           </div>
         </div>
-       <div class="about-visual reveal">
-  <div class="about-img-frame"></div>
-  <img src="pictures/logo.jpeg" alt="Chandpur Association"
-       style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block;box-shadow:0 20px 60px rgba(10,40,40,0.25);">
-  <div class="about-img-accent"></div>
-</div>
+        <div class="about-visual reveal">
+          <div class="about-img-frame"></div>
+          <img src="pictures/association.jpg" alt="Chandpur Association"
+               style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block;box-shadow:0 20px 60px rgba(10,40,40,0.25);">
+          <div class="about-img-accent"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -398,33 +393,13 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
           <p style="color:var(--text-mid);line-height:1.9;font-size:0.95rem">Every Chandpur student at SUST deserves a home away from home. We exist to build that home — strong, warm, and unbreakable.</p>
         </div>
         <div class="purpose-list">
-          <div class="purpose-item reveal"><span class="purpose-num">01</span><div class="purpose-content"><h3>Connect & Build Community</h3><p>We connect Chandpur students across all departments and batches, creating a tight-knit network that transcends academic boundaries. No Chandpur student ever feels alone at SUST.</p></div></div>
-          <div class="purpose-item reveal reveal-delay-1"><span class="purpose-num">02</span><div class="purpose-content"><h3>Assert Our Cultural Identity</h3><p>We celebrate Chandpur's unique culture — from Hilsha festivals to river heritage events — ensuring our identity shines brightly within SUST's multicultural campus.</p></div></div>
-          <div class="purpose-item reveal reveal-delay-2"><span class="purpose-num">03</span><div class="purpose-content"><h3>Support & Mentor</h3><p>Senior members guide freshmen through academic and social challenges. We ensure every newcomer from Chandpur has a mentor, a friend, and a direction from their very first day.</p></div></div>
-          <div class="purpose-item reveal reveal-delay-3"><span class="purpose-num">04</span><div class="purpose-content"><h3>Represent at SUST</h3><p>We engage with other district associations, university bodies and student unions — making Chandpur's presence felt, respected, and valued across the entire university ecosystem.</p></div></div>
+          <div class="purpose-item reveal"><span class="purpose-num">01</span><div class="purpose-content"><h3>Connect & Build Community</h3><p>We connect Chandpur students across all departments and batches, creating a tight-knit network that transcends academic boundaries.</p></div></div>
+          <div class="purpose-item reveal reveal-delay-1"><span class="purpose-num">02</span><div class="purpose-content"><h3>Assert Our Cultural Identity</h3><p>We celebrate Chandpur's unique culture — from Hilsha festivals to river heritage events — ensuring our identity shines within SUST's multicultural campus.</p></div></div>
+          <div class="purpose-item reveal reveal-delay-2"><span class="purpose-num">03</span><div class="purpose-content"><h3>Support & Mentor</h3><p>Senior members guide freshmen through academic and social challenges. Every newcomer from Chandpur gets a mentor, a friend, and a direction.</p></div></div>
+          <div class="purpose-item reveal reveal-delay-3"><span class="purpose-num">04</span><div class="purpose-content"><h3>Represent at SUST</h3><p>We engage with other district associations and student unions — making Chandpur's presence felt, respected, and valued across the university.</p></div></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- BLOGS -->
-<section id="blogs" class="page-section">
-  <div class="page-hero">
-    <div class="page-hero-content">
-      <div class="section-label">From Our Community</div>
-      <h1>Our <em style="font-style:italic;color:var(--gold-light)">Stories</em></h1>
-      <p>Thoughts, reflections, and voices from the Chandpur community at SUST.</p>
-    </div>
-  </div>
-  <div class="gold-line"></div>
-  <div class="blog-grid">
-    <div class="blog-card reveal"><div class="blog-img-placeholder">🐟</div><div class="blog-body"><span class="blog-tag">Culture</span><h3>Why Ilish Is More Than Just a Fish — It's Our Soul</h3><p>When a Chandpur student smells Hilsha being cooked in the SUST mess, something awakens deep inside. It's the river, the home, the identity...</p><div class="blog-meta"><span>Md. Rahim Uddin</span><span>March 2025</span></div></div></div>
-    <div class="blog-card reveal reveal-delay-1"><div class="blog-img-placeholder">🌊</div><div class="blog-body"><span class="blog-tag">Reflections</span><h3>The Day I First Stood at the Banks of Meghna</h3><p>Growing up in Chandpur, the Meghna was always there — a silent giant. It was only after leaving for SUST that I realized how deeply it shaped me...</p><div class="blog-meta"><span>Fatema Akter</span><span>January 2025</span></div></div></div>
-    <div class="blog-card reveal reveal-delay-2"><div class="blog-img-placeholder">🎓</div><div class="blog-body"><span class="blog-tag">SUST Life</span><h3>Finding Chandpur in the Halls of SUST: A Freshman's Journey</h3><p>I was terrified on my first day. Everything was new, everyone spoke different dialects. Then I heard someone say "Chandpur" — and the world became smaller...</p><div class="blog-meta"><span>Arif Hossain</span><span>December 2024</span></div></div></div>
-    <div class="blog-card reveal"><div class="blog-img-placeholder">🏛️</div><div class="blog-body"><span class="blog-tag">Heritage</span><h3>Chandpur's Forgotten Mosques: Architecture Lost in Time</h3><p>Beyond the rivers and fish, Chandpur hides centuries of architectural heritage. Ancient mosques dot the landscape, whispering stories of Mughals and merchants...</p><div class="blog-meta"><span>Nusrat Jahan</span><span>October 2024</span></div></div></div>
-    <div class="blog-card reveal reveal-delay-1"><div class="blog-img-placeholder">🎭</div><div class="blog-body"><span class="blog-tag">Events</span><h3>Our Annual Chandpur Night: When the Campus Became Home</h3><p>The stage was lit, the aroma of Chandpur foods filled the air, and for one night, SUST transformed into a corner of our beloved district...</p><div class="blog-meta"><span>Tanvir Ahmed</span><span>September 2024</span></div></div></div>
-    <div class="blog-card reveal reveal-delay-2"><div class="blog-img-placeholder">🌿</div><div class="blog-body"><span class="blog-tag">Nature</span><h3>The Charlands of Chandpur: A Landscape Only We Know</h3><p>The char areas of Chandpur are unlike any place on earth. Seasonal islands of emerald green rising from the flood — fragile, temporary, and achingly beautiful...</p><div class="blog-meta"><span>Roksana Begum</span><span>August 2024</span></div></div></div>
   </div>
 </section>
 
@@ -440,36 +415,39 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   <div class="gold-line"></div>
   <div class="members-section">
 
-    <!-- Executive Committee -->
     <h2>Executive Committee</h2>
     <p class="section-desc">The elected leadership guiding the association</p>
     <div class="members-grid" id="executiveGrid"></div>
 
     <hr class="members-divider">
 
-    <!-- General Members -->
     <h2>General Members</h2>
-    <p class="section-desc">Our vibrant community of students from Chandpur</p>
+    <p class="section-desc">Our vibrant community of students — sorted by session, then name</p>
 
-    <!-- Filter bar -->
     <div class="filter-bar">
-      <div style="display:flex;flex-direction:column;gap:4px">
-        <label for="deptFilter">Filter by Department</label>
+      <div class="filter-group">
+        <label for="deptFilter">Department</label>
         <select class="filter-select" id="deptFilter" onchange="applyFilters()">
           <option value="all">All Departments</option>
         </select>
       </div>
-      <div style="display:flex;flex-direction:column;gap:4px">
-        <label for="areaFilter">Filter by Area</label>
+      <div class="filter-group">
+        <label for="areaFilter">Area</label>
         <select class="filter-select" id="areaFilter" onchange="applyFilters()">
           <option value="all">All Areas</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="sessionFilter">Session</label>
+        <select class="filter-select" id="sessionFilter" onchange="applyFilters()">
+          <option value="all">All Sessions</option>
         </select>
       </div>
       <button class="filter-reset" onclick="resetFilters()">Reset</button>
       <span class="members-count" id="membersCount"></span>
     </div>
 
-    <div class="members-grid" id="membersGrid"></div>
+    <div id="generalMembersContainer"></div>
 
     <hr class="members-divider">
     <h2>Teachers from Chandpur</h2>
@@ -502,11 +480,18 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="nav-logo-emblem" style="width:50px;height:50px;font-size:1.3rem">চ</div>
+      <img src="pictures/logo.png" alt="Logo" style="width:50px;height:50px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
       <p>Chandpur Students' Association at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
     </div>
-    <div class="footer-col"><h4>Navigate</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('blogs')">Blogs</a></li><li><a onclick="showPage('members')">Members</a></li><li><a onclick="showPage('events')">Events</a></li></ul></div>
-    <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.facebook.com/AssociationOfChandpurSUST">Facebook page</a></li><li><a href="gmail.com">Email Us <br>association.of.chandpur.sust@gmail.com</a></li>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('members')">Members</a></li>
+      <li><a onclick="showPage('events')">Events</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul>
+      <li><a href="https://www.facebook.com/AssociationOfChandpurSUST" target="_blank">Facebook Page</a></li>
+      <li><a href="mailto:association.of.chandpur.sust@gmail.com">Email Us</a></li>
+    </ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 Chandpur Students' Association · <span class="sust-tag">SUST, Sylhet</span></p>
@@ -517,208 +502,247 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 <!-- LIGHTBOX -->
 <div id="lightbox">
   <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-    <div class="lightbox-img-wrap" id="lightboxContent"></div>
-    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <button class="lb-arrow lb-prev" id="lbPrev" onclick="lightboxNav(-1)">&#8592;</button>
+    <button class="lightbox-close"   onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img-wrap"   id="lightboxContent"></div>
+    <div class="lightbox-caption"    id="lightboxCaption"></div>
+    <div class="lightbox-counter"    id="lightboxCounter"></div>
+    <button class="lb-arrow lb-next" id="lbNext" onclick="lightboxNav(1)">&#8594;</button>
   </div>
   <div class="lightbox-backdrop-click" onclick="closeLightbox()"></div>
 </div>
 
 <script>
-/* =============================================
-   UTILITY
-   ============================================= */
-function nameToFilename(name) {
-  return name.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
-}
+/* ─── UTILITY ─────────────────────────────────────── */
+function nameToFilename(n){return n.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');}
+function isImageFile(s){return /\.(jpg|jpeg|png|webp|gif)$/i.test(s||'');}
 
-/* =============================================
-   DATA — EXECUTIVE MEMBERS
-   Every exec is ALSO shown in General Members (auto)
-   ============================================= */
+/* ─── FULL DEPT LIST (28 departments) ─────────────── */
+const ALL_DEPTS=[
+  'Architecture','Chemical Engineering & Polymer Science','Civil & Environmental Engineering',
+  'Computer Science & Engineering','Electrical & Electronic Engineering',
+  'Food Engineering & Tea Technology','Industrial & Production Engineering',
+  'Mechanical Engineering','Petroleum & Mining Engineering','Forestry & Environmental Science',
+  'Biochemistry & Molecular Biology','Genetic Engineering & Biotechnology',
+  'Business Administration','Chemistry','Geography & Environment','Mathematics',
+  'Physics','Statistics','Oceanography','Anthropology','Bangla','Economics',
+  'English','Political Studies','Public Administration','Social Work','Sociology',
+  'Software Engineering'
+];
+
+/* ─── EXECUTIVE MEMBERS ───────────────────────────── */
 const executiveMembers = [
-  { name: 'Zakaria Talukdar Omio', dept: 'Public Administration', area: 'Chandpur Sadar', position: 'President' },
-  { name: 'Ali Ashraf Tanvir',     dept: 'CSE',                   area: 'Haimchar',       position: 'General Secretary' },
-  { name: 'Abdul Mannan Nirjon',   dept: 'Public Administration', area: 'Kachua',          position: 'Senior Vice President' },
-  { name: 'Mahin Ibrahim',         dept: 'Chemistry',             area: 'Faridganj',       position: 'Vice President' },
-  { name: 'Fakhrul Islam',         dept: 'IPE',                   area: 'Matlab Uttar',    position: 'Vice President' },
-  { name: 'Shahid Hasan Joy',      dept: 'IPE',                   area: 'Haziganj',        position: 'Vice President' },
-  { name: 'Tahsin Ornob',          dept: 'Physics',               area: 'Haziganj',        position: 'Organizing Secretary' },
-  { name: 'Sadman Zaman Litun',    dept: 'Statistics',            area: 'Haziganj',        position: 'Joint Secretary' },
-  { name: 'Nayeem Ahmed',          dept: 'MEE',                   area: 'Haziganj',        position: 'IT Secretary' },
-  { name: 'Farhann Ahmed Kafil',   dept: 'CEP',                   area: 'Haziganj',        position: 'Treasurer' },
-  { name: 'Rumman Ahmed',          dept: 'Chemistry',             area: 'Haziganj',        position: 'Deputy Treasurer' },
-  { name: 'Meher Afroz',           dept: 'MEE',                   area: 'Haziganj',        position: 'Office Secretary' },
-  { name: 'Tanvir Ahmed Emon',     dept: 'Statistics',            area: 'Haziganj',        position: 'Sports Secretary' },
-  { name: 'Shafin Ahmed',          dept: 'Public Administration', area: 'Haziganj',        position: 'Deputy Sports Secretary' },
-  { name: 'Jannatul Nayeema',      dept: 'English',               area: 'Haziganj',        position: 'Cultural Secretary' },
-  { name: 'Jayma Afrin',           dept: 'BBA',                   area: 'Haziganj',        position: 'Human Rights Secretary' },
-  { name: 'Mahbub Mahi',           dept: 'CEP',                   area: 'Haziganj',        position: 'Media Secretary' },
-  { name: 'Antik Chakraborty',     dept: 'Economics',             area: 'Haziganj',        position: 'Publication Secretary' },
-  { name: 'Navin Remo',            dept: 'Anthropology',          area: 'Haziganj',        position: 'Assistant General Secretary' },
-  { name: 'Bayezid Hossain',       dept: 'English',               area: 'Haziganj',        position: 'Assistant General Secretary' },
-  { name: 'Tarek Hossain',         dept: 'BMB',                   area: 'Haziganj',        position: 'Assistant IT Secretary' },
-  { name: 'Arzu Sultana Anon',     dept: 'CSE',                   area: 'Haziganj',        position: 'Assistant IT Secretary' },
-  { name: 'Wasimul Islam Rabbi',   dept: 'Statistics',            area: 'Haziganj',        position: 'Assistant Organizing Secretary' },
-  { name: 'Junaeid Hossain',       dept: 'CSE',                   area: 'Haziganj',        position: 'Assistant Organizing Secretary' },
-  { name: 'Mezbah Mahi',           dept: 'Statistics',            area: 'Haziganj',        position: 'Assistant Organizing Secretary' },
-  { name: 'Emon Hossain',          dept: 'Statistics',            area: 'Haziganj',        position: 'Assistant Treasurer' },
-  { name: 'Rakib Mamun',           dept: 'MEE',                   area: 'Haziganj',        position: 'Assistant Treasurer' },
-  { name: 'Fajlay Raiyan',         dept: 'MEE',                   area: 'Haziganj',        position: 'Assistant Office Secretary' },
-  { name: 'Ismail Hossain Tonmoy', dept: 'Geology',               area: 'Haziganj',        position: 'Assistant Office Secretary' },
-  { name: 'Mohammad Noman',        dept: 'MEE',                   area: 'Haziganj',        position: 'Assistant Media Secretary' },
-  { name: 'Fahim Ahammad Tanvir',  dept: 'Software Engineering',  area: 'Haziganj',        position: 'Assistant Publication Secretary' },
-  { name: 'Fabiha Bushra Dilshad', dept: 'GEB',                   area: 'Haziganj',        position: 'Assistant Publication Secretary' },
-  { name: 'Maryam Chowdhury',      dept: 'Economics',             area: 'Haziganj',        position: 'Assistant Human Rights Secretary' },
-  { name: 'Shahinur Akter Mitu',   dept: 'Economics',             area: 'Haziganj',        position: 'Assistant Cultural Secretary' },
-  { name: 'Takaful Islam Karima',  dept: 'CEE',                   area: 'Haziganj',        position: 'Assistant Cultural Secretary' },
-  { name: 'Samira Shaiba Athoi',   dept: 'Geology',               area: 'Haziganj',        position: 'Assistant Cultural Secretary' },
-  { name: 'Fardin Islam Rijvy',    dept: 'Software Engineering',  area: 'Haziganj',        position: 'Assistant Sports Secretary' },
-  { name: 'Nahid Hossain',         dept: 'GEB',                   area: 'Haziganj',        position: 'Assistant Sports Secretary' },
-  { name: 'Asm Raihanul Hasan',     dept: 'GEB',                   area: 'Haziganj',        position: 'Assistant Sports Secretary' },
+  // Session 21-22
+  {name:'Zakaria Talukdar Omio', dept:'Public Administration',              area:'Chandpur Sadar', position:'President',                       session:'21-22'},
+  {name:'Ali Ashraf Tanvir',     dept:'Computer Science & Engineering',     area:'Haimchar',       position:'General Secretary',               session:'21-22'},
+  {name:'Abdul Mannan Nirjon',   dept:'Public Administration',              area:'Kachua',          position:'Senior Vice President',           session:'21-22'},
+  {name:'Mahin Ibrahim',         dept:'Chemistry',                          area:'Faridganj',       position:'Vice President',                  session:'21-22'},
+  {name:'Fakhrul Islam',         dept:'Industrial & Production Engineering',area:'Matlab Uttar',    position:'Vice President',                  session:'21-22'},
+  {name:'Shahid Hasan Joy',      dept:'Industrial & Production Engineering',area:'Haziganj',        position:'Vice President',                  session:'21-22'},
+  // Session 22-23
+  {name:'Tahsin Ornob',          dept:'Physics',                            area:'Haziganj',        position:'Organizing Secretary',            session:'22-23'},
+  {name:'Sadman Zaman Litun',    dept:'Statistics',                         area:'Haziganj',        position:'Joint Secretary',                 session:'22-23'},
+  {name:'Nayeem Ahmed',          dept:'Mechanical Engineering',             area:'Haziganj',        position:'IT Secretary',                    session:'22-23'},
+  {name:'Farhann Ahmed Kafil',   dept:'Chemical Engineering & Polymer Science',area:'Haziganj',     position:'Treasurer',                       session:'22-23'},
+  {name:'Rumman Ahmed',          dept:'Chemistry',                          area:'Haziganj',        position:'Deputy Treasurer',                session:'22-23'},
+  {name:'Meher Afroz',           dept:'Mechanical Engineering',             area:'Haziganj',        position:'Office Secretary',                session:'22-23'},
+  {name:'Tanvir Ahmed Emon',     dept:'Statistics',                         area:'Haziganj',        position:'Sports Secretary',                session:'22-23'},
+  {name:'Shafin Ahmed',          dept:'Public Administration',              area:'Haziganj',        position:'Deputy Sports Secretary',         session:'22-23'},
+  {name:'Jannatul Nayeema',      dept:'English',                            area:'Haziganj',        position:'Cultural Secretary',              session:'22-23'},
+  {name:'Jayma Afrin',           dept:'Business Administration',            area:'Haziganj',        position:'Human Rights Secretary',          session:'22-23'},
+  {name:'Mahbub Mahi',           dept:'Chemical Engineering & Polymer Science',area:'Haziganj',     position:'Media Secretary',                 session:'22-23'},
+  {name:'Antik Chakraborty',     dept:'Economics',                          area:'Haziganj',        position:'Publication Secretary',           session:'22-23'},
+  {name:'Navin Remo',            dept:'Anthropology',                       area:'Haziganj',        position:'Assistant General Secretary',     session:'22-23'},
+  {name:'Bayezid Hossain',       dept:'English',                            area:'Haziganj',        position:'Assistant General Secretary',     session:'22-23'},
+  // Session 23-24
+  {name:'Tarek Hossain',         dept:'Biochemistry & Molecular Biology',   area:'Haziganj',        position:'Assistant IT Secretary',          session:'23-24'},
+  {name:'Arzu Sultana Anon',     dept:'Computer Science & Engineering',     area:'Haziganj',        position:'Assistant IT Secretary',          session:'23-24'},
+  {name:'Wasimul Islam Rabbi',   dept:'Statistics',                         area:'Haziganj',        position:'Assistant Organizing Secretary',  session:'23-24'},
+  {name:'Junaeid Hossain',       dept:'Computer Science & Engineering',     area:'Haziganj',        position:'Assistant Organizing Secretary',  session:'23-24'},
+  {name:'Mezbah Mahi',           dept:'Statistics',                         area:'Haziganj',        position:'Assistant Organizing Secretary',  session:'23-24'},
+  {name:'Emon Hossain',          dept:'Statistics',                         area:'Haziganj',        position:'Assistant Treasurer',             session:'23-24'},
+  {name:'Rakib Mamun',           dept:'Mechanical Engineering',             area:'Haziganj',        position:'Assistant Treasurer',             session:'23-24'},
+  {name:'Fajlay Raiyan',         dept:'Mechanical Engineering',             area:'Haziganj',        position:'Assistant Office Secretary',      session:'23-24'},
+  {name:'Ismail Hossain Tonmoy', dept:'Geography & Environment',            area:'Haziganj',        position:'Assistant Office Secretary',      session:'23-24'},
+  {name:'Mohammad Noman',        dept:'Mechanical Engineering',             area:'Haziganj',        position:'Assistant Media Secretary',       session:'23-24'},
+  {name:'Fahim Ahammad Tanvir',  dept:'Software Engineering',               area:'Haziganj',        position:'Assistant Publication Secretary', session:'23-24'},
+  {name:'Fabiha Bushra Dilshad', dept:'Genetic Engineering & Biotechnology',area:'Haziganj',        position:'Assistant Publication Secretary', session:'23-24'},
+  {name:'Maryam Chowdhury',      dept:'Economics',                          area:'Haziganj',        position:'Assistant Human Rights Secretary',session:'23-24'},
+  {name:'Shahinur Akter Mitu',   dept:'Economics',                          area:'Haziganj',        position:'Assistant Cultural Secretary',    session:'23-24'},
+  {name:'Takaful Islam Karima',  dept:'Civil & Environmental Engineering',  area:'Haziganj',        position:'Assistant Cultural Secretary',    session:'23-24'},
+  {name:'Samira Shaiba Athoi',   dept:'Geography & Environment',            area:'Haziganj',        position:'Assistant Cultural Secretary',    session:'23-24'},
+  {name:'Fardin Islam Rijvy',    dept:'Software Engineering',               area:'Haziganj',        position:'Assistant Sports Secretary',      session:'23-24'},
+  {name:'Nahid Hossain',         dept:'Genetic Engineering & Biotechnology',area:'Haziganj',        position:'Assistant Sports Secretary',      session:'23-24'},
+  {name:'Asm Raihanul Hasan',    dept:'Genetic Engineering & Biotechnology',area:'Haziganj',        position:'Assistant Sports Secretary',      session:'23-24'},
 ];
 
 /*
-  ── ADD GENERAL MEMBERS BELOW ──────────────────────────────────────────────
-  Format: { name: 'First Last', dept: 'Department', area: 'Area' }
-  Photo file: pictures/first_last.jpg  (auto-derived from name)
-  Exec members are already included automatically — don't re-add them here.
-  ───────────────────────────────────────────────────────────────────────── */
+  ── ADD GENERAL MEMBERS HERE ─────────────────────────────────────────────────
+  { name: 'Full Name', dept: 'Full Dept Name', area: 'Upazila/Area', session: '23-24' }
+  Photo → pictures/full_name.jpg (spaces→underscore, lowercase, dots removed)
+  Executive members are already auto-included below — don't duplicate them.
+  ─────────────────────────────────────────────────────────────────────────── */
 const generalMembersOnly = [
-  // Add your members here, e.g.:
-  // { name: 'Raihan Islam',    dept: 'CSE',      area: 'Kachua'   },
-  // { name: 'Sumaiya Akter',   dept: 'Physics',  area: 'Haimchar' },
+  // { name: 'Raihan Islam', dept: 'Computer Science & Engineering', area: 'Kachua', session: '23-24' },
 ];
 
-/* Build the full general list = execs + extras */
+/* Combined general list */
 const allGeneralMembers = [
-  ...executiveMembers.map(m => ({ name: m.name, dept: m.dept, area: m.area })),
+  ...executiveMembers.map(m=>({name:m.name,dept:m.dept,area:m.area,session:m.session})),
   ...generalMembersOnly
 ];
 
 const teachers = [
-  { name: 'Prof. Dr. Abdul Mannan', dept: 'Computer Science & Engineering',   position: 'Professor' },
-  { name: 'Dr. Shahnaz Parvin',     dept: 'Mathematics',                       position: 'Associate Professor' },
-  { name: 'Md. Zahirul Haque',      dept: 'Physics',                           position: 'Assistant Professor' },
-  { name: 'Dr. Kamrul Hasan',       dept: 'Civil & Environmental Engineering', position: 'Professor' },
-  { name: 'Ms. Roksana Islam',      dept: 'Business Administration',           position: 'Lecturer' },
-  { name: 'Dr. Anowarul Kabir',     dept: 'Electrical & Electronic Eng.',      position: 'Associate Professor' },
-  { name: 'Tania Akter',            dept: 'Chemistry',                         position: 'Assistant Professor' },
-  { name: 'Md. Faruk Hossain',      dept: 'Architecture',                      position: 'Lecturer' },
+  {name:'Prof. Dr. Abdul Mannan',dept:'Computer Science & Engineering',  position:'Professor'},
+  {name:'Dr. Shahnaz Parvin',    dept:'Mathematics',                      position:'Associate Professor'},
+  {name:'Md. Zahirul Haque',     dept:'Physics',                          position:'Assistant Professor'},
+  {name:'Dr. Kamrul Hasan',      dept:'Civil & Environmental Engineering',position:'Professor'},
+  {name:'Ms. Roksana Islam',     dept:'Business Administration',          position:'Lecturer'},
+  {name:'Dr. Anowarul Kabir',    dept:'Electrical & Electronic Engineering',position:'Associate Professor'},
+  {name:'Tania Akter',           dept:'Chemistry',                        position:'Assistant Professor'},
+  {name:'Md. Faruk Hossain',     dept:'Architecture',                     position:'Lecturer'},
 ];
 
 const staffMembers = [
-  { name: 'Md. Shamsul Haque', dept: 'Registrar Office', position: 'Senior Staff' },
-  { name: 'Rubina Akter',      dept: 'Library',           position: 'Librarian' },
-  { name: 'Md. Jahangir Alam', dept: 'Computer Center',   position: 'Lab Technician' },
-  { name: 'Amena Begum',       dept: 'Finance Office',    position: 'Accounts Officer' },
-  { name: 'Kamal Uddin',       dept: 'Student Affairs',   position: 'Student Counselor' },
-  { name: 'Md. Belal Hossain', dept: 'Maintenance',       position: 'Engineer' },
+  {name:'Md. Shamsul Haque', dept:'Registrar Office', position:'Senior Staff'},
+  {name:'Rubina Akter',      dept:'Library',           position:'Librarian'},
+  {name:'Md. Jahangir Alam', dept:'Computer Center',   position:'Lab Technician'},
+  {name:'Amena Begum',       dept:'Finance Office',    position:'Accounts Officer'},
+  {name:'Kamal Uddin',       dept:'Student Affairs',   position:'Student Counselor'},
+  {name:'Md. Belal Hossain', dept:'Maintenance',       position:'Engineer'},
 ];
 
 /*
-  ── EVENTS DATA ──────────────────────────────────────────────────────────────
-  For event photos, add filenames to the `photos` array.
-  Put your photos in the  pictures/events/  folder.
-
-  Example:
-    photos: ['chandpur_night_1.jpg', 'chandpur_night_2.jpg', 'chandpur_night_3.jpg']
-
-  If a filename is left as an emoji string (like '🎤'), it shows as an emoji tile.
+  ── EVENTS ───────────────────────────────────────────────────────────────────
+  thumb  → filename in pictures/events/  (optional, shows on collapsed card)
+  photos → filenames in pictures/events/  OR emoji strings for placeholders
+  Arrow navigation works across all photos in one event.
   ─────────────────────────────────────────────────────────────────────────── */
 const events = [
   {
-    title: 'Chandpur Night 2025 — An Evening of Culture',
-    date: 'February 14, 2025',
-    location: 'SUST Central Auditorium',
-    thumb: '',  // optional: put a photo filename here for the thumbnail, e.g. 'chandpur_night_thumb.jpg'
-    emoji: '🎭',
-    description: 'Our flagship annual event celebrating Chandpur\'s rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna. The event drew over 200 attendees including faculty and students from other associations.',
-    photos: [
-      // Replace emojis with your filenames, e.g. 'chandpur_night_1.jpg'
-      '🎤', '🍽️', '🎊', '💃', '🥁', '🌟', '📸'
-    ]
+    title:'Chandpur Night 2025 — An Evening of Culture',
+    date:'February 14, 2025', location:'SUST Central Auditorium',
+    thumb:'', emoji:'🎭',
+    description:"Our flagship annual event celebrating Chandpur's rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.",
+    photos:['🎤','🍽️','🎊','💃','🥁','🌟','📸']
   },
   {
-    title: 'Freshman Welcome & Orientation 2024',
-    date: 'November 3, 2024',
-    location: 'SUST Academic Building',
-    thumb: '',
-    emoji: '🎓',
-    description: 'We welcomed the new batch of Chandpur students to SUST with open arms. Senior members shared their experiences, gave academic advice, and most importantly — made sure every freshman knew they had a family here.',
-    photos: ['🤝', '😊', '📚', '🎯', '🌱', '💡', '🏫', '🎉']
+    title:'Freshman Welcome & Orientation 2024',
+    date:'November 3, 2024', location:'SUST Academic Building',
+    thumb:'', emoji:'🎓',
+    description:"We welcomed the new batch of Chandpur students to SUST with open arms. Senior members shared their experiences, gave academic advice, and made sure every freshman knew they had a family here.",
+    photos:['🤝','😊','📚','🎯','🌱','💡','🏫','🎉']
   },
   {
-    title: 'Ilish Mahotsob — Hilsha Fish Festival',
-    date: 'September 20, 2024',
-    location: 'SUST Campus Ground',
-    thumb: '',
-    emoji: '🐟',
-    description: 'A unique celebration honoring the most iconic symbol of Chandpur — the Ilish (Hilsha) fish. We organized a cooking competition, photo exhibition on Chandpur\'s river life, and a feast featuring Hilsha prepared in 8 traditional ways.',
-    photos: ['🍳', '🥘', '📷', '🎬', '🌊', '👨‍🍳', '🏆', '🎪']
+    title:'Ilish Mahotsob — Hilsha Fish Festival',
+    date:'September 20, 2024', location:'SUST Campus Ground',
+    thumb:'', emoji:'🐟',
+    description:"A unique celebration honoring the most iconic symbol of Chandpur — the Ilish (Hilsha) fish. We organized a cooking competition, photo exhibition on Chandpur's river life, and a feast featuring Hilsha prepared in 8 traditional ways.",
+    photos:['🍳','🥘','📷','🎬','🌊','👨‍🍳','🏆','🎪']
   },
   {
-    title: 'Inter-Association Friendship Match 2024',
-    date: 'July 12, 2024',
-    location: 'SUST Sports Complex',
-    thumb: '',
-    emoji: '🏏',
-    description: 'A cricket and football tournament bringing together five district associations. Chandpur\'s team showcased exceptional teamwork and sportsmanship. The event strengthened bonds between associations and ended with a shared dinner.',
-    photos: ['🏏', '⚽', '🏆', '🤸', '👟', '📣', '🎽', '🌄']
+    title:'Inter-Association Friendship Match 2024',
+    date:'July 12, 2024', location:'SUST Sports Complex',
+    thumb:'', emoji:'🏏',
+    description:"A cricket and football tournament bringing together five district associations. Chandpur's team showcased exceptional teamwork and sportsmanship. The event ended with a shared dinner celebrating unity across districts.",
+    photos:['🏏','⚽','🏆','🤸','👟','📣','🎽','🌄']
   },
   {
-    title: 'Meghna River Heritage Exhibition',
-    date: 'April 5, 2024',
-    location: 'SUST Library Hall',
-    thumb: '',
-    emoji: '🌊',
-    description: 'A three-day photo and art exhibition dedicated to the Meghna river and its cultural significance to Chandpur. The exhibition featured over 60 photographs, 15 paintings, and a collection of river-inspired poetry.',
-    photos: ['🖼️', '📸', '✍️', '🎨', '📖', '🌅', '🚤', '🌿']
+    title:'Meghna River Heritage Exhibition',
+    date:'April 5, 2024', location:'SUST Library Hall',
+    thumb:'', emoji:'🌊',
+    description:"A three-day photo and art exhibition dedicated to the Meghna river and its cultural significance to Chandpur. The exhibition featured over 60 photographs, 15 paintings, and a collection of river-inspired poetry.",
+    photos:['🖼️','📸','✍️','🎨','📖','🌅','🚤','🌿']
   }
 ];
 
-/* =============================================
-   CARD HTML BUILDERS
-   ============================================= */
-function memberCardHTML(m, showBadge) {
-  const file = nameToFilename(m.name);
-  const bgColors = [
-    'linear-gradient(160deg,#0a3d40,#1a6b7a)',
-    'linear-gradient(160deg,#1a3520,#2e6b3e)',
-    'linear-gradient(160deg,#2d1a40,#5a3a8c)',
-    'linear-gradient(160deg,#401a1a,#8c3a3a)',
-    'linear-gradient(160deg,#1a2d40,#3a6b8c)',
-  ];
-  const bg = bgColors[m.name.charCodeAt(0) % bgColors.length];
-  const badge = showBadge && m.position
-    ? `<div class="member-position-badge">${m.position}</div>` : '';
+/* ─── LIGHTBOX STATE ──────────────────────────────── */
+let lbItems=[], lbIndex=0;
 
+function setLightboxItems(items,idx){
+  lbItems=items; lbIndex=idx;
+  renderLightboxSlide();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function renderLightboxSlide(){
+  const item=lbItems[lbIndex];
+  const content=document.getElementById('lightboxContent');
+  document.getElementById('lightboxCaption').textContent=item.caption||'';
+  document.getElementById('lightboxCounter').textContent=lbItems.length>1?`${lbIndex+1} / ${lbItems.length}`:'';
+  document.getElementById('lbPrev').hidden=lbItems.length<=1||lbIndex===0;
+  document.getElementById('lbNext').hidden=lbItems.length<=1||lbIndex===lbItems.length-1;
+
+  if(item.emoji){
+    content.innerHTML=`<div style="width:400px;height:300px;max-width:85vw;background:linear-gradient(160deg,#0a3d40,#1a6b7a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:3rem;border-radius:4px"><div style="font-size:5rem;opacity:0.5">${item.emoji}</div><div style="font-family:'Josefin Sans',sans-serif;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,216,216,0.45);text-align:center">${item.caption||''}</div></div>`;
+  } else {
+    content.innerHTML=`<img src="pictures/default.jpg" alt="Loading…" style="max-width:85vw;max-height:78vh;object-fit:contain;display:block;border-radius:4px;opacity:0.35">`;
+    const img=new Image();
+    img.onload =()=>{content.innerHTML=`<img src="${item.src}" alt="${item.caption||''}" style="max-width:85vw;max-height:78vh;object-fit:contain;display:block;border-radius:4px">`;};
+    img.onerror=()=>{content.innerHTML=`<img src="pictures/default.jpg" alt="${item.caption||''}" style="max-width:85vw;max-height:78vh;object-fit:contain;display:block;border-radius:4px">`;};
+    img.src=item.src;
+  }
+}
+
+function lightboxNav(dir){
+  lbIndex=Math.max(0,Math.min(lbItems.length-1,lbIndex+dir));
+  renderLightboxSlide();
+}
+
+function openLightboxImg(src,caption,arr,idx){ setLightboxItems(arr,idx); }
+function openLightbox(emoji,caption){ setLightboxItems([{emoji,caption}],0); }
+
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow='';
+  setTimeout(()=>{document.getElementById('lightboxContent').innerHTML='';},450);
+}
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('active'))return;
+  if(e.key==='Escape')    closeLightbox();
+  if(e.key==='ArrowLeft') lightboxNav(-1);
+  if(e.key==='ArrowRight')lightboxNav(1);
+});
+
+/* ─── SORT helpers ────────────────────────────────── */
+function sessionKey(s){if(!s)return 9999;return parseInt(s.replace('-',''),10);}
+function sortMembers(arr){
+  return [...arr].sort((a,b)=>{
+    const sd=sessionKey(a.session)-sessionKey(b.session);
+    return sd!==0?sd:a.name.localeCompare(b.name);
+  });
+}
+
+/* ─── CARD BUILDERS ───────────────────────────────── */
+let execLbItems=[], genLbItems=[], teachLbItems=[], staffLbItems=[];
+
+function memberCardHTML(m,showBadge,lbArr,idx){
+  const file=nameToFilename(m.name);
+  const badge=showBadge&&m.position?`<div class="member-position-badge">${m.position}</div>`:'';
+  const sessTag=m.session?`<span class="member-session-tag">Session ${m.session}</span>`:'';
   return `
-  <div class="member-card reveal" data-dept="${m.dept}" data-area="${m.area || ''}">
+  <div class="member-card reveal" data-dept="${m.dept}" data-area="${m.area||''}" data-session="${m.session||''}">
     ${badge}
-    <div class="member-photo-wrap"
-         onclick="openLightboxImg('pictures/${file}.jpg','${m.name} · ${m.dept}')"
-         title="View photo">
-      <img src="pictures/${file}.jpg" alt="${m.name}"
-           onerror="this.src='pictures/default.jpg';this.onerror=null;">
+    <div class="member-photo-wrap" onclick="openLightboxImg('pictures/${file}.jpg','${m.name} · ${m.dept}',${lbArr},${idx})" title="View photo">
+      <img src="pictures/${file}.jpg" alt="${m.name}" onerror="this.src='pictures/default.jpg';this.onerror=null;">
     </div>
     <div class="member-info">
       <h3>${m.name}</h3>
       <span class="member-dept">${m.dept}</span>
-      <div class="member-home">${m.area || ''}</div>
+      ${sessTag}
+      <div class="member-home">${m.area||''}</div>
     </div>
   </div>`;
 }
 
-function teacherCardHTML(t) {
-  const file = nameToFilename(t.name);
+function teacherCardHTML(t,lbArr,idx){
+  const file=nameToFilename(t.name);
   return `
   <div class="teacher-card reveal">
-    <div class="teacher-photo-wrap"
-         onclick="openLightboxImg('pictures/${file}.jpg','${t.name} · ${t.dept}')"
-         title="View photo">
-      <img src="pictures/${file}.jpg" alt="${t.name}"
-           onerror="this.src='pictures/default.jpg';this.onerror=null;">
+    <div class="teacher-photo-wrap" onclick="openLightboxImg('pictures/${file}.jpg','${t.name} · ${t.dept}',${lbArr},${idx})" title="View photo">
+      <img src="pictures/${file}.jpg" alt="${t.name}" onerror="this.src='pictures/default.jpg';this.onerror=null;">
     </div>
     <div class="teacher-info">
       <h3>${t.name}</h3>
@@ -728,107 +752,119 @@ function teacherCardHTML(t) {
   </div>`;
 }
 
-/* =============================================
-   RENDER MEMBERS
-   ============================================= */
-function renderMembers() {
-  // Executive grid (with badge)
-  document.getElementById('executiveGrid').innerHTML =
-    executiveMembers.map(m => memberCardHTML(m, true)).join('');
+/* ─── RENDER MEMBERS ──────────────────────────────── */
+function renderMembers(){
+  /* Executives — shown in order entered, with badge */
+  execLbItems=executiveMembers.map(m=>({src:`pictures/${nameToFilename(m.name)}.jpg`,caption:`${m.name} · ${m.dept}`}));
+  window.execLbItemsRef='execLbItems';
+  document.getElementById('executiveGrid').innerHTML=
+    executiveMembers.map((m,i)=>memberCardHTML(m,true,'execLbItems',i)).join('');
 
-  // General grid (execs + extras, no badge)
-  document.getElementById('membersGrid').innerHTML =
-    allGeneralMembers.map(m => memberCardHTML(m, false)).join('');
+  /* General members — sorted */
+  const sorted=sortMembers(allGeneralMembers);
+  genLbItems=sorted.map(m=>({src:`pictures/${nameToFilename(m.name)}.jpg`,caption:`${m.name} · ${m.dept}`}));
 
-  // Populate dropdowns
-  populateFilterDropdowns();
-  updateCount();
-
-  document.getElementById('teachersGrid').innerHTML = teachers.map(t => teacherCardHTML(t)).join('');
-  document.getElementById('staffGrid').innerHTML    = staffMembers.map(s => teacherCardHTML(s)).join('');
-}
-
-function populateFilterDropdowns() {
-  const depts = [...new Set(allGeneralMembers.map(m => m.dept))].sort();
-  const areas = [...new Set(allGeneralMembers.map(m => m.area).filter(Boolean))].sort();
-
-  const deptSel = document.getElementById('deptFilter');
-  depts.forEach(d => {
-    const opt = document.createElement('option');
-    opt.value = d; opt.textContent = d;
-    deptSel.appendChild(opt);
-  });
-
-  const areaSel = document.getElementById('areaFilter');
-  areas.forEach(a => {
-    const opt = document.createElement('option');
-    opt.value = a; opt.textContent = a;
-    areaSel.appendChild(opt);
-  });
-}
-
-/* =============================================
-   FILTER LOGIC
-   ============================================= */
-function applyFilters() {
-  const dept = document.getElementById('deptFilter').value;
-  const area = document.getElementById('areaFilter').value;
-  let visible = 0;
-
-  document.querySelectorAll('#membersGrid .member-card').forEach(card => {
-    const deptMatch = dept === 'all' || card.dataset.dept === dept;
-    const areaMatch = area === 'all' || card.dataset.area === area;
-    const show = deptMatch && areaMatch;
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-
-  updateCount(visible);
-}
-
-function resetFilters() {
-  document.getElementById('deptFilter').value = 'all';
-  document.getElementById('areaFilter').value = 'all';
-  document.querySelectorAll('#membersGrid .member-card').forEach(c => c.style.display = '');
-  updateCount();
-}
-
-function updateCount(n) {
-  const total = allGeneralMembers.length;
-  const shown = n !== undefined ? n : total;
-  document.getElementById('membersCount').textContent =
-    shown === total ? `${total} members` : `${shown} of ${total} members`;
-}
-
-/* =============================================
-   RENDER EVENTS
-   Photos: if string ends in .jpg/.jpeg/.png/.webp → show as <img>
-           otherwise treat as emoji text
-   ============================================= */
-function isImageFile(s) {
-  return /\.(jpg|jpeg|png|webp|gif)$/i.test(s);
-}
-
-function renderEvents() {
-  document.getElementById('eventsList').innerHTML = events.map((ev, i) => {
-    const thumbHTML = isImageFile(ev.thumb || '')
-      ? `<div class="event-thumb"><img src="pictures/events/${ev.thumb}" alt="${ev.title}" onerror="this.parentElement.innerHTML='${ev.emoji}'"></div>`
-      : `<div class="event-thumb">${ev.emoji}</div>`;
-
-    const galleryHTML = ev.photos.map((p, pi) => {
-      if (isImageFile(p)) {
-        return `<div class="event-gallery-img"
-                     onclick="openLightboxImg('pictures/events/${p}','${ev.title} — Photo ${pi+1}')"
-                     title="View photo">
-                  <img src="pictures/events/${p}" alt="Photo ${pi+1}"
-                       onerror="this.parentElement.innerHTML='📷'">
-                </div>`;
-      } else {
-        return `<div class="event-gallery-img"
-                     onclick="openLightbox('${p}','${ev.title} — Photo ${pi+1}')"
-                     title="Photo slot">${p}</div>`;
-      }
+  /* Group by session */
+  const sessions=[...new Set(sorted.map(m=>m.session||'Unknown'))];
+  const container=document.getElementById('generalMembersContainer');
+  container.innerHTML=sessions.map(sess=>{
+    const group=sorted.filter(m=>(m.session||'Unknown')===sess);
+    const grid=group.map(m=>{
+      const gi=sorted.indexOf(m);
+      return memberCardHTML(m,false,'genLbItems',gi);
     }).join('');
+    return `<div class="session-group" data-session-group="${sess}">
+      <div class="session-header">
+        <span class="session-label-tag">Session ${sess}</span>
+        <div class="session-line"></div>
+      </div>
+      <div class="members-grid">${grid}</div>
+    </div>`;
+  }).join('');
+
+  populateFilters(sorted);
+  updateCount(sorted.length,sorted.length);
+
+  /* Teachers */
+  teachLbItems=teachers.map(t=>({src:`pictures/${nameToFilename(t.name)}.jpg`,caption:`${t.name} · ${t.dept}`}));
+  document.getElementById('teachersGrid').innerHTML=teachers.map((t,i)=>teacherCardHTML(t,'teachLbItems',i)).join('');
+
+  /* Staff */
+  staffLbItems=staffMembers.map(s=>({src:`pictures/${nameToFilename(s.name)}.jpg`,caption:`${s.name} · ${s.dept}`}));
+  document.getElementById('staffGrid').innerHTML=staffMembers.map((s,i)=>teacherCardHTML(s,'staffLbItems',i)).join('');
+}
+
+function populateFilters(sorted){
+  const depts=[...new Set(sorted.map(m=>m.dept))].sort();
+  const areas=[...new Set(sorted.map(m=>m.area).filter(Boolean))].sort();
+  const sessions=[...new Set(sorted.map(m=>m.session).filter(Boolean))];
+
+  const dSel=document.getElementById('deptFilter');
+  depts.forEach(d=>{const o=document.createElement('option');o.value=d;o.textContent=d;dSel.appendChild(o);});
+
+  const aSel=document.getElementById('areaFilter');
+  areas.forEach(a=>{const o=document.createElement('option');o.value=a;o.textContent=a;aSel.appendChild(o);});
+
+  const sSel=document.getElementById('sessionFilter');
+  sessions.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=`Session ${s}`;sSel.appendChild(o);});
+}
+
+/* ─── FILTER ──────────────────────────────────────── */
+function applyFilters(){
+  const dept=document.getElementById('deptFilter').value;
+  const area=document.getElementById('areaFilter').value;
+  const sess=document.getElementById('sessionFilter').value;
+  let vis=0,tot=0;
+
+  document.querySelectorAll('.session-group').forEach(grp=>{
+    const gs=grp.dataset.sessionGroup;
+    const sm=sess==='all'||gs===sess;
+    let gv=0;
+    grp.querySelectorAll('.member-card').forEach(card=>{
+      tot++;
+      const show=(dept==='all'||card.dataset.dept===dept)&&
+                 (area==='all'||card.dataset.area===area)&&sm;
+      card.style.display=show?'':'none';
+      if(show){vis++;gv++;}
+    });
+    grp.style.display=gv>0?'':'none';
+  });
+  updateCount(vis,tot);
+}
+
+function resetFilters(){
+  ['deptFilter','areaFilter','sessionFilter'].forEach(id=>document.getElementById(id).value='all');
+  document.querySelectorAll('.session-group').forEach(g=>g.style.display='');
+  document.querySelectorAll('.member-card').forEach(c=>c.style.display='');
+  updateCount(allGeneralMembers.length,allGeneralMembers.length);
+}
+
+function updateCount(v,t){
+  document.getElementById('membersCount').textContent=v===t?`${t} members`:`${v} of ${t} members`;
+}
+
+/* ─── RENDER EVENTS ───────────────────────────────── */
+function renderEvents(){
+  document.getElementById('eventsList').innerHTML=events.map((ev,i)=>{
+    const thumbHTML=isImageFile(ev.thumb)
+      ?`<div class="event-thumb"><img src="pictures/events/${ev.thumb}" alt="" onerror="this.parentElement.innerHTML='${ev.emoji}'"></div>`
+      :`<div class="event-thumb">${ev.emoji}</div>`;
+
+    const evItems=ev.photos.map((p,pi)=>
+      isImageFile(p)?{src:`pictures/events/${p}`,caption:`${ev.title} — Photo ${pi+1}`}
+                    :{emoji:p,                   caption:`${ev.title} — Photo ${pi+1}`}
+    );
+    /* Store per-event items in window so onclick string can ref them */
+    window[`evItems${i}`]=evItems;
+
+    const gallery=ev.photos.map((p,pi)=>{
+      const fn=isImageFile(p)?`openEvPhoto(${i},${pi})`:`openLightbox('${p}','${ev.title} — Photo ${pi+1}')`;
+      const inner=isImageFile(p)?`<img src="pictures/events/${p}" alt="Photo ${pi+1}" onerror="this.parentElement.innerHTML='📷'">`:`${p}`;
+      return `<div class="event-gallery-img" onclick="${fn}" title="View photo">${inner}</div>`;
+    }).join('');
+
+    const cnt=ev.photos.filter(p=>isImageFile(p)).length;
+    const note=cnt>0?`${cnt} photos`:`${ev.photos.length} moments`;
 
     return `
     <div class="event-card reveal" id="event-${i}">
@@ -837,128 +873,79 @@ function renderEvents() {
         <div class="event-meta">
           <div class="event-date">📅 ${ev.date} &nbsp;·&nbsp; 📍 ${ev.location}</div>
           <h3>${ev.title}</h3>
-          <p>${ev.photos.filter(p => isImageFile(p)).length} photos · click to expand</p>
+          <p>${note} · click to expand</p>
         </div>
         <div class="event-toggle">+</div>
       </div>
-      <div class="event-body" id="event-body-${i}">
+      <div class="event-body">
         <div class="event-body-inner">
           <p>${ev.description}</p>
-          <div class="event-gallery">${galleryHTML}</div>
+          <div class="event-gallery">${gallery}</div>
         </div>
       </div>
     </div>`;
   }).join('');
 }
 
-function toggleEvent(i) {
-  const card = document.getElementById(`event-${i}`);
-  const isOpen = card.classList.contains('open');
-  document.querySelectorAll('.event-card').forEach(c => c.classList.remove('open'));
-  if (!isOpen) {
-    card.classList.add('open');
-    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-  }
+function openEvPhoto(evIdx,photoIdx){
+  setLightboxItems(window[`evItems${evIdx}`],photoIdx);
 }
 
-/* =============================================
-   PAGE NAV
-   ============================================= */
-function showPage(page) {
-  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  const section = document.getElementById(page);
-  if (section) section.classList.add('active');
-  const link = document.querySelector(`[data-page="${page}"]`);
-  if (link) link.classList.add('active');
-  window.scrollTo(0, 0);
+function toggleEvent(i){
+  const card=document.getElementById(`event-${i}`);
+  const open=card.classList.contains('open');
+  document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('open'));
+  if(!open){card.classList.add('open');setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),100);}
+}
+
+/* ─── PAGE NAV ────────────────────────────────────── */
+function showPage(page){
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const sec=document.getElementById(page);
+  if(sec)sec.classList.add('active');
+  const lnk=document.querySelector(`[data-page="${page}"]`);
+  if(lnk)lnk.classList.add('active');
+  window.scrollTo(0,0);
   document.getElementById('navLinks').classList.remove('open');
-  if (section) {
-    section.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'));
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      section.querySelectorAll('.reveal').forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), Math.min(i * 40, 700));
-      });
+  if(sec){
+    sec.querySelectorAll('.reveal').forEach(el=>el.classList.remove('visible'));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      sec.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('visible'),Math.min(i*40,700)));
     }));
   }
   return false;
 }
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
 
-function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
-}
-
-/* =============================================
-   NAVBAR SCROLL
-   ============================================= */
-window.addEventListener('scroll', () => {
-  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+/* ─── NAVBAR SCROLL ───────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
 });
 
-/* =============================================
-   HERO PARTICLES
-   ============================================= */
-(function createParticles() {
-  const c = document.getElementById('heroParticles');
-  for (let i = 0; i < 18; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 4 + 2;
-    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;--dur:${Math.random()*8+6}s;--delay:${Math.random()*8}s;--op:${Math.random()*0.3+0.1}`;
+/* ─── HERO PARTICLES ──────────────────────────────── */
+(function(){
+  const c=document.getElementById('heroParticles');
+  for(let i=0;i<18;i++){
+    const p=document.createElement('div');p.className='particle';
+    const s=Math.random()*4+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;--dur:${Math.random()*8+6}s;--delay:${Math.random()*8}s;--op:${Math.random()*0.3+0.1}`;
     c.appendChild(p);
   }
 })();
 
-/* =============================================
-   SCROLL REVEAL (home page)
-   ============================================= */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+/* ─── SCROLL REVEAL ───────────────────────────────── */
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
 
-/* =============================================
-   LIGHTBOX
-   ============================================= */
-function openLightbox(emoji, caption) {
-  document.getElementById('lightboxContent').innerHTML = `
-    <div class="lightbox-placeholder">
-      <div class="lightbox-placeholder-icon">${emoji}</div>
-      <div class="lightbox-placeholder-text">${caption || ''}</div>
-    </div>`;
-  document.getElementById('lightboxCaption').textContent = caption || '';
-  document.getElementById('lightbox').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function openLightboxImg(src, caption) {
-  const content = document.getElementById('lightboxContent');
-  content.innerHTML = `<img src="pictures/default.jpg" alt="Loading…" style="max-width:85vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px;opacity:0.4">`;
-  document.getElementById('lightboxCaption').textContent = caption || '';
-  document.getElementById('lightbox').classList.add('active');
-  document.body.style.overflow = 'hidden';
-  const img = new Image();
-  img.onload  = () => { content.innerHTML = `<img src="${src}" alt="${caption}" style="max-width:85vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px">`; };
-  img.onerror = () => { content.innerHTML = `<img src="pictures/default.jpg" alt="${caption}" style="max-width:85vw;max-height:80vh;object-fit:contain;display:block;border-radius:4px">`; };
-  img.src = src;
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-  document.body.style.overflow = '';
-  setTimeout(() => { document.getElementById('lightboxContent').innerHTML = ''; }, 450);
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-/* =============================================
-   INIT
-   ============================================= */
+/* ─── INIT ────────────────────────────────────────── */
 document.getElementById('mainNav').classList.add('scrolled');
 renderMembers();
 renderEvents();
-setTimeout(() => {
-  document.querySelectorAll('#home .reveal').forEach(el => revealObserver.observe(el));
-}, 100);
+setTimeout(()=>{
+  document.querySelectorAll('#home .reveal').forEach(el=>revealObserver.observe(el));
+},100);
 </script>
 </body>
 </html>
