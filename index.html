@@ -33,7 +33,6 @@ body{font-family:'Lora',Georgia,serif;color:var(--text-dark);overflow-x:hidden;}
 ::-webkit-scrollbar-track{background:var(--cream);}
 ::-webkit-scrollbar-thumb{background:var(--river-blue);border-radius:3px;}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 3rem;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all 0.5s var(--ts);}
 nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(0,0,0,0.3);height:60px;}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:pointer;}
@@ -42,7 +41,7 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .nav-logo-text{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);line-height:1.3;}
 .nav-logo-text span{display:block;font-weight:300;font-size:0.7rem;color:var(--gold-light);letter-spacing:0.2em;}
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
-.nav-links a{font-family:'Josefin Sans',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,240,232,0.85);text-decoration:none;position:relative;padding-bottom:4px;transition:color 0.3s;}
+.nav-links a{font-family:'Josefin Sans',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,240,232,0.85);text-decoration:none;position:relative;padding-bottom:4px;transition:color 0.3s;cursor:pointer;}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--gold);transition:width 0.35s var(--ts);}
 .nav-links a:hover{color:var(--gold-light);}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
@@ -50,11 +49,9 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
 .nav-hamburger span{display:block;width:26px;height:2px;background:var(--cream);border-radius:2px;transition:all 0.3s var(--ts);}
 
-/* PAGES */
 .page-section{display:none;min-height:100vh;}
 .page-section.active{display:block;}
 
-/* HERO */
 .hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(26,107,122,0.35) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(201,150,58,0.15) 0%,transparent 50%),linear-gradient(160deg,#041818 0%,#0a3d40 35%,#0d2e35 60%,#041010 100%);z-index:0;}
 .hero-waves{position:absolute;bottom:0;left:0;right:0;height:200px;z-index:1;overflow:hidden;}
@@ -82,7 +79,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .scroll-line{width:1.5px;height:50px;background:linear-gradient(to bottom,rgba(200,216,216,0.5),transparent);animation:scrollP 2s ease-in-out infinite;}
 @keyframes scrollP{0%,100%{transform:scaleY(1);opacity:0.5;}50%{transform:scaleY(1.2);opacity:1;}}
 
-/* ABOUT */
 .section-about{padding:8rem 3rem;background:var(--warm-white);position:relative;overflow:hidden;}
 .section-about::before{content:'চাঁদপুর';position:absolute;top:-2rem;right:-2rem;font-size:18rem;font-family:'Playfair Display',serif;color:rgba(26,107,122,0.04);line-height:1;pointer-events:none;user-select:none;}
 .container{max-width:1200px;margin:0 auto;}
@@ -102,7 +98,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .about-img-accent{position:absolute;bottom:-1.5rem;right:-1.5rem;width:55%;aspect-ratio:1;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:2px;z-index:-1;opacity:0.2;}
 .about-img-frame{position:absolute;top:-1rem;left:-1rem;right:2rem;bottom:2rem;border:1.5px solid rgba(201,150,58,0.3);border-radius:2px;pointer-events:none;}
 
-/* CULTURE */
 .section-culture{padding:8rem 3rem;background:var(--deep-teal);position:relative;overflow:hidden;}
 .section-culture::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 0% 100%,rgba(26,107,122,0.5) 0%,transparent 60%),radial-gradient(ellipse at 100% 0%,rgba(201,150,58,0.1) 0%,transparent 50%);pointer-events:none;}
 .culture-intro{text-align:center;max-width:700px;margin:0 auto 5rem;}
@@ -120,7 +115,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .culture-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--cream);margin-bottom:0.8rem;}
 .culture-card p{font-size:0.88rem;line-height:1.75;color:rgba(200,216,216,0.6);}
 
-/* PURPOSE */
 .section-purpose{padding:8rem 3rem;background:var(--cream);}
 .purpose-layout{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;}
 .purpose-sticky{position:sticky;top:6rem;}
@@ -132,7 +126,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .purpose-content h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep-teal);margin-bottom:0.6rem;}
 .purpose-content p{font-size:0.92rem;line-height:1.8;color:var(--text-mid);}
 
-/* PAGE HERO */
 .page-hero{padding:10rem 3rem 5rem;position:relative;overflow:hidden;}
 #members .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#0d2e35);}
 #events  .page-hero{background:linear-gradient(160deg,#041818,#0a3d40,#1a3520);}
@@ -141,18 +134,15 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;color:var(--cream);margin-bottom:1rem;}
 .page-hero p{font-size:1rem;color:rgba(200,216,216,0.7);max-width:500px;}
 
-/* MEMBERS */
 .members-section{padding:5rem 3rem;max-width:1400px;margin:0 auto;}
 .members-section h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--deep-teal);margin-bottom:0.5rem;}
 .section-desc{color:var(--text-light);font-size:0.9rem;margin-bottom:2.5rem;font-family:'Josefin Sans',sans-serif;letter-spacing:0.05em;}
 
-/* SESSION GROUPS */
 .session-group{margin-bottom:3rem;}
 .session-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
 .session-label-tag{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--deep-teal);background:rgba(201,150,58,0.12);border:1px solid rgba(201,150,58,0.25);padding:5px 14px;border-radius:30px;white-space:nowrap;}
 .session-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(26,107,122,0.2),transparent);}
 
-/* FILTER BAR */
 .filter-bar{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:2.5rem;align-items:flex-end;}
 .filter-group{display:flex;flex-direction:column;gap:4px;}
 .filter-bar label{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);}
@@ -163,7 +153,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .filter-reset:hover{background:var(--gold);color:var(--deep-teal);}
 .members-count{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:var(--text-light);align-self:flex-end;padding-bottom:2px;}
 
-/* MEMBER CARDS */
 .members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.8rem;}
 .member-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);transition:all 0.4s var(--ts);position:relative;}
 .member-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
@@ -181,7 +170,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .member-home::before{content:'📍';font-size:0.7rem;}
 .members-divider{border:none;border-top:1.5px solid rgba(26,107,122,0.1);margin:4rem 0 3rem;}
 
-/* TEACHERS */
 .teachers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2rem;}
 .teacher-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 20px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);display:flex;align-items:stretch;transition:all 0.4s var(--ts);}
 .teacher-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
@@ -195,7 +183,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .teacher-dept{font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--river-blue);display:block;margin-bottom:0.4rem;}
 .teacher-position{font-family:'Josefin Sans',sans-serif;font-size:0.7rem;color:var(--text-light);padding:2px 8px;background:rgba(26,107,122,0.07);border-radius:30px;display:inline-block;}
 
-/* EVENTS */
 .events-container{padding:5rem 3rem;max-width:1200px;margin:0 auto;}
 .events-list{display:flex;flex-direction:column;gap:1.5rem;}
 .event-card{background:var(--warm-white);border-radius:4px;box-shadow:0 4px 16px rgba(10,40,40,0.07);border:1px solid rgba(26,107,122,0.08);overflow:hidden;transition:all 0.4s var(--ts);}
@@ -221,7 +208,6 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .event-gallery-img:hover{transform:scale(1.04);}
 .event-gallery-img:hover::after{opacity:1;}
 
-/* LIGHTBOX */
 #lightbox{position:fixed;inset:0;background:rgba(4,24,24,0);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all 0.45s var(--ts);backdrop-filter:blur(0px);}
 #lightbox.active{opacity:1;pointer-events:all;background:rgba(4,24,24,0.93);backdrop-filter:blur(16px);}
 .lightbox-inner{position:relative;max-width:90vw;max-height:90vh;transform:scale(0.85) translateY(20px);transition:transform 0.45s var(--tspring);}
@@ -233,15 +219,12 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .lightbox-caption{text-align:center;margin-top:0.6rem;font-family:'Josefin Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;color:rgba(200,216,216,0.5);text-transform:uppercase;}
 .lightbox-counter{text-align:center;margin-top:0.3rem;font-family:'Josefin Sans',sans-serif;font-size:0.65rem;letter-spacing:0.18em;color:rgba(200,216,216,0.3);}
 .lightbox-backdrop-click{position:absolute;inset:0;z-index:-1;}
-
-/* LIGHTBOX ARROW BUTTONS */
 .lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--cream);font-size:1.2rem;transition:all 0.3s var(--ts);z-index:10;backdrop-filter:blur(6px);line-height:1;}
 .lb-arrow:hover{background:rgba(201,150,58,0.3);border-color:var(--gold);color:var(--gold-light);}
 .lb-arrow.lb-prev{right:calc(100% + 16px);}
 .lb-arrow.lb-next{left:calc(100% + 16px);}
 .lb-arrow[hidden]{display:none;}
 
-/* FOOTER */
 footer{background:var(--dark);padding:5rem 3rem 3rem;position:relative;overflow:hidden;}
 footer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(26,107,122,0.15) 0%,transparent 60%);}
 .footer-grid{max-width:1200px;margin:0 auto 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:5rem;position:relative;}
@@ -254,19 +237,15 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 .footer-bottom p{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:rgba(200,216,216,0.3);}
 .footer-bottom .sust-tag{color:var(--gold);font-weight:600;}
 
-/* REVEAL */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s var(--ts),transform 0.7s var(--ts);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:0.1s;}
 .reveal-delay-2{transition-delay:0.2s;}
 .reveal-delay-3{transition-delay:0.3s;}
 .reveal-delay-4{transition-delay:0.4s;}
-
-/* UTILITY */
 .separator-gold{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:1.5rem 0;}
 .gold-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.3;}
 
-/* RESPONSIVE */
 @media(max-width:1024px){
   .culture-cards{grid-template-columns:repeat(2,1fr);}
   .about-grid{grid-template-columns:1fr;gap:3rem;}
@@ -299,21 +278,19 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="mainNav">
-  <a class="nav-logo" onclick="showPage('home')">
+  <a class="nav-logo" data-page="home" id="navLogoLink">
     <img src="pictures/logo.png" alt="Logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
-    <div class="nav-logo-text">Chandpur Association<span>SUST · Sylhet</span></div>
+    <div class="nav-logo-text">Association of Chandpur<span>SUST · Sylhet</span></div>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#" onclick="showPage('home')"    data-page="home"    class="active">Home</a></li>
-    <li><a href="#" onclick="showPage('members')" data-page="members">Members</a></li>
-    <li><a href="#" onclick="showPage('events')"  data-page="events">Events</a></li>
+    <li><a data-page="home"    class="active">Home</a></li>
+    <li><a data-page="members">Members</a></li>
+    <li><a data-page="events">Events</a></li>
   </ul>
-  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- HOME -->
 <section id="home" class="page-section active">
   <div class="hero">
     <div class="hero-bg"></div>
@@ -329,12 +306,12 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
       <div class="hero-badge">Shahjalal University of Science & Technology</div>
-      <h1 class="hero-title">Chandpur<br><em>Students' Association</em></h1>
+      <h1 class="hero-title"><em>Association of</em><br>Chandpur</h1>
       <p class="hero-subtitle">Unity · Culture · Heritage · SUST</p>
       <p class="hero-desc">Bringing together the sons and daughters of Chandpur — the land of great rivers, silver Hilsha, and timeless culture — under one roof at SUST, Sylhet.</p>
       <div class="hero-cta">
-        <a class="btn-primary" onclick="showPage('members')">Meet Our Members ↗</a>
-        <a class="btn-outline"  onclick="showPage('events')">View Events</a>
+        <a class="btn-primary" data-page="members">Meet Our Members ↗</a>
+        <a class="btn-outline"  data-page="events">View Events</a>
       </div>
     </div>
     <div class="hero-scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
@@ -352,14 +329,13 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
           <p>Beyond bonding, we represent Chandpur's voice across SUST's diverse association landscape — collaborating, contributing, and celebrating our heritage with pride.</p>
           <div class="stats-row">
             <div class="stat-item"><span class="stat-num">100<span>+</span></span><span class="stat-label">Active Members</span></div>
-            <div class="stat-item"><span class="stat-num">28<span></span></span><span class="stat-label">Departments</span></div>
+            <div class="stat-item"><span class="stat-num">28</span><span class="stat-label">Departments</span></div>
             <div class="stat-item"><span class="stat-num">8<span>+</span></span><span class="stat-label">Annual Events</span></div>
           </div>
         </div>
         <div class="about-visual reveal">
           <div class="about-img-frame"></div>
-          <img src="pictures/association.jpg" alt="Chandpur Association"
-               style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block;box-shadow:0 20px 60px rgba(10,40,40,0.25);">
+          <img src="pictures/association.jpg" alt="Chandpur Association" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block;box-shadow:0 20px 60px rgba(10,40,40,0.25);">
           <div class="about-img-accent"></div>
         </div>
       </div>
@@ -403,7 +379,6 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   </div>
 </section>
 
-<!-- MEMBERS -->
 <section id="members" class="page-section">
   <div class="page-hero">
     <div class="page-hero-content">
@@ -414,46 +389,33 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   </div>
   <div class="gold-line"></div>
   <div class="members-section">
-
     <h2>Executive Committee</h2>
     <p class="section-desc">The elected leadership guiding the association</p>
     <div class="members-grid" id="executiveGrid"></div>
-
     <hr class="members-divider">
-
     <h2>General Members</h2>
     <p class="section-desc">Our vibrant community of students — sorted by session, then name</p>
-
     <div class="filter-bar">
       <div class="filter-group">
         <label for="deptFilter">Department</label>
-        <select class="filter-select" id="deptFilter" onchange="applyFilters()">
-          <option value="all">All Departments</option>
-        </select>
+        <select class="filter-select" id="deptFilter"><option value="all">All Departments</option></select>
       </div>
       <div class="filter-group">
         <label for="areaFilter">Area</label>
-        <select class="filter-select" id="areaFilter" onchange="applyFilters()">
-          <option value="all">All Areas</option>
-        </select>
+        <select class="filter-select" id="areaFilter"><option value="all">All Areas</option></select>
       </div>
       <div class="filter-group">
         <label for="sessionFilter">Session</label>
-        <select class="filter-select" id="sessionFilter" onchange="applyFilters()">
-          <option value="all">All Sessions</option>
-        </select>
+        <select class="filter-select" id="sessionFilter"><option value="all">All Sessions</option></select>
       </div>
-      <button class="filter-reset" onclick="resetFilters()">Reset</button>
+      <button class="filter-reset" id="filterReset">Reset</button>
       <span class="members-count" id="membersCount"></span>
     </div>
-
     <div id="generalMembersContainer"></div>
-
     <hr class="members-divider">
     <h2>Teachers from Chandpur</h2>
     <p class="section-desc">Faculty members at SUST hailing from our beloved district</p>
     <div class="teachers-grid" id="teachersGrid"></div>
-
     <hr class="members-divider" style="margin-bottom:2rem">
     <h2>Staff from Chandpur</h2>
     <p class="section-desc">University staff members who are proud Chandpur sons and daughters</p>
@@ -461,7 +423,6 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   </div>
 </section>
 
-<!-- EVENTS -->
 <section id="events" class="page-section">
   <div class="page-hero">
     <div class="page-hero-content">
@@ -476,7 +437,6 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -484,9 +444,9 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
       <p>Chandpur Students' Association at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
     </div>
     <div class="footer-col"><h4>Navigate</h4><ul>
-      <li><a onclick="showPage('home')">Home</a></li>
-      <li><a onclick="showPage('members')">Members</a></li>
-      <li><a onclick="showPage('events')">Events</a></li>
+      <li><a data-page="home">Home</a></li>
+      <li><a data-page="members">Members</a></li>
+      <li><a data-page="events">Events</a></li>
     </ul></div>
     <div class="footer-col"><h4>Connect</h4><ul>
       <li><a href="https://www.facebook.com/AssociationOfChandpurSUST" target="_blank">Facebook Page</a></li>
@@ -499,108 +459,121 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   </div>
 </footer>
 
-<!-- LIGHTBOX -->
 <div id="lightbox">
   <div class="lightbox-inner">
-    <button class="lb-arrow lb-prev" id="lbPrev" onclick="lightboxNav(-1)">&#8592;</button>
-    <button class="lightbox-close"   onclick="closeLightbox()">✕</button>
-    <div class="lightbox-img-wrap"   id="lightboxContent"></div>
-    <div class="lightbox-caption"    id="lightboxCaption"></div>
-    <div class="lightbox-counter"    id="lightboxCounter"></div>
-    <button class="lb-arrow lb-next" id="lbNext" onclick="lightboxNav(1)">&#8594;</button>
+    <button class="lb-arrow lb-prev" id="lbPrev">&#8592;</button>
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <div class="lightbox-img-wrap" id="lightboxContent"></div>
+    <div class="lightbox-caption"  id="lightboxCaption"></div>
+    <div class="lightbox-counter"  id="lightboxCounter"></div>
+    <button class="lb-arrow lb-next" id="lbNext">&#8594;</button>
   </div>
-  <div class="lightbox-backdrop-click" onclick="closeLightbox()"></div>
+  <div class="lightbox-backdrop-click" id="lbBackdrop"></div>
 </div>
 
 <script>
-/* ─── UTILITY ─────────────────────────────────────── */
+/* ─── UTILITY ─── */
 function nameToFilename(n){return n.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');}
 function isImageFile(s){return /\.(jpg|jpeg|png|webp|gif)$/i.test(s||'');}
 
-/* ─── FULL DEPT LIST (28 departments) ─────────────── */
-const ALL_DEPTS=[
-  'Architecture','Chemical Engineering & Polymer Science','Civil & Environmental Engineering',
-  'Computer Science & Engineering','Electrical & Electronic Engineering',
-  'Food Engineering & Tea Technology','Industrial & Production Engineering',
-  'Mechanical Engineering','Petroleum & Mining Engineering','Forestry & Environmental Science',
-  'Biochemistry & Molecular Biology','Genetic Engineering & Biotechnology',
-  'Business Administration','Chemistry','Geography & Environment','Mathematics',
-  'Physics','Statistics','Oceanography','Anthropology','Bangla','Economics',
-  'English','Political Studies','Public Administration','Social Work','Sociology',
-  'Software Engineering'
-];
-
-/* ─── EXECUTIVE MEMBERS ───────────────────────────── */
+/* ─── DATA ─── */
 const executiveMembers = [
-  // Session 21-22
-  {name:'Zakaria Talukdar Omio', dept:'Public Administration',              area:'Chandpur Sadar', position:'President',                       session:'21-22'},
-  {name:'Ali Ashraf Tanvir',     dept:'Computer Science & Engineering',     area:'Haimchar',       position:'General Secretary',               session:'21-22'},
-  {name:'Abdul Mannan Nirjon',   dept:'Public Administration',              area:'Kachua',          position:'Senior Vice President',           session:'21-22'},
-  {name:'Mahin Ibrahim',         dept:'Chemistry',                          area:'Faridganj',       position:'Vice President',                  session:'21-22'},
-  {name:'Fakhrul Islam',         dept:'Industrial & Production Engineering',area:'Matlab Uttar',    position:'Vice President',                  session:'21-22'},
-  {name:'Shahid Hasan Joy',      dept:'Industrial & Production Engineering',area:'Haziganj',        position:'Vice President',                  session:'21-22'},
-  // Session 22-23
-  {name:'Tahsin Ornob',          dept:'Physics',                            area:'Haziganj',        position:'Organizing Secretary',            session:'22-23'},
-  {name:'Sadman Zaman Litun',    dept:'Statistics',                         area:'Haziganj',        position:'Joint Secretary',                 session:'22-23'},
-  {name:'Nayeem Ahmed',          dept:'Mechanical Engineering',             area:'Haziganj',        position:'IT Secretary',                    session:'22-23'},
-  {name:'Farhann Ahmed Kafil',   dept:'Chemical Engineering & Polymer Science',area:'Haziganj',     position:'Treasurer',                       session:'22-23'},
-  {name:'Rumman Ahmed',          dept:'Chemistry',                          area:'Haziganj',        position:'Deputy Treasurer',                session:'22-23'},
-  {name:'Meher Afroz',           dept:'Mechanical Engineering',             area:'Haziganj',        position:'Office Secretary',                session:'22-23'},
-  {name:'Tanvir Ahmed Emon',     dept:'Statistics',                         area:'Haziganj',        position:'Sports Secretary',                session:'22-23'},
-  {name:'Shafin Ahmed',          dept:'Public Administration',              area:'Haziganj',        position:'Deputy Sports Secretary',         session:'22-23'},
-  {name:'Jannatul Nayeema',      dept:'English',                            area:'Haziganj',        position:'Cultural Secretary',              session:'22-23'},
-  {name:'Jayma Afrin',           dept:'Business Administration',            area:'Haziganj',        position:'Human Rights Secretary',          session:'22-23'},
-  {name:'Mahbub Mahi',           dept:'Chemical Engineering & Polymer Science',area:'Haziganj',     position:'Media Secretary',                 session:'22-23'},
-  {name:'Antik Chakraborty',     dept:'Economics',                          area:'Haziganj',        position:'Publication Secretary',           session:'22-23'},
-  {name:'Navin Remo',            dept:'Anthropology',                       area:'Haziganj',        position:'Assistant General Secretary',     session:'22-23'},
-  {name:'Bayezid Hossain',       dept:'English',                            area:'Haziganj',        position:'Assistant General Secretary',     session:'22-23'},
-  // Session 23-24
-  {name:'Tarek Hossain',         dept:'Biochemistry & Molecular Biology',   area:'Haziganj',        position:'Assistant IT Secretary',          session:'23-24'},
-  {name:'Arzu Sultana Anon',     dept:'Computer Science & Engineering',     area:'Haziganj',        position:'Assistant IT Secretary',          session:'23-24'},
-  {name:'Wasimul Islam Rabbi',   dept:'Statistics',                         area:'Haziganj',        position:'Assistant Organizing Secretary',  session:'23-24'},
-  {name:'Junaeid Hossain',       dept:'Computer Science & Engineering',     area:'Haziganj',        position:'Assistant Organizing Secretary',  session:'23-24'},
-  {name:'Mezbah Mahi',           dept:'Statistics',                         area:'Haziganj',        position:'Assistant Organizing Secretary',  session:'23-24'},
-  {name:'Emon Hossain',          dept:'Statistics',                         area:'Haziganj',        position:'Assistant Treasurer',             session:'23-24'},
-  {name:'Rakib Mamun',           dept:'Mechanical Engineering',             area:'Haziganj',        position:'Assistant Treasurer',             session:'23-24'},
-  {name:'Fajlay Raiyan',         dept:'Mechanical Engineering',             area:'Haziganj',        position:'Assistant Office Secretary',      session:'23-24'},
-  {name:'Ismail Hossain Tonmoy', dept:'Geography & Environment',            area:'Haziganj',        position:'Assistant Office Secretary',      session:'23-24'},
-  {name:'Mohammad Noman',        dept:'Mechanical Engineering',             area:'Haziganj',        position:'Assistant Media Secretary',       session:'23-24'},
-  {name:'Fahim Ahammad Tanvir',  dept:'Software Engineering',               area:'Haziganj',        position:'Assistant Publication Secretary', session:'23-24'},
-  {name:'Fabiha Bushra Dilshad', dept:'Genetic Engineering & Biotechnology',area:'Haziganj',        position:'Assistant Publication Secretary', session:'23-24'},
-  {name:'Maryam Chowdhury',      dept:'Economics',                          area:'Haziganj',        position:'Assistant Human Rights Secretary',session:'23-24'},
-  {name:'Shahinur Akter Mitu',   dept:'Economics',                          area:'Haziganj',        position:'Assistant Cultural Secretary',    session:'23-24'},
-  {name:'Takaful Islam Karima',  dept:'Civil & Environmental Engineering',  area:'Haziganj',        position:'Assistant Cultural Secretary',    session:'23-24'},
-  {name:'Samira Shaiba Athoi',   dept:'Geography & Environment',            area:'Haziganj',        position:'Assistant Cultural Secretary',    session:'23-24'},
-  {name:'Fardin Islam Rijvy',    dept:'Software Engineering',               area:'Haziganj',        position:'Assistant Sports Secretary',      session:'23-24'},
-  {name:'Nahid Hossain',         dept:'Genetic Engineering & Biotechnology',area:'Haziganj',        position:'Assistant Sports Secretary',      session:'23-24'},
-  {name:'Asm Raihanul Hasan',    dept:'Genetic Engineering & Biotechnology',area:'Haziganj',        position:'Assistant Sports Secretary',      session:'23-24'},
+  {name:'Zakaria Talukdar Omio', dept:'Public Administration',                    area:'Haziganj',       position:'President',                       session:'21-22'},
+  {name:'Ali Ashraf Tanvir',     dept:'Computer Science & Engineering',           area:'Matlab Uttar',   position:'General Secretary',               session:'21-22'},
+  {name:'Abdul Mannan Nirjon',   dept:'Public Administration',                    area:'Haimchar',       position:'Senior Vice President',           session:'21-22'},
+  {name:'Mahin Ibrahim',         dept:'Chemistry',                                area:'Kachua',         position:'Vice President',                  session:'21-22'},
+  {name:'Fakhrul Islam',         dept:'Industrial & Production Engineering',      area:'Haimchar',       position:'Vice President',                  session:'21-22'},
+  {name:'Shahid Hasan Joy',      dept:'Industrial & Production Engineering',      area:'Haimchar',       position:'Vice President',                  session:'21-22'},
+  {name:'Tahsin Ornob',          dept:'Physics',                                  area:'Haziganj',       position:'Organizing Secretary',            session:'22-23'},
+  {name:'Sadman Zaman Litun',    dept:'Statistics',                               area:'Haziganj',       position:'Joint Secretary',                 session:'22-23'},
+  {name:'Nayeem Ahmed',          dept:'Mechanical Engineering',                   area:'Haziganj',       position:'IT Secretary',                    session:'22-23'},
+  {name:'Farhann Ahmed Kafil',   dept:'Chemical Engineering & Polymer Science',   area:'Haziganj',       position:'Treasurer',                       session:'22-23'},
+  {name:'Rumman Ahmed',          dept:'Chemistry',                                area:'Haziganj',       position:'Deputy Treasurer',                session:'22-23'},
+  {name:'Meher Afroz',           dept:'Mechanical Engineering',                   area:'Haziganj',       position:'Office Secretary',                session:'22-23'},
+  {name:'Tanvir Ahmed Emon',     dept:'Statistics',                               area:'Haziganj',       position:'Sports Secretary',                session:'22-23'},
+  {name:'Shafin Ahmed',          dept:'Public Administration',                    area:'Haziganj',       position:'Deputy Sports Secretary',         session:'22-23'},
+  {name:'Jannatul Nayeema',      dept:'English',                                  area:'Haziganj',       position:'Cultural Secretary',              session:'22-23'},
+  {name:'Jayma Afrin',           dept:'Business Administration',                  area:'Haziganj',       position:'Human Rights Secretary',          session:'22-23'},
+  {name:'Mahbub Mahi',           dept:'Chemical Engineering & Polymer Science',   area:'Haziganj',       position:'Media Secretary',                 session:'22-23'},
+  {name:'Antik Chakraborty',     dept:'Economics',                                area:'Haziganj',       position:'Publication Secretary',           session:'22-23'},
+  {name:'Navin Remo',            dept:'Anthropology',                             area:'Haziganj',       position:'Assistant General Secretary',     session:'22-23'},
+  {name:'Bayezid Hossain',       dept:'English',                                  area:'Haziganj',       position:'Assistant General Secretary',     session:'22-23'},
+  {name:'Tarek Hossain',         dept:'Biochemistry & Molecular Biology',         area:'Faridganj',      position:'Assistant IT Secretary',          session:'23-24'},
+  {name:'Arzu Sultana Anon',     dept:'Computer Science & Engineering',           area:'Kachua',         position:'Assistant IT Secretary',          session:'23-24'},
+  {name:'Wasimul Islam Rabbi',   dept:'Statistics',                               area:'Haimchar',       position:'Assistant Organizing Secretary',  session:'23-24'},
+  {name:'Junaeid Hossain',       dept:'Computer Science & Engineering',           area:'Faridganj',      position:'Assistant Organizing Secretary',  session:'23-24'},
+  {name:'Mezbah Mahi',           dept:'Statistics',                               area:'Haziganj',       position:'Assistant Organizing Secretary',  session:'23-24'},
+  {name:'Emon Hossain',          dept:'Statistics',                               area:'Matlab Uttar',   position:'Assistant Treasurer',             session:'23-24'},
+  {name:'Rakib Mamun',           dept:'Mechanical Engineering',                   area:'Faridganj',      position:'Assistant Treasurer',             session:'23-24'},
+  {name:'Fajlay Raiyan',         dept:'Mechanical Engineering',                   area:'Matlab Uttar',   position:'Assistant Office Secretary',      session:'23-24'},
+  {name:'Ismail Hossain Tonmoy', dept:'Geography & Environment',                  area:'Faridganj',      position:'Assistant Office Secretary',      session:'23-24'},
+  {name:'Mohammad Noman',        dept:'Mechanical Engineering',                   area:'Faridganj',      position:'Assistant Media Secretary',       session:'23-24'},
+  {name:'Fahim Ahammad Tanvir',  dept:'Software Engineering',                     area:'Haimchar',       position:'Assistant Publication Secretary', session:'23-24'},
+  {name:'Fabiha Bushra Dilshad', dept:'Genetic Engineering & Biotechnology',      area:'Matlab Uttar',   position:'Assistant Publication Secretary', session:'23-24'},
+  {name:'Maryam Chowdhury',      dept:'Economics',                                area:'Kachua',         position:'Assistant Human Rights Secretary',session:'23-24'},
+  {name:'Shahinur Akter Mitu',   dept:'Economics',                                area:'Kachua',         position:'Assistant Cultural Secretary',    session:'23-24'},
+  {name:'Takaful Islam Karima',  dept:'Civil & Environmental Engineering',        area:'Chandpur Sadar', position:'Assistant Cultural Secretary',    session:'23-24'},
+  {name:'Samira Shaiba Athoi',   dept:'Geography & Environment',                  area:'Shahrasti',      position:'Assistant Cultural Secretary',    session:'23-24'},
+  {name:'Fardin Islam Rijvy',    dept:'Software Engineering',                     area:'Haziganj',       position:'Assistant Sports Secretary',      session:'23-24'},
+  {name:'Nahid Hossain',         dept:'Genetic Engineering & Biotechnology',      area:'Faridganj',      position:'Assistant Sports Secretary',      session:'23-24'},
+  {name:'Asm Raihanul Hasan',    dept:'Genetic Engineering & Biotechnology',      area:'Shahrasti',      position:'Assistant Sports Secretary',      session:'23-24'},
 ];
 
-/*
-  ── ADD GENERAL MEMBERS HERE ─────────────────────────────────────────────────
-  { name: 'Full Name', dept: 'Full Dept Name', area: 'Upazila/Area', session: '23-24' }
-  Photo → pictures/full_name.jpg (spaces→underscore, lowercase, dots removed)
-  Executive members are already auto-included below — don't duplicate them.
-  ─────────────────────────────────────────────────────────────────────────── */
 const generalMembersOnly = [
-  // { name: 'Raihan Islam', dept: 'Computer Science & Engineering', area: 'Kachua', session: '23-24' },
+  // Session 22-23
+  {name:'Priya Rani',                   dept:'Computer Science & Engineering',        area:'Haimchar',       session:'22-23'},
+  {name:'Sami',                         dept:'Software Engineering',                  area:'Chandpur Sadar', session:'22-23'},
+  {name:'Tasnova Tamacchin Nihat',      dept:'Software Engineering',                  area:'Chandpur Sadar', session:'22-23'},
+  {name:'Al-Amin Mollik',               dept:'Mechanical Engineering',                area:'Faridganj',      session:'22-23'},
+  {name:'Mahbubur Rahman Mahi',         dept:'Chemical Engineering & Polymer Science',area:'Chandpur Sadar', session:'22-23'},
+  {name:'Shafayat Rahman Navin',        dept:'Anthropology',                          area:'Matlab Dakshin', session:'22-23'},
+  {name:'Sayad Ahmed',                  dept:'Food Engineering & Tea Technology',     area:'Chandpur Sadar', session:'22-23'},
+  {name:'Mohammad Atikur Rahman Ratul', dept:'Electrical & Electronic Engineering',   area:'Chandpur Sadar', session:'22-23'},
+  {name:'Saliha Rahman',                dept:'Sociology',                             area:'Faridganj',      session:'22-23'},
+  // Session 24-25
+  {name:'Muslim Talukder Rifat',        dept:'Statistics',                            area:'Chandpur Sadar', session:'24-25'},
+  {name:'Ariyan Rahman Shanil',         dept:'Statistics',                            area:'Haimchar',       session:'24-25'},
+  {name:'Mohammad Mostafizur Rahman',   dept:'Statistics',                            area:'Matlab Uttar',   session:'24-25'},
+  {name:'Md Sajid Hossean',             dept:'Statistics',                            area:'Faridganj',      session:'24-25'},
+  {name:'Musfiq Ahmad',                 dept:'Statistics',                            area:'Faridganj',      session:'24-25'},
+  {name:'Manjur Hasan Fahim',           dept:'Software Engineering',                  area:'Chandpur Sadar', session:'24-25'},
+  {name:'Imtiyaz Ahmed Emon',           dept:'Software Engineering',                  area:'Kachua',         session:'24-25'},
+  {name:'Zakaria Morshed',              dept:'Software Engineering',                  area:'Chandpur Sadar', session:'24-25'},
+  {name:'Muhammad Iftekharul Islam',    dept:'Physics',                               area:'Chandpur Sadar', session:'24-25'},
+  {name:'Sabit Ahnaf',                  dept:'Physics',                               area:'Kachua',         session:'24-25'},
+  {name:'Nowshin Mahmud Chamak',        dept:'Physics',                               area:'Matlab Uttar',   session:'24-25'},
+  {name:'Tanzim Ahmed Mahim',           dept:'Chemistry',                             area:'Matlab Uttar',   session:'24-25'},
+  {name:'Iqbal Sami',                   dept:'Chemistry',                             area:'Haziganj',       session:'24-25'},
+  {name:'Farhan Sadeque',               dept:'Forestry & Environmental Science',      area:'Kachua',         session:'24-25'},
+  {name:'Rakibul Hasan Moin',           dept:'Forestry & Environmental Science',      area:'Kachua',         session:'24-25'},
+  {name:'Tanvir Hassan',                dept:'Business Administration',               area:'Kachua',         session:'24-25'},
+  {name:'Md Nabil Khan',                dept:'Business Administration',               area:'Chandpur Sadar', session:'24-25'},
+  {name:'Md Farhan Muntasir Nehal',     dept:'Electrical & Electronic Engineering',   area:'Kachua',         session:'24-25'},
+  {name:'Md Hasebul Hasan Rippy',       dept:'Civil & Environmental Engineering',     area:'Haimchar',       session:'24-25'},
+  {name:'Swastika Naha Arpa',           dept:'Chemical Engineering & Polymer Science',area:'Chandpur Sadar', session:'24-25'},
+  {name:'Arifa Binta Alam',             dept:'Food Engineering & Tea Technology',     area:'Haziganj',       session:'24-25'},
+  {name:'Noor Hossain Alif',            dept:'Geography & Environment',               area:'Faridganj',      session:'24-25'},
+  {name:'Md Moshiur Rahman Sami',       dept:'Oceanography',                          area:'Chandpur Sadar', session:'24-25'},
+  {name:'Mishkat Jahan Mithila',        dept:'Public Administration',                 area:'Chandpur Sadar', session:'24-25'},
+  {name:'Md Sabbir Ahmed Osmani',       dept:'Political Studies',                     area:'Kachua',         session:'24-25'},
+  {name:'Sabrina Sarmin Tanisha',       dept:'Social Work',                           area:'Chandpur Sadar', session:'24-25'},
+  {name:'Saiem Qibria',                 dept:'Industrial & Production Engineering',   area:'Matlab Uttar',   session:'24-25'},
 ];
 
-/* Combined general list */
 const allGeneralMembers = [
   ...executiveMembers.map(m=>({name:m.name,dept:m.dept,area:m.area,session:m.session})),
   ...generalMembersOnly
 ];
 
 const teachers = [
-  {name:'Prof. Dr. Abdul Mannan',dept:'Computer Science & Engineering',  position:'Professor'},
-  {name:'Dr. Shahnaz Parvin',    dept:'Mathematics',                      position:'Associate Professor'},
-  {name:'Md. Zahirul Haque',     dept:'Physics',                          position:'Assistant Professor'},
-  {name:'Dr. Kamrul Hasan',      dept:'Civil & Environmental Engineering',position:'Professor'},
-  {name:'Ms. Roksana Islam',     dept:'Business Administration',          position:'Lecturer'},
-  {name:'Dr. Anowarul Kabir',    dept:'Electrical & Electronic Engineering',position:'Associate Professor'},
-  {name:'Tania Akter',           dept:'Chemistry',                        position:'Assistant Professor'},
-  {name:'Md. Faruk Hossain',     dept:'Architecture',                     position:'Lecturer'},
+  {name:'Prof. Dr. Abdul Mannan', dept:'Computer Science & Engineering',   position:'Professor'},
+  {name:'Dr. Shahnaz Parvin',     dept:'Mathematics',                      position:'Associate Professor'},
+  {name:'Md. Zahirul Haque',      dept:'Physics',                          position:'Assistant Professor'},
+  {name:'Dr. Kamrul Hasan',       dept:'Civil & Environmental Engineering',position:'Professor'},
+  {name:'Ms. Roksana Islam',      dept:'Business Administration',          position:'Lecturer'},
+  {name:'Dr. Anowarul Kabir',     dept:'Electrical & Electronic Engineering',position:'Associate Professor'},
+  {name:'Tania Akter',            dept:'Chemistry',                        position:'Assistant Professor'},
+  {name:'Md. Faruk Hossain',      dept:'Architecture',                     position:'Lecturer'},
 ];
 
 const staffMembers = [
@@ -612,54 +585,43 @@ const staffMembers = [
   {name:'Md. Belal Hossain', dept:'Maintenance',       position:'Engineer'},
 ];
 
-/*
-  ── EVENTS ───────────────────────────────────────────────────────────────────
-  thumb  → filename in pictures/events/  (optional, shows on collapsed card)
-  photos → filenames in pictures/events/  OR emoji strings for placeholders
-  Arrow navigation works across all photos in one event.
-  ─────────────────────────────────────────────────────────────────────────── */
 const events = [
   {
     title:'Chandpur Night 2025 — An Evening of Culture',
-    date:'February 14, 2025', location:'SUST Central Auditorium',
-    thumb:'', emoji:'🎭',
+    date:'February 14, 2025', location:'SUST Central Auditorium', thumb:'', emoji:'🎭',
     description:"Our flagship annual event celebrating Chandpur's rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.",
     photos:['🎤','🍽️','🎊','💃','🥁','🌟','📸']
   },
   {
     title:'Freshman Welcome & Orientation 2024',
-    date:'November 3, 2024', location:'SUST Academic Building',
-    thumb:'', emoji:'🎓',
+    date:'November 3, 2024', location:'SUST Academic Building', thumb:'', emoji:'🎓',
     description:"We welcomed the new batch of Chandpur students to SUST with open arms. Senior members shared their experiences, gave academic advice, and made sure every freshman knew they had a family here.",
     photos:['🤝','😊','📚','🎯','🌱','💡','🏫','🎉']
   },
   {
     title:'Ilish Mahotsob — Hilsha Fish Festival',
-    date:'September 20, 2024', location:'SUST Campus Ground',
-    thumb:'', emoji:'🐟',
+    date:'September 20, 2024', location:'SUST Campus Ground', thumb:'', emoji:'🐟',
     description:"A unique celebration honoring the most iconic symbol of Chandpur — the Ilish (Hilsha) fish. We organized a cooking competition, photo exhibition on Chandpur's river life, and a feast featuring Hilsha prepared in 8 traditional ways.",
     photos:['🍳','🥘','📷','🎬','🌊','👨‍🍳','🏆','🎪']
   },
   {
     title:'Inter-Association Friendship Match 2024',
-    date:'July 12, 2024', location:'SUST Sports Complex',
-    thumb:'', emoji:'🏏',
+    date:'July 12, 2024', location:'SUST Sports Complex', thumb:'', emoji:'🏏',
     description:"A cricket and football tournament bringing together five district associations. Chandpur's team showcased exceptional teamwork and sportsmanship. The event ended with a shared dinner celebrating unity across districts.",
     photos:['🏏','⚽','🏆','🤸','👟','📣','🎽','🌄']
   },
   {
     title:'Meghna River Heritage Exhibition',
-    date:'April 5, 2024', location:'SUST Library Hall',
-    thumb:'', emoji:'🌊',
+    date:'April 5, 2024', location:'SUST Library Hall', thumb:'', emoji:'🌊',
     description:"A three-day photo and art exhibition dedicated to the Meghna river and its cultural significance to Chandpur. The exhibition featured over 60 photographs, 15 paintings, and a collection of river-inspired poetry.",
     photos:['🖼️','📸','✍️','🎨','📖','🌅','🚤','🌿']
   }
 ];
 
-/* ─── LIGHTBOX STATE ──────────────────────────────── */
+/* ─── LIGHTBOX STATE ─── */
 let lbItems=[], lbIndex=0;
 
-function setLightboxItems(items,idx){
+function setLightboxItems(items, idx){
   lbItems=items; lbIndex=idx;
   renderLightboxSlide();
   document.getElementById('lightbox').classList.add('active');
@@ -673,7 +635,6 @@ function renderLightboxSlide(){
   document.getElementById('lightboxCounter').textContent=lbItems.length>1?`${lbIndex+1} / ${lbItems.length}`:'';
   document.getElementById('lbPrev').hidden=lbItems.length<=1||lbIndex===0;
   document.getElementById('lbNext').hidden=lbItems.length<=1||lbIndex===lbItems.length-1;
-
   if(item.emoji){
     content.innerHTML=`<div style="width:400px;height:300px;max-width:85vw;background:linear-gradient(160deg,#0a3d40,#1a6b7a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:3rem;border-radius:4px"><div style="font-size:5rem;opacity:0.5">${item.emoji}</div><div style="font-family:'Josefin Sans',sans-serif;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,216,216,0.45);text-align:center">${item.caption||''}</div></div>`;
   } else {
@@ -690,23 +651,13 @@ function lightboxNav(dir){
   renderLightboxSlide();
 }
 
-function openLightboxImg(src,caption,arr,idx){ setLightboxItems(arr,idx); }
-function openLightbox(emoji,caption){ setLightboxItems([{emoji,caption}],0); }
-
 function closeLightbox(){
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow='';
   setTimeout(()=>{document.getElementById('lightboxContent').innerHTML='';},450);
 }
 
-document.addEventListener('keydown',e=>{
-  if(!document.getElementById('lightbox').classList.contains('active'))return;
-  if(e.key==='Escape')    closeLightbox();
-  if(e.key==='ArrowLeft') lightboxNav(-1);
-  if(e.key==='ArrowRight')lightboxNav(1);
-});
-
-/* ─── SORT helpers ────────────────────────────────── */
+/* ─── SORT ─── */
 function sessionKey(s){if(!s)return 9999;return parseInt(s.replace('-',''),10);}
 function sortMembers(arr){
   return [...arr].sort((a,b)=>{
@@ -715,17 +666,17 @@ function sortMembers(arr){
   });
 }
 
-/* ─── CARD BUILDERS ───────────────────────────────── */
+/* ─── CARD BUILDERS ─── */
 let execLbItems=[], genLbItems=[], teachLbItems=[], staffLbItems=[];
 
-function memberCardHTML(m,showBadge,lbArr,idx){
+function memberCardHTML(m, showBadge, lbArrName, idx){
   const file=nameToFilename(m.name);
   const badge=showBadge&&m.position?`<div class="member-position-badge">${m.position}</div>`:'';
   const sessTag=m.session?`<span class="member-session-tag">Session ${m.session}</span>`:'';
   return `
   <div class="member-card reveal" data-dept="${m.dept}" data-area="${m.area||''}" data-session="${m.session||''}">
     ${badge}
-    <div class="member-photo-wrap" onclick="openLightboxImg('pictures/${file}.jpg','${m.name} · ${m.dept}',${lbArr},${idx})" title="View photo">
+    <div class="member-photo-wrap" data-lb-arr="${lbArrName}" data-lb-idx="${idx}" title="View photo">
       <img src="pictures/${file}.jpg" alt="${m.name}" onerror="this.src='pictures/default.jpg';this.onerror=null;">
     </div>
     <div class="member-info">
@@ -737,11 +688,11 @@ function memberCardHTML(m,showBadge,lbArr,idx){
   </div>`;
 }
 
-function teacherCardHTML(t,lbArr,idx){
+function teacherCardHTML(t, lbArrName, idx){
   const file=nameToFilename(t.name);
   return `
   <div class="teacher-card reveal">
-    <div class="teacher-photo-wrap" onclick="openLightboxImg('pictures/${file}.jpg','${t.name} · ${t.dept}',${lbArr},${idx})" title="View photo">
+    <div class="teacher-photo-wrap" data-lb-arr="${lbArrName}" data-lb-idx="${idx}" title="View photo">
       <img src="pictures/${file}.jpg" alt="${t.name}" onerror="this.src='pictures/default.jpg';this.onerror=null;">
     </div>
     <div class="teacher-info">
@@ -752,19 +703,15 @@ function teacherCardHTML(t,lbArr,idx){
   </div>`;
 }
 
-/* ─── RENDER MEMBERS ──────────────────────────────── */
+/* ─── RENDER MEMBERS ─── */
 function renderMembers(){
-  /* Executives — shown in order entered, with badge */
   execLbItems=executiveMembers.map(m=>({src:`pictures/${nameToFilename(m.name)}.jpg`,caption:`${m.name} · ${m.dept}`}));
-  window.execLbItemsRef='execLbItems';
   document.getElementById('executiveGrid').innerHTML=
     executiveMembers.map((m,i)=>memberCardHTML(m,true,'execLbItems',i)).join('');
 
-  /* General members — sorted */
   const sorted=sortMembers(allGeneralMembers);
   genLbItems=sorted.map(m=>({src:`pictures/${nameToFilename(m.name)}.jpg`,caption:`${m.name} · ${m.dept}`}));
 
-  /* Group by session */
   const sessions=[...new Set(sorted.map(m=>m.session||'Unknown'))];
   const container=document.getElementById('generalMembersContainer');
   container.innerHTML=sessions.map(sess=>{
@@ -785,45 +732,49 @@ function renderMembers(){
   populateFilters(sorted);
   updateCount(sorted.length,sorted.length);
 
-  /* Teachers */
   teachLbItems=teachers.map(t=>({src:`pictures/${nameToFilename(t.name)}.jpg`,caption:`${t.name} · ${t.dept}`}));
   document.getElementById('teachersGrid').innerHTML=teachers.map((t,i)=>teacherCardHTML(t,'teachLbItems',i)).join('');
 
-  /* Staff */
   staffLbItems=staffMembers.map(s=>({src:`pictures/${nameToFilename(s.name)}.jpg`,caption:`${s.name} · ${s.dept}`}));
   document.getElementById('staffGrid').innerHTML=staffMembers.map((s,i)=>teacherCardHTML(s,'staffLbItems',i)).join('');
+
+  // Attach photo click listeners
+  document.querySelectorAll('.member-photo-wrap, .teacher-photo-wrap').forEach(el=>{
+    el.addEventListener('click', function(){
+      const arrName=this.dataset.lbArr;
+      const idx=parseInt(this.dataset.lbIdx);
+      const arr = arrName==='execLbItems' ? execLbItems
+                : arrName==='genLbItems'  ? genLbItems
+                : arrName==='teachLbItems'? teachLbItems
+                : staffLbItems;
+      setLightboxItems(arr, idx);
+    });
+  });
 }
 
 function populateFilters(sorted){
   const depts=[...new Set(sorted.map(m=>m.dept))].sort();
   const areas=[...new Set(sorted.map(m=>m.area).filter(Boolean))].sort();
   const sessions=[...new Set(sorted.map(m=>m.session).filter(Boolean))];
-
   const dSel=document.getElementById('deptFilter');
   depts.forEach(d=>{const o=document.createElement('option');o.value=d;o.textContent=d;dSel.appendChild(o);});
-
   const aSel=document.getElementById('areaFilter');
   areas.forEach(a=>{const o=document.createElement('option');o.value=a;o.textContent=a;aSel.appendChild(o);});
-
   const sSel=document.getElementById('sessionFilter');
   sessions.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=`Session ${s}`;sSel.appendChild(o);});
 }
 
-/* ─── FILTER ──────────────────────────────────────── */
 function applyFilters(){
   const dept=document.getElementById('deptFilter').value;
   const area=document.getElementById('areaFilter').value;
   const sess=document.getElementById('sessionFilter').value;
   let vis=0,tot=0;
-
   document.querySelectorAll('.session-group').forEach(grp=>{
-    const gs=grp.dataset.sessionGroup;
-    const sm=sess==='all'||gs===sess;
+    const sm=sess==='all'||grp.dataset.sessionGroup===sess;
     let gv=0;
     grp.querySelectorAll('.member-card').forEach(card=>{
       tot++;
-      const show=(dept==='all'||card.dataset.dept===dept)&&
-                 (area==='all'||card.dataset.area===area)&&sm;
+      const show=(dept==='all'||card.dataset.dept===dept)&&(area==='all'||card.dataset.area===area)&&sm;
       card.style.display=show?'':'none';
       if(show){vis++;gv++;}
     });
@@ -843,37 +794,30 @@ function updateCount(v,t){
   document.getElementById('membersCount').textContent=v===t?`${t} members`:`${v} of ${t} members`;
 }
 
-/* ─── RENDER EVENTS ───────────────────────────────── */
+/* ─── RENDER EVENTS ─── */
 function renderEvents(){
   document.getElementById('eventsList').innerHTML=events.map((ev,i)=>{
     const thumbHTML=isImageFile(ev.thumb)
-      ?`<div class="event-thumb"><img src="pictures/events/${ev.thumb}" alt="" onerror="this.parentElement.innerHTML='${ev.emoji}'"></div>`
+      ?`<div class="event-thumb"><img src="pictures/events/${ev.thumb}" alt=""></div>`
       :`<div class="event-thumb">${ev.emoji}</div>`;
-
     const evItems=ev.photos.map((p,pi)=>
       isImageFile(p)?{src:`pictures/events/${p}`,caption:`${ev.title} — Photo ${pi+1}`}
-                    :{emoji:p,                   caption:`${ev.title} — Photo ${pi+1}`}
+                    :{emoji:p,caption:`${ev.title} — Photo ${pi+1}`}
     );
-    /* Store per-event items in window so onclick string can ref them */
     window[`evItems${i}`]=evItems;
-
     const gallery=ev.photos.map((p,pi)=>{
-      const fn=isImageFile(p)?`openEvPhoto(${i},${pi})`:`openLightbox('${p}','${ev.title} — Photo ${pi+1}')`;
       const inner=isImageFile(p)?`<img src="pictures/events/${p}" alt="Photo ${pi+1}" onerror="this.parentElement.innerHTML='📷'">`:`${p}`;
-      return `<div class="event-gallery-img" onclick="${fn}" title="View photo">${inner}</div>`;
+      return `<div class="event-gallery-img" data-ev="${i}" data-pi="${pi}" title="View photo">${inner}</div>`;
     }).join('');
-
     const cnt=ev.photos.filter(p=>isImageFile(p)).length;
-    const note=cnt>0?`${cnt} photos`:`${ev.photos.length} moments`;
-
     return `
     <div class="event-card reveal" id="event-${i}">
-      <div class="event-header" onclick="toggleEvent(${i})">
+      <div class="event-header" data-ev-toggle="${i}">
         ${thumbHTML}
         <div class="event-meta">
           <div class="event-date">📅 ${ev.date} &nbsp;·&nbsp; 📍 ${ev.location}</div>
           <h3>${ev.title}</h3>
-          <p>${note} · click to expand</p>
+          <p>${cnt>0?cnt+' photos':ev.photos.length+' moments'} · click to expand</p>
         </div>
         <div class="event-toggle">+</div>
       </div>
@@ -885,27 +829,35 @@ function renderEvents(){
       </div>
     </div>`;
   }).join('');
+
+  // Event gallery clicks
+  document.querySelectorAll('.event-gallery-img').forEach(el=>{
+    el.addEventListener('click', function(){
+      const evIdx=parseInt(this.dataset.ev);
+      const pi=parseInt(this.dataset.pi);
+      setLightboxItems(window[`evItems${evIdx}`], pi);
+    });
+  });
+
+  // Event header toggles
+  document.querySelectorAll('[data-ev-toggle]').forEach(el=>{
+    el.addEventListener('click', function(){
+      const i=parseInt(this.dataset.evToggle);
+      const card=document.getElementById(`event-${i}`);
+      const open=card.classList.contains('open');
+      document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('open'));
+      if(!open){card.classList.add('open');setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),100);}
+    });
+  });
 }
 
-function openEvPhoto(evIdx,photoIdx){
-  setLightboxItems(window[`evItems${evIdx}`],photoIdx);
-}
-
-function toggleEvent(i){
-  const card=document.getElementById(`event-${i}`);
-  const open=card.classList.contains('open');
-  document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('open'));
-  if(!open){card.classList.add('open');setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),100);}
-}
-
-/* ─── PAGE NAV ────────────────────────────────────── */
+/* ─── PAGE NAV ─── */
 function showPage(page){
   document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('[data-page]').forEach(a=>a.classList.remove('active'));
   const sec=document.getElementById(page);
-  if(sec)sec.classList.add('active');
-  const lnk=document.querySelector(`[data-page="${page}"]`);
-  if(lnk)lnk.classList.add('active');
+  if(sec) sec.classList.add('active');
+  document.querySelectorAll(`[data-page="${page}"]`).forEach(a=>a.classList.add('active'));
   window.scrollTo(0,0);
   document.getElementById('navLinks').classList.remove('open');
   if(sec){
@@ -914,17 +866,15 @@ function showPage(page){
       sec.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('visible'),Math.min(i*40,700)));
     }));
   }
-  return false;
 }
-function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
 
-/* ─── NAVBAR SCROLL ───────────────────────────────── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
-});
+/* ─── SCROLL REVEAL ─── */
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
 
-/* ─── HERO PARTICLES ──────────────────────────────── */
-(function(){
+/* ─── HERO PARTICLES ─── */
+function createParticles(){
   const c=document.getElementById('heroParticles');
   for(let i=0;i<18;i++){
     const p=document.createElement('div');p.className='particle';
@@ -932,20 +882,58 @@ window.addEventListener('scroll',()=>{
     p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;--dur:${Math.random()*8+6}s;--delay:${Math.random()*8}s;--op:${Math.random()*0.3+0.1}`;
     c.appendChild(p);
   }
-})();
+}
 
-/* ─── SCROLL REVEAL ───────────────────────────────── */
-const revealObserver=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+/* ─── BOOT: everything runs after DOM is ready ─── */
+document.addEventListener('DOMContentLoaded', function(){
 
-/* ─── INIT ────────────────────────────────────────── */
-document.getElementById('mainNav').classList.add('scrolled');
-renderMembers();
-renderEvents();
-setTimeout(()=>{
-  document.querySelectorAll('#home .reveal').forEach(el=>revealObserver.observe(el));
-},100);
+  // Nav page links
+  document.querySelectorAll('[data-page]').forEach(el=>{
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      showPage(this.dataset.page);
+    });
+  });
+
+  // Hamburger
+  document.getElementById('hamburger').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Filter dropdowns
+  document.getElementById('deptFilter').addEventListener('change', applyFilters);
+  document.getElementById('areaFilter').addEventListener('change', applyFilters);
+  document.getElementById('sessionFilter').addEventListener('change', applyFilters);
+  document.getElementById('filterReset').addEventListener('click', resetFilters);
+
+  // Lightbox controls
+  document.getElementById('lbPrev').addEventListener('click', ()=>lightboxNav(-1));
+  document.getElementById('lbNext').addEventListener('click', ()=>lightboxNav(1));
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbBackdrop').addEventListener('click', closeLightbox);
+
+  // Keyboard
+  document.addEventListener('keydown', e=>{
+    if(!document.getElementById('lightbox').classList.contains('active')) return;
+    if(e.key==='Escape')     closeLightbox();
+    if(e.key==='ArrowLeft')  lightboxNav(-1);
+    if(e.key==='ArrowRight') lightboxNav(1);
+  });
+
+  // Navbar scroll
+  window.addEventListener('scroll', ()=>{
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY>60);
+  });
+
+  // Init
+  document.getElementById('mainNav').classList.add('scrolled');
+  createParticles();
+  renderMembers();
+  renderEvents();
+  setTimeout(()=>{
+    document.querySelectorAll('#home .reveal').forEach(el=>revealObserver.observe(el));
+  }, 100);
+});
 </script>
 </body>
 </html>
