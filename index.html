@@ -174,7 +174,7 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .teacher-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 20px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);display:flex;align-items:stretch;transition:all 0.4s var(--ts);}
 .teacher-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
 .teacher-photo-wrap{width:90px;flex-shrink:0;cursor:pointer;overflow:hidden;position:relative;min-height:110px;}
-.teacher-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.35s;}
+/* .teacher-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.35s;} */
 .teacher-photo-wrap:hover::after{opacity:1;}
 .teacher-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;transition:transform 0.5s var(--ts);}
 .teacher-card:hover .teacher-photo-wrap img{transform:scale(1.08);}
@@ -204,7 +204,7 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .event-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;}
 .event-gallery-img{aspect-ratio:1;border-radius:3px;overflow:hidden;cursor:pointer;transition:all 0.35s var(--ts);position:relative;background:linear-gradient(135deg,var(--deep-teal),var(--river-blue));display:flex;align-items:center;justify-content:center;font-size:1.8rem;}
 .event-gallery-img img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;}
-.event-gallery-img::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.3s;z-index:2;}
+/* .event-gallery-img::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.3s;z-index:2;} */
 .event-gallery-img:hover{transform:scale(1.04);}
 .event-gallery-img:hover::after{opacity:1;}
 
@@ -509,7 +509,7 @@ const executiveMembers = [
   {name:'Fajlay Raiyan',         dept:'Mechanical Engineering',                   area:'Matlab Uttar',   position:'Assistant Office Secretary',      session:'23-24'},
   {name:'Ismail Hossain Tonmoy', dept:'Geography & Environment',                  area:'Faridganj',      position:'Assistant Office Secretary',      session:'23-24'},
   {name:'Mohammad Noman',        dept:'Mechanical Engineering',                   area:'Faridganj',      position:'Assistant Media Secretary',       session:'23-24'},
-  {name:'Fahim Ahammad Tanvir',  dept:'Software Engineering',                     area:'Haimchar',       position:'Assistant Publication Secretary', session:'23-24'},
+  {name:'Md Fahim Ahammad Tanvir',  dept:'Software Engineering',                     area:'Haimchar',       position:'Assistant Publication Secretary', session:'23-24'},
   {name:'Fabiha Bushra Dilshad', dept:'Genetic Engineering & Biotechnology',      area:'Matlab Uttar',   position:'Assistant Publication Secretary', session:'23-24'},
   {name:'Maryam Chowdhury',      dept:'Economics',                                area:'Kachua',         position:'Assistant Human Rights Secretary',session:'23-24'},
   {name:'Shahinur Akter Mitu',   dept:'Economics',                                area:'Kachua',         position:'Assistant Cultural Secretary',    session:'23-24'},
@@ -567,16 +567,23 @@ const allGeneralMembers = [
 ];
 
 const teachers = [
-  {name:'Prof. Dr. Abdul Mannan', dept:'Computer Science & Engineering',   position:'Professor'},
-  {name:'Dr. Shahnaz Parvin',     dept:'Mathematics',                      position:'Associate Professor'},
-  {name:'Md. Zahirul Haque',      dept:'Physics',                          position:'Assistant Professor'},
-  {name:'Dr. Kamrul Hasan',       dept:'Civil & Environmental Engineering',position:'Professor'},
-  {name:'Ms. Roksana Islam',      dept:'Business Administration',          position:'Lecturer'},
-  {name:'Dr. Anowarul Kabir',     dept:'Electrical & Electronic Engineering',position:'Associate Professor'},
-  {name:'Tania Akter',            dept:'Chemistry',                        position:'Assistant Professor'},
-  {name:'Md. Faruk Hossain',      dept:'Architecture',                     position:'Lecturer'},
+  { name: 'Dr S M Saiful Islam', dept: 'Chemistry', position: 'Professor' },
+  { name: 'Dr. Md Zakir Hossain', dept: 'Statistics', position: 'Professor' },
+  { name: 'Dr. Mirza Nazmul Hasan', dept: 'Statistics', position: 'Professor' },
+  { name: 'Dr. Mohammad Jasim Uddin', dept: 'Sociology', position: 'Professor' },
+  { name: 'Dr Mohammad Abdul Hannan', dept: 'Economics', position: 'Professor' },
+  { name: 'Dr Masud Alam', dept: 'Economics', position: 'Professor' },
+  { name: 'Dr. Nur Mohammad Majumder', dept: 'Anthropology', position: 'Professor' },
+  { name: 'Dr. Nilufa Aktar', dept: 'Bangla', position: 'Professor' },
+  { name: 'Dr Mohammad Razaul Karim', dept: 'Chemistry', position: 'Professor' },
+  { name: 'Syed Towfiq Mahmood Hasan', dept: 'Business Administration', position: 'Associate Professor' },
+  { name: 'Mohammad Abdullah-Al-Shoeb', dept: 'Biochemistry and Molecular Biology', position: 'Associate Professor(On leave)' },
+  { name: 'Dr Mohammad Shaiful Alam Amin', dept: 'Chemical Engineering & Polymer Science', position: 'Professor' },
+  { name: 'Shahla Safwat Ravhee', dept: 'Architecture', position: 'Assistant Professor(On leave)' },
+  { name: 'Md. Syamul Bashar', dept: 'Mechanical Engineering', position: 'Assistant Professor' },
+  { name: 'Md. Mahin Uddin', dept: 'Geography and Environment', position: 'Lecturer' },
+  { name: 'Mahabub Alam', dept: 'FET', position: 'Lecturer' }
 ];
-
 const staffMembers = [
   {name:'Md. Shamsul Haque', dept:'Registrar Office', position:'Senior Staff'},
   {name:'Rubina Akter',      dept:'Library',           position:'Librarian'},
