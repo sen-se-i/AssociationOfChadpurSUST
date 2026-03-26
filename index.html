@@ -621,6 +621,7 @@ const events = [
   //   description:"Our flagship annual event celebrating Chandpur's rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.",
   //   photos:['🎤','🍽️','🎊','💃','🥁','🌟','📸']
   // },
+
  
   {
     title:'Biennial Conference and Scholarship Ceremony',
@@ -631,9 +632,29 @@ const events = [
   {
     title:'Iftar Mahfil 2025 and General Meeing',
     date:'February 28, 2026', location:'D Builiding', thumb:'3.jpg', emoji:'',
-    description:"Association of Chandpur’s Iftar Gathering and General Meeting Successfully Held<br>On February 28, 2026, the Iftar gathering and general meeting of the Association of Chandpur, SUST, were held with great enthusiasm. At the event, the 8th Executive Committee of the organization was officially announced, and important discussions were conducted regarding the future activities of the association.<br>The chief guest of the অনুষ্ঠানে was Dr. Saiful Islam, Professor of the Department of Chemistry and Chief Advisor of the Association of Chandpur. The special guest was Mohammad Shaiful Alam Amin, Professor of the Department of Chemical Engineering and Polymer Science and an advisor. Also present was Md. Mahin Uddin, Lecturer of the Department of Geography and Environment and an advisor.<br>Among others present were Gazi Md. Jahirul Islam, President of the Chandpur District Welfare Association, and Md. Mohsin Bhuiyan, General Secretary. Current and former members of the organization, officers and staff, students from various departments, and invited guests spent a lively and cordial time together.<br>Heartfelt thanks are extended to everyone involved for the successful completion of this event. The Association of Chandpur will continue to organize such gatherings and general meetings in the future, further strengthening the bonds of friendship, brotherhood, and unity.",
+    description:"Association of Chandpur’s Iftar Gathering and General Meeting Successfully Held<br>On February 28, 2026, the Iftar gathering and general meeting of the Association of Chandpur, SUST, were held with great enthusiasm. At the event, the 8th Executive Committee of the organization was officially announced, and important discussions were conducted regarding the future activities of the association.<br>The chief guest of the ceremony was Dr. Saiful Islam, Professor of the Department of Chemistry and Chief Advisor of the Association of Chandpur. The special guest was Mohammad Shaiful Alam Amin, Professor of the Department of Chemical Engineering and Polymer Science and an advisor. Also present was Md. Mahin Uddin, Lecturer of the Department of Geography and Environment and an advisor.<br>Among others present were Gazi Md. Jahirul Islam, President of the Chandpur District Welfare Association, and Md. Mohsin Bhuiyan, General Secretary. Current and former members of the organization, officers and staff, students from various departments, and invited guests spent a lively and cordial time together.<br>Heartfelt thanks are extended to everyone involved for the successful completion of this event. The Association of Chandpur will continue to organize such gatherings and general meetings in the future, further strengthening the bonds of friendship, brotherhood, and unity.",
     photos:['3.jpg','7.jpeg','4.jpg','6.jpeg','1.jpg','2.jpg']
+  },
+   {
+    title:'BBQ Night and Freshers Orientation',
+    date:'November 28, 2025', location:'SUST Basketball Ground', thumb:'bbq2025/1.jpg', emoji:'',
+    description:"On 28 November 2025, the Association of Chandpur, SUST, organized a grand Freshers’ Reception and BBQ event. Alongside warmly welcoming the new students from Chandpur of the 2024–25 session, the event turned into a vibrant festival of joy, harmony, and reunion.<br>Distinguished guests present at the event included Professor Dr. Saiful Islam, Professor of the Department of Chemistry and esteemed advisor of the Association of Chandpur; Professor Rezaul Karim, Professor of the Department of Chemistry and advisor; Professor Dr. Mirza Nazmul Hasan, Professor of the Department of Statistics and advisor; Professor Dr. Roksana Begum, Professor of the Department of Chemistry and advisor; and Md. Mahin Uddin, Lecturer of the Department of Geography and Environment and advisor.<br>In addition, the event was attended by current and former members of the association, students from various departments, officers and staff, and invited guests. With everyone’s active participation, the program became lively and truly memorable.<br>In the final segment of the event, a musical performance was presented by the newly admitted and current students, making the colorful cultural evening even more enjoyable.<br>Heartfelt thanks to everyone involved for making this event a success. The Association of Chandpur hopes to continue strengthening the bonds of friendship, unity, and cooperation through such gatherings in the future.<br>— Chandpur Association, SUST",
+    photos:['bbq2025/1.jpg','bbq2025/2.jpg','bbq2025/3.jpg','bbq2025/4.jpg','bbq2025/1.jpeg','bbq2025/2.jpeg','bbq2025/5.jpg']
+  },
+
+    {
+    title:'Get together',
+    date:'April 01, 2025', location:'Chandpur Boro Station', thumb:'getTogether/1.jpg', emoji:'',
+    description:"On the second day of Eid, 2nd Shawwal 1446, it was quite a delightful and memorable day. The Chandpur Association had been determined to ceremony a get-together event during Eid, and finally, on this day, both current and former SUSTians from Chandpur came together and were bound by a beautiful bond of shared memories and togetherness.<br>",
+    photos:['getTogether/1.jpg','getTogether/2.jpg','getTogether/3.jpg','getTogether/4.jpg','getTogether/5.jpg',]
+  },
+   {
+    title:'Intra-association football tournament',
+    date:'June 27, 2025', location:'Green Valley Sports Center', thumb:'football/3.jpeg', emoji:'',
+    description:"Our flagship annual event celebrating Chandpur's rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.",
+    photos:['football/1.jpeg','football/2.jpeg','football/3.jpeg','football/5.jpeg','football/4.jpeg','football/1.jpg','football/2.jpg','football/3.jpg']
   }
+ 
 ];
 
 /* ─── LIGHTBOX STATE ─── */
@@ -864,7 +885,7 @@ function renderEvents(){
       const card=document.getElementById(`event-${i}`);
       const open=card.classList.contains('open');
       document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('open'));
-      if(!open){card.classList.add('open');setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),100);}
+     if(!open){card.classList.add('open');}
     });
   });
 }
