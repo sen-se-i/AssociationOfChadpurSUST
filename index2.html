@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chandpur Student Association — SUST</title>
+<title>ACSUST</title>
+<meta name="description" content="Official community for Chandpur students at Shahjalal University of Science and Technology. Connecting students through culture, heritage, and silver Hilsha.">
+<meta name="google-site-verification" content="LKwc2HsFwwaB4IoeFDdNEZDFdQzO5LhxmyOvmiqOo8c" />
 <link rel="icon" type="image/png" href="pictures/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +61,54 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .hero-waves svg{position:absolute;bottom:0;width:200%;animation:waveFlow 12s linear infinite;}
 .hero-waves svg:nth-child(2){opacity:0.5;animation-duration:16s;animation-direction:reverse;}
 @keyframes waveFlow{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.fish-jump{position:absolute;left:68%;bottom:66px;width:72px;height:42px;z-index:2;pointer-events:none;opacity:0;transform-origin:50% 70%;animation:fishLeap 8s linear infinite;}
+.fish-jump svg{width:100%;height:100%;display:block;filter:drop-shadow(0 8px 10px rgba(4,16,16,0.22));}
+.fish-splash{position:absolute;left:67%;bottom:56px;width:86px;height:32px;z-index:1;pointer-events:none;opacity:0;animation:splashShow 8s ease-out infinite;}
+.fish-splash::before{content:'';position:absolute;left:18px;right:18px;bottom:4px;height:9px;border:1.5px solid rgba(200,216,216,0.42);border-top:0;border-radius:50%;transform:scaleX(0.35);animation:splashRipple 8s ease-out infinite;}
+.fish-splash span{position:absolute;bottom:9px;width:4px;height:12px;border-radius:50%;background:rgba(232,184,75,0.7);box-shadow:0 0 12px rgba(232,184,75,0.45);transform:translateY(10px) scale(0);}
+.fish-splash span:nth-child(1){left:24px;animation:splashDropA 8s ease-out infinite;}
+.fish-splash span:nth-child(2){left:42px;height:15px;animation:splashDropB 8s ease-out infinite;}
+.fish-splash span:nth-child(3){left:60px;animation:splashDropC 8s ease-out infinite;}
+.fish-splash.dive{left:70%;bottom:55px;animation:diveSplashShow 8s ease-out infinite;}
+.fish-splash.dive::before{animation:diveSplashRipple 8s ease-out infinite;}
+.fish-splash.dive span:nth-child(1){animation:diveSplashDropA 8s ease-out infinite;}
+.fish-splash.dive span:nth-child(2){animation:diveSplashDropB 8s ease-out infinite;}
+.fish-splash.dive span:nth-child(3){animation:diveSplashDropC 8s ease-out infinite;}
+.fish-scene{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
+.fish-burst{position:absolute;bottom:50px;left:var(--fish-left,68%);width:96px;height:120px;transform:scale(var(--fish-scale,1));transform-origin:50% 100%;pointer-events:none;}
+.fish-burst .fish-jump{left:0;bottom:10px;animation:fishLeapOnce var(--fish-duration,1.55s) linear forwards;}
+.fish-burst .fish-splash{left:-8px;bottom:0;animation:splashShowOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash::before{animation:splashRippleOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash span:nth-child(1){animation:splashDropAOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash span:nth-child(2){animation:splashDropBOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash span:nth-child(3){animation:splashDropCOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash.dive{left:46px;bottom:0;animation:diveSplashShowOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash.dive::before{animation:diveSplashRippleOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash.dive span:nth-child(1){animation:diveSplashDropAOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash.dive span:nth-child(2){animation:diveSplashDropBOnce var(--fish-duration,1.55s) ease-out forwards;}
+.fish-burst .fish-splash.dive span:nth-child(3){animation:diveSplashDropCOnce var(--fish-duration,1.55s) ease-out forwards;}
+@keyframes fishLeap{0%,58%,76%,100%{opacity:0;transform:translate3d(-24px,30px,0) rotate(-24deg) scale(0.78);}60%{opacity:1;transform:translate3d(-18px,5px,0) rotate(-28deg) scale(0.9);}62%{opacity:1;transform:translate3d(-11px,-22px,0) rotate(-20deg) scale(0.96);}64%{opacity:1;transform:translate3d(-2px,-43px,0) rotate(-8deg) scale(1);}66%{opacity:1;transform:translate3d(8px,-56px,0) rotate(7deg) scale(1);}68%{opacity:1;transform:translate3d(18px,-54px,0) rotate(20deg) scale(0.98);}70%{opacity:1;transform:translate3d(27px,-38px,0) rotate(32deg) scale(0.94);}72%{opacity:1;transform:translate3d(34px,-14px,0) rotate(45deg) scale(0.88);}74%{opacity:0.9;transform:translate3d(40px,14px,0) rotate(56deg) scale(0.82);}75%{opacity:0;transform:translate3d(44px,30px,0) rotate(62deg) scale(0.78);}}
+@keyframes splashShow{0%,57%,76%,100%{opacity:0;}59%,74%{opacity:1;}}
+@keyframes splashRipple{0%,57%,100%{opacity:0;transform:scaleX(0.2);}60%{opacity:0.9;transform:scaleX(0.45);}74%{opacity:0;transform:scaleX(1.05);}}
+@keyframes splashDropA{0%,58%,76%,100%{transform:translate(0,10px) scale(0);opacity:0;}61%{transform:translate(-11px,-14px) scale(1);opacity:0.9;}71%{transform:translate(-18px,7px) scale(0.15);opacity:0;}}
+@keyframes splashDropB{0%,58%,76%,100%{transform:translate(0,10px) scale(0);opacity:0;}61%{transform:translate(0,-22px) scale(1);opacity:0.9;}71%{transform:translate(3px,6px) scale(0.15);opacity:0;}}
+@keyframes splashDropC{0%,58%,76%,100%{transform:translate(0,10px) scale(0);opacity:0;}61%{transform:translate(12px,-13px) scale(1);opacity:0.9;}71%{transform:translate(20px,7px) scale(0.15);opacity:0;}}
+@keyframes diveSplashShow{0%,72%,79%,100%{opacity:0;}74%,78%{opacity:1;}}
+@keyframes diveSplashRipple{0%,72%,100%{opacity:0;transform:scaleX(0.18);}74%{opacity:0.85;transform:scaleX(0.35);}79%{opacity:0;transform:scaleX(1.15);}}
+@keyframes diveSplashDropA{0%,73%,80%,100%{transform:translate(0,8px) scale(0);opacity:0;}75%{transform:translate(-13px,-12px) scale(1);opacity:0.85;}79%{transform:translate(-20px,5px) scale(0.1);opacity:0;}}
+@keyframes diveSplashDropB{0%,73%,80%,100%{transform:translate(0,8px) scale(0);opacity:0;}75%{transform:translate(1px,-18px) scale(1);opacity:0.9;}79%{transform:translate(4px,5px) scale(0.1);opacity:0;}}
+@keyframes diveSplashDropC{0%,73%,80%,100%{transform:translate(0,8px) scale(0);opacity:0;}75%{transform:translate(14px,-11px) scale(1);opacity:0.85;}79%{transform:translate(22px,5px) scale(0.1);opacity:0;}}
+@keyframes fishLeapOnce{0%{opacity:0;transform:translate3d(-24px,30px,0) rotate(-24deg) scale(0.78);}8%{opacity:1;transform:translate3d(-18px,5px,0) rotate(-28deg) scale(0.9);}22%{opacity:1;transform:translate3d(-11px,-22px,0) rotate(-20deg) scale(0.96);}36%{opacity:1;transform:translate3d(-2px,-43px,0) rotate(-8deg) scale(1);}50%{opacity:1;transform:translate3d(8px,-56px,0) rotate(7deg) scale(1);}64%{opacity:1;transform:translate3d(18px,-54px,0) rotate(20deg) scale(0.98);}78%{opacity:1;transform:translate3d(27px,-38px,0) rotate(32deg) scale(0.94);}90%{opacity:1;transform:translate3d(34px,-14px,0) rotate(45deg) scale(0.88);}98%{opacity:0.9;transform:translate3d(40px,14px,0) rotate(56deg) scale(0.82);}100%{opacity:0;transform:translate3d(44px,30px,0) rotate(62deg) scale(0.78);}}
+@keyframes splashShowOnce{0%,34%,100%{opacity:0;}5%,30%{opacity:1;}}
+@keyframes splashRippleOnce{0%{opacity:0;transform:scaleX(0.2);}8%{opacity:0.9;transform:scaleX(0.45);}34%,100%{opacity:0;transform:scaleX(1.05);}}
+@keyframes splashDropAOnce{0%,100%{transform:translate(0,10px) scale(0);opacity:0;}9%{transform:translate(-11px,-14px) scale(1);opacity:0.9;}30%{transform:translate(-18px,7px) scale(0.15);opacity:0;}}
+@keyframes splashDropBOnce{0%,100%{transform:translate(0,10px) scale(0);opacity:0;}9%{transform:translate(0,-22px) scale(1);opacity:0.9;}30%{transform:translate(3px,6px) scale(0.15);opacity:0;}}
+@keyframes splashDropCOnce{0%,100%{transform:translate(0,10px) scale(0);opacity:0;}9%{transform:translate(12px,-13px) scale(1);opacity:0.9;}30%{transform:translate(20px,7px) scale(0.15);opacity:0;}}
+@keyframes diveSplashShowOnce{0%,86%,100%{opacity:0;}90%,98%{opacity:1;}}
+@keyframes diveSplashRippleOnce{0%,86%{opacity:0;transform:scaleX(0.18);}91%{opacity:0.85;transform:scaleX(0.35);}100%{opacity:0;transform:scaleX(1.15);}}
+@keyframes diveSplashDropAOnce{0%,86%,100%{transform:translate(0,8px) scale(0);opacity:0;}92%{transform:translate(-13px,-12px) scale(1);opacity:0.85;}99%{transform:translate(-20px,5px) scale(0.1);opacity:0;}}
+@keyframes diveSplashDropBOnce{0%,86%,100%{transform:translate(0,8px) scale(0);opacity:0;}92%{transform:translate(1px,-18px) scale(1);opacity:0.9;}99%{transform:translate(4px,5px) scale(0.1);opacity:0;}}
+@keyframes diveSplashDropCOnce{0%,86%,100%{transform:translate(0,8px) scale(0);opacity:0;}92%{transform:translate(14px,-11px) scale(1);opacity:0.85;}99%{transform:translate(22px,5px) scale(0.1);opacity:0;}}
 .hero-particles{position:absolute;inset:0;z-index:1;overflow:hidden;}
 .particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:floatP var(--dur,8s) var(--delay,0s) infinite ease-in-out;}
 @keyframes floatP{0%{opacity:0;transform:translateY(100vh) scale(0);}10%{opacity:var(--op,0.4);}90%{opacity:var(--op,0.4);}100%{opacity:0;transform:translateY(-10vh) scale(1);}}
@@ -153,14 +204,14 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .filter-reset:hover{background:var(--gold);color:var(--deep-teal);}
 .members-count{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:var(--text-light);align-self:flex-end;padding-bottom:2px;}
 
-.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.8rem;}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.5rem;}
 .member-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);transition:all 0.4s var(--ts);position:relative;}
 .member-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
 .member-photo-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;cursor:pointer;}
-.member-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:0;transition:opacity 0.35s var(--ts);}
-.member-photo-wrap:hover::after{opacity:1;}
+/* .member-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:0;transition:opacity 0.35s var(--ts);}
+.member-photo-wrap:hover::after{opacity:1;} */
 .member-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
-.member-card:hover .member-photo-wrap img{transform:scale(1.06);}
+.member-card:hover .member-photo-wrap img{transform:scale(1.15);}
 .member-position-badge{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep-teal);font-family:'Josefin Sans',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;z-index:5;max-width:calc(100% - 20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .member-info{padding:1rem 1rem 1.2rem;}
 .member-info h3{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--deep-teal);margin-bottom:0.2rem;}
@@ -174,7 +225,7 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .teacher-card{background:var(--warm-white);border-radius:4px;overflow:hidden;box-shadow:0 4px 20px rgba(10,40,40,0.08);border:1px solid rgba(26,107,122,0.07);display:flex;align-items:stretch;transition:all 0.4s var(--ts);}
 .teacher-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
 .teacher-photo-wrap{width:90px;flex-shrink:0;cursor:pointer;overflow:hidden;position:relative;min-height:110px;}
-.teacher-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.35s;}
+/* .teacher-photo-wrap::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.35s;} */
 .teacher-photo-wrap:hover::after{opacity:1;}
 .teacher-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;transition:transform 0.5s var(--ts);}
 .teacher-card:hover .teacher-photo-wrap img{transform:scale(1.08);}
@@ -204,7 +255,7 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .event-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;}
 .event-gallery-img{aspect-ratio:1;border-radius:3px;overflow:hidden;cursor:pointer;transition:all 0.35s var(--ts);position:relative;background:linear-gradient(135deg,var(--deep-teal),var(--river-blue));display:flex;align-items:center;justify-content:center;font-size:1.8rem;}
 .event-gallery-img img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;}
-.event-gallery-img::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.3s;z-index:2;}
+/* .event-gallery-img::after{content:'🔍';position:absolute;inset:0;background:rgba(10,61,64,0.6);display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:0;transition:opacity 0.3s;z-index:2;} */
 .event-gallery-img:hover{transform:scale(1.04);}
 .event-gallery-img:hover::after{opacity:1;}
 
@@ -262,7 +313,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .section-about,.section-culture,.section-purpose{padding:5rem 1.5rem;}
   .culture-cards{grid-template-columns:1fr 1fr;}
   .members-section{padding:3rem 1.5rem;}
-  .members-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+  /* .members-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));} */
   .events-container{padding:3rem 1.5rem;}
   .event-header{grid-template-columns:80px 1fr auto;gap:1rem;}
   .event-gallery{grid-template-columns:repeat(3,1fr);}
@@ -302,13 +353,14 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
       <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="bottom:30px">
         <path d="M0,50 C180,90 360,10 540,50 C720,90 900,10 1080,50 C1260,90 1380,40 1440,50 L1440,120 L0,120 Z" fill="rgba(26,107,122,0.15)"/>
       </svg>
+      <div class="fish-scene" id="fishScene" aria-hidden="true"></div>
     </div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
       <div class="hero-badge">Shahjalal University of Science & Technology</div>
-      <h1 class="hero-title"><em>Association of</em><br>Chandpur</h1>
+      <h1 class="hero-title"><em>Association of</em><br>Chandpur</h1><br>
       <p class="hero-subtitle">Unity · Culture · Heritage · SUST</p>
-      <p class="hero-desc">Bringing together the sons and daughters of Chandpur — the land of great rivers, silver Hilsha, and timeless culture — under one roof at SUST, Sylhet.</p>
+      <p class="hero-desc">Bringing together the students of Chandpur — the land of great rivers, silver Hilsha, and timeless culture — under one roof at SUST, Sylhet.</p>
       <div class="hero-cta">
         <a class="btn-primary" data-page="members">Meet Our Members ↗</a>
         <a class="btn-outline"  data-page="events">View Events</a>
@@ -324,8 +376,8 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
           <div class="section-label">About the Association</div>
           <h2 class="section-title">Rooted in <em>Chandpur</em>,<br>Thriving at SUST</h2>
           <div class="separator-gold"></div>
-          <p>The Chandpur Students' Association at Shahjalal University of Science and Technology (SUST), Sylhet, is a vibrant community of students hailing from the culturally rich district of Chandpur, Bangladesh. Founded to foster solidarity and belonging, we welcome every Chandpur student who walks through SUST's gates.</p>
-          <p>Far from home, we become each other's family — sharing stories of the Meghna and Dakatia rivers, the taste of fresh Hilsha, and the warmth of Chandpur's festivals. We bridge homesickness with brotherhood, turning a university corridor into a piece of Chandpur.</p>
+          <p>The Association of Chandpur at Shahjalal University of Science and Technology (SUST), Sylhet, is a vibrant community of students hailing from the culturally rich district of Chandpur, Bangladesh. Founded to foster solidarity and belonging, we welcome every Chandpur student who walks through SUST's gates.</p>
+          <p>Far from home, we become each other's family — sharing stories of the Padma , Meghna and Dakatia rivers, the taste of fresh Hilsha, and the warmth of Chandpur's festivals. We bridge homesickness with brotherhood, turning a university corridor into a piece of Chandpur.</p>
           <p>Beyond bonding, we represent Chandpur's voice across SUST's diverse association landscape — collaborating, contributing, and celebrating our heritage with pride.</p>
           <div class="stats-row">
             <div class="stat-item"><span class="stat-num">100<span>+</span></span><span class="stat-label">Active Members</span></div>
@@ -335,7 +387,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
         </div>
         <div class="about-visual reveal">
           <div class="about-img-frame"></div>
-          <img src="pictures/association.jpg" alt="Chandpur Association" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block;box-shadow:0 20px 60px rgba(10,40,40,0.25);">
+          <img src="pictures/logo.jpeg" alt="Chandpur Association" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;display:block;box-shadow:0 20px 60px rgba(10,40,40,0.25);">
           <div class="about-img-accent"></div>
         </div>
       </div>
@@ -348,11 +400,11 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
         <div class="section-label">The Land We Come From</div>
         <h2 class="section-title">The <em>Rich Legacy</em> of Chandpur</h2>
         <div class="separator-gold" style="margin:1.5rem auto"></div>
-        <p>Chandpur is no ordinary district. Nestled at the confluence of the mighty Meghna, Dakatia and Dhanagoda rivers, it is a land of extraordinary natural beauty, deep cultural heritage, and the crown jewel of Bangladesh's fisheries — the Ilish (Hilsha).</p>
+        <p>Chandpur is no ordinary district. Nestled at the confluence of the mighty Meghna, Dakatia and Padma rivers, it is a land of extraordinary natural beauty, deep cultural heritage, and the crown jewel of Bangladesh's fisheries — the Ilish (Hilsha).</p>
       </div>
       <div class="culture-cards">
         <div class="culture-card reveal reveal-delay-1"><span class="culture-icon">🐟</span><h3>Land of Ilish</h3><p>Chandpur is the Ilish (Hilsha) capital of Bangladesh. The Meghna river yields the finest Hilsha in the world — a fish so celebrated it's woven into Bengali identity and culture.</p></div>
-        <div class="culture-card reveal reveal-delay-2"><span class="culture-icon">🌊</span><h3>Great Rivers</h3><p>Bounded by Meghna, Dakatia, and Dhanagoda rivers, Chandpur's landscape is shaped by water — a flowing, breathing geography that gives life, trade, and poetry to the district.</p></div>
+        <div class="culture-card reveal reveal-delay-2"><span class="culture-icon">🌊</span><h3>Great Rivers</h3><p>Bounded by Meghna, Dakatia, and Padma rivers, Chandpur's landscape is shaped by water — a flowing, breathing geography that gives life, trade, and poetry to the district.</p></div>
         <div class="culture-card reveal reveal-delay-3"><span class="culture-icon">🎭</span><h3>Vibrant Culture</h3><p>From Baul music to riverine folklore, Chandpur's culture is a tapestry of traditions — jari gaan, shari gaan, and local festivals that echo centuries of Bengali heritage.</p></div>
         <div class="culture-card reveal reveal-delay-4"><span class="culture-icon">🏛️</span><h3>Historical Richness</h3><p>Home to ancient mosques, temples, and colonial-era landmarks, Chandpur carries deep historical weight — from the liberation war to pre-Mughal architecture.</p></div>
       </div>
@@ -441,7 +493,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   <div class="footer-grid">
     <div class="footer-brand">
       <img src="pictures/logo.png" alt="Logo" style="width:50px;height:50px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
-      <p>Chandpur Students' Association at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
+      <p>Association of Chandpur at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
     </div>
     <div class="footer-col"><h4>Navigate</h4><ul>
       <li><a data-page="home">Home</a></li>
@@ -454,7 +506,8 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
     </ul></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Chandpur Students' Association · <span class="sust-tag">SUST, Sylhet</span></p>
+    <p>© 2025 Association of Chandpur · <span class="sust-tag">SUST, Sylhet</span></p>
+    <p>made by · <span class="sust-tag">Fahim Ahammad Tanvir</span></p>
     <p>Land of Rivers · Land of Hilsha · Our Home</p>
   </div>
 </footer>
@@ -484,20 +537,20 @@ const executiveMembers = [
   {name:'Mahin Ibrahim',         dept:'Chemistry',                                area:'Kachua',         position:'Vice President',                  session:'21-22'},
   {name:'Fakhrul Islam',         dept:'Industrial & Production Engineering',      area:'Haimchar',       position:'Vice President',                  session:'21-22'},
   {name:'Shahid Hasan Joy',      dept:'Industrial & Production Engineering',      area:'Haimchar',       position:'Vice President',                  session:'21-22'},
-  {name:'Tahsin Ornob',          dept:'Physics',                                  area:'Haziganj',       position:'Organizing Secretary',            session:'22-23'},
-  {name:'Sadman Zaman Litun',    dept:'Statistics',                               area:'Haziganj',       position:'Joint Secretary',                 session:'22-23'},
-  {name:'Nayeem Ahmed',          dept:'Mechanical Engineering',                   area:'Haziganj',       position:'IT Secretary',                    session:'22-23'},
-  {name:'Farhann Ahmed Kafil',   dept:'Chemical Engineering & Polymer Science',   area:'Haziganj',       position:'Treasurer',                       session:'22-23'},
-  {name:'Rumman Ahmed',          dept:'Chemistry',                                area:'Haziganj',       position:'Deputy Treasurer',                session:'22-23'},
-  {name:'Meher Afroz',           dept:'Mechanical Engineering',                   area:'Haziganj',       position:'Office Secretary',                session:'22-23'},
-  {name:'Tanvir Ahmed Emon',     dept:'Statistics',                               area:'Haziganj',       position:'Sports Secretary',                session:'22-23'},
-  {name:'Shafin Ahmed',          dept:'Public Administration',                    area:'Haziganj',       position:'Deputy Sports Secretary',         session:'22-23'},
-  {name:'Jannatul Nayeema',      dept:'English',                                  area:'Haziganj',       position:'Cultural Secretary',              session:'22-23'},
-  {name:'Jayma Afrin',           dept:'Business Administration',                  area:'Haziganj',       position:'Human Rights Secretary',          session:'22-23'},
-  {name:'Mahbub Mahi',           dept:'Chemical Engineering & Polymer Science',   area:'Haziganj',       position:'Media Secretary',                 session:'22-23'},
-  {name:'Antik Chakraborty',     dept:'Economics',                                area:'Haziganj',       position:'Publication Secretary',           session:'22-23'},
-  {name:'Navin Remo',            dept:'Anthropology',                             area:'Haziganj',       position:'Assistant General Secretary',     session:'22-23'},
-  {name:'Bayezid Hossain',       dept:'English',                                  area:'Haziganj',       position:'Assistant General Secretary',     session:'22-23'},
+  {name:'Tahsin Ornob',          dept:'Physics',                                area:'Haziganj',       position:'Organizing Secretary',            session:'22-23'},
+  {name:'Sadman Zaman Litun',    dept:'Statistics',                             area:'Matlab Uttar',   position:'Joint Secretary',                 session:'22-23'},
+  {name:'Nayeem Ahmed',          dept:'Mechanical Engineering',                 area:'Matlab Uttar',   position:'IT Secretary',                    session:'22-23'},
+  {name:'Farhan Ahmed Kafil',    dept:'Chemical Engineering & Polymer Science', area:'Chandpur Sadar', position:'Treasurer',                       session:'22-23'},
+  {name:'Rumman Ahmed',          dept:'Chemistry',                              area:'Chandpur Sadar', position:'Deputy Treasurer',                session:'22-23'},
+  {name:'Meher Afroz',           dept:'Mechanical Engineering',                 area:'Shahrasti',      position:'Office Secretary',                session:'22-23'},
+  {name:'Tanvir Ahmad Emon',     dept:'Statistics',                             area:'Haziganj',       position:'Sports Secretary',                session:'22-23'},
+  {name:'Shafin Ahmed',          dept:'Public Administration',                  area:'Matlab Uttar',   position:'Deputy Sports Secretary',         session:'22-23'},
+  {name:'Jannatul Nayeema',      dept:'English',                                area:'Chandpur Sadar', position:'Cultural Secretary',              session:'22-23'},
+  {name:'Jayma Afrin',           dept:'Business Administration',                area:'Shahrasti',      position:'Human Rights Secretary',          session:'22-23'},
+  {name:'Mahbub Mahi',           dept:'Chemical Engineering & Polymer Science', area:'Chandpur Sadar', position:'Media Secretary',                 session:'22-23'},
+  {name:'Antik Chakraborty',     dept:'Economics',                              area:'Chandpur Sadar', position:'Publication Secretary',           session:'22-23'},
+  {name:'Shafayat Rahman Navin', dept:'Anthropology',                           area:'Matlab Dakshin',  position:'Assistant General Secretary' ,    session:'22-23'},
+  {name:'Bayezid Hossain',       dept:'English',                                area:'Haziganj',       position:'Assistant General Secretary',     session:'22-23'},
   {name:'Tarek Hossain',         dept:'Biochemistry & Molecular Biology',         area:'Faridganj',      position:'Assistant IT Secretary',          session:'23-24'},
   {name:'Arzu Sultana Anon',     dept:'Computer Science & Engineering',           area:'Kachua',         position:'Assistant IT Secretary',          session:'23-24'},
   {name:'Wasimul Islam Rabbi',   dept:'Statistics',                               area:'Haimchar',       position:'Assistant Organizing Secretary',  session:'23-24'},
@@ -507,29 +560,31 @@ const executiveMembers = [
   {name:'Rakib Mamun',           dept:'Mechanical Engineering',                   area:'Faridganj',      position:'Assistant Treasurer',             session:'23-24'},
   {name:'Fajlay Raiyan',         dept:'Mechanical Engineering',                   area:'Matlab Uttar',   position:'Assistant Office Secretary',      session:'23-24'},
   {name:'Ismail Hossain Tonmoy', dept:'Geography & Environment',                  area:'Faridganj',      position:'Assistant Office Secretary',      session:'23-24'},
-  {name:'Mohammad Noman',        dept:'Mechanical Engineering',                   area:'Faridganj',      position:'Assistant Media Secretary',       session:'23-24'},
-  {name:'Fahim Ahammad Tanvir',  dept:'Software Engineering',                     area:'Haimchar',       position:'Assistant Publication Secretary', session:'23-24'},
   {name:'Fabiha Bushra Dilshad', dept:'Genetic Engineering & Biotechnology',      area:'Matlab Uttar',   position:'Assistant Publication Secretary', session:'23-24'},
+  {name:'Md Fahim Ahammad Tanvir',dept:'Software Engineering',                    area:'Haimchar',       position:'Assistant Publication Secretary', session:'23-24'},
   {name:'Maryam Chowdhury',      dept:'Economics',                                area:'Kachua',         position:'Assistant Human Rights Secretary',session:'23-24'},
   {name:'Shahinur Akter Mitu',   dept:'Economics',                                area:'Kachua',         position:'Assistant Cultural Secretary',    session:'23-24'},
   {name:'Takaful Islam Karima',  dept:'Civil & Environmental Engineering',        area:'Chandpur Sadar', position:'Assistant Cultural Secretary',    session:'23-24'},
   {name:'Samira Shaiba Athoi',   dept:'Geography & Environment',                  area:'Shahrasti',      position:'Assistant Cultural Secretary',    session:'23-24'},
+   {name:'Mohammad Noman',        dept:'Mechanical Engineering',                   area:'Faridganj',      position:'Assistant Media Secretary',       session:'23-24'},
   {name:'Fardin Islam Rijvy',    dept:'Software Engineering',                     area:'Haziganj',       position:'Assistant Sports Secretary',      session:'23-24'},
   {name:'Nahid Hossain',         dept:'Genetic Engineering & Biotechnology',      area:'Faridganj',      position:'Assistant Sports Secretary',      session:'23-24'},
   {name:'Asm Raihanul Hasan',    dept:'Genetic Engineering & Biotechnology',      area:'Shahrasti',      position:'Assistant Sports Secretary',      session:'23-24'},
 ];
 
 const generalMembersOnly = [
+ //Session 21-22
+  {name:'Mehedi Hasan Tareq',                   dept:'Software Engineering',        area:'Haimchar',       session:'21-22'},
   // Session 22-23
   {name:'Priya Rani',                   dept:'Computer Science & Engineering',        area:'Haimchar',       session:'22-23'},
   {name:'Sami',                         dept:'Software Engineering',                  area:'Chandpur Sadar', session:'22-23'},
   {name:'Tasnova Tamacchin Nihat',      dept:'Software Engineering',                  area:'Chandpur Sadar', session:'22-23'},
   {name:'Al-Amin Mollik',               dept:'Mechanical Engineering',                area:'Faridganj',      session:'22-23'},
   {name:'Mahbubur Rahman Mahi',         dept:'Chemical Engineering & Polymer Science',area:'Chandpur Sadar', session:'22-23'},
-  {name:'Shafayat Rahman Navin',        dept:'Anthropology',                          area:'Matlab Dakshin', session:'22-23'},
   {name:'Sayad Ahmed',                  dept:'Food Engineering & Tea Technology',     area:'Chandpur Sadar', session:'22-23'},
-  {name:'Mohammad Atikur Rahman Ratul', dept:'Electrical & Electronic Engineering',   area:'Chandpur Sadar', session:'22-23'},
-  {name:'Saliha Rahman',                dept:'Sociology',                             area:'Faridganj',      session:'22-23'},
+  // Session 23-24
+  {name:'Mohammad Atikur Rahman Ratul', dept:'Electrical & Electronic Engineering',   area:'Chandpur Sadar', session:'23-24'},
+  {name:'Saliha Rahman',                dept:'Sociology',                             area:'Faridganj',      session:'23-24'},
   // Session 24-25
   {name:'Muslim Talukder Rifat',        dept:'Statistics',                            area:'Chandpur Sadar', session:'24-25'},
   {name:'Ariyan Rahman Shanil',         dept:'Statistics',                            area:'Haimchar',       session:'24-25'},
@@ -566,56 +621,111 @@ const allGeneralMembers = [
 ];
 
 const teachers = [
-  {name:'Prof. Dr. Abdul Mannan', dept:'Computer Science & Engineering',   position:'Professor'},
-  {name:'Dr. Shahnaz Parvin',     dept:'Mathematics',                      position:'Associate Professor'},
-  {name:'Md. Zahirul Haque',      dept:'Physics',                          position:'Assistant Professor'},
-  {name:'Dr. Kamrul Hasan',       dept:'Civil & Environmental Engineering',position:'Professor'},
-  {name:'Ms. Roksana Islam',      dept:'Business Administration',          position:'Lecturer'},
-  {name:'Dr. Anowarul Kabir',     dept:'Electrical & Electronic Engineering',position:'Associate Professor'},
-  {name:'Tania Akter',            dept:'Chemistry',                        position:'Assistant Professor'},
-  {name:'Md. Faruk Hossain',      dept:'Architecture',                     position:'Lecturer'},
+  { name: 'Dr S M Saiful Islam', dept: 'Chemistry', position: 'Professor' },
+  { name: 'Dr. Md Zakir Hossain', dept: 'Statistics', position: 'Professor' },
+  { name: 'Dr. Mirza Nazmul Hasan', dept: 'Statistics', position: 'Professor' },
+  { name: 'Dr. Mohammad Jasim Uddin', dept: 'Sociology', position: 'Professor' },
+  { name: 'Dr Mohammad Abdul Hannan', dept: 'Economics', position: 'Professor' },
+  { name: 'Dr Masud Alam', dept: 'Economics', position: 'Professor' },
+  { name: 'Dr. Nur Mohammad Majumder', dept: 'Anthropology', position: 'Professor' },
+  { name: 'Dr. Nilufa Aktar', dept: 'Bangla', position: 'Professor' },
+  { name: 'Dr Mohammad Razaul Karim', dept: 'Chemistry', position: 'Professor' },
+  { name: 'Syed Towfiq Mahmood Hasan', dept: 'Business Administration', position: 'Associate Professor' },
+  { name: 'Mohammad Abdullah-Al-Shoeb', dept: 'Biochemistry and Molecular Biology', position: 'Associate Professor(On leave)' },
+  { name: 'Dr Mohammad Shaiful Alam Amin', dept: 'Chemical Engineering & Polymer Science', position: 'Professor' },
+  { name: 'Shahla Safwat Ravhee', dept: 'Architecture', position: 'Assistant Professor(On leave)' },
+  { name: 'Md. Syamul Bashar', dept: 'Mechanical Engineering', position: 'Assistant Professor' },
+  { name: 'Md. Mahin Uddin', dept: 'Geography and Environment', position: 'Lecturer' },
+  { name: 'Mahabub Alam', dept: 'FET', position: 'Lecturer' }
 ];
-
 const staffMembers = [
-  {name:'Md. Shamsul Haque', dept:'Registrar Office', position:'Senior Staff'},
-  {name:'Rubina Akter',      dept:'Library',           position:'Librarian'},
-  {name:'Md. Jahangir Alam', dept:'Computer Center',   position:'Lab Technician'},
-  {name:'Amena Begum',       dept:'Finance Office',    position:'Accounts Officer'},
-  {name:'Kamal Uddin',       dept:'Student Affairs',   position:'Student Counselor'},
-  {name:'Md. Belal Hossain', dept:'Maintenance',       position:'Engineer'},
+  { name: 'Mr. Helan Hossain Dewan', dept: 'Accounts', position: 'Assistant Director' },
+  { name: 'Mr. Md. Hasan Mahmud Khan', dept: 'IICT', position: 'Technician' },
+  { name: 'Mr. Md. Farkul Islam', dept: 'Registrar Office', position: 'Administrative Officer' },
+  { name: 'Mr. Md. Khoka Mia', dept: 'Chemistry', position: 'Senior Lab Assistant' },
+  { name: 'Mr. Md. Nazrul Islam', dept: 'Civil', position: 'Instrument Engineer' },
+  { name: 'Mr. Md. Nasir Uddin Bepari', dept: 'Registrar Office', position: 'Senior Guest House Attendant' },
+  { name: 'Mr. Md. Babul Hossain', dept: 'FES', position: 'Technician Officer' },
+  { name: 'Mr. Abu Yusuf', dept: 'Research Center', position: 'N/A' },
+  { name: 'Mr. Abdul Karim', dept: 'Mathematics', position: 'Office Attendant' },
+  { name: 'Mr. Md. Jakir Hossain', dept: 'Registrar Office', position: 'Office Assistant' },
+  { name: 'Ms. Rina Ferdousi', dept: 'Medical', position: 'Nurse' },
+  { name: 'Mr. Monir Hossain', dept: 'Transport', position: 'Senior Driver' },
+  { name: 'Mr. Alauddin Shah', dept: 'Telephone', position: 'Senior Operator' },
+  { name: 'Ms. Farhana Begum', dept: 'Female Hall', position: 'Assistant' },
+  { name: 'Mr. Md. Jitu Mia', dept: 'Anthropology', position: 'Administrative Officer' },
+  { name: 'Mr. Md. Taslim Dewan', dept: 'Registrar Office', position: 'Senior Guard' },
+  { name: 'Mr. Imam Hossain', dept: '2nd Female Hall', position: 'Senior Guard' },
+  { name: 'Mr. Abdur Rob', dept: 'Registrar Office', position: 'Security Assistant' },
+  { name: 'Mr. Anisur Rahman', dept: 'VC Bungalow', position: 'Senior Gardener' },
+  { name: 'Mr. Shahjahan Molla', dept: 'IPE', position: 'Office Attendant' },
+  { name: 'Mr. Md. Sohel Ahmed', dept: 'IPE', position: 'Office Attendant' }
 ];
 
 const events = [
+  // {
+  //   title:'Chandpur Night 2025 — An Evening of Culture',
+  //   date:'February 14, 2025', location:'SUST Central Auditorium', thumb:'', emoji:'🎭',
+  //   description:"Our flagship annual event celebrating Chandpur's rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.",
+  //   photos:['🎤','🍽️','🎊','💃','🥁','🌟','📸']
+  // },
   {
-    title:'Chandpur Night 2025 — An Evening of Culture',
-    date:'February 14, 2025', location:'SUST Central Auditorium', thumb:'', emoji:'🎭',
-    description:"Our flagship annual event celebrating Chandpur's rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.",
-    photos:['🎤','🍽️','🎊','💃','🥁','🌟','📸']
+    title:'Intra Association Football Tournament 2026',
+    date:'February 14, 2025', location:'Mahmudabad Sports Center', thumb:'football2026/1.jpg', emoji:'🎭',
+    description:"From the first whistle to the final blow—every match was filled with excitement, emotion, battle, and memorable moments.Great goals, incredible saves, intense competition, and every moment on the field made this tournament truly special.<br> However, beyond victory and defeat, the greatest achievement of this season was friendship, unity, sportsmanship, and bringing everyone together on one stage.<br> 📸Thank you to all the players, organizers, volunteers, and spectators, whose cooperation and love made the AoC Football Tournament 2026 a grand success<br>.We will meet again with a bigger event, more intense competition, and many more memorable moments.Until then, let the love for football remain unbroken.",
+    photos:['football2026/1.jpg','football2026/2.jpg','football2026/3.jpg','football2026/4.jpg','football2026/5.jpg','football2026/6.jpg','football2026/7.jpg','football2026/8.jpg','football2026/9.jpg','football2026/10.jpg']
+    
   },
   {
-    title:'Freshman Welcome & Orientation 2024',
-    date:'November 3, 2024', location:'SUST Academic Building', thumb:'', emoji:'🎓',
-    description:"We welcomed the new batch of Chandpur students to SUST with open arms. Senior members shared their experiences, gave academic advice, and made sure every freshman knew they had a family here.",
-    photos:['🤝','😊','📚','🎯','🌱','💡','🏫','🎉']
+    title:'✨ Sha-Pa Day 2026 ✨',
+    date:'May 05, 2026', location:'London Inn', thumb:'shapaday2026/1 (1).jpg', emoji:'🎭',
+    description:"The much-awaited Sha-Pa Day 2026 of our association was successfully celebrated with the enthusiastic participation of students from different batches.<br>The event took place at London Inn Restaurant in Sylhet, creating a warm and memorable atmosphere for everyone present.<br>The program began with a vibrant photo session, followed by a delightful lunch and meaningful interaction among the members. Throughout the event, the spirit of unity, friendship, and shared belonging was beautifully reflected.<br>The day concluded with a renewed commitment to remain connected and work together to make the association even more dynamic, active, and strong in the days ahead.<br>",
+    photos:['shapaday2026/1 (1).jpg','shapaday2026/1 (2).jpg','shapaday2026/1 (3).jpg','shapaday2026/IMG-20260505-WA0098.jpg','shapaday2026/1 (5).jpg','shapaday2026/1 (6).jpg','shapaday2026/1 (7).jpg',],
+    captions:['8th Executive Committee','Batch 22','Batch 23','Batch 24','Batch 23 Boys','President Omio and GS Tanvir Bhai','A Moment of Togetherness']
+  },
+
+ 
+  {
+    title:'Biennial Conference and Scholarship Ceremony',
+    date:'March 6, 2026', location:'Malancha Community Center , Kumarpara', thumb:'8.jpg', emoji:'',
+    description:"On 6 March 2026, the Chandpur District Welfare Association, Sylhet, hosted its biennial conference and scholarship award ceremony, attended by Zakaria Talukdar Amio, President of the 8th Executive Committee of the Chandpur Association, Shahjalal University of Science and Technology (SUST), and Organizing Secretary Tahsin Arnav.<br>At the beginning of the event, a commemorative magazine was presented to the President and Organizing Secretary of the Chandpur Association by Mohammad Abu Yusuf, Executive Member of the Chandpur District Welfare Association and Assistant Administrative Officer of SUST. The program also included an Iftar gathering in celebration of the holy month of Ramadan. 🌙<br>After the conference, the President and Organizing Secretary of the Chandpur Association paid a courtesy visit to Professor Dr. S. M. Saiful Islam, Chief Advisor of the Chandpur Association, SUST and Chandpur District Welfare Association, Sylhet, during which they informed him about the association’s current and future activities. Dr. Islam assured full support for the association’s initiatives.<br>Courtesy meetings were also held with Gazi Mohammad Zahirul Islam, President, and Mohammad Mohsin Bhuiya, General Secretary of the Chandpur District Welfare Association, Sylhet. They were informed about the association’s future plans and assured their full support while inviting participation in upcoming events.<br>Additionally, a courtesy visit was made to Gazi Mohammad Zahirul Islam, esteemed advisor of the Chandpur District Student Association, Sylhet Agricultural University, who emphasized the importance of collaboration between the two organizations and invited the association for a meeting at Sylhet Agricultural University.<br>Other distinguished attendees included Engr. Mohammad Abdul Haque Miazi, Assistant Engineer, Sylhet City Corporation; Shah Mohammad Fazle Alam Patwari, Police Inspector, PBI, Sylhet; Mohammad Shahjahan, D.G.M., Jalalabad Gas T&D System Limited; and Engr. Abul Hasnat, Assistant Engineer, Jalalabad Ragib-Rabeya Medical College & Hospital, Sylhet.<br>✨ Through mutual cooperation and unity, it is hoped that the bonds among Chandpur students will grow even stronger.",
+    photos:['8.jpg','9.jpg','10.jpg','11.jpg','12.jpg']
   },
   {
-    title:'Ilish Mahotsob — Hilsha Fish Festival',
-    date:'September 20, 2024', location:'SUST Campus Ground', thumb:'', emoji:'🐟',
-    description:"A unique celebration honoring the most iconic symbol of Chandpur — the Ilish (Hilsha) fish. We organized a cooking competition, photo exhibition on Chandpur's river life, and a feast featuring Hilsha prepared in 8 traditional ways.",
-    photos:['🍳','🥘','📷','🎬','🌊','👨‍🍳','🏆','🎪']
+    title:'Iftar Mahfil 2025 and General Meeing',
+    date:'February 28, 2026', location:'D Builiding', thumb:'3.jpg', emoji:'',
+    description:"Association of Chandpur’s Iftar Gathering and General Meeting Successfully Held<br>On February 28, 2026, the Iftar gathering and general meeting of the Association of Chandpur, SUST, were held with great enthusiasm. At the event, the 8th Executive Committee of the organization was officially announced, and important discussions were conducted regarding the future activities of the association.<br>The chief guest of the ceremony was Dr. Saiful Islam, Professor of the Department of Chemistry and Chief Advisor of the Association of Chandpur. The special guest was Mohammad Shaiful Alam Amin, Professor of the Department of Chemical Engineering and Polymer Science and an advisor. Also present was Md. Mahin Uddin, Lecturer of the Department of Geography and Environment and an advisor.<br>Among others present were Gazi Md. Jahirul Islam, President of the Chandpur District Welfare Association, and Md. Mohsin Bhuiyan, General Secretary. Current and former members of the organization, officers and staff, students from various departments, and invited guests spent a lively and cordial time together.<br>Heartfelt thanks are extended to everyone involved for the successful completion of this event. The Association of Chandpur will continue to organize such gatherings and general meetings in the future, further strengthening the bonds of friendship, brotherhood, and unity.",
+    photos:['3.jpg','7.jpeg','4.jpg','6.jpeg','1.jpg','2.jpg']
   },
-  {
-    title:'Inter-Association Friendship Match 2024',
-    date:'July 12, 2024', location:'SUST Sports Complex', thumb:'', emoji:'🏏',
-    description:"A cricket and football tournament bringing together five district associations. Chandpur's team showcased exceptional teamwork and sportsmanship. The event ended with a shared dinner celebrating unity across districts.",
-    photos:['🏏','⚽','🏆','🤸','👟','📣','🎽','🌄']
+   {
+    title:'BBQ Night and Freshers Orientation',
+    date:'November 28, 2025', location:'SUST Basketball Ground', thumb:'bbq2025/1.jpg', emoji:'',
+    description:"On 28 November 2025, the Association of Chandpur, SUST, organized a grand Freshers’ Reception and BBQ event. Alongside warmly welcoming the new students from Chandpur of the 2024–25 session, the event turned into a vibrant festival of joy, harmony, and reunion.<br>Distinguished guests present at the event included Professor Dr. Saiful Islam, Professor of the Department of Chemistry and esteemed advisor of the Association of Chandpur; Professor Rezaul Karim, Professor of the Department of Chemistry and advisor; Professor Dr. Mirza Nazmul Hasan, Professor of the Department of Statistics and advisor; Professor Dr. Roksana Begum, Professor of the Department of Chemistry and advisor; and Md. Mahin Uddin, Lecturer of the Department of Geography and Environment and advisor.<br>In addition, the event was attended by current and former members of the association, students from various departments, officers and staff, and invited guests. With everyone’s active participation, the program became lively and truly memorable.<br>In the final segment of the event, a musical performance was presented by the newly admitted and current students, making the colorful cultural evening even more enjoyable.<br>Heartfelt thanks to everyone involved for making this event a success. The Association of Chandpur hopes to continue strengthening the bonds of friendship, unity, and cooperation through such gatherings in the future.<br>— Chandpur Association, SUST",
+    photos:['bbq2025/1.jpg','bbq2025/2.jpg','bbq2025/3.jpg','bbq2025/4.jpg','bbq2025/1.jpeg','bbq2025/2.jpeg','bbq2025/5.jpg']
   },
-  {
-    title:'Meghna River Heritage Exhibition',
-    date:'April 5, 2024', location:'SUST Library Hall', thumb:'', emoji:'🌊',
-    description:"A three-day photo and art exhibition dedicated to the Meghna river and its cultural significance to Chandpur. The exhibition featured over 60 photographs, 15 paintings, and a collection of river-inspired poetry.",
-    photos:['🖼️','📸','✍️','🎨','📖','🌅','🚤','🌿']
+
+    {
+    title:'Get together',
+    date:'April 01, 2025', location:'Chandpur Boro Station', thumb:'getTogether/1.jpg', emoji:'',
+    description:"On the second day of Eid, 2nd Shawwal 1446, it was quite a delightful and memorable day. The Chandpur Association had been determined to ceremony a get-together event during Eid, and finally, on this day, both current and former SUSTians from Chandpur came together and were bound by a beautiful bond of shared memories and togetherness.<br>",
+    photos:['getTogether/1.jpg','getTogether/2.jpg','getTogether/3.jpg','getTogether/4.jpg','getTogether/5.jpg',]
   }
+  ,
+   {
+    title:'Intra-association football tournament',
+    date:'June 27, 2025', location:'Green Valley Sports Center', thumb:'football/3.jpeg', emoji:'',
+    description:"Our flagship annual event celebrating Chandpur's rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.",
+    photos:['football/1.jpeg','football/2.jpeg','football/3.jpeg','football/5.jpeg','football/4.jpeg']
+  },
+  ,
+   {
+    title:'Orientation Programm 2023',
+    date:'December 6th, 2023', location:'SUST Research Center, Library', thumb:'Or2023/1.jpeg', emoji:'🎭',
+    description:" ",
+    photos:['Or2023/1.jpeg','Or2023/2.jpeg','Or2023/4.jpeg','Or2023/5.jpeg', 'Or2023/3.jpeg']
+  }
+  
+ 
 ];
 
 /* ─── LIGHTBOX STATE ─── */
@@ -804,6 +914,9 @@ function renderEvents(){
       isImageFile(p)?{src:`pictures/events/${p}`,caption:`${ev.title} — Photo ${pi+1}`}
                     :{emoji:p,caption:`${ev.title} — Photo ${pi+1}`}
     );
+    if(ev.captions){
+      evItems.forEach((item,pi)=>{ item.caption=ev.captions[pi]||item.caption; });
+    }
     window[`evItems${i}`]=evItems;
     const gallery=ev.photos.map((p,pi)=>{
       const inner=isImageFile(p)?`<img src="pictures/events/${p}" alt="Photo ${pi+1}" onerror="this.parentElement.innerHTML='📷'">`:`${p}`;
@@ -846,7 +959,7 @@ function renderEvents(){
       const card=document.getElementById(`event-${i}`);
       const open=card.classList.contains('open');
       document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('open'));
-      if(!open){card.classList.add('open');setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),100);}
+     if(!open){card.classList.add('open');}
     });
   });
 }
@@ -882,6 +995,50 @@ function createParticles(){
     p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;--dur:${Math.random()*8+6}s;--delay:${Math.random()*8}s;--op:${Math.random()*0.3+0.1}`;
     c.appendChild(p);
   }
+}
+
+function createFishSpawner(){
+  const scene=document.getElementById('fishScene');
+  if(!scene) return;
+  const fishSvg=`
+    <svg viewBox="0 0 96 54" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 27 C70 12 43 8 22 26 C42 45 69 42 80 27Z" fill="#d8e7e5"/>
+      <path d="M79 27 C66 17 44 16 24 26 C41 39 65 39 79 27Z" fill="#87b9be" opacity="0.9"/>
+      <path d="M24 26 L5 13 C9 22 9 31 5 41Z" fill="#6fa3aa"/>
+      <path d="M49 18 C54 12 61 11 67 15 C61 17 55 19 49 18Z" fill="#eef6f4" opacity="0.72"/>
+      <path d="M54 36 C59 42 66 42 72 38 C65 36 60 35 54 36Z" fill="#628f96" opacity="0.45"/>
+      <circle cx="70" cy="23" r="2.3" fill="#0d2e35"/>
+      <path d="M80 27 C83 25 83 29 80 27Z" fill="#eef6f4" opacity="0.55"/>
+    </svg>`;
+
+  function splash(cls=''){
+    return `<div class="fish-splash ${cls}" aria-hidden="true"><span></span><span></span><span></span></div>`;
+  }
+
+  function spawnFish(){
+    const fish=document.createElement('div');
+    const duration=(Math.random()*0.55+1.35).toFixed(2);
+    fish.className='fish-burst';
+    fish.style.setProperty('--fish-left', `${Math.random()*72+10}%`);
+    fish.style.setProperty('--fish-scale', (Math.random()*0.35+0.78).toFixed(2));
+    fish.style.setProperty('--fish-duration', `${duration}s`);
+    fish.innerHTML=`<div class="fish-jump" aria-hidden="true">${fishSvg}</div>${splash()}${splash('dive')}`;
+    scene.appendChild(fish);
+    window.setTimeout(()=>fish.remove(), duration*1000+250);
+  }
+
+  function scheduleNext(){
+    const delay=Math.random()*1800+900;
+    window.setTimeout(()=>{
+      const count=Math.random()>0.72?2:1;
+      for(let i=0;i<count;i++) window.setTimeout(spawnFish, i*220);
+      scheduleNext();
+    }, delay);
+  }
+
+  spawnFish();
+  window.setTimeout(spawnFish, 650);
+  scheduleNext();
 }
 
 /* ─── BOOT: everything runs after DOM is ready ─── */
@@ -928,6 +1085,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // Init
   document.getElementById('mainNav').classList.add('scrolled');
   createParticles();
+  createFishSpawner();
   renderMembers();
   renderEvents();
   setTimeout(()=>{
