@@ -7,6 +7,8 @@
  * ==============================================================================
  */
 require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
@@ -153,8 +155,15 @@ app.post('/api/upload', requireAuth, upload.single('file'), async (req, res) => 
   }
 
   const folder = req.body.folder || 'misc'; // 'logo', 'members', 'events'
-  const ext = req.file.originalname.split('.').pop();
-  const filename = `${folder}/${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${ext}`;
+  const ext = req.file.originalname.split('.').pop() || 'jpg';
+  
+  // If id is provided for member, save as members/{id}.{ext} to overwrite previous photo
+  let filename;
+  if (req.body.id && folder === 'members') {
+    filename = `${folder}/${req.body.id}.${ext}`;
+  } else {
+    filename = `${folder}/${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${ext}`;
+  }
 
   const { data, error } = await supabaseAdmin.storage
     .from('assets')
@@ -167,14 +176,25 @@ app.post('/api/upload', requireAuth, upload.single('file'), async (req, res) => 
     return res.status(400).json({ success: false, error: error.message });
   }
 
-  // Get public URL
+  // Also overwrite local file if pictures directory exists
+  const localPicDir = path.resolve(__dirname, '../pictures');
+  if (req.body.id && folder === 'members' && fs.existsSync(localPicDir)) {
+    try {
+      fs.writeFileSync(path.join(localPicDir, `${req.body.id}.${ext}`), req.file.buffer);
+    } catch (e) {
+      console.warn('Local file write error:', e);
+    }
+  }
+
+  // Get public URL with cache-buster timestamp
   const { data: urlData } = supabaseAdmin.storage.from('assets').getPublicUrl(filename);
+  const publicUrl = `${urlData.publicUrl}?v=${Date.now()}`;
 
   res.json({
     success: true,
     data: {
       path: filename,
-      url: urlData.publicUrl
+      url: publicUrl
     }
   });
 });

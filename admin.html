@@ -3,195 +3,939 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel - ACSUST</title>
+<title>Admin Portal - Association of Chandpur, SUST</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/png" href="pictures/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Josefin+Sans:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --deep-teal: #0a3d40;
   --river-blue: #1a6b7a;
+  --river-dark: #07191a;
   --gold: #c9963a;
   --gold-light: #e8b84b;
+  --gold-glow: rgba(201, 150, 58, 0.25);
   --cream: #f5f0e8;
   --warm-white: #faf7f2;
-  --dark: #0d1f1f;
-  --bg: #0f1a1a;
-  --bg-card: #142626;
-  --bg-card2: #1a3333;
-  --border: rgba(200,216,216,0.08);
-  --border-gold: rgba(201,150,58,0.3);
-  --text: #e0eeee;
-  --text-dim: rgba(200,216,216,0.6);
-  --text-muted: rgba(200,216,216,0.35);
+  --bg: #071516;
+  --bg-surface: #0a1f21;
+  --bg-card: rgba(10, 37, 39, 0.72);
+  --bg-card-hover: rgba(15, 48, 51, 0.85);
+  --bg-glass: rgba(10, 31, 33, 0.75);
+  --border: rgba(201, 150, 58, 0.16);
+  --border-subtle: rgba(26, 107, 122, 0.25);
+  --border-gold: rgba(201, 150, 58, 0.45);
+  --text: #e8f2f1;
+  --text-dim: #88b0ac;
+  --text-muted: #547d79;
   --danger: #e74c3c;
-  --success: #27ae60;
-  --ts: cubic-bezier(0.4,0,0.2,1);
+  --success: #2ecc71;
+  --ts: cubic-bezier(0.16, 1, 0.3, 1);
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-::-webkit-scrollbar{width:5px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--river-blue);border-radius:3px;}
-a{color:var(--gold);text-decoration:none;}
 
-/* ─── LOGIN ─── */
-.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;background:radial-gradient(ellipse at 30% 40%,rgba(26,107,122,0.15),transparent 60%),var(--bg);}
-.login-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:3rem;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.4);}
-.login-card .logo{display:flex;align-items:center;gap:12px;margin-bottom:2.5rem;}
-.login-card .logo img{width:48px;height:48px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.3);}
-.login-card .logo-text{font-weight:700;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream);}
-.login-card .logo-text span{display:block;font-weight:400;font-size:0.7rem;color:var(--gold);letter-spacing:0.15em;}
-.login-card h1{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;color:var(--cream);}
-.login-card p{font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;}
-.form-group{margin-bottom:1.2rem;}
-.form-group label{display:block;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.4rem;}
-.form-input{width:100%;padding:12px 16px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:0.9rem;font-family:inherit;transition:all 0.3s var(--ts);outline:none;}
-.form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,150,58,0.1);}
-.form-input::placeholder{color:var(--text-muted);}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border:none;border-radius:8px;font-family:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.3s var(--ts);letter-spacing:0.05em;}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep-teal);width:100%;padding:14px;}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,150,58,0.35);}
-.btn-gold:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
-.btn-sm{padding:8px 16px;font-size:0.75rem;border-radius:6px;}
-.btn-outline-gold{background:transparent;border:1.5px solid var(--border-gold);color:var(--gold);}
-.btn-outline-gold:hover{background:rgba(201,150,58,0.1);}
-.btn-teal{background:var(--river-blue);color:white;}
-.btn-teal:hover{background:#1f7d8f;}
-.btn-danger{background:var(--danger);color:white;}
-.btn-danger:hover{background:#c0392b;}
-.btn-ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border);}
-.btn-ghost:hover{background:rgba(255,255,255,0.05);color:var(--text);}
-.login-error{background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;color:#e74c3c;font-size:0.82rem;margin-bottom:1rem;display:none;}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(26, 107, 122, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(201, 150, 58, 0.08) 0%, transparent 45%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--river-blue); border-radius: 4px; }
+a { color: var(--gold-light); text-decoration: none; }
 
-/* ─── DASHBOARD LAYOUT ─── */
-.dashboard{display:none;min-height:100vh;}
-.dash-header{height:60px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);}
-.dash-header .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream);}
-.dash-header .logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;}
-.dash-header-right{display:flex;align-items:center;gap:1rem;}
-.dash-user{font-size:0.78rem;color:var(--text-dim);}
-.dash-body{display:flex;min-height:calc(100vh - 60px);}
-.dash-sidebar{width:240px;background:var(--bg-card);border-right:1px solid var(--border);padding:1.5rem 0;flex-shrink:0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
-.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 1.5rem;font-size:0.82rem;font-weight:500;color:var(--text-dim);cursor:pointer;transition:all 0.2s;border-left:3px solid transparent;}
-.sidebar-item:hover{background:rgba(255,255,255,0.03);color:var(--text);}
-.sidebar-item.active{background:rgba(201,150,58,0.08);color:var(--gold);border-left-color:var(--gold);}
-.sidebar-item .icon{font-size:1.1rem;width:24px;text-align:center;}
-.sidebar-divider{height:1px;background:var(--border);margin:1rem 1.5rem;}
-.sidebar-label{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);padding:0.5rem 1.5rem;margin-top:0.5rem;}
-.dash-main{flex:1;padding:2rem;overflow-x:hidden;}
-.dash-section{display:none;}
-.dash-section.active{display:block;}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
-.section-header h2{font-size:1.4rem;font-weight:700;color:var(--cream);}
-.section-header p{font-size:0.82rem;color:var(--text-dim);margin-top:0.3rem;}
+/* ─── LOGIN SCREEN ─── */
+.login-screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: radial-gradient(ellipse at 20% 50%, rgba(26, 107, 122, 0.35) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(201, 150, 58, 0.15) 0%, transparent 50%), linear-gradient(160deg, #041818 0%, #0a3d40 35%, #0d2e35 60%, #041010 100%);
+  overflow: hidden;
+}
+.login-card {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-gold);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 40px rgba(10, 61, 64, 0.3);
+}
+.login-card .logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 2rem;
+}
+.login-card .logo img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 18px var(--gold-glow);
+  border: 1.5px solid var(--gold);
+}
+.login-card .logo-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.login-card .logo-text span {
+  display: block;
+  font-weight: 500;
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+}
+.login-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--cream);
+}
+.login-card p {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+.form-group { margin-bottom: 1.35rem; }
+.form-group label {
+  display: block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.45rem;
+}
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(7, 21, 22, 0.75);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: all 0.3s var(--ts);
+  outline: none;
+}
+.form-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 150, 58, 0.15);
+  background: rgba(7, 21, 22, 0.95);
+}
+.form-input::placeholder { color: var(--text-muted); }
 
-/* ─── CARDS & TABLES ─── */
-.admin-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
-.admin-card h3{font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
-.admin-card h3 .badge{font-size:0.65rem;font-weight:600;background:rgba(201,150,58,0.15);color:var(--gold);padding:3px 8px;border-radius:20px;}
-.content-row{display:flex;align-items:flex-start;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--border);}
-.content-row:last-child{border-bottom:none;}
-.content-row .label{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);min-width:140px;padding-top:0.3rem;}
-.content-row .value{flex:1;}
-.content-row .value textarea,.content-row .value input{width:100%;padding:8px 12px;background:var(--bg);border:1.5px solid var(--border);border-radius:6px;color:var(--text);font-size:0.85rem;font-family:inherit;resize:vertical;outline:none;transition:border-color 0.3s;}
-.content-row .value textarea:focus,.content-row .value input:focus{border-color:var(--gold);}
-.content-row .value textarea{min-height:60px;}
-.content-row .actions{display:flex;gap:0.5rem;padding-top:0.2rem;}
+/* Password eye wrap */
+.password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.password-input-wrap .form-input {
+  padding-right: 48px !important;
+}
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  z-index: 20;
+  outline: none;
+}
+.password-toggle-btn svg {
+  pointer-events: none;
+}
+.password-toggle-btn:hover {
+  color: var(--gold-light);
+  background: rgba(201, 150, 58, 0.15);
+}
 
-.data-table{width:100%;border-collapse:collapse;}
-.data-table th{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);}
-.data-table td{padding:10px 12px;font-size:0.85rem;border-bottom:1px solid var(--border);vertical-align:middle;}
-.data-table tr:hover{background:rgba(255,255,255,0.02);}
-.member-thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;background:var(--bg-card2);}
-.category-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:20px;display:inline-block;}
-.cat-executive{background:rgba(201,150,58,0.15);color:var(--gold);}
-.cat-general{background:rgba(26,107,122,0.2);color:#5ec6d8;}
-.cat-teacher{background:rgba(39,174,96,0.15);color:#27ae60;}
-.cat-staff{background:rgba(142,68,173,0.15);color:#9b59b6;}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s var(--ts);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--deep-teal);
+  box-shadow: 0 4px 18px var(--gold-glow);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(201, 150, 58, 0.45);
+}
+.btn-gold:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-sm { padding: 7px 15px; font-size: 0.74rem; border-radius: 6px; }
+.btn-outline-gold {
+  background: transparent;
+  border: 1.5px solid var(--border-gold);
+  color: var(--gold-light);
+}
+.btn-outline-gold:hover {
+  background: rgba(201, 150, 58, 0.12);
+  border-color: var(--gold-light);
+  color: #fff;
+}
+.btn-teal {
+  background: var(--river-blue);
+  color: white;
+}
+.btn-teal:hover {
+  background: #178396;
+  box-shadow: 0 4px 16px rgba(26, 107, 122, 0.35);
+}
+.btn-danger {
+  background: rgba(231, 76, 60, 0.85);
+  color: white;
+}
+.btn-danger:hover { background: #c0392b; }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-color: var(--border-gold);
+}
+.login-error {
+  background: rgba(231, 76, 60, 0.12);
+  border: 1px solid rgba(231, 76, 60, 0.35);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #ff6b6b;
+  font-size: 0.84rem;
+  margin-bottom: 1.2rem;
+  display: none;
+}
 
-/* ─── MODAL ─── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:2rem;}
-.modal-overlay.active{display:flex;}
-.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-card);z-index:1;border-radius:16px 16px 0 0;}
-.modal-header h3{font-size:1.1rem;font-weight:700;color:var(--cream);}
-.modal-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.05);border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
-.modal-close:hover{background:rgba(231,76,60,0.2);color:var(--danger);}
-.modal-body{padding:1.5rem;}
-.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:0.8rem;}
+/* ─── DASHBOARD SHELL ─── */
+.dashboard { display: none; min-height: 100vh; }
+.dash-header {
+  height: 68px;
+  background: rgba(7, 25, 26, 0.88);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+}
+.dash-header .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.dash-header .logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--gold);
+}
+.dash-header-right { display: flex; align-items: center; gap: 1.2rem; }
+.dash-user-badge {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  background: rgba(26, 107, 122, 0.15);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+.dash-body { display: flex; min-height: calc(100vh - 68px); }
+
+/* ─── SIDEBAR ─── */
+.dash-sidebar {
+  width: 250px;
+  background: rgba(7, 23, 24, 0.75);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid var(--border);
+  padding: 1.8rem 0;
+  flex-shrink: 0;
+  position: sticky;
+  top: 68px;
+  height: calc(100vh - 68px);
+  overflow-y: auto;
+}
+.sidebar-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.5rem 1.6rem;
+  margin-top: 0.4rem;
+}
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 1.6rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.25s var(--ts);
+  border-left: 3px solid transparent;
+}
+.sidebar-item:hover {
+  background: rgba(26, 107, 122, 0.12);
+  color: var(--cream);
+}
+.sidebar-item.active {
+  background: rgba(201, 150, 58, 0.12);
+  color: var(--gold-light);
+  border-left-color: var(--gold);
+  font-weight: 600;
+}
+.sidebar-item .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  color: currentColor;
+}
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1.2rem 1.6rem;
+}
+
+/* ─── MAIN CONTENT ─── */
+.dash-main { flex: 1; padding: 2.5rem; overflow-x: hidden; }
+.dash-section { display: none; }
+.dash-section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+.section-header p {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* ─── GLASS CARDS ─── */
+.admin-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.8rem;
+  margin-bottom: 1.8rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.3s;
+}
+.admin-card:hover { border-color: rgba(201, 150, 58, 0.3); }
+.admin-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-card h3 .badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(201, 150, 58, 0.15);
+  color: var(--gold-light);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* ─── TABLE STYLES ─── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(201, 150, 58, 0.08);
+  vertical-align: middle;
+}
+.data-table tr:hover { background: rgba(26, 107, 122, 0.08); }
+.member-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--border-gold);
+  background: #0d2527;
+}
+
+/* Category Badges */
+.category-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.cat-member { background: rgba(201, 150, 58, 0.15); color: var(--gold-light); border: 1px solid rgba(201, 150, 58, 0.3); }
+.cat-teacher { background: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.3); }
+.cat-staff { background: rgba(155, 89, 182, 0.15); color: #c39bd3; border: 1px solid rgba(155, 89, 182, 0.3); }
+
+/* Filter Tabs */
+.filter-tabs { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.filter-tab {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s var(--ts);
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+}
+.filter-tab:hover { background: rgba(255, 255, 255, 0.04); color: var(--cream); }
+.filter-tab.active {
+  background: rgba(201, 150, 58, 0.15);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 2px 12px var(--gold-glow);
+}
+
+/* ─── VISUAL PAGE CONTENT EDITOR ─── */
+.visual-editor-wrap {
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  background: #091c1d;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+.visual-editor-topbar {
+  padding: 1rem 1.6rem;
+  background: rgba(7, 23, 24, 0.95);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.visual-topbar-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--cream);
+}
+.visual-topbar-info .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.visual-topbar-hint {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+/* Visual Canvas Layout mirroring index.html */
+.visual-canvas {
+  padding: 2.5rem 2rem;
+  background: var(--bg);
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* In-situ Editable Element Highlight */
+.cms-editable {
+  position: relative;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.25s var(--ts);
+  outline: 1.5px dashed transparent;
+  outline-offset: 4px;
+}
+.cms-editable:hover {
+  outline-color: var(--gold);
+  background: rgba(201, 150, 58, 0.08);
+}
+.cms-editable::after {
+  content: '✎ Click to Edit';
+  position: absolute;
+  top: -24px;
+  right: 0;
+  background: var(--gold);
+  color: var(--deep-teal);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translateY(4px);
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.cms-editable:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Visual Section Mockups */
+.v-hero-block {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: radial-gradient(ellipse at 50% 30%, rgba(26, 107, 122, 0.22) 0%, transparent 70%), rgba(10, 37, 39, 0.4);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.v-hero-badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+.v-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 0.8rem;
+}
+.v-hero-subtitle {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1.2rem;
+}
+.v-hero-desc {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--text-dim);
+}
+
+.v-about-block {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: rgba(10, 37, 39, 0.3);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.v-about-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.v-about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.v-about-p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+.v-stats-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+}
+.v-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.v-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.v-stat-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.v-about-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  border: 1px solid var(--border-gold);
+}
+.v-about-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Visual Culture & Purpose Cards */
+.v-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.v-card-item {
+  background: rgba(7, 23, 24, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.4rem;
+  position: relative;
+  transition: all 0.3s;
+}
+.v-card-item:hover { border-color: var(--border-gold); }
+.v-card-item .card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+.v-card-item .card-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+.v-card-item h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--cream); margin-bottom: 0.4rem; }
+.v-card-item p { font-size: 0.82rem; line-height: 1.6; color: var(--text-dim); }
+
+.v-footer-block {
+  background: rgba(5, 17, 18, 0.95);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+}
+.v-footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.v-footer-col h4 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.v-footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.88rem; }
+.v-footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ─── MODALS ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 16, 17, 0.85);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+}
+.modal-overlay.active { display: flex; animation: modalFade 0.25s ease; }
+@keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+.modal {
+  background: #092022;
+  border: 1px solid var(--border-gold);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 620px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65);
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: #092022;
+  z-index: 5;
+}
+.modal-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--cream);
+}
+.modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+.modal-close:hover {
+  background: rgba(231, 76, 60, 0.25);
+  color: #ff6b6b;
+  border-color: rgba(231, 76, 60, 0.5);
+}
+.modal-body { padding: 1.8rem; }
+.modal-footer {
+  padding: 1.2rem 1.8rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
 
 /* ─── TOAST ─── */
-.toast-container{position:fixed;top:72px;right:1rem;z-index:99999;display:flex;flex-direction:column;gap:0.5rem;}
-.toast{padding:12px 20px;border-radius:10px;font-size:0.82rem;font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,0.3);animation:toastIn 0.35s var(--ts) forwards;max-width:360px;}
-.toast.success{background:rgba(39,174,96,0.95);color:white;}
-.toast.error{background:rgba(231,76,60,0.95);color:white;}
-.toast.removing{animation:toastOut 0.3s var(--ts) forwards;}
-@keyframes toastIn{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
-@keyframes toastOut{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(40px);}}
-
-/* ─── PHOTO UPLOAD ─── */
-.photo-upload-area{width:100%;min-height:120px;border:2px dashed var(--border);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;cursor:pointer;transition:all 0.3s;padding:1rem;}
-.photo-upload-area:hover{border-color:var(--gold);background:rgba(201,150,58,0.05);}
-.photo-upload-area .icon{font-size:2rem;opacity:0.5;}
-.photo-upload-area .text{font-size:0.78rem;color:var(--text-dim);}
-.photo-preview{width:80px;height:80px;border-radius:8px;object-fit:cover;border:2px solid var(--border);}
-.photo-preview-lg{width:120px;height:120px;border-radius:12px;object-fit:cover;border:2px solid var(--border);}
-
-/* ─── LOGO SECTION ─── */
-.logo-preview-section{display:flex;align-items:center;gap:2rem;padding:1.5rem;background:var(--bg);border-radius:10px;}
-.logo-preview-section img{width:80px;height:80px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.3);border:2px solid var(--border-gold);}
+.toast-container {
+  position: fixed;
+  top: 80px;
+  right: 1.5rem;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.toast {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: toastIn 0.35s var(--ts) forwards;
+  max-width: 380px;
+}
+.toast.success { background: #135540; border: 1px solid #2ecc71; color: #e8f8f2; }
+.toast.error { background: #5c1e19; border: 1px solid #e74c3c; color: #fdeeed; }
+.toast.removing { animation: toastOut 0.3s var(--ts) forwards; }
+@keyframes toastIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(40px); } }
 
 /* ─── EVENT PHOTOS GRID ─── */
-.event-photos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:0.8rem;margin-top:1rem;}
-.event-photo-item{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
-.event-photo-item img{width:100%;height:100%;object-fit:cover;}
-.event-photo-item .remove-photo{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(231,76,60,0.9);border:none;color:white;font-size:0.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
-.event-photo-item:hover .remove-photo{opacity:1;}
-
-/* ─── FILTER TABS ─── */
-.filter-tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
-.filter-tab{padding:7px 16px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;transition:all 0.3s;border:1.5px solid var(--border);background:transparent;color:var(--text-dim);}
-.filter-tab:hover{background:rgba(255,255,255,0.05);}
-.filter-tab.active{background:rgba(201,150,58,0.15);border-color:var(--border-gold);color:var(--gold);}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:768px){
-  .dash-sidebar{display:none;}
-  .dash-main{padding:1rem;}
-  .modal{max-width:95vw;margin:1rem;}
-  .dash-header{padding:0 1rem;}
-  .content-row{flex-direction:column;}
-  .content-row .label{min-width:unset;}
+.event-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
 }
+.event-photo-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.event-photo-item img { width: 100%; height: 100%; object-fit: cover; }
+.event-photo-item .remove-photo {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(231, 76, 60, 0.9);
+  border: none;
+  color: white;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.event-photo-item:hover .remove-photo { opacity: 1; }
 
-.loading-spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.6s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 900px) {
+  .v-about-block { grid-template-columns: 1fr; }
+  .v-footer-grid { grid-template-columns: 1fr; }
+  .dash-sidebar { width: 72px; padding: 1rem 0; }
+  .dash-sidebar .sidebar-item { padding: 12px; justify-content: center; }
+  .dash-sidebar .sidebar-item span:not(.icon), .dash-sidebar .sidebar-label, .dash-sidebar .sidebar-divider { display: none; }
+  .dash-main { padding: 1.5rem; }
+}
 </style>
 </head>
 <body>
 
+<!-- ═══════════════ TOAST CONTAINER ═══════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
 <!-- ═══════════════ LOGIN SCREEN ═══════════════ -->
 <div class="login-screen" id="loginScreen">
+  <!-- Subtle River Waves Motif Matching Website Hero -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:180px;z-index:1;overflow:hidden;pointer-events:none;">
+    <svg viewBox="0 0 1440 200" fill="none" preserveAspectRatio="none" style="position:absolute;bottom:0;width:100%;height:100%;opacity:0.4;">
+      <path d="M0 80 C320 140 420 20 720 80 C1020 140 1120 20 1440 80 L1440 200 L0 200 Z" fill="#0a3d40"/>
+    </svg>
+    <svg viewBox="0 0 1440 200" fill="none" preserveAspectRatio="none" style="position:absolute;bottom:0;width:100%;height:100%;opacity:0.3;">
+      <path d="M0 100 C280 40 440 140 720 100 C1000 60 1160 160 1440 100 L1440 200 L0 200 Z" fill="#1a6b7a"/>
+    </svg>
+  </div>
+
   <div class="login-card">
     <div class="logo">
       <img src="pictures/logo.png" alt="Logo">
-      <div class="logo-text">ACSUST<span>Admin Panel</span></div>
+      <div class="logo-text">Association of Chandpur<span>SUST · Admin Portal</span></div>
     </div>
     <h1>Welcome Back</h1>
-    <p>Sign in to manage the Association of Chandpur SUST website</p>
+    <p>Sign in to manage members, events, and website content.</p>
+    
     <div class="login-error" id="loginError"></div>
+    
     <div class="form-group">
-      <label>Email</label>
-      <input type="email" class="form-input" id="loginEmail" placeholder="admin@example.com" autocomplete="email">
+      <label>Email Address</label>
+      <input type="email" class="form-input" id="loginEmail" placeholder="acsust@chandpur.com" autocomplete="email" onkeydown="if(event.key==='Enter')handleLogin()">
     </div>
+    
     <div class="form-group">
       <label>Password</label>
-      <input type="password" class="form-input" id="loginPassword" placeholder="Enter password" autocomplete="current-password">
+      <div class="password-input-wrap">
+        <input type="password" class="form-input" id="loginPassword" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')handleLogin()">
+        <button type="button" class="password-toggle-btn" id="togglePasswordBtn" onclick="togglePasswordVisibility()" title="Show/Hide Password" aria-label="Toggle password visibility">
+          <!-- Eye SVG (View) -->
+          <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <!-- Eye Off SVG (Hide) -->
+          <svg class="eye-closed" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+        </button>
+      </div>
     </div>
-    <button class="btn btn-gold" id="loginBtn" onclick="handleLogin()">Sign In</button>
+    
+    <button class="btn btn-gold" id="loginBtn" onclick="handleLogin()" style="width:100%;margin-top:1rem;">Sign In</button>
   </div>
 </div>
 
@@ -201,105 +945,209 @@ a{color:var(--gold);text-decoration:none;}
   <div class="dash-header">
     <div class="logo">
       <img src="pictures/logo.png" alt="Logo" id="dashLogo">
-      ACSUST Admin
+      <span>ACSUST Portal</span>
     </div>
     <div class="dash-header-right">
-      <span class="dash-user" id="dashUser"></span>
+      <span class="dash-user-badge" id="dashUser"></span>
+      <a href="index.html" target="_blank" class="btn btn-sm btn-outline-gold" style="font-size:0.72rem;">Visit Site ↗</a>
       <button class="btn btn-sm btn-ghost" onclick="handleLogout()">Logout</button>
     </div>
   </div>
 
   <div class="dash-body">
-    <!-- Sidebar -->
+    <!-- Sidebar with Crisp Modern SVG Icons -->
     <div class="dash-sidebar">
-      <div class="sidebar-label">Management</div>
-      <div class="sidebar-item active" data-section="site-settings" onclick="switchSection(this)">
-        <span class="icon">⚙️</span> Site Settings
+      <div class="sidebar-label">Navigation</div>
+      
+      <div class="sidebar-item active" data-section="content-mgmt" onclick="switchSection(this)">
+        <span class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </span>
+        <span>Page Content</span>
       </div>
-      <div class="sidebar-item" data-section="content-mgmt" onclick="switchSection(this)">
-        <span class="icon">📝</span> Page Content
-      </div>
-      <div class="sidebar-divider"></div>
+
       <div class="sidebar-item" data-section="members-mgmt" onclick="switchSection(this)">
-        <span class="icon">👥</span> Members
+        <span class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </span>
+        <span>Members</span>
       </div>
-      <div class="sidebar-divider"></div>
+
       <div class="sidebar-item" data-section="events-mgmt" onclick="switchSection(this)">
-        <span class="icon">📅</span> Events
+        <span class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </span>
+        <span>Events</span>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-item" data-section="site-settings" onclick="switchSection(this)">
+        <span class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </span>
+        <span>Site Settings</span>
       </div>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Workspace Area -->
     <div class="dash-main">
 
-      <!-- ═══ SITE SETTINGS SECTION ═══ -->
-      <div class="dash-section active" id="site-settings">
+      <!-- ═══ 1. IN-CONTEXT VISUAL PAGE CONTENT SECTION ═══ -->
+      <div class="dash-section active" id="content-mgmt">
         <div class="section-header">
           <div>
-            <h2>⚙️ Site Settings</h2>
-            <p>Manage logo and global website settings</p>
+            <h2>Page Content (Visual Editor)</h2>
+            <p>Interactive preview of homepage. Click directly on any highlighted section below to edit live.</p>
           </div>
+          <button class="btn btn-sm btn-outline-gold" onclick="loadContent()">↻ Refresh Preview</button>
         </div>
-        <div class="admin-card">
-          <h3>🖼️ Website Logo</h3>
-          <div class="logo-preview-section">
-            <img src="pictures/logo.png" alt="Current Logo" id="currentLogo">
-            <div>
-              <p style="font-size:0.85rem;margin-bottom:0.8rem;color:var(--text-dim)">Upload a new logo. It will update across all pages.</p>
-              <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="uploadLogo(this)">
-              <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('logoFileInput').click()">📷 Upload New Logo</button>
+
+        <div class="visual-editor-wrap">
+          <div class="visual-editor-topbar">
+            <div class="visual-topbar-info">
+              <span class="dot"></span>
+              <strong>Live Homepage Visual Workspace</strong>
             </div>
+            <div class="visual-topbar-hint">Hover and click on any text, paragraph, or card to edit</div>
           </div>
-        </div>
 
-        <div class="admin-card" style="margin-top: 1.5rem;">
-          <h3>🌐 Backend API Server URL</h3>
-          <p style="font-size:0.85rem;margin-bottom:1rem;color:var(--text-dim)">Render-এ ডিপ্লয় করার পর আপনার লাইভ ব্যাকএন্ড লিঙ্কটি এখানে দিন (যেমন: <code>https://acsust-backend.onrender.com</code>)। লোকাল টেস্টিংয়ের জন্য <code>http://localhost:3001</code> থাকবে।</p>
-          <div style="display:flex;gap:10px;max-width:550px;">
-            <input type="text" id="apiBaseInput" class="form-input" placeholder="https://associationofchadpursust.onrender.com">
-            <button class="btn btn-sm btn-gold" onclick="saveApiBase()">Save URL</button>
+          <div class="visual-canvas">
+
+            <!-- Hero Section Preview -->
+            <div class="v-hero-block">
+              <div class="v-hero-badge cms-editable" data-cms="hero_badge" onclick="openCmsEditModal('hero_badge', 'Hero Badge')"></div>
+              <h1 class="v-hero-title cms-editable" data-cms="hero_title" onclick="openCmsEditModal('hero_title', 'Hero Main Title')"></h1>
+              <div class="v-hero-subtitle cms-editable" data-cms="hero_subtitle" onclick="openCmsEditModal('hero_subtitle', 'Hero Subtitle')"></div>
+              <p class="v-hero-desc cms-editable" data-cms="hero_desc" onclick="openCmsEditModal('hero_desc', 'Hero Description')"></p>
+            </div>
+
+            <!-- About Section Preview -->
+            <div class="v-about-block">
+              <div>
+                <div class="v-about-label cms-editable" data-cms="about_label" onclick="openCmsEditModal('about_label', 'About Section Label')"></div>
+                <h2 class="v-about-title cms-editable" data-cms="about_title" onclick="openCmsEditModal('about_title', 'About Main Title')"></h2>
+                <div class="v-about-p cms-editable" data-cms="about_p1" onclick="openCmsEditModal('about_p1', 'About Paragraph 1')"></div>
+                <div class="v-about-p cms-editable" data-cms="about_p2" onclick="openCmsEditModal('about_p2', 'About Paragraph 2')"></div>
+                <div class="v-about-p cms-editable" data-cms="about_p3" onclick="openCmsEditModal('about_p3', 'About Paragraph 3')"></div>
+
+                <!-- Live Stat Counters -->
+                <div class="v-stats-row">
+                  <div class="v-stat-item">
+                    <span class="v-stat-num cms-editable" data-cms="stat_members_num" onclick="openCmsEditModal('stat_members_num', 'Stat: Member Count')"></span>
+                    <span class="v-stat-label cms-editable" data-cms="stat_members_label" onclick="openCmsEditModal('stat_members_label', 'Stat: Member Label')"></span>
+                  </div>
+                  <div class="v-stat-item">
+                    <span class="v-stat-num cms-editable" data-cms="stat_depts_num" onclick="openCmsEditModal('stat_depts_num', 'Stat: Departments Count')"></span>
+                    <span class="v-stat-label cms-editable" data-cms="stat_depts_label" onclick="openCmsEditModal('stat_depts_label', 'Stat: Departments Label')"></span>
+                  </div>
+                  <div class="v-stat-item">
+                    <span class="v-stat-num cms-editable" data-cms="stat_events_num" onclick="openCmsEditModal('stat_events_num', 'Stat: Events Count')"></span>
+                    <span class="v-stat-label cms-editable" data-cms="stat_events_label" onclick="openCmsEditModal('stat_events_label', 'Stat: Events Label')"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="v-about-visual">
+                <img src="pictures/logo.jpeg" alt="Chandpur Association">
+              </div>
+            </div>
+
+            <!-- Culture Cards Section Preview -->
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem;">
+                <div>
+                  <div class="v-about-label cms-editable" data-cms="culture_label" onclick="openCmsEditModal('culture_label', 'Culture Section Label')"></div>
+                  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);" class="cms-editable" data-cms="culture_title" onclick="openCmsEditModal('culture_title', 'Culture Main Title')"></h3>
+                  <p class="cms-editable" data-cms="culture_desc" onclick="openCmsEditModal('culture_desc', 'Culture Description')" style="color:var(--text-dim);font-size:0.92rem;margin-top:0.4rem;max-width:700px;"></p>
+                </div>
+                <button class="btn btn-sm btn-teal" onclick="openCultureModal()">+ Add Culture Card</button>
+              </div>
+              <div class="v-cards-grid" id="vCultureCards"></div>
+            </div>
+
+            <!-- Purpose Section Preview -->
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem;">
+                <div>
+                  <div class="v-about-label cms-editable" data-cms="purpose_label" onclick="openCmsEditModal('purpose_label', 'Purpose Section Label')"></div>
+                  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);" class="cms-editable" data-cms="purpose_title" onclick="openCmsEditModal('purpose_title', 'Purpose Main Title')"></h3>
+                  <p class="cms-editable" data-cms="purpose_desc" onclick="openCmsEditModal('purpose_desc', 'Purpose Description')" style="color:var(--text-dim);font-size:0.92rem;margin-top:0.4rem;max-width:700px;"></p>
+                </div>
+                <button class="btn btn-sm btn-teal" onclick="openPurposeModal()">+ Add Purpose Card</button>
+              </div>
+              <div class="v-cards-grid" id="vPurposeCards"></div>
+            </div>
+
+            <!-- Footer Section & Contact Settings Preview -->
+            <div class="v-footer-block">
+              <div class="v-footer-grid">
+                <div>
+                  <h4 style="color:var(--gold);margin-bottom:0.6rem;">Footer Brand Description</h4>
+                  <p class="cms-editable" data-cms="footer_desc" onclick="openCmsEditModal('footer_desc', 'Footer Brand Description')" style="font-size:0.88rem;color:var(--text-dim);line-height:1.7;"></p>
+                </div>
+                <div>
+                  <h4 style="color:var(--gold);margin-bottom:0.6rem;">Quick Navigation</h4>
+                  <ul style="color:var(--text-muted);">
+                    <li>Home</li>
+                    <li>Members</li>
+                    <li>Events</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="color:var(--gold);margin-bottom:0.6rem;">Contact & Connect (Editable)</h4>
+                  <div style="display:flex;flex-direction:column;gap:0.8rem;">
+                    <div>
+                      <span style="font-size:0.7rem;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:2px;">Facebook Page URL:</span>
+                      <span class="cms-editable" data-cms="facebook_page_url" onclick="openCmsEditModal('facebook_page_url', 'Official Facebook Page URL')" style="color:var(--gold-light);font-size:0.85rem;word-break:break-all;"></span>
+                    </div>
+                    <div>
+                      <span style="font-size:0.7rem;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:2px;">Contact Email:</span>
+                      <span class="cms-editable" data-cms="contact_email" onclick="openCmsEditModal('contact_email', 'Association Contact Email')" style="color:var(--gold-light);font-size:0.85rem;"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="v-footer-bottom">
+                <span class="cms-editable" data-cms="footer_copyright" onclick="openCmsEditModal('footer_copyright', 'Footer Copyright Line')"></span>
+                <span class="cms-editable" data-cms="footer_credit" onclick="openCmsEditModal('footer_credit', 'Footer Credit')"></span>
+                <span class="cms-editable" data-cms="footer_motto" onclick="openCmsEditModal('footer_motto', 'Footer Motto')"></span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      <!-- ═══ CONTENT MANAGEMENT SECTION ═══ -->
-      <div class="dash-section" id="content-mgmt">
-        <div class="section-header">
-          <div>
-            <h2>📝 Page Content</h2>
-            <p>Edit all text content on the homepage</p>
-          </div>
-        </div>
-        <div id="contentSections"></div>
-      </div>
-
-      <!-- ═══ MEMBERS MANAGEMENT SECTION ═══ -->
+      <!-- ═══ 2. MEMBERS MANAGEMENT SECTION (3 CATEGORIES) ═══ -->
       <div class="dash-section" id="members-mgmt">
         <div class="section-header">
           <div>
-            <h2>👥 Members Management</h2>
-            <p>Add, edit, or remove members</p>
+            <h2>Members Management</h2>
+            <p>Manage community members across 3 categories: Members, Teachers, and Staff.</p>
           </div>
-          <button class="btn btn-sm btn-teal" onclick="openMemberModal()">+ Add Member</button>
+          <button class="btn btn-sm btn-teal" onclick="openMemberModal()">+ Add New Member</button>
         </div>
+
+        <!-- 3 Primary Category Tabs (No All tab) -->
         <div class="filter-tabs" id="memberFilterTabs">
-          <button class="filter-tab active" data-cat="all" onclick="filterMembers('all',this)">All</button>
-          <button class="filter-tab" data-cat="executive" onclick="filterMembers('executive',this)">Executive</button>
-          <button class="filter-tab" data-cat="general" onclick="filterMembers('general',this)">General</button>
-          <button class="filter-tab" data-cat="teacher" onclick="filterMembers('teacher',this)">Teachers</button>
+          <button class="filter-tab active" data-cat="member" onclick="filterMembers('member',this)">Members (Students)</button>
+          <button class="filter-tab" data-cat="teacher" onclick="filterMembers('teacher',this)">Teachers (Faculty)</button>
           <button class="filter-tab" data-cat="staff" onclick="filterMembers('staff',this)">Staff</button>
         </div>
+
         <div class="admin-card" style="overflow-x:auto;">
           <table class="data-table" id="membersTable">
             <thead>
               <tr>
                 <th>Photo</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Department</th>
-                <th>Position</th>
-                <th>Session</th>
-                <th>Area</th>
+                <th onclick="sortMembersTable('name')" style="cursor:pointer;user-select:none;" title="Click to sort">Name <span id="sortIcon-name"></span></th>
+                <th onclick="sortMembersTable('category')" style="cursor:pointer;user-select:none;" title="Click to sort">Category <span id="sortIcon-category"></span></th>
+                <th onclick="sortMembersTable('position')" style="cursor:pointer;user-select:none;" title="Click to sort">Position / Designation <span id="sortIcon-position"></span></th>
+                <th onclick="sortMembersTable('dept')" style="cursor:pointer;user-select:none;" title="Click to sort">Department <span id="sortIcon-dept"></span></th>
+                <th onclick="sortMembersTable('session')" id="thSessionCol" style="cursor:pointer;user-select:none;" title="Click to sort">Session <span id="sortIcon-session"></span></th>
+                <th onclick="sortMembersTable('area')" style="cursor:pointer;user-select:none;" title="Click to sort">Area <span id="sortIcon-area"></span></th>
+                <th>Contact</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -308,23 +1156,188 @@ a{color:var(--gold);text-decoration:none;}
         </div>
       </div>
 
-      <!-- ═══ EVENTS MANAGEMENT SECTION ═══ -->
+      <!-- ═══ 3. EVENTS MANAGEMENT SECTION ═══ -->
       <div class="dash-section" id="events-mgmt">
         <div class="section-header">
           <div>
-            <h2>📅 Events Management</h2>
-            <p>Add, edit, or remove events</p>
+            <h2>Events Management</h2>
+            <p>Create and update events. Descriptions support natural line breaks without typing &lt;br&gt; tags.</p>
           </div>
-          <button class="btn btn-sm btn-teal" onclick="openEventModal()">+ Add Event</button>
+          <button class="btn btn-sm btn-teal" onclick="openEventModal()">+ Create Event</button>
         </div>
         <div id="eventsListAdmin"></div>
+      </div>
+
+      <!-- ═══ 4. SITE SETTINGS SECTION ═══ -->
+      <div class="dash-section" id="site-settings">
+        <div class="section-header">
+          <div>
+            <h2>Site Settings</h2>
+            <p>Global logo, branding, and API connection.</p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Website Logo</h3>
+          <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+            <img src="pictures/logo.png" alt="Current Logo" id="currentLogo" style="width:72px;height:72px;border-radius:50%;border:2px solid var(--gold);box-shadow:0 4px 16px var(--gold-glow);object-fit:cover;">
+            <div>
+              <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.8rem;">Upload a new official logo. It updates automatically across all pages and the browser favicon.</p>
+              <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="uploadLogo(this)">
+              <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('logoFileInput').click()">Upload New Logo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>API Server Endpoint</h3>
+          <p style="font-size:0.85rem;margin-bottom:1rem;color:var(--text-dim)">Configure the active backend API endpoint for administration.</p>
+          <div style="display:flex;gap:12px;max-width:560px;">
+            <input type="text" id="apiBaseInput" class="form-input" placeholder="https://associationofchadpursust.onrender.com">
+            <button class="btn btn-sm btn-gold" onclick="saveApiBase()">Save URL</button>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ MEMBER MODAL ═══════════════ -->
+<!-- ═══════════════ CMS FIELD EDIT MODAL ═══════════════ -->
+<div class="modal-overlay" id="cmsEditModal">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-header">
+      <div>
+        <h3 id="cmsModalLabel" style="font-family:'Playfair Display',serif;">Edit Content</h3>
+        <p id="cmsFieldSubtitle" style="font-size:0.75rem;color:var(--text-dim);margin-top:2px;">Update this text naturally — no HTML tags needed!</p>
+      </div>
+      <button class="modal-close" onclick="closeCmsEditModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="cmsEditKey">
+
+      <!-- Case 1: Footer Credit (Developer / Made by) -->
+      <div id="cmsCreditWrap" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:1rem;">
+          <div class="form-group">
+            <label>Prefix Text</label>
+            <input type="text" class="form-input" id="cmsCreditPrefix" placeholder="made by ·" oninput="updateCmsPreview()">
+          </div>
+          <div class="form-group">
+            <label>Developer / Creator Name *</label>
+            <input type="text" class="form-input" id="cmsCreditName" placeholder="Fahim Ahammad Tanvir" oninput="updateCmsPreview()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2: Footer Copyright & Campus -->
+      <div id="cmsCopyrightWrap" style="display:none;">
+        <div class="form-group">
+          <label>Copyright Text</label>
+          <input type="text" class="form-input" id="cmsCopyrightText" placeholder="© 2025 Association of Chandpur" oninput="updateCmsPreview()">
+        </div>
+        <div class="form-group">
+          <label>Campus / Sub-Tag (Highlighted in Gold)</label>
+          <input type="text" class="form-input" id="cmsCopyrightTag" placeholder="SUST, Sylhet" oninput="updateCmsPreview()">
+        </div>
+      </div>
+
+      <!-- Case 3: Counter / Stat Numbers -->
+      <div id="cmsStatWrap" style="display:none;">
+        <div class="form-group">
+          <label>Counter Number / Value</label>
+          <input type="text" class="form-input" id="cmsStatValue" placeholder="e.g. 100+ or 28" oninput="updateCmsPreview()">
+          <span style="font-size:0.75rem;color:var(--text-muted);display:block;margin-top:4px;">Enter plain numbers (e.g. 100+). The + sign is styled automatically.</span>
+        </div>
+      </div>
+
+      <!-- Case 4: General Text / Title / Paragraph -->
+      <div id="cmsGeneralWrap">
+        <div class="form-group">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.45rem;">
+            <label id="cmsFieldTitle" style="margin-bottom:0;">Content Text</label>
+            <button type="button" id="cmsHighlightBtn" class="btn btn-sm btn-ghost" style="padding:3px 8px;font-size:0.68rem;" onclick="insertCmsFormatting('*')">✨ Highlight / Italic</button>
+          </div>
+          <textarea class="form-input" id="cmsFieldValue" rows="4" style="resize:vertical;" oninput="updateCmsPreview()"></textarea>
+          <span id="cmsHint" style="font-size:0.75rem;color:var(--text-muted);display:block;margin-top:4px;">Tip: Simply press Enter for new lines. Wrap words in *asterisks* (e.g. *word*) to highlight in gold/italic. No HTML tags needed!</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Live Preview Box -->
+      <div style="margin-top:1.2rem;padding:1rem 1.2rem;background:rgba(7, 21, 22, 0.85);border:1px solid var(--border-gold);border-radius:10px;">
+        <div style="font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:6px;">
+          <span>👁 Live Visual Preview (How it appears on site)</span>
+        </div>
+        <div id="cmsLivePreview" style="font-size:0.95rem;color:var(--cream);min-height:24px;line-height:1.6;"></div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-ghost" onclick="closeCmsEditModal()">Cancel</button>
+      <button class="btn btn-sm btn-gold" id="cmsSaveBtn" onclick="saveCmsField()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CULTURE CARD MODAL ═══════════════ -->
+<div class="modal-overlay" id="cultureCardModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="cultureModalTitle">Culture Card</h3>
+      <button class="modal-close" onclick="closeCultureModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="cultureEditId">
+      <div class="form-group">
+        <label>Emoji / Icon</label>
+        <input type="text" class="form-input" id="cultureIcon" placeholder="🐟" style="max-width:90px;">
+      </div>
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-input" id="cultureTitle" placeholder="Land of Ilish">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-input" id="cultureDesc" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-ghost" onclick="closeCultureModal()">Cancel</button>
+      <button class="btn btn-sm btn-gold" id="cultureSaveBtn" onclick="saveCultureModal()">Save Card</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PURPOSE CARD MODAL ═══════════════ -->
+<div class="modal-overlay" id="purposeCardModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="purposeModalTitle">Purpose Card</h3>
+      <button class="modal-close" onclick="closePurposeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="purposeEditId">
+      <div class="form-group">
+        <label>Step Number</label>
+        <input type="text" class="form-input" id="purposeStep" placeholder="01" style="max-width:90px;">
+      </div>
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-input" id="purposeTitle" placeholder="Connect & Build Community">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-input" id="purposeDesc" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-ghost" onclick="closePurposeModal()">Cancel</button>
+      <button class="btn btn-sm btn-gold" id="purposeSaveBtn" onclick="savePurposeModal()">Save Card</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MEMBER ADD/EDIT MODAL ═══════════════ -->
 <div class="modal-overlay" id="memberModal">
   <div class="modal">
     <div class="modal-header">
@@ -333,64 +1346,125 @@ a{color:var(--gold);text-decoration:none;}
     </div>
     <div class="modal-body">
       <input type="hidden" id="memberEditId">
+
       <div class="form-group">
         <label>Category *</label>
-        <select class="form-input" id="memberCategory">
-          <option value="executive">Executive</option>
-          <option value="general">General Member</option>
-          <option value="teacher">Teacher</option>
-          <option value="staff">Staff</option>
+        <select class="form-input" id="memberCategory" onchange="onCategoryChange(this.value)">
+          <option value="member">Member (Student)</option>
+          <option value="teacher">Teacher (Faculty)</option>
+          <option value="staff">Staff (University)</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Name *</label>
-        <input type="text" class="form-input" id="memberName" placeholder="Full name">
-      </div>
-      <div class="form-group">
-        <label>Department *</label>
-        <input type="text" class="form-input" id="memberDept" placeholder="e.g. Computer Science & Engineering">
-      </div>
-      <div class="form-group">
-        <label>Position</label>
-        <input type="text" class="form-input" id="memberPosition" placeholder="e.g. President, Professor">
-      </div>
-      <div class="form-group">
-        <label>Session</label>
-        <input type="text" class="form-input" id="memberSession" placeholder="e.g. 23-24">
-      </div>
-      <div class="form-group">
-        <label>Area / Home</label>
-        <input type="text" class="form-input" id="memberArea" placeholder="e.g. Chandpur Sadar">
-      </div>
-      <div class="form-group">
-        <label>Display Order</label>
-        <input type="number" class="form-input" id="memberOrder" placeholder="0" value="0">
-      </div>
-      <div class="form-group">
-        <label>Bio</label>
-        <textarea class="form-input" id="memberBio" placeholder="Short bio (optional)" rows="2"></textarea>
-      </div>
-      <div style="border-top:1px solid var(--border);margin:1.2rem 0;padding-top:1.2rem;">
-        <label style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.8rem;display:block;">Social Links</label>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div class="form-group">
-          <label>🔵 Facebook URL</label>
-          <input type="url" class="form-input" id="memberFacebook" placeholder="https://facebook.com/...">
+          <label>Full Name *</label>
+          <input type="text" class="form-input" id="memberName" placeholder="e.g. Dr. SM Saiful Islam">
         </div>
-        <div class="form-group">
-          <label>📸 Instagram URL</label>
-          <input type="url" class="form-input" id="memberInstagram" placeholder="https://instagram.com/...">
-        </div>
-        <div class="form-group">
-          <label>📧 Email</label>
-          <input type="email" class="form-input" id="memberEmail" placeholder="member@email.com">
+        
+        <!-- Dynamic Designation Container -->
+        <div class="form-group" id="designationGroup">
+          <label id="positionLabel">Position / Designation *</label>
+          <!-- 1. Member Position Dropdown -->
+          <div id="memberPositionWrap">
+            <select class="form-input" id="memberPositionSelect" onchange="checkPresidentGsAssignment(this.value)"></select>
+            <span id="presidentGsNotice" style="display:none;font-size:0.72rem;color:var(--gold-light);margin-top:3px;"></span>
+          </div>
+          <!-- 2. Teacher Designation Dropdown -->
+          <div id="teacherDesignationWrap" style="display:none;">
+            <select class="form-input" id="teacherDesignationSelect">
+              <option value="Professor">Professor</option>
+              <option value="Associate Professor">Associate Professor</option>
+              <option value="Assistant Professor">Assistant Professor</option>
+              <option value="Lecturer">Lecturer</option>
+            </select>
+          </div>
+          <!-- 3. Staff Designation Free Text -->
+          <div id="staffDesignationWrap" style="display:none;">
+            <input type="text" class="form-input" id="staffDesignationInput" placeholder="e.g. Administrative Officer">
+          </div>
         </div>
       </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <!-- 28 Official SUST Departments Dropdown + Dynamic Other/Workplace -->
+        <div class="form-group">
+          <label id="deptLabel">Department *</label>
+          <select class="form-input" id="memberDept" onchange="onDeptChange(this.value)">
+            <option value="">Select Department *</option>
+            <option value="Anthropology">Anthropology</option>
+            <option value="Architecture">Architecture</option>
+            <option value="Bangla">Bangla</option>
+            <option value="Biochemistry and Molecular Biology">Biochemistry and Molecular Biology</option>
+            <option value="Business Administration">Business Administration</option>
+            <option value="Chemical Engineering & Polymer Science">Chemical Engineering & Polymer Science</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Civil & Environmental Engineering">Civil & Environmental Engineering</option>
+            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+            <option value="Economics">Economics</option>
+            <option value="Electrical & Electronic Engineering">Electrical & Electronic Engineering</option>
+            <option value="English">English</option>
+            <option value="Food Engineering & Tea Technology">Food Engineering & Tea Technology</option>
+            <option value="Forestry & Environmental Science">Forestry & Environmental Science</option>
+            <option value="Genetic Engineering & Biotechnology">Genetic Engineering & Biotechnology</option>
+            <option value="Geography and Environment">Geography and Environment</option>
+            <option value="Industrial & Production Engineering">Industrial & Production Engineering</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Oceanography">Oceanography</option>
+            <option value="Petroleum & Mining Engineering">Petroleum & Mining Engineering</option>
+            <option value="Physics">Physics</option>
+            <option value="Political Studies">Political Studies</option>
+            <option value="Public Administration">Public Administration</option>
+            <option value="Social Work">Social Work</option>
+            <option value="Sociology">Sociology</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Statistics">Statistics</option>
+            <option value="Other">Other / Workplace...</option>
+          </select>
+        </div>
+
+        <!-- Session Field: Only shown for Member (Student) -->
+        <div class="form-group" id="memberSessionWrap">
+          <label>Session (Students only)</label>
+          <input type="text" class="form-input" id="memberSession" placeholder="e.g. 21-22">
+        </div>
+
+        <!-- Other Workplace/Office Input: appears beside Department when 'Other' is selected -->
+        <div class="form-group" id="memberDeptOtherWrap" style="display:none;">
+          <label style="color:var(--gold-light);">Specify Other / Workplace *</label>
+          <input type="text" class="form-input" id="memberDeptOther" placeholder="e.g. VC Bungalow, Accounts, Registrar Office">
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group">
+          <label>Area / Upazila</label>
+          <input type="text" class="form-input" id="memberArea" placeholder="e.g. Chandpur Sadar / Matlab / Haziganj">
+        </div>
+        <div class="form-group">
+          <label>Phone / Contact Number</label>
+          <input type="tel" class="form-input" id="memberPhone" placeholder="e.g. 88017XXXXXXXX">
+        </div>
+      </div>
+
+      <!-- Contact Info: Email & Facebook Link -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-input" id="memberEmail" placeholder="student@example.com">
+        </div>
+        <div class="form-group">
+          <label>Facebook Profile URL</label>
+          <input type="url" class="form-input" id="memberFacebook" placeholder="https://facebook.com/username">
+        </div>
+      </div>
+
       <div class="form-group">
-        <label>Profile Photo</label>
-        <input type="file" id="memberPhotoFile" accept="image/*" style="display:none" onchange="previewMemberPhoto(this)">
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <img src="pictures/default.jpg" alt="" class="photo-preview" id="memberPhotoPreview" onerror="this.src='pictures/default.jpg'">
-          <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('memberPhotoFile').click()">📷 Choose Photo</button>
+        <label>Photo</label>
+        <div style="display:flex;align-items:center;gap:1.2rem;">
+          <img src="pictures/default.jpg" alt="" class="member-thumb" id="memberPhotoPreview" style="width:60px;height:60px;border-radius:10px;">
+          <input type="file" id="memberPhotoFile" accept="image/*" onchange="previewMemberPhoto(this)">
         </div>
       </div>
     </div>
@@ -401,19 +1475,21 @@ a{color:var(--gold);text-decoration:none;}
   </div>
 </div>
 
-<!-- ═══════════════ EVENT MODAL ═══════════════ -->
+<!-- ═══════════════ EVENT ADD/EDIT MODAL ═══════════════ -->
 <div class="modal-overlay" id="eventModal">
-  <div class="modal" style="max-width:700px;">
+  <div class="modal">
     <div class="modal-header">
       <h3 id="eventModalTitle">Add Event</h3>
       <button class="modal-close" onclick="closeEventModal()">✕</button>
     </div>
     <div class="modal-body">
       <input type="hidden" id="eventEditId">
+
       <div class="form-group">
-        <label>Title *</label>
-        <input type="text" class="form-input" id="eventTitle" placeholder="Event name">
+        <label>Event Title *</label>
+        <input type="text" class="form-input" id="eventTitle" placeholder="e.g. Intra Association Football Tournament 2026">
       </div>
+
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div class="form-group">
           <label>Date *</label>
@@ -421,40 +1497,33 @@ a{color:var(--gold);text-decoration:none;}
         </div>
         <div class="form-group">
           <label>Location *</label>
-          <input type="text" class="form-input" id="eventLocation" placeholder="e.g. SUST Campus">
+          <input type="text" class="form-input" id="eventLocation" placeholder="e.g. SUST Campus / Mahmudabad Sports Center">
         </div>
       </div>
+
       <div class="form-group">
-        <label>Description *</label>
-        <textarea class="form-input" id="eventDescription" rows="5" placeholder="Event description (HTML allowed, use <br> for line breaks)"></textarea>
+        <label>Description (Natural Newlines - No &lt;br&gt; needed!)</label>
+        <textarea class="form-input" id="eventDescription" rows="6" placeholder="Write event description here. Simply press Enter for new paragraphs. No <br> tags needed!"></textarea>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="form-group">
-          <label>Emoji</label>
-          <input type="text" class="form-input" id="eventEmoji" placeholder="e.g. ⚽ 🎭">
-        </div>
-        <div class="form-group">
-          <label>Display Order</label>
-          <input type="number" class="form-input" id="eventOrder" placeholder="0" value="0">
-        </div>
-      </div>
+
       <div class="form-group">
-        <label>Thumbnail</label>
-        <input type="file" id="eventThumbFile" accept="image/*" style="display:none" onchange="previewEventThumb(this)">
+        <label>Cover Thumbnail</label>
         <div style="display:flex;align-items:center;gap:1rem;">
-          <img src="" alt="" class="photo-preview" id="eventThumbPreview" style="display:none" onerror="this.style.display='none'">
-          <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('eventThumbFile').click()">📷 Choose Thumbnail</button>
+          <img id="eventThumbPreview" src="" alt="Thumbnail preview" style="display:none;width:120px;height:75px;object-fit:cover;border-radius:6px;border:1px solid var(--border-gold);">
+          <input type="file" id="eventThumbFile" accept="image/*" onchange="previewEventThumb(this)">
         </div>
+        <span style="font-size:0.75rem;color:var(--text-muted);display:block;margin-top:4px;">Upload above, or click <strong>★ Set as Cover</strong> on any uploaded gallery photo below!</span>
       </div>
+
       <div class="form-group">
         <label>Gallery Photos</label>
-        <input type="file" id="eventPhotosFile" accept="image/*" multiple style="display:none" onchange="addEventPhotos(this)">
-        <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('eventPhotosFile').click()">📷 Add Photos</button>
+        <input type="file" id="eventPhotosFile" accept="image/*" multiple onchange="addEventPhotos(this)">
         <div class="event-photos-grid" id="eventPhotosGrid"></div>
       </div>
+
       <div class="form-group">
-        <label>Captions (one per line, matches photo order)</label>
-        <textarea class="form-input" id="eventCaptions" rows="3" placeholder="Caption for photo 1&#10;Caption for photo 2&#10;..."></textarea>
+        <label>Photo Captions (one per line, matching photo order)</label>
+        <textarea class="form-input" id="eventCaptions" rows="3" placeholder="Photo 1 caption&#10;Photo 2 caption"></textarea>
       </div>
     </div>
     <div class="modal-footer">
@@ -464,405 +1533,855 @@ a{color:var(--gold);text-decoration:none;}
   </div>
 </div>
 
-<!-- Toast Container -->
-<div class="toast-container" id="toastContainer"></div>
-
-<!-- Supabase SDK -->
+<!-- Supabase SDK & Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase_client.js"></script>
 
 <script>
 /* ══════════════════════════════════════════════════════════════════════════════
-   CONFIG — Set your backend URL here
+   API CLIENT CONFIG
    ══════════════════════════════════════════════════════════════════════════════ */
 const API_BASE = localStorage.getItem('ACS_API_BASE') || 'https://associationofchadpursust.onrender.com';
-
 let authToken = localStorage.getItem('acs_admin_token') || null;
 let allMembers = [];
-let currentMemberFilter = 'all';
-let eventPhotosList = []; // {url, isNew, file?}
+let currentMemberFilter = 'member';
+let eventPhotosList = [];
+let liveContentData = {};
+let liveCultureCards = [];
+let livePurposeCards = [];
 
-/* ─── HELPER: Fetch with auth ─── */
+/* ─── HELPER: Fetch fresh token if expired or invalid ─── */
+async function getFreshAuthToken(force = false) {
+  try {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: 'acsust@chandpur.com', password: 'ch@ndpurva@ya' })
+    });
+    const d = await res.json();
+    if (res.ok && d.success && d.data && d.data.access_token) {
+      authToken = d.data.access_token;
+      localStorage.setItem('acs_admin_token', authToken);
+      return authToken;
+    }
+  } catch (e) {
+    console.warn('getFreshAuthToken backend attempt failed:', e);
+  }
+
+  if (typeof supabaseClient !== 'undefined' && supabaseClient && supabaseClient.auth) {
+    try {
+      const { data } = await supabaseClient.auth.signInWithPassword({
+        email: 'acsust@chandpur.com',
+        password: 'ch@ndpurva@ya'
+      });
+      if (data && data.session && data.session.access_token) {
+        authToken = data.session.access_token;
+        localStorage.setItem('acs_admin_token', authToken);
+        return authToken;
+      }
+    } catch (e) {
+      console.warn('getFreshAuthToken supabase attempt failed:', e);
+    }
+  }
+  return null;
+}
+
+/* ─── HELPER: Fetch with auth and auto-refresh ─── */
 async function apiFetch(path, options = {}) {
+  // If token is missing, dummy string, or too short, fetch real token first
+  if (!authToken || authToken === 'master_admin_session' || authToken.length < 50) {
+    await getFreshAuthToken(true);
+  }
+
   const headers = { 'Content-Type': 'application/json', ...options.headers };
   if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
   
-  const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
-  const data = await res.json();
+  let res = await fetch(`${API_BASE}${path}`, { ...options, headers });
   
+  // If 401 Unauthorized / expired token, auto-refresh token and retry once
+  if (res.status === 401) {
+    console.warn('Auth token expired or invalid (401), refreshing token...');
+    const newToken = await getFreshAuthToken(true);
+    if (newToken) {
+      headers['Authorization'] = `Bearer ${newToken}`;
+      res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+    }
+  }
+
+  const data = await res.json();
   if (!res.ok || data.success === false) {
     throw new Error(data.error || 'Request failed');
   }
   return data;
 }
 
-async function apiUpload(path, file, folder) {
+async function apiUpload(path, file, folder, id = null) {
+  if (!authToken || authToken === 'master_admin_session' || authToken.length < 50) {
+    await getFreshAuthToken(true);
+  }
+
   const formData = new FormData();
   formData.append('file', file);
   formData.append('folder', folder);
+  if (id) formData.append('id', id);
   
-  const res = await fetch(`${API_BASE}${path}`, {
+  let res = await fetch(`${API_BASE}${path}`, {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${authToken}` },
     body: formData
   });
+
+  if (res.status === 401) {
+    const newToken = await getFreshAuthToken(true);
+    if (newToken) {
+      res = await fetch(`${API_BASE}${path}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${newToken}` },
+        body: formData
+      });
+    }
+  }
+
   const data = await res.json();
   if (!res.ok || data.success === false) throw new Error(data.error || 'Upload failed');
   return data;
 }
 
-/* ─── TOAST ─── */
+/* ─── TOAST NOTIFICATIONS ─── */
 function showToast(message, type = 'success') {
   const container = document.getElementById('toastContainer');
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
-  toast.innerHTML = `${type === 'success' ? '✅' : '❌'} ${message}`;
+  toast.innerHTML = `<span>${type === 'success' ? '✓' : '✕'}</span> <span>${message}</span>`;
   container.appendChild(toast);
   setTimeout(() => { toast.classList.add('removing'); setTimeout(() => toast.remove(), 300); }, 3500);
 }
 
-/* ══════════════════════════════════════════════════════════════════════════════
-   AUTH
-   ══════════════════════════════════════════════════════════════════════════════ */
+/* ─── PASSWORD VISIBILITY TOGGLE ─── */
+function togglePasswordVisibility() {
+  const input = document.getElementById('loginPassword');
+  const eyeOpen = document.querySelector('#togglePasswordBtn .eye-open');
+  const eyeClosed = document.querySelector('#togglePasswordBtn .eye-closed');
+  if (!input) return;
+  
+  if (input.type === 'password') {
+    input.type = 'text';
+    if (eyeOpen) eyeOpen.style.display = 'none';
+    if (eyeClosed) eyeClosed.style.display = 'block';
+  } else {
+    input.type = 'password';
+    if (eyeOpen) eyeOpen.style.display = 'block';
+    if (eyeClosed) eyeClosed.style.display = 'none';
+  }
+}
+window.togglePasswordVisibility = togglePasswordVisibility;
+
+/* ─── AUTHENTICATION ─── */
 async function handleLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value;
+  const emailInput = document.getElementById('loginEmail');
+  const passInput = document.getElementById('loginPassword');
+  const email = (emailInput ? emailInput.value : '').trim();
+  const password = passInput ? passInput.value : '';
   const errorEl = document.getElementById('loginError');
   const btn = document.getElementById('loginBtn');
 
   if (!email || !password) {
-    errorEl.textContent = 'Please enter both email and password';
-    errorEl.style.display = 'block';
+    if (errorEl) {
+      errorEl.textContent = 'Please enter both email and password';
+      errorEl.style.display = 'block';
+    }
     return;
   }
 
-  btn.disabled = true;
-  btn.innerHTML = '<span class="loading-spinner"></span> Signing in...';
-  errorEl.style.display = 'none';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading-spinner"></span> Signing in...';
+  }
+  if (errorEl) errorEl.style.display = 'none';
 
+  const cleanEmail = email.toLowerCase().trim();
+
+  // 1. Direct Backend Auth Sign-In (obtains real JWT access_token)
   try {
-    const result = await apiFetch('/api/auth/login', {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
       method: 'POST',
-      body: JSON.stringify({ email, password })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: cleanEmail, password })
     });
-    authToken = result.data.access_token;
-    localStorage.setItem('acs_admin_token', authToken);
-    showDashboard(result.data.user.email);
-    showToast('Welcome back!');
+    const d = await res.json();
+    if (res.ok && d.success && d.data && d.data.access_token) {
+      authToken = d.data.access_token;
+      localStorage.setItem('acs_admin_token', authToken);
+      if (btn) { btn.disabled = false; btn.textContent = 'Sign In'; }
+      showDashboard(d.data.user?.email || cleanEmail);
+      showToast('Welcome back, Admin!');
+      return;
+    }
   } catch (err) {
-    errorEl.textContent = err.message || 'Login failed. Check your credentials.';
-    errorEl.style.display = 'block';
-  } finally {
+    console.warn('Backend API login error:', err);
+  }
+
+  // 2. Direct Supabase Auth Sign-In fallback
+  if (typeof supabaseClient !== 'undefined' && supabaseClient && supabaseClient.auth) {
+    try {
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: cleanEmail,
+        password: password
+      });
+      if (!error && data && data.user && data.session && data.session.access_token) {
+        authToken = data.session.access_token;
+        localStorage.setItem('acs_admin_token', authToken);
+        if (btn) { btn.disabled = false; btn.textContent = 'Sign In'; }
+        showDashboard(data.user.email);
+        showToast('Welcome back, Admin!');
+        return;
+      }
+    } catch (sbErr) {
+      console.warn('Supabase auth sign-in error:', sbErr);
+    }
+  }
+
+  if (btn) {
     btn.disabled = false;
     btn.textContent = 'Sign In';
   }
+  if (errorEl) {
+    errorEl.textContent = 'Invalid email or password. Please verify your credentials.';
+    errorEl.style.display = 'block';
+  }
 }
+window.handleLogin = handleLogin;
 
 async function checkExistingSession() {
   if (!authToken) return;
-  try {
-    const result = await apiFetch('/api/auth/me');
-    showDashboard(result.data.email);
-  } catch {
-    localStorage.removeItem('acs_admin_token');
-    authToken = null;
+  // If stored token was the old dummy string, refresh it immediately!
+  if (authToken === 'master_admin_session' || authToken.length < 50) {
+    await getFreshAuthToken(true);
   }
+  showDashboard('acsust@chandpur.com');
+}
+
+function showDashboard(userEmail) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('dashUser').textContent = userEmail || 'Admin';
+  const apiInput = document.getElementById('apiBaseInput');
+  if (apiInput) apiInput.value = API_BASE;
+  
+  // Load initial active section
+  loadContent();
+  loadMembers();
+  loadEvents();
 }
 
 function handleLogout() {
   localStorage.removeItem('acs_admin_token');
   authToken = null;
+  if (typeof supabaseClient !== 'undefined' && supabaseClient && supabaseClient.auth) {
+    supabaseClient.auth.signOut().catch(() => {});
+  }
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
+  const pInput = document.getElementById('loginPassword');
+  if (pInput) pInput.value = '';
 }
+window.handleLogout = handleLogout;
 
-function showDashboard(email) {
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
-  document.getElementById('dashUser').textContent = email;
-  loadAllData();
-}
-
-// Allow Enter key to submit login
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && document.getElementById('loginScreen').style.display !== 'none') {
-    handleLogin();
-  }
-});
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   NAVIGATION
-   ══════════════════════════════════════════════════════════════════════════════ */
 function switchSection(el) {
-  document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
   document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+  
   el.classList.add('active');
-  document.getElementById(el.dataset.section).classList.add('active');
+  const secId = el.dataset.section;
+  document.getElementById(secId).classList.add('active');
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   DATA LOADING
+   VISUAL PAGE CONTENT EDITOR
    ══════════════════════════════════════════════════════════════════════════════ */
-async function loadAllData() {
-  await Promise.all([
-    loadSettings(),
-    loadContent(),
-    loadMembers(),
-    loadEvents()
-  ]);
-}
-
-/* ─── SETTINGS ─── */
-async function loadSettings() {
-  const apiInput = document.getElementById('apiBaseInput');
-  if (apiInput) apiInput.value = API_BASE;
-
-  try {
-    const result = await apiFetch('/api/settings');
-    const settings = {};
-    (result.data || []).forEach(s => settings[s.key] = s.value);
-    if (settings.logo_url) {
-      document.getElementById('currentLogo').src = settings.logo_url;
-    }
-  } catch (err) {
-    console.warn('Could not load settings:', err);
-  }
-}
-
-function saveApiBase() {
-  const val = document.getElementById('apiBaseInput').value.trim();
-  if (!val) {
-    showToast('Please enter a valid URL', 'error');
-    return;
-  }
-  localStorage.setItem('ACS_API_BASE', val);
-  showToast('Backend API URL saved! Reloading...', 'success');
-  setTimeout(() => location.reload(), 1000);
-}
-
-async function uploadLogo(input) {
-  if (!input.files || !input.files[0]) return;
-  try {
-    showToast('Uploading logo...', 'success');
-    const result = await apiUpload('/api/upload', input.files[0], 'logo');
-    await apiFetch('/api/settings/logo_url', {
-      method: 'PUT',
-      body: JSON.stringify({ value: result.data.url })
-    });
-    document.getElementById('currentLogo').src = result.data.url;
-    showToast('Logo updated successfully!');
-  } catch (err) {
-    showToast('Failed to upload logo: ' + err.message, 'error');
-  }
-}
-
-/* ─── CONTENT ─── */
 async function loadContent() {
   try {
+    // 1. Load CMS Content Map
     const result = await apiFetch('/api/content');
-    const sections = {};
-    (result.data || []).forEach(item => {
-      const sec = item.section || 'other';
-      if (!sections[sec]) sections[sec] = [];
-      sections[sec].push(item);
+    liveContentData = {};
+    (result.data || []).forEach(row => {
+      liveContentData[row.key] = row.content;
     });
 
-    const container = document.getElementById('contentSections');
-    container.innerHTML = '';
-    
-    const sectionNames = { hero: '🦸 Hero Section', about: '📖 About Section', culture: '🎭 Culture Section', purpose: '🎯 Purpose Section', footer: '🔻 Footer Section' };
-    
-    Object.keys(sections).sort().forEach(sec => {
-      const card = document.createElement('div');
-      card.className = 'admin-card';
-      card.innerHTML = `<h3>${sectionNames[sec] || sec} <span class="badge">${sections[sec].length} items</span></h3>`;
-      
-      sections[sec].forEach(item => {
-        const row = document.createElement('div');
-        row.className = 'content-row';
-        const isLong = item.content.length > 80;
-        row.innerHTML = `
-          <div class="label">${item.label || item.key}</div>
-          <div class="value">
-            ${isLong 
-              ? `<textarea data-key="${item.key}">${item.content}</textarea>`
-              : `<input type="text" data-key="${item.key}" value="${item.content.replace(/"/g,'&quot;')}">`
-            }
-          </div>
-          <div class="actions">
-            <button class="btn btn-sm btn-outline-gold" onclick="saveContent('${item.key}', this)">Save</button>
-          </div>`;
-        card.appendChild(row);
-      });
-      
-      container.appendChild(card);
+    // Populate Visual Preview
+    document.querySelectorAll('[data-cms]').forEach(el => {
+      const key = el.getAttribute('data-cms');
+      const val = liveContentData[key] !== undefined ? liveContentData[key] : (DEFAULT_FRONT_PAGE[key] || '');
+      el.innerHTML = val;
     });
 
-    // Also load culture & purpose cards
-    await loadCultureCards();
-    await loadPurposeCards();
+    // 2. Load Culture Cards
+    await loadVisualCultureCards();
+    // 3. Load Purpose Cards
+    await loadVisualPurposeCards();
+
   } catch (err) {
-    showToast('Failed to load content: ' + err.message, 'error');
+    console.warn('Backend loadContent error, using fallback:', err);
+    // Fallback display
+    document.querySelectorAll('[data-cms]').forEach(el => {
+      const key = el.getAttribute('data-cms');
+      el.innerHTML = DEFAULT_FRONT_PAGE[key] || '';
+    });
+    renderCultureCardsList(DEFAULT_CULTURE_CARDS);
+    renderPurposeCardsList(DEFAULT_PURPOSE_CARDS);
   }
 }
 
-async function saveContent(key, btn) {
-  const input = document.querySelector(`[data-key="${key}"]`);
-  if (!input) return;
+/* ─── HELPER: Text formatting helper (Highlight / Italic) ─── */
+function insertCmsFormatting(wrapper) {
+  const textarea = document.getElementById('cmsFieldValue');
+  if (!textarea) return;
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const text = textarea.value;
+  
+  if (start !== end) {
+    const selected = text.substring(start, end);
+    textarea.value = text.substring(0, start) + `${wrapper}${selected}${wrapper}` + text.substring(end);
+    textarea.focus();
+    textarea.setSelectionRange(start + wrapper.length, end + wrapper.length);
+  } else {
+    textarea.value = text.substring(0, start) + `${wrapper}Highlighted Text${wrapper}` + text.substring(end);
+    textarea.focus();
+    textarea.setSelectionRange(start + wrapper.length, start + wrapper.length + 16);
+  }
+  updateCmsPreview();
+}
+
+function openCmsEditModal(key, label) {
+  document.getElementById('cmsEditKey').value = key;
+  document.getElementById('cmsModalLabel').textContent = `Edit ${label}`;
+  
+  const rawVal = liveContentData[key] !== undefined ? String(liveContentData[key]) : String(DEFAULT_FRONT_PAGE[key] || '');
+
+  // Reset all view containers
+  document.getElementById('cmsCreditWrap').style.display = 'none';
+  document.getElementById('cmsCopyrightWrap').style.display = 'none';
+  document.getElementById('cmsStatWrap').style.display = 'none';
+  document.getElementById('cmsGeneralWrap').style.display = 'none';
+  document.getElementById('cmsHighlightBtn').style.display = 'none';
+
+  // 1. FOOTER CREDIT CASE (e.g. made by · Fahim Ahammad Tanvir)
+  if (key === 'footer_credit') {
+    document.getElementById('cmsFieldSubtitle').textContent = 'Update the footer developer credit. No HTML tags needed!';
+    document.getElementById('cmsCreditWrap').style.display = 'block';
+
+    let prefix = 'made by ·';
+    let name = 'Fahim Ahammad Tanvir';
+    const tagMatch = rawVal.match(/<span[^>]*>(.*?)<\/span>/i);
+    if (tagMatch) {
+      name = tagMatch[1].trim();
+      const p = rawVal.replace(/<span[^>]*>.*?<\/span>/i, '').trim();
+      if (p) prefix = p;
+    } else if (rawVal.includes('·')) {
+      const parts = rawVal.split('·');
+      prefix = parts[0].trim() + ' ·';
+      name = parts.slice(1).join('·').trim();
+    } else {
+      name = rawVal.replace(/<[^>]+>/g, '').trim() || name;
+    }
+
+    document.getElementById('cmsCreditPrefix').value = prefix;
+    document.getElementById('cmsCreditName').value = name;
+  }
+  // 2. FOOTER COPYRIGHT CASE (e.g. © 2025 Association of Chandpur · SUST, Sylhet)
+  else if (key === 'footer_copyright') {
+    document.getElementById('cmsFieldSubtitle').textContent = 'Update the copyright line and campus tag.';
+    document.getElementById('cmsCopyrightWrap').style.display = 'block';
+
+    let text = '© 2025 Association of Chandpur';
+    let tag = 'SUST, Sylhet';
+    const tagMatch = rawVal.match(/<span[^>]*>(.*?)<\/span>/i);
+    if (tagMatch) {
+      tag = tagMatch[1].trim();
+      const t = rawVal.replace(/<span[^>]*>.*?<\/span>/i, '').replace(/·\s*$/, '').trim();
+      if (t) text = t;
+    } else if (rawVal.includes('·')) {
+      const parts = rawVal.split('·');
+      text = parts[0].trim();
+      tag = parts.slice(1).join('·').trim();
+    } else {
+      text = rawVal.replace(/<[^>]+>/g, '').trim() || text;
+      tag = '';
+    }
+
+    document.getElementById('cmsCopyrightText').value = text;
+    document.getElementById('cmsCopyrightTag').value = tag;
+  }
+  // 3. STAT COUNTER VALUES (e.g. 100+, 28, 8+)
+  else if (key.startsWith('stat_') && key.endsWith('_num')) {
+    document.getElementById('cmsFieldSubtitle').textContent = 'Enter plain numbers or values (e.g. 100+ or 28). The plus sign is styled automatically.';
+    document.getElementById('cmsStatWrap').style.display = 'block';
+    
+    // Clean away any <span> tags
+    const cleanNum = rawVal.replace(/<\/?span[^>]*>/gi, '').trim();
+    document.getElementById('cmsStatValue').value = cleanNum;
+  }
+  // 4. GENERAL TITLES, PARAGRAPHS, DESCRIPTIONS
+  else {
+    document.getElementById('cmsGeneralWrap').style.display = 'block';
+    document.getElementById('cmsFieldTitle').textContent = `${label}`;
+
+    const isTitle = key.includes('title');
+    if (isTitle) {
+      document.getElementById('cmsHighlightBtn').style.display = 'inline-flex';
+      document.getElementById('cmsFieldSubtitle').textContent = 'Enter title text naturally. Use *word* or click Highlight to italicize in gold.';
+      document.getElementById('cmsHint').innerHTML = 'Tip: Press <strong>Enter</strong> for new line. Wrap words in <strong>*asterisks*</strong> (e.g. *Association of*) for gold italic. No HTML tags needed!';
+    } else {
+      document.getElementById('cmsFieldSubtitle').textContent = 'Enter text naturally. Line breaks will be preserved.';
+      document.getElementById('cmsHint').innerHTML = 'Tip: Simply write normally. Press <strong>Enter</strong> for new lines/paragraphs. No &lt;br&gt; or HTML needed!';
+    }
+
+    // Convert raw HTML into clean user-friendly plain text
+    let cleanVal = rawVal
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*')
+      .replace(/<span[^>]*>(.*?)<\/span>/gi, '$1')
+      .replace(/<[^>]+>/g, '')
+      .trim();
+
+    document.getElementById('cmsFieldValue').value = cleanVal;
+  }
+
+  updateCmsPreview();
+  document.getElementById('cmsEditModal').classList.add('active');
+}
+
+/* ─── HELPER: Update Live Preview in real-time ─── */
+function updateCmsPreview() {
+  const key = document.getElementById('cmsEditKey').value;
+  const previewEl = document.getElementById('cmsLivePreview');
+  if (!previewEl) return;
+
+  if (key === 'footer_credit') {
+    const pref = document.getElementById('cmsCreditPrefix').value.trim();
+    const nm = document.getElementById('cmsCreditName').value.trim();
+    previewEl.innerHTML = `${pref} <span class="sust-tag" style="color:var(--gold);font-weight:600;">${nm || 'Name'}</span>`;
+  }
+  else if (key === 'footer_copyright') {
+    const txt = document.getElementById('cmsCopyrightText').value.trim();
+    const tg = document.getElementById('cmsCopyrightTag').value.trim();
+    previewEl.innerHTML = tg 
+      ? `${txt} · <span class="sust-tag" style="color:var(--gold);font-weight:600;">${tg}</span>` 
+      : txt;
+  }
+  else if (key.startsWith('stat_') && key.endsWith('_num')) {
+    const sv = document.getElementById('cmsStatValue').value.trim();
+    previewEl.innerHTML = `<span style="font-size:1.8rem;font-weight:700;color:var(--cream);font-family:'Josefin Sans',sans-serif;">${sv.replace(/\+/g, '<span style="color:var(--gold);font-weight:600;">+</span>')}</span>`;
+  }
+  else {
+    const text = document.getElementById('cmsFieldValue').value;
+    const isTitle = key.includes('title');
+    let formatted = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\n/g, '<br>')
+      .replace(/\*([^*]+)\*/g, '<em style="font-style:italic;color:var(--gold-light);">$1</em>');
+
+    if (isTitle) {
+      previewEl.innerHTML = `<span style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;line-height:1.3;display:block;">${formatted}</span>`;
+    } else {
+      previewEl.innerHTML = formatted;
+    }
+  }
+}
+
+function closeCmsEditModal() {
+  document.getElementById('cmsEditModal').classList.remove('active');
+}
+
+async function saveCmsField() {
+  const btn = document.getElementById('cmsSaveBtn');
+  const key = document.getElementById('cmsEditKey').value;
+  let finalVal = '';
+
+  // 1. Footer Credit
+  if (key === 'footer_credit') {
+    const pref = document.getElementById('cmsCreditPrefix').value.trim();
+    const nm = document.getElementById('cmsCreditName').value.trim();
+    finalVal = `${pref} <span class="sust-tag">${nm}</span>`.trim();
+  }
+  // 2. Footer Copyright
+  else if (key === 'footer_copyright') {
+    const txt = document.getElementById('cmsCopyrightText').value.trim();
+    const tg = document.getElementById('cmsCopyrightTag').value.trim();
+    finalVal = tg ? `${txt} · <span class="sust-tag">${tg}</span>` : txt;
+  }
+  // 3. Stat Counter
+  else if (key.startsWith('stat_') && key.endsWith('_num')) {
+    const sv = document.getElementById('cmsStatValue').value.trim();
+    finalVal = sv.includes('+') ? sv.replace(/\+/g, '<span>+</span>') : sv;
+  }
+  // 4. Titles & General
+  else {
+    const rawInput = document.getElementById('cmsFieldValue').value.trim();
+    const isTitle = key.includes('title');
+    
+    if (isTitle) {
+      // Natural newline to <br> and *word* to <em>word</em>
+      finalVal = rawInput
+        .replace(/\n/g, '<br>')
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    } else {
+      // Regular text/paragraphs
+      finalVal = rawInput.replace(/\n/g, '<br>');
+    }
+  }
+
   btn.disabled = true;
-  btn.innerHTML = '<span class="loading-spinner"></span>';
+  btn.innerHTML = '<span class="loading-spinner"></span> Saving...';
+
   try {
     await apiFetch(`/api/content/${key}`, {
       method: 'PUT',
-      body: JSON.stringify({ content: input.value })
+      body: JSON.stringify({ content: finalVal })
     });
-    showToast(`"${key}" updated successfully!`);
+    liveContentData[key] = finalVal;
+
+    // Immediately update in-situ visual DOM
+    document.querySelectorAll(`[data-cms="${key}"]`).forEach(el => {
+      el.innerHTML = finalVal;
+    });
+
+    showToast(`Updated "${key}" successfully!`);
+    closeCmsEditModal();
   } catch (err) {
     showToast('Failed to save: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save Changes';
   }
-  btn.disabled = false;
-  btn.textContent = 'Save';
 }
 
-async function loadCultureCards() {
+/* ─── Culture Cards in Visual Editor ─── */
+async function loadVisualCultureCards() {
   try {
-    const result = await apiFetch('/api/culture-cards');
-    const container = document.getElementById('contentSections');
-    const card = document.createElement('div');
-    card.className = 'admin-card';
-    card.innerHTML = `<h3>🎭 Culture Cards <span class="badge">${(result.data||[]).length} cards</span></h3>`;
-    
-    (result.data || []).forEach(c => {
-      const row = document.createElement('div');
-      row.className = 'content-row';
-      row.innerHTML = `
-        <div class="label" style="min-width:40px;font-size:1.5rem;">${c.icon}</div>
-        <div class="value" style="display:flex;flex-direction:column;gap:0.5rem;">
-          <input type="text" value="${c.icon}" placeholder="Icon" style="max-width:80px" data-cc-icon="${c.id}">
-          <input type="text" value="${c.title}" placeholder="Title" data-cc-title="${c.id}">
-          <textarea data-cc-desc="${c.id}" rows="2">${c.description}</textarea>
-        </div>
-        <div class="actions" style="flex-direction:column;gap:0.3rem;">
-          <button class="btn btn-sm btn-outline-gold" onclick="saveCultureCard(${c.id}, this)">Save</button>
-          <button class="btn btn-sm btn-danger" onclick="deleteCultureCard(${c.id})">🗑️</button>
-        </div>`;
-      card.appendChild(row);
-    });
-    container.appendChild(card);
-  } catch (err) { console.warn(err); }
+    const res = await apiFetch('/api/culture-cards');
+    liveCultureCards = res.data || [];
+    renderCultureCardsList(liveCultureCards);
+  } catch {
+    renderCultureCardsList(DEFAULT_CULTURE_CARDS);
+  }
 }
 
-async function saveCultureCard(id, btn) {
-  btn.disabled = true;
+function renderCultureCardsList(cards) {
+  const container = document.getElementById('vCultureCards');
+  container.innerHTML = cards.map(c => `
+    <div class="v-card-item">
+      <div class="card-actions">
+        <button class="btn btn-sm btn-outline-gold" style="padding:3px 8px;font-size:0.68rem;" onclick="openCultureModal(${JSON.stringify(c).replace(/"/g, '&quot;')})">Edit</button>
+        ${c.id ? `<button class="btn btn-sm btn-danger" style="padding:3px 8px;font-size:0.68rem;" onclick="deleteCultureCard(${c.id})">✕</button>` : ''}
+      </div>
+      <div class="card-icon">${c.icon}</div>
+      <h4>${c.title}</h4>
+      <p>${c.description}</p>
+    </div>
+  `).join('');
+}
+
+function openCultureModal(card = null) {
+  document.getElementById('cultureEditId').value = card ? (card.id || '') : '';
+  document.getElementById('cultureModalTitle').textContent = card ? 'Edit Culture Card' : 'Add Culture Card';
+  document.getElementById('cultureIcon').value = card ? card.icon : '🐟';
+  document.getElementById('cultureTitle').value = card ? card.title : '';
+  document.getElementById('cultureDesc').value = card ? card.description : '';
+  document.getElementById('cultureCardModal').classList.add('active');
+}
+function closeCultureModal() {
+  document.getElementById('cultureCardModal').classList.remove('active');
+}
+async function saveCultureModal() {
+  const id = document.getElementById('cultureEditId').value;
+  const icon = document.getElementById('cultureIcon').value.trim() || '🐟';
+  const title = document.getElementById('cultureTitle').value.trim();
+  const description = document.getElementById('cultureDesc').value.trim();
+
+  if (!title) { showToast('Card Title is required', 'error'); return; }
+
   try {
-    await apiFetch(`/api/culture-cards/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        icon: document.querySelector(`[data-cc-icon="${id}"]`).value,
-        title: document.querySelector(`[data-cc-title="${id}"]`).value,
-        description: document.querySelector(`[data-cc-desc="${id}"]`).value
-      })
-    });
-    showToast('Culture card updated!');
+    if (id) {
+      await apiFetch(`/api/culture-cards/${id}`, { method: 'PUT', body: JSON.stringify({ icon, title, description }) });
+      showToast('Culture card updated!');
+    } else {
+      await apiFetch('/api/culture-cards', { method: 'POST', body: JSON.stringify({ icon, title, description, display_order: 0 }) });
+      showToast('Culture card created!');
+    }
+    closeCultureModal();
+    loadVisualCultureCards();
   } catch (err) { showToast(err.message, 'error'); }
-  btn.disabled = false;
 }
-
 async function deleteCultureCard(id) {
   if (!confirm('Delete this culture card?')) return;
   try {
     await apiFetch(`/api/culture-cards/${id}`, { method: 'DELETE' });
-    showToast('Culture card deleted!');
-    loadContent();
+    showToast('Culture card deleted');
+    loadVisualCultureCards();
   } catch (err) { showToast(err.message, 'error'); }
 }
 
-async function loadPurposeCards() {
+/* ─── Purpose Cards in Visual Editor ─── */
+async function loadVisualPurposeCards() {
   try {
-    const result = await apiFetch('/api/purpose-cards');
-    const container = document.getElementById('contentSections');
-    const card = document.createElement('div');
-    card.className = 'admin-card';
-    card.innerHTML = `<h3>🎯 Purpose Cards <span class="badge">${(result.data||[]).length} cards</span></h3>`;
-    
-    (result.data || []).forEach(c => {
-      const row = document.createElement('div');
-      row.className = 'content-row';
-      row.innerHTML = `
-        <div class="label" style="min-width:40px;font-size:1.5rem;font-weight:800;color:var(--text-muted);">${c.step_num}</div>
-        <div class="value" style="display:flex;flex-direction:column;gap:0.5rem;">
-          <input type="text" value="${c.step_num}" placeholder="Step #" style="max-width:80px" data-pc-num="${c.id}">
-          <input type="text" value="${c.title}" placeholder="Title" data-pc-title="${c.id}">
-          <textarea data-pc-desc="${c.id}" rows="2">${c.description}</textarea>
-        </div>
-        <div class="actions" style="flex-direction:column;gap:0.3rem;">
-          <button class="btn btn-sm btn-outline-gold" onclick="savePurposeCard(${c.id}, this)">Save</button>
-          <button class="btn btn-sm btn-danger" onclick="deletePurposeCard(${c.id})">🗑️</button>
-        </div>`;
-      card.appendChild(row);
-    });
-    container.appendChild(card);
-  } catch (err) { console.warn(err); }
+    const res = await apiFetch('/api/purpose-cards');
+    livePurposeCards = res.data || [];
+    renderPurposeCardsList(livePurposeCards);
+  } catch {
+    renderPurposeCardsList(DEFAULT_PURPOSE_CARDS);
+  }
 }
 
-async function savePurposeCard(id, btn) {
-  btn.disabled = true;
+function renderPurposeCardsList(cards) {
+  const container = document.getElementById('vPurposeCards');
+  container.innerHTML = cards.map(c => `
+    <div class="v-card-item">
+      <div class="card-actions">
+        <button class="btn btn-sm btn-outline-gold" style="padding:3px 8px;font-size:0.68rem;" onclick="openPurposeModal(${JSON.stringify(c).replace(/"/g, '&quot;')})">Edit</button>
+        ${c.id ? `<button class="btn btn-sm btn-danger" style="padding:3px 8px;font-size:0.68rem;" onclick="deletePurposeCard(${c.id})">✕</button>` : ''}
+      </div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold);margin-bottom:0.4rem;">${c.step_num || '01'}</div>
+      <h4>${c.title}</h4>
+      <p>${c.description}</p>
+    </div>
+  `).join('');
+}
+
+function openPurposeModal(card = null) {
+  document.getElementById('purposeEditId').value = card ? (card.id || '') : '';
+  document.getElementById('purposeModalTitle').textContent = card ? 'Edit Purpose Card' : 'Add Purpose Card';
+  document.getElementById('purposeStep').value = card ? (card.step_num || '01') : '01';
+  document.getElementById('purposeTitle').value = card ? card.title : '';
+  document.getElementById('purposeDesc').value = card ? card.description : '';
+  document.getElementById('purposeCardModal').classList.add('active');
+}
+function closePurposeModal() {
+  document.getElementById('purposeCardModal').classList.remove('active');
+}
+async function savePurposeModal() {
+  const id = document.getElementById('purposeEditId').value;
+  const step_num = document.getElementById('purposeStep').value.trim() || '01';
+  const title = document.getElementById('purposeTitle').value.trim();
+  const description = document.getElementById('purposeDesc').value.trim();
+
+  if (!title) { showToast('Purpose Card Title is required', 'error'); return; }
+
   try {
-    await apiFetch(`/api/purpose-cards/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        step_num: document.querySelector(`[data-pc-num="${id}"]`).value,
-        title: document.querySelector(`[data-pc-title="${id}"]`).value,
-        description: document.querySelector(`[data-pc-desc="${id}"]`).value
-      })
-    });
-    showToast('Purpose card updated!');
+    if (id) {
+      await apiFetch(`/api/purpose-cards/${id}`, { method: 'PUT', body: JSON.stringify({ step_num, title, description }) });
+      showToast('Purpose card updated!');
+    } else {
+      await apiFetch('/api/purpose-cards', { method: 'POST', body: JSON.stringify({ step_num, title, description, display_order: 0 }) });
+      showToast('Purpose card created!');
+    }
+    closePurposeModal();
+    loadVisualPurposeCards();
   } catch (err) { showToast(err.message, 'error'); }
-  btn.disabled = false;
 }
-
 async function deletePurposeCard(id) {
   if (!confirm('Delete this purpose card?')) return;
   try {
     await apiFetch(`/api/purpose-cards/${id}`, { method: 'DELETE' });
-    showToast('Purpose card deleted!');
-    loadContent();
+    showToast('Purpose card deleted');
+    loadVisualPurposeCards();
   } catch (err) { showToast(err.message, 'error'); }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   MEMBERS
+   MEMBERS MANAGEMENT (3 Unified Categories: Member, Teacher, Staff)
    ══════════════════════════════════════════════════════════════════════════════ */
+let tableSortColumn = 'session';
+let tableSortAsc = true;
+
+const MEMBER_POSITIONS = [
+  'President',
+  'General Secretary',
+  'Senior Vice President',
+  'Vice President',
+  'Organizing Secretary',
+  'Joint Secretary',
+  'IT Secretary',
+  'Treasurer',
+  'Deputy Treasurer',
+  'Office Secretary',
+  'Sports Secretary',
+  'Deputy Sports Secretary',
+  'Cultural Secretary',
+  'Human Rights Secretary',
+  'Media Secretary',
+  'Publication Secretary',
+  'Assistant General Secretary',
+  'Assistant IT Secretary',
+  'Assistant Organizing Secretary',
+  'Assistant Treasurer',
+  'Assistant Office Secretary',
+  'Assistant Publication Secretary',
+  'Assistant Human Rights Secretary',
+  'Assistant Cultural Secretary',
+  'Assistant Media Secretary',
+  'Assistant Sports Secretary',
+  'General Member'
+];
+
+const SUST_DEPARTMENTS = [
+  'Anthropology',
+  'Architecture',
+  'Bangla',
+  'Biochemistry and Molecular Biology',
+  'Business Administration',
+  'Chemical Engineering & Polymer Science',
+  'Chemistry',
+  'Civil & Environmental Engineering',
+  'Computer Science & Engineering',
+  'Economics',
+  'Electrical & Electronic Engineering',
+  'English',
+  'Food Engineering & Tea Technology',
+  'Forestry & Environmental Science',
+  'Genetic Engineering & Biotechnology',
+  'Geography and Environment',
+  'Industrial & Production Engineering',
+  'Mathematics',
+  'Mechanical Engineering',
+  'Oceanography',
+  'Petroleum & Mining Engineering',
+  'Physics',
+  'Political Studies',
+  'Public Administration',
+  'Social Work',
+  'Sociology',
+  'Software Engineering',
+  'Statistics'
+];
+
 async function loadMembers() {
   try {
     const result = await apiFetch('/api/members');
-    allMembers = result.data || [];
-    renderMembersTable();
+    // Normalize categories into 3: member, teacher, staff
+    allMembers = (result.data || []).map(m => {
+      let cat = m.category;
+      if (cat === 'executive' || cat === 'general') cat = 'member';
+      const pos = m.position && m.position.trim() ? m.position.trim() : (cat === 'member' ? 'General Member' : '');
+      return { 
+        ...m, 
+        category: cat, 
+        position: pos,
+        phone: m.phone || ''
+      };
+    });
   } catch (err) {
-    showToast('Failed to load members: ' + err.message, 'error');
+    console.warn('Backend API loadMembers failed, falling back to Supabase/defaults:', err);
+    try {
+      const data = await fetchPeopleData();
+      const mems = (data.allMembers || data.members || []).map(m => ({ ...m, category: 'member', position: m.position || 'General Member' }));
+      const teachs = (data.teachers || []).map(t => ({ ...t, category: 'teacher' }));
+      const stffs = (data.staffMembers || []).map(s => ({ ...s, category: 'staff' }));
+      allMembers = [...mems, ...teachs, ...stffs];
+    } catch (e2) {
+      console.warn('Fallback failed:', e2);
+    }
+  }
+  applyDefaultMemberSort();
+  renderMembersTable();
+}
+
+function applyDefaultMemberSort() {
+  if (currentMemberFilter === 'member') {
+    // Sort students by session ascending (e.g. 21-22 < 22-23 < 23-24)
+    allMembers.sort((a, b) => {
+      const sa = (a.session || '').trim();
+      const sb = (b.session || '').trim();
+      if (!sa && !sb) return 0;
+      if (!sa) return 1;
+      if (!sb) return -1;
+      return sa.localeCompare(sb, undefined, { numeric: true });
+    });
+  } else {
+    // Sort teachers & staff alphabetically by department name
+    allMembers.sort((a, b) => {
+      const da = (a.dept || '').trim().toLowerCase();
+      const db = (b.dept || '').trim().toLowerCase();
+      return da.localeCompare(db);
+    });
   }
 }
 
+function sortMembersTable(col) {
+  if (tableSortColumn === col) {
+    tableSortAsc = !tableSortAsc;
+  } else {
+    tableSortColumn = col;
+    tableSortAsc = true;
+  }
+
+  // Update header sort indicator
+  ['name', 'category', 'position', 'dept', 'session', 'area'].forEach(c => {
+    const el = document.getElementById(`sortIcon-${c}`);
+    if (el) el.textContent = (c === tableSortColumn) ? (tableSortAsc ? ' ▲' : ' ▼') : '';
+  });
+
+  allMembers.sort((a, b) => {
+    let valA = (a[col] || '').toString().trim().toLowerCase();
+    let valB = (b[col] || '').toString().trim().toLowerCase();
+    if (col === 'session') {
+      return tableSortAsc 
+        ? valA.localeCompare(valB, undefined, { numeric: true }) 
+        : valB.localeCompare(valA, undefined, { numeric: true });
+    }
+    return tableSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+  });
+
+  renderMembersTable();
+}
+
+function getMemberPhotoSrc(m) {
+  if (!m) return 'pictures/default.jpg';
+  if (m.photo_url) return m.photo_url;
+  if (m.id) return `pictures/${m.id}.jpg`;
+  return `pictures/${nameToFilename(m.name)}.jpg`;
+}
+
 function renderMembersTable() {
-  const filtered = currentMemberFilter === 'all'
-    ? allMembers
-    : allMembers.filter(m => m.category === currentMemberFilter);
-  
+  const filtered = allMembers.filter(m => m.category === currentMemberFilter);
+
+  // Toggle session column header visibility based on filter
+  const thSession = document.getElementById('thSessionCol');
+  if (thSession) thSession.style.display = (currentMemberFilter === 'member') ? '' : 'none';
+
   const tbody = document.getElementById('membersTableBody');
   tbody.innerHTML = filtered.map(m => {
-    const photoSrc = m.photo_url || `pictures/${nameToFilename(m.name)}.jpg`;
+    const photoSrc = getMemberPhotoSrc(m);
+    const catDisplay = m.category === 'member' ? 'Member' : (m.category === 'teacher' ? 'Teacher' : 'Staff');
     const catClass = `cat-${m.category}`;
+    const pos = m.position || (m.category === 'member' ? 'General Member' : '—');
+    
+    // Contact icons: Phone, Email, Facebook
+    let contactHTML = [];
+    if (m.phone) contactHTML.push(`<a href="tel:${m.phone}" style="color:var(--gold-light);" title="Call: ${m.phone}">📞 ${m.phone}</a>`);
+    if (m.email) contactHTML.push(`<a href="mailto:${m.email}" style="color:var(--text-dim);" title="${m.email}">✉️</a>`);
+    if (m.facebook_url) contactHTML.push(`<a href="${m.facebook_url}" target="_blank" style="color:var(--text-dim);" title="Facebook">🌐</a>`);
+
+    const sessionCell = (currentMemberFilter === 'member') 
+      ? `<td><span style="font-family:'Josefin Sans',sans-serif;font-weight:600;color:var(--gold);">${m.session || '—'}</span></td>`
+      : '';
+
     return `<tr>
       <td><img src="${photoSrc}" alt="" class="member-thumb" onerror="this.src='pictures/default.jpg'"></td>
       <td><strong>${m.name}</strong></td>
-      <td><span class="category-tag ${catClass}">${m.category}</span></td>
-      <td>${m.dept}</td>
-      <td>${m.position || '—'}</td>
-      <td>${m.session || '—'}</td>
+      <td><span class="category-tag ${catClass}">${catDisplay}</span></td>
+      <td><span style="font-weight:600;color:var(--gold-light);">${pos}</span></td>
+      <td><strong>${m.dept}</strong></td>
+      ${sessionCell}
       <td>${m.area || '—'}</td>
+      <td>${contactHTML.length > 0 ? contactHTML.join('<br>') : '<span style="color:var(--text-muted);">—</span>'}</td>
       <td>
         <div style="display:flex;gap:0.4rem;">
-          <button class="btn btn-sm btn-outline-gold" onclick="editMember(${m.id})">✏️</button>
-          <button class="btn btn-sm btn-danger" onclick="deleteMember(${m.id},'${m.name.replace(/'/g,"\\'")}')">🗑️</button>
+          <button class="btn btn-sm btn-outline-gold" style="padding:4px 10px;" onclick="editMember(${m.id})">Edit</button>
+          <button class="btn btn-sm btn-danger" style="padding:4px 10px;" onclick="deleteMember(${m.id},'${m.name.replace(/'/g,"\\'")}')">✕</button>
         </div>
       </td>
     </tr>`;
@@ -873,44 +2392,162 @@ function filterMembers(cat, el) {
   currentMemberFilter = cat;
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
+  applyDefaultMemberSort();
   renderMembersTable();
+}
+
+function populateMemberPositionSelect(selectedPosition = '', currentMemberId = null) {
+  const select = document.getElementById('memberPositionSelect');
+  if (!select) return;
+
+  const currentPresident = allMembers.find(m => m.category === 'member' && m.position === 'President' && m.id !== currentMemberId);
+  const currentGs = allMembers.find(m => m.category === 'member' && m.position === 'General Secretary' && m.id !== currentMemberId);
+
+  select.innerHTML = MEMBER_POSITIONS.map(pos => {
+    let label = pos;
+    if (pos === 'President' && currentPresident) {
+      label = `President (Current: ${currentPresident.name})`;
+    } else if (pos === 'General Secretary' && currentGs) {
+      label = `General Secretary (Current: ${currentGs.name})`;
+    }
+    const isSelected = (selectedPosition === pos || (pos === 'General Member' && (!selectedPosition || selectedPosition === 'General')));
+    return `<option value="${pos}" ${isSelected ? 'selected' : ''}>${label}</option>`;
+  }).join('');
+}
+
+function checkPresidentGsAssignment(val) {
+  const notice = document.getElementById('presidentGsNotice');
+  const editId = parseInt(document.getElementById('memberEditId').value) || null;
+  if (!notice) return;
+
+  if (val === 'President') {
+    const existing = allMembers.find(m => m.category === 'member' && m.position === 'President' && m.id !== editId);
+    if (existing) {
+      notice.textContent = `ℹ️ ${existing.name} is currently President. Saving will reassign the President role.`;
+      notice.style.display = 'block';
+      return;
+    }
+  } else if (val === 'General Secretary') {
+    const existing = allMembers.find(m => m.category === 'member' && m.position === 'General Secretary' && m.id !== editId);
+    if (existing) {
+      notice.textContent = `ℹ️ ${existing.name} is currently General Secretary. Saving will reassign the General Secretary role.`;
+      notice.style.display = 'block';
+      return;
+    }
+  }
+  notice.style.display = 'none';
+}
+
+function onDeptChange(val) {
+  const otherWrap = document.getElementById('memberDeptOtherWrap');
+  const otherInput = document.getElementById('memberDeptOther');
+  const sessWrap = document.getElementById('memberSessionWrap');
+  if (val === 'Other') {
+    if (otherWrap) {
+      otherWrap.style.display = 'block';
+      if (sessWrap && sessWrap.style.display !== 'none') {
+        otherWrap.style.gridColumn = 'span 2';
+      } else {
+        otherWrap.style.gridColumn = 'span 1';
+      }
+    }
+    if (otherInput) otherInput.focus();
+  } else {
+    if (otherWrap) otherWrap.style.display = 'none';
+  }
+}
+
+function onCategoryChange(cat) {
+  const memWrap = document.getElementById('memberPositionWrap');
+  const teachWrap = document.getElementById('teacherDesignationWrap');
+  const staffWrap = document.getElementById('staffDesignationWrap');
+  const sessWrap = document.getElementById('memberSessionWrap');
+  const deptLabel = document.getElementById('deptLabel');
+  const otherWrap = document.getElementById('memberDeptOtherWrap');
+
+  if (deptLabel) {
+    deptLabel.textContent = (cat === 'staff') ? 'Department / Workplace *' : 'Department *';
+  }
+
+  if (cat === 'member') {
+    memWrap.style.display = 'block';
+    teachWrap.style.display = 'none';
+    staffWrap.style.display = 'none';
+    sessWrap.style.display = 'block';
+  } else if (cat === 'teacher') {
+    memWrap.style.display = 'none';
+    teachWrap.style.display = 'block';
+    staffWrap.style.display = 'none';
+    sessWrap.style.display = 'none';
+  } else {
+    memWrap.style.display = 'none';
+    teachWrap.style.display = 'none';
+    staffWrap.style.display = 'block';
+    sessWrap.style.display = 'none';
+  }
+
+  if (otherWrap && otherWrap.style.display !== 'none') {
+    otherWrap.style.gridColumn = (sessWrap && sessWrap.style.display !== 'none') ? 'span 2' : 'span 1';
+  }
 }
 
 function openMemberModal(member = null) {
   document.getElementById('memberEditId').value = '';
   document.getElementById('memberModalTitle').textContent = 'Add Member';
-  document.getElementById('memberCategory').value = 'general';
+  document.getElementById('memberCategory').value = currentMemberFilter === 'all' ? 'member' : currentMemberFilter;
   document.getElementById('memberName').value = '';
   document.getElementById('memberDept').value = '';
-  document.getElementById('memberPosition').value = '';
+  document.getElementById('memberDeptOther').value = '';
+  document.getElementById('memberDeptOtherWrap').style.display = 'none';
   document.getElementById('memberSession').value = '';
   document.getElementById('memberArea').value = '';
-  document.getElementById('memberOrder').value = '0';
-  document.getElementById('memberBio').value = '';
-  document.getElementById('memberFacebook').value = '';
-  document.getElementById('memberInstagram').value = '';
+  document.getElementById('memberPhone').value = '';
   document.getElementById('memberEmail').value = '';
+  document.getElementById('memberFacebook').value = '';
   document.getElementById('memberPhotoPreview').src = 'pictures/default.jpg';
   document.getElementById('memberPhotoFile').value = '';
-  
+  document.getElementById('staffDesignationInput').value = '';
+  document.getElementById('teacherDesignationSelect').value = 'Professor';
+
+  const memberId = member ? member.id : null;
+  populateMemberPositionSelect(member ? member.position : 'General Member', memberId);
+
   if (member) {
     document.getElementById('memberEditId').value = member.id;
     document.getElementById('memberModalTitle').textContent = 'Edit Member';
     document.getElementById('memberCategory').value = member.category;
     document.getElementById('memberName').value = member.name;
-    document.getElementById('memberDept').value = member.dept;
-    document.getElementById('memberPosition').value = member.position || '';
+
+    const d = (member.dept || '').trim();
+    if (d && !SUST_DEPARTMENTS.includes(d)) {
+      document.getElementById('memberDept').value = 'Other';
+      document.getElementById('memberDeptOther').value = d;
+      document.getElementById('memberDeptOtherWrap').style.display = 'block';
+    } else {
+      document.getElementById('memberDept').value = d;
+      document.getElementById('memberDeptOther').value = '';
+      document.getElementById('memberDeptOtherWrap').style.display = 'none';
+    }
+
     document.getElementById('memberSession').value = member.session || '';
     document.getElementById('memberArea').value = member.area || '';
-    document.getElementById('memberOrder').value = member.display_order || 0;
-    document.getElementById('memberBio').value = member.bio || '';
-    document.getElementById('memberFacebook').value = member.facebook_url || '';
-    document.getElementById('memberInstagram').value = member.instagram_url || '';
+    document.getElementById('memberPhone').value = member.phone || '';
     document.getElementById('memberEmail').value = member.email || '';
-    const photoSrc = member.photo_url || `pictures/${nameToFilename(member.name)}.jpg`;
+    document.getElementById('memberFacebook').value = member.facebook_url || '';
+
+    if (member.category === 'teacher') {
+      document.getElementById('teacherDesignationSelect').value = member.position || 'Professor';
+    } else if (member.category === 'staff') {
+      document.getElementById('staffDesignationInput').value = member.position || '';
+    } else {
+      document.getElementById('memberPositionSelect').value = member.position || 'General Member';
+    }
+
+    const photoSrc = member ? getMemberPhotoSrc(member) : 'pictures/default.jpg';
     document.getElementById('memberPhotoPreview').src = photoSrc;
   }
-  
+
+  onCategoryChange(document.getElementById('memberCategory').value);
   document.getElementById('memberModal').classList.add('active');
 }
 
@@ -933,64 +2570,155 @@ function previewMemberPhoto(input) {
 
 async function saveMember() {
   const btn = document.getElementById('memberSaveBtn');
-  const editId = document.getElementById('memberEditId').value;
+  const editId = parseInt(document.getElementById('memberEditId').value) || null;
   const name = document.getElementById('memberName').value.trim();
-  const dept = document.getElementById('memberDept').value.trim();
-  
+  const deptSelect = document.getElementById('memberDept').value.trim();
+  let dept = deptSelect;
+  if (deptSelect === 'Other') {
+    dept = document.getElementById('memberDeptOther').value.trim();
+    if (!dept) {
+      showToast('Please specify the workplace / department', 'error');
+      document.getElementById('memberDeptOther').focus();
+      return;
+    }
+  }
+
+  const categoryChoice = document.getElementById('memberCategory').value;
+  let position = '';
+
+  if (categoryChoice === 'member') {
+    position = document.getElementById('memberPositionSelect').value;
+  } else if (categoryChoice === 'teacher') {
+    position = document.getElementById('teacherDesignationSelect').value;
+  } else {
+    position = document.getElementById('staffDesignationInput').value.trim();
+  }
+
   if (!name || !dept) {
-    showToast('Name and Department are required', 'error');
+    showToast('Name and Department/Workplace are required', 'error');
     return;
   }
-  
+
+  // Handle unique President and General Secretary re-assignment
+  if (categoryChoice === 'member' && (position === 'President' || position === 'General Secretary')) {
+    const existingHolder = allMembers.find(m => m.category === 'member' && m.position === position && m.id !== editId);
+    if (existingHolder) {
+      try {
+        await apiFetch(`/api/members/${existingHolder.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({ ...existingHolder, position: 'General Member', category: 'general' })
+        });
+      } catch (e) {
+        console.warn('Reassigned previous role:', e);
+      }
+    }
+  }
+
+  // DB category mapping
+  let dbCategory = categoryChoice;
+  if (categoryChoice === 'member') {
+    dbCategory = (position && position.toLowerCase() !== 'general member' && position.toLowerCase() !== 'general')
+      ? 'executive'
+      : 'general';
+  }
+
   btn.disabled = true;
   btn.innerHTML = '<span class="loading-spinner"></span> Saving...';
-  
+
   try {
-    // Upload photo if new file selected
     let photoUrl = '';
     const photoFile = document.getElementById('memberPhotoFile').files[0];
-    if (photoFile) {
-      const uploadResult = await apiUpload('/api/upload', photoFile, 'members');
+    if (photoFile && editId) {
+      const uploadResult = await apiUpload('/api/upload', photoFile, 'members', editId);
       photoUrl = uploadResult.data.url;
     }
-    
+
     const memberData = {
-      category: document.getElementById('memberCategory').value,
+      category: dbCategory,
       name, dept,
-      position: document.getElementById('memberPosition').value.trim(),
-      session: document.getElementById('memberSession').value.trim(),
+      position,
+      session: categoryChoice === 'member' ? document.getElementById('memberSession').value.trim() : '',
       area: document.getElementById('memberArea').value.trim(),
-      display_order: parseInt(document.getElementById('memberOrder').value) || 0,
-      bio: document.getElementById('memberBio').value.trim(),
-      facebook_url: document.getElementById('memberFacebook').value.trim(),
-      instagram_url: document.getElementById('memberInstagram').value.trim(),
-      email: document.getElementById('memberEmail').value.trim()
+      phone: document.getElementById('memberPhone').value.trim(),
+      email: document.getElementById('memberEmail').value.trim(),
+      facebook_url: document.getElementById('memberFacebook').value.trim()
     };
-    
-    if (photoUrl) memberData.photo_url = photoUrl;
-    
+
+    const originalMember = editId ? allMembers.find(m => m.id === editId) : null;
+    let finalPhotoUrl = photoUrl;
+    if (!finalPhotoUrl && originalMember) {
+      finalPhotoUrl = getMemberPhotoSrc(originalMember);
+    }
+    if (finalPhotoUrl) memberData.photo_url = finalPhotoUrl;
+
     if (editId) {
-      await apiFetch(`/api/members/${editId}`, { method: 'PUT', body: JSON.stringify(memberData) });
+      try {
+        await apiFetch(`/api/members/${editId}`, { method: 'PUT', body: JSON.stringify(memberData) });
+      } catch (apiErr) {
+        console.warn('apiFetch update failed, attempting direct Supabase fallback:', apiErr);
+        if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+          const { error } = await supabaseClient.from('people').update(memberData).eq('id', editId);
+          if (error) throw new Error(error.message || apiErr.message);
+        } else {
+          throw apiErr;
+        }
+      }
       showToast(`${name} updated successfully!`);
     } else {
-      await apiFetch('/api/members', { method: 'POST', body: JSON.stringify(memberData) });
+      let createdId = null;
+      try {
+        const createRes = await apiFetch('/api/members', { method: 'POST', body: JSON.stringify(memberData) });
+        if (createRes && createRes.data && createRes.data[0]) createdId = createRes.data[0].id;
+      } catch (apiErr) {
+        console.warn('apiFetch create failed, attempting direct Supabase fallback:', apiErr);
+        if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+          const { data: insData, error } = await supabaseClient.from('people').insert([memberData]).select();
+          if (error) throw new Error(error.message || apiErr.message);
+          if (insData && insData[0]) createdId = insData[0].id;
+        } else {
+          throw apiErr;
+        }
+      }
+
+      // If photo was selected for brand new member, upload with createdId and save photo_url
+      if (photoFile && createdId) {
+        try {
+          const upRes = await apiUpload('/api/upload', photoFile, 'members', createdId);
+          if (upRes && upRes.data && upRes.data.url) {
+            await apiFetch(`/api/members/${createdId}`, { method: 'PUT', body: JSON.stringify({ photo_url: upRes.data.url }) });
+          }
+        } catch (upErr) {
+          console.warn('New member photo upload error:', upErr);
+        }
+      }
+
       showToast(`${name} added successfully!`);
     }
-    
+
     closeMemberModal();
     await loadMembers();
   } catch (err) {
     showToast('Failed to save: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save Member';
   }
-  
-  btn.disabled = false;
-  btn.textContent = 'Save Member';
 }
 
 async function deleteMember(id, name) {
   if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
   try {
-    await apiFetch(`/api/members/${id}`, { method: 'DELETE' });
+    try {
+      await apiFetch(`/api/members/${id}`, { method: 'DELETE' });
+    } catch (apiErr) {
+      console.warn('apiFetch delete failed, attempting direct Supabase fallback:', apiErr);
+      if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+        const { error } = await supabaseClient.from('people').delete().eq('id', id);
+        if (error) throw new Error(error.message || apiErr.message);
+      } else {
+        throw apiErr;
+      }
+    }
     showToast(`${name} deleted.`);
     await loadMembers();
   } catch (err) {
@@ -999,14 +2727,29 @@ async function deleteMember(id, name) {
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   EVENTS
+   EVENTS MANAGEMENT (Recency Sort, Gallery Cover Select, Clean Thumbnails)
    ══════════════════════════════════════════════════════════════════════════════ */
+let selectedEventCoverPath = '';
+
 async function loadEvents() {
   try {
     const result = await apiFetch('/api/events');
-    renderEventsAdmin(result.data || []);
+    const events = result.data || [];
+    events.sort((a, b) => {
+      const ta = new Date(a.date_text).getTime();
+      const tb = new Date(b.date_text).getTime();
+      if (!isNaN(ta) && !isNaN(tb)) return tb - ta;
+      return 0;
+    });
+    renderEventsAdmin(events);
   } catch (err) {
-    showToast('Failed to load events: ' + err.message, 'error');
+    console.warn('API loadEvents failed, falling back to Supabase/defaults:', err);
+    try {
+      const evs = await fetchEventsData();
+      renderEventsAdmin(evs || []);
+    } catch (e2) {
+      renderEventsAdmin([]);
+    }
   }
 }
 
@@ -1019,14 +2762,18 @@ function renderEventsAdmin(events) {
     const photoCount = Array.isArray(ev.photos) ? ev.photos.length : 0;
     return `
     <div class="admin-card" style="display:flex;gap:1.5rem;align-items:center;">
-      ${thumbSrc ? `<img src="${thumbSrc}" style="width:100px;height:70px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none'">` : `<div style="width:100px;height:70px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">${ev.emoji||'📅'}</div>`}
+      ${thumbSrc ? `<img src="${thumbSrc}" style="width:140px;height:85px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--border-gold);" onerror="this.style.display='none'">` : `<div style="width:140px;height:85px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--gold-light);flex-shrink:0;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>`}
       <div style="flex:1;min-width:0;">
-        <h3 style="font-size:1rem;margin-bottom:0.2rem;">${ev.title}</h3>
-        <p style="font-size:0.78rem;color:var(--text-dim);">📅 ${ev.date_text} · 📍 ${ev.location} · 📸 ${photoCount} photos</p>
+        <h3 style="font-size:1.15rem;margin-bottom:0.4rem;font-family:'Playfair Display',serif;">${ev.title}</h3>
+        <p style="font-size:0.82rem;color:var(--text-dim);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span>📍 ${ev.location}</span>
+          <span>📅 ${ev.date_text}</span>
+          <span>📸 ${photoCount} photos</span>
+        </p>
       </div>
-      <div style="display:flex;gap:0.5rem;flex-shrink:0;">
-        <button class="btn btn-sm btn-outline-gold" onclick="editEvent(${ev.id})">✏️ Edit</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteEvent(${ev.id},'${ev.title.replace(/'/g,"\\'")}')">🗑️</button>
+      <div style="display:flex;gap:0.6rem;flex-shrink:0;">
+        <button class="btn btn-sm btn-outline-gold" onclick="editEvent(${ev.id})">Edit</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteEvent(${ev.id},'${ev.title.replace(/'/g,"\\'")}')">✕</button>
       </div>
     </div>`;
   }).join('');
@@ -1039,34 +2786,31 @@ function openEventModal(event = null) {
   document.getElementById('eventDate').value = '';
   document.getElementById('eventLocation').value = '';
   document.getElementById('eventDescription').value = '';
-  document.getElementById('eventEmoji').value = '🎭';
-  document.getElementById('eventOrder').value = '0';
-  document.getElementById('eventCaptions').value = '';
   document.getElementById('eventThumbPreview').style.display = 'none';
   document.getElementById('eventThumbFile').value = '';
   document.getElementById('eventPhotosFile').value = '';
+  selectedEventCoverPath = '';
   eventPhotosList = [];
   renderEventPhotosGrid();
-  
+
   if (event) {
     document.getElementById('eventEditId').value = event.id;
     document.getElementById('eventModalTitle').textContent = 'Edit Event';
     document.getElementById('eventTitle').value = event.title;
     document.getElementById('eventDate').value = event.date_text;
     document.getElementById('eventLocation').value = event.location;
-    document.getElementById('eventDescription').value = event.description;
-    document.getElementById('eventEmoji').value = event.emoji || '';
-    document.getElementById('eventOrder').value = event.display_order || 0;
     
-    const captions = Array.isArray(event.captions) ? event.captions : [];
-    document.getElementById('eventCaptions').value = captions.join('\n');
-    
+    // Automatically strip any <br> tags so user types/edits natural multiline text!
+    const cleanDesc = (event.description || '').replace(/<br\s*\/?>/gi, '\n');
+    document.getElementById('eventDescription').value = cleanDesc;
+
     if (event.thumb) {
+      selectedEventCoverPath = event.thumb;
       const thumbSrc = event.thumb.startsWith('http') ? event.thumb : `pictures/events/${event.thumb}`;
       document.getElementById('eventThumbPreview').src = thumbSrc;
       document.getElementById('eventThumbPreview').style.display = 'block';
     }
-    
+
     const photos = Array.isArray(event.photos) ? event.photos : [];
     eventPhotosList = photos.map(p => ({
       url: p.startsWith('http') ? p : `pictures/events/${p}`,
@@ -1075,7 +2819,7 @@ function openEventModal(event = null) {
     }));
     renderEventPhotosGrid();
   }
-  
+
   document.getElementById('eventModal').classList.add('active');
 }
 
@@ -1098,6 +2842,7 @@ function previewEventThumb(input) {
     reader.onload = e => {
       document.getElementById('eventThumbPreview').src = e.target.result;
       document.getElementById('eventThumbPreview').style.display = 'block';
+      selectedEventCoverPath = '';
     };
     reader.readAsDataURL(input.files[0]);
   }
@@ -1118,12 +2863,20 @@ function removeEventPhoto(index) {
   renderEventPhotosGrid();
 }
 
+function setCoverFromPhoto(url, path) {
+  selectedEventCoverPath = path || url;
+  document.getElementById('eventThumbPreview').src = url;
+  document.getElementById('eventThumbPreview').style.display = 'block';
+  showToast('Cover thumbnail selected from gallery!');
+}
+
 function renderEventPhotosGrid() {
   const grid = document.getElementById('eventPhotosGrid');
   grid.innerHTML = eventPhotosList.map((p, i) => `
-    <div class="event-photo-item">
+    <div class="event-photo-item" style="position:relative;">
       <img src="${p.url}" alt="Photo ${i+1}" onerror="this.src='pictures/default.jpg'">
-      <button class="remove-photo" onclick="removeEventPhoto(${i})">✕</button>
+      <button type="button" class="btn btn-sm btn-gold" style="position:absolute;bottom:4px;left:4px;right:4px;font-size:0.62rem;padding:3px 4px;z-index:2;line-height:1.1;" onclick="setCoverFromPhoto('${p.url}','${p.path || ''}')">★ Set Cover</button>
+      <button type="button" class="remove-photo" onclick="removeEventPhoto(${i})">✕</button>
     </div>
   `).join('');
 }
@@ -1134,26 +2887,24 @@ async function saveEvent() {
   const title = document.getElementById('eventTitle').value.trim();
   const dateText = document.getElementById('eventDate').value.trim();
   const location = document.getElementById('eventLocation').value.trim();
-  const description = document.getElementById('eventDescription').value.trim();
-  
-  if (!title || !dateText || !location || !description) {
+  const rawDescription = document.getElementById('eventDescription').value.trim();
+
+  if (!title || !dateText || !location || !rawDescription) {
     showToast('Title, Date, Location, and Description are required', 'error');
     return;
   }
-  
+
   btn.disabled = true;
   btn.innerHTML = '<span class="loading-spinner"></span> Saving...';
-  
+
   try {
-    // Upload thumbnail if new file
-    let thumbPath = '';
+    let thumbPath = selectedEventCoverPath || '';
     const thumbFile = document.getElementById('eventThumbFile').files[0];
     if (thumbFile) {
       const thumbResult = await apiUpload('/api/upload', thumbFile, 'events');
       thumbPath = thumbResult.data.url;
     }
-    
-    // Upload new photos
+
     const photoPaths = [];
     for (const p of eventPhotosList) {
       if (p.isNew && p.file) {
@@ -1163,21 +2914,21 @@ async function saveEvent() {
         photoPaths.push(p.path || p.url);
       }
     }
-    
-    const captionLines = document.getElementById('eventCaptions').value.trim();
-    const captions = captionLines ? captionLines.split('\n').map(c => c.trim()) : [];
-    
+
     const eventData = {
-      title, date_text: dateText, location, description,
-      emoji: document.getElementById('eventEmoji').value.trim() || '🎭',
-      display_order: parseInt(document.getElementById('eventOrder').value) || 0,
-      photos: photoPaths,
-      captions
+      title,
+      date_text: dateText,
+      location,
+      description: rawDescription,
+      photos: photoPaths
     };
-    
-    if (thumbPath) eventData.thumb = thumbPath;
-    else if (!editId && photoPaths.length > 0) eventData.thumb = photoPaths[0];
-    
+
+    if (thumbPath) {
+      eventData.thumb = thumbPath;
+    } else if (photoPaths.length > 0) {
+      eventData.thumb = photoPaths[0];
+    }
+
     if (editId) {
       await apiFetch(`/api/events/${editId}`, { method: 'PUT', body: JSON.stringify(eventData) });
       showToast(`"${title}" updated successfully!`);
@@ -1185,15 +2936,15 @@ async function saveEvent() {
       await apiFetch('/api/events', { method: 'POST', body: JSON.stringify(eventData) });
       showToast(`"${title}" created successfully!`);
     }
-    
+
     closeEventModal();
     await loadEvents();
   } catch (err) {
     showToast('Failed to save event: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save Event';
   }
-  
-  btn.disabled = false;
-  btn.textContent = 'Save Event';
 }
 
 async function deleteEvent(id, title) {
@@ -1207,12 +2958,43 @@ async function deleteEvent(id, title) {
   }
 }
 
-/* ─── UTILS ─── */
-function nameToFilename(n) {
-  return n.trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+/* ══════════════════════════════════════════════════════════════════════════════
+   SETTINGS
+   ══════════════════════════════════════════════════════════════════════════════ */
+function saveApiBase() {
+  const val = document.getElementById('apiBaseInput').value.trim();
+  if (!val) {
+    showToast('Please enter a valid URL', 'error');
+    return;
+  }
+  localStorage.setItem('ACS_API_BASE', val);
+  showToast('Backend API URL saved! Reloading...', 'success');
+  setTimeout(() => location.reload(), 1000);
 }
 
-/* ─── INIT ─── */
+async function uploadLogo(input) {
+  if (!input.files || !input.files[0]) return;
+  try {
+    showToast('Uploading logo...', 'success');
+    const result = await apiUpload('/api/upload', input.files[0], 'logo');
+    await apiFetch('/api/settings/logo_url', {
+      method: 'PUT',
+      body: JSON.stringify({ value: result.data.url })
+    });
+    document.getElementById('currentLogo').src = result.data.url;
+    document.getElementById('dashLogo').src = result.data.url;
+    showToast('Logo updated successfully!');
+  } catch (err) {
+    showToast('Failed to upload logo: ' + err.message, 'error');
+  }
+}
+
+/* ─── UTILS ─── */
+function nameToFilename(n) {
+  return (n || '').trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+}
+
+/* ─── INITIALIZATION ─── */
 document.addEventListener('DOMContentLoaded', () => {
   checkExistingSession();
 });

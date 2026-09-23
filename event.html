@@ -10,6 +10,90 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.page-hero-events-custom {
+  position: relative;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  transition: background 0.4s ease;
+}
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+}
+.event-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.event-meta-badge span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.event-detail-gallery-header h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--deep-teal);
+}
+.event-detail-photo {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(10, 61, 64, 0.08);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.event-detail-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(10, 61, 64, 0.2);
+}
+.event-detail-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+.event-detail-photo:hover img {
+  transform: scale(1.06);
+}
+.lb-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.lb-download:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+</style>
 </head>
 <body>
 
@@ -27,10 +111,12 @@
 </nav>
 
 <section id="eventDetail" class="page-section">
-  <div class="page-hero page-hero-events">
+  <div class="page-hero page-hero-events page-hero-events-custom" id="eventHero">
     <div class="page-hero-content">
       <a href="events.html" class="back-link" id="backLink">← Back to Events</a>
-      <div class="section-label" id="eventDate">Loading...</div>
+      <div class="event-meta-badge" id="eventMetaBadges">
+        <span id="eventDate">Loading...</span>
+      </div>
       <h1 id="eventTitle">Loading Event...</h1>
       <p id="eventLocation"></p>
     </div>
@@ -41,7 +127,10 @@
     <div class="event-detail-description" id="eventDescription"></div>
     
     <div class="event-detail-gallery-header">
-      <h2>📸 Photo Gallery</h2>
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;margin-right:6px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Photo Gallery
+      </h2>
       <span class="gallery-count" id="galleryCount"></span>
     </div>
     <div class="event-detail-gallery" id="eventGallery"></div>
@@ -60,8 +149,8 @@
       <li><a href="events.html">Events</a></li>
     </ul></div>
     <div class="footer-col"><h4>Connect</h4><ul>
-      <li><a href="https://www.facebook.com/AssociationOfChandpurSUST" target="_blank">Facebook Page</a></li>
-      <li><a href="mailto:association.of.chandpur.sust@gmail.com">Email Us</a></li>
+      <li><a href="https://www.facebook.com/AssociationOfChandpurSUST" target="_blank" class="footer-facebook-link">Facebook Page</a></li>
+      <li><a href="mailto:association.of.chandpur.sust@gmail.com" class="footer-email-link">Email Us</a></li>
     </ul></div>
   </div>
   <div class="footer-bottom">
@@ -79,7 +168,10 @@
     <div class="lightbox-img-wrap" id="lightboxContent"></div>
     <div class="lightbox-caption" id="lightboxCaption"></div>
     <div class="lightbox-actions">
-      <button class="lb-download" id="lbDownload" title="Download Photo">⬇️ Download</button>
+      <button class="lb-download" id="lbDownload" title="Download Photo">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download
+      </button>
     </div>
     <div class="lightbox-counter" id="lightboxCounter"></div>
     <button class="lb-arrow lb-next" id="lbNext">&#8594;</button>
@@ -189,11 +281,44 @@ async function loadEventDetail() {
   // Set page title
   document.title = `${event.title} - Association of Chandpur, SUST`;
   
+  // Set hero thumbnail background with translucent deep teal/green overlay
+  const heroEl = document.getElementById('eventHero');
+  let thumbSrc = '';
+  if (event.thumb && isImageFile(event.thumb)) {
+    thumbSrc = event.thumb.startsWith('http') ? event.thumb : `pictures/events/${event.thumb}`;
+  } else if (event.photos && event.photos.length > 0 && isImageFile(event.photos[0])) {
+    thumbSrc = event.photos[0].startsWith('http') ? event.photos[0] : `pictures/events/${event.photos[0]}`;
+  }
+
+  if (thumbSrc && heroEl) {
+    heroEl.style.backgroundImage = `linear-gradient(rgba(7, 21, 22, 0.84), rgba(10, 61, 64, 0.88)), url('${thumbSrc}')`;
+  }
+
   // Populate content
   document.getElementById('eventTitle').textContent = event.title;
-  document.getElementById('eventDate').textContent = `📅 ${event.date} · 📍 ${event.location}`;
+  const metaEl = document.getElementById('eventMetaBadges');
+  if (metaEl) {
+    metaEl.innerHTML = `
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        ${event.date}
+      </span>
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        ${event.location}
+      </span>
+    `;
+  }
   document.getElementById('eventLocation').textContent = '';
-  document.getElementById('eventDescription').innerHTML = `<p>${event.description}</p>`;
+  
+  // Format description: normalize newlines and convert to paragraphs or breaks
+  const rawDesc = event.description || '';
+  const formattedDesc = rawDesc
+    .replace(/\r\n|\r|\n/g, '<br>')
+    .replace(/(<br>\s*){3,}/g, '<br><br>');
+  document.getElementById('eventDescription').innerHTML = `<p>${formattedDesc}</p>`;
+  document.getElementById('eventDescription').style.whiteSpace = 'pre-line';
+  document.getElementById('eventDescription').style.lineHeight = '1.85';
   
   // Build gallery
   const photos = event.photos || [];
@@ -216,8 +341,7 @@ async function loadEventDetail() {
     if (isImg) {
       const src = p.startsWith('http') ? p : `pictures/events/${p}`;
       return `<div class="event-detail-photo" data-idx="${i}" title="Click to view">
-        <img src="${src}" alt="Photo ${i+1}" onerror="this.parentElement.innerHTML='📷'">
-        <div class="photo-overlay"><span>🔍 View</span></div>
+        <img src="${src}" alt="Photo ${i+1}" onerror="this.src='pictures/logo.jpeg';">
       </div>`;
     } else {
       return `<div class="event-detail-photo emoji-photo" data-idx="${i}" title="Click to view">

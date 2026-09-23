@@ -55,19 +55,21 @@ const DEFAULT_FRONT_PAGE = {
   footer_desc: 'Association of Chandpur at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.',
   footer_copyright: '© 2025 Association of Chandpur · <span class="sust-tag">SUST, Sylhet</span>',
   footer_credit: 'made by · <span class="sust-tag">Fahim Ahammad Tanvir</span>',
-  footer_motto: 'Land of Rivers · Land of Hilsha · Our Home'
+  footer_motto: 'Land of Rivers · Land of Hilsha · Our Home',
+  contact_email: 'association.of.chandpur.sust@gmail.com',
+  facebook_page_url: 'https://www.facebook.com/AssociationOfChandpurSUST'
 };
 
 const DEFAULT_CULTURE_CARDS = [
-  { icon:'🐟', title:'Land of Ilish', description:"Chandpur is the Ilish (Hilsha) capital of Bangladesh. The Meghna river yields the finest Hilsha in the world — a fish so celebrated it's woven into Bengali identity and culture." },
-  { icon:'🌊', title:'Great Rivers', description:"Bounded by Meghna, Dakatia, and Padma rivers, Chandpur's landscape is shaped by water — a flowing, breathing geography that gives life, trade, and poetry to the district." },
-  { icon:'🎭', title:'Vibrant Culture', description:"From Baul music to riverine folklore, Chandpur's culture is a tapestry of traditions — jari gaan, shari gaan, and local festivals that echo centuries of Bengali heritage." },
-  { icon:'🏛️', title:'Historical Richness', description:"Home to ancient mosques, temples, and colonial-era landmarks, Chandpur carries deep historical weight — from the liberation war to pre-Mughal architecture." }
+  { icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg>', title:'Land of Ilish', description:"Chandpur is the Ilish (Hilsha) capital of Bangladesh. The Meghna river yields the finest Hilsha in the world — a fish so celebrated it's woven into Bengali identity and culture." },
+  { icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 6h20M2 18h20"></path></svg>', title:'Great Rivers', description:"Bounded by Meghna, Dakatia, and Padma rivers, Chandpur's landscape is shaped by water — a flowing, breathing geography that gives life, trade, and poetry to the district." },
+  { icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>', title:'Vibrant Culture', description:"From riverine folklore to timeless arts, Chandpur's culture is a tapestry of traditions — jari gaan, shari gaan, and festivals that echo centuries of Bengali heritage." },
+  { icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>', title:'Historical Richness', description:"Home to ancient landmarks and river ports, Chandpur carries deep historical weight — from the liberation war to rich intellectual and architectural traditions." }
 ];
 
 const DEFAULT_PURPOSE_CARDS = [
   { step_num:'01', title:'Connect & Build Community', description:'We connect Chandpur students across all departments and batches, creating a tight-knit network that transcends academic boundaries.' },
-  { step_num:'02', title:'Assert Our Cultural Identity', description:"We celebrate Chandpur's unique culture — from Hilsha festivals to river heritage events — ensuring our identity shines within SUST's multicultural campus." },
+  { step_num:'02', title:'Assert Our Cultural Identity', description:"We celebrate Chandpur's unique culture — from heritage reunions to river festivals — ensuring our identity shines within SUST's multicultural campus." },
   { step_num:'03', title:'Support & Mentor', description:'Senior members guide freshmen through academic and social challenges. Every newcomer from Chandpur gets a mentor, a friend, and a direction.' },
   { step_num:'04', title:'Represent at SUST', description:"We engage with other district associations and student unions — making Chandpur's presence felt, respected, and valued across the university." }
 ];
@@ -101,13 +103,13 @@ const DEFAULT_EXECUTIVE_MEMBERS = [
   {name:'Emon Hossain', dept:'Statistics', area:'Matlab Uttar', position:'Assistant Treasurer', session:'23-24'},
   {name:'Rakib Mamun', dept:'Mechanical Engineering', area:'Faridganj', position:'Assistant Treasurer', session:'23-24'},
   {name:'Fajlay Raiyan', dept:'Mechanical Engineering', area:'Matlab Uttar', position:'Assistant Office Secretary', session:'23-24'},
-  {name:'Ismail Hossain Tonmoy', dept:'Geography & Environment', area:'Faridganj', position:'Assistant Office Secretary', session:'23-24'},
+  {name:'Ismail Hossain Tonmoy', dept:'Geography and Environment', area:'Faridganj', position:'Assistant Office Secretary', session:'23-24'},
   {name:'Fabiha Bushra Dilshad', dept:'Genetic Engineering & Biotechnology', area:'Matlab Uttar', position:'Assistant Publication Secretary', session:'23-24'},
   {name:'Md Fahim Ahammad Tanvir', dept:'Software Engineering', area:'Haimchar', position:'Assistant Publication Secretary', session:'23-24'},
   {name:'Maryam Chowdhury', dept:'Economics', area:'Kachua', position:'Assistant Human Rights Secretary', session:'23-24'},
   {name:'Shahinur Akter Mitu', dept:'Economics', area:'Kachua', position:'Assistant Cultural Secretary', session:'23-24'},
   {name:'Takaful Islam Karima', dept:'Civil & Environmental Engineering', area:'Chandpur Sadar', position:'Assistant Cultural Secretary', session:'23-24'},
-  {name:'Samira Shaiba Athoi', dept:'Geography & Environment', area:'Shahrasti', position:'Assistant Cultural Secretary', session:'23-24'},
+  {name:'Samira Shaiba Athoi', dept:'Geography and Environment', area:'Shahrasti', position:'Assistant Cultural Secretary', session:'23-24'},
   {name:'Mohammad Noman', dept:'Mechanical Engineering', area:'Faridganj', position:'Assistant Media Secretary', session:'23-24'},
   {name:'Fardin Islam Rijvy', dept:'Software Engineering', area:'Haziganj', position:'Assistant Sports Secretary', session:'23-24'},
   {name:'Nahid Hossain', dept:'Genetic Engineering & Biotechnology', area:'Faridganj', position:'Assistant Sports Secretary', session:'23-24'},
@@ -145,7 +147,7 @@ const DEFAULT_GENERAL_MEMBERS = [
   {name:'Md Hasebul Hasan Rippy', dept:'Civil & Environmental Engineering', area:'Haimchar', session:'24-25'},
   {name:'Swastika Naha Arpa', dept:'Chemical Engineering & Polymer Science', area:'Chandpur Sadar', session:'24-25'},
   {name:'Arifa Binta Alam', dept:'Food Engineering & Tea Technology', area:'Haziganj', session:'24-25'},
-  {name:'Noor Hossain Alif', dept:'Geography & Environment', area:'Faridganj', session:'24-25'},
+  {name:'Noor Hossain Alif', dept:'Geography and Environment', area:'Faridganj', session:'24-25'},
   {name:'Md Moshiur Rahman Sami', dept:'Oceanography', area:'Chandpur Sadar', session:'24-25'},
   {name:'Mishkat Jahan Mithila', dept:'Public Administration', area:'Chandpur Sadar', session:'24-25'},
   {name:'Md Sabbir Ahmed Osmani', dept:'Political Studies', area:'Kachua', session:'24-25'},
@@ -154,46 +156,46 @@ const DEFAULT_GENERAL_MEMBERS = [
 ];
 
 const DEFAULT_TEACHERS = [
-  { name: 'Dr S M Saiful Islam', dept: 'Chemistry', position: 'Professor' },
-  { name: 'Dr. Md Zakir Hossain', dept: 'Statistics', position: 'Professor' },
-  { name: 'Dr. Mirza Nazmul Hasan', dept: 'Statistics', position: 'Professor' },
-  { name: 'Dr. Mohammad Jasim Uddin', dept: 'Sociology', position: 'Professor' },
-  { name: 'Dr Mohammad Abdul Hannan', dept: 'Economics', position: 'Professor' },
-  { name: 'Dr Masud Alam', dept: 'Economics', position: 'Professor' },
-  { name: 'Dr. Nur Mohammad Majumder', dept: 'Anthropology', position: 'Professor' },
-  { name: 'Dr. Nilufa Aktar', dept: 'Bangla', position: 'Professor' },
-  { name: 'Dr Mohammad Razaul Karim', dept: 'Chemistry', position: 'Professor' },
-  { name: 'Syed Towfiq Mahmood Hasan', dept: 'Business Administration', position: 'Associate Professor' },
-  { name: 'Mohammad Abdullah-Al-Shoeb', dept: 'Biochemistry and Molecular Biology', position: 'Associate Professor(On leave)' },
-  { name: 'Dr Mohammad Shaiful Alam Amin', dept: 'Chemical Engineering & Polymer Science', position: 'Professor' },
-  { name: 'Shahla Safwat Ravhee', dept: 'Architecture', position: 'Assistant Professor(On leave)' },
-  { name: 'Md. Syamul Bashar', dept: 'Mechanical Engineering', position: 'Assistant Professor' },
-  { name: 'Md. Mahin Uddin', dept: 'Geography and Environment', position: 'Lecturer' },
-  { name: 'Mahabub Alam', dept: 'FET', position: 'Lecturer' }
+  { name: 'Dr. SM Saiful Islam', dept: 'Chemistry', position: 'Professor', phone: '8801972448030' },
+  { name: 'Dr. Md Zakir Hossain', dept: 'Statistics', position: 'Professor', phone: '8801711140801' },
+  { name: 'Dr. Mirza Nazmul Hasan', dept: 'Statistics', position: 'Professor', phone: '8801767013458' },
+  { name: 'Dr. Mohammad Jasim Uddin', dept: 'Sociology', position: 'Professor', phone: '8801715055869' },
+  { name: 'Dr Mohammad Abdul Hannan Pradhan', dept: 'Economics', position: 'Professor', phone: '8801731247170' },
+  { name: 'Dr. Masud Alam', dept: 'Economics', position: 'Professor', phone: '8801770340474' },
+  { name: 'Dr. Nur Mohammad Majumder', dept: 'Anthropology', position: 'Professor', phone: '8801815107547' },
+  { name: 'Dr. Nilufa Aktar', dept: 'Bangla', position: 'Professor', phone: '8801711013131' },
+  { name: 'Dr Mohammad Rezaul Karim', dept: 'Chemistry', position: 'Professor', phone: '8801750200968' },
+  { name: 'Syed Towfiq Mahmood Hasan', dept: 'Business Administration', position: 'Professor', phone: '8801715018035' },
+  { name: 'Dr. Mohammad Abdullah-Al-Shoeb', dept: 'Biochemistry and Molecular Biology', position: 'Professor', phone: '8801787501398' },
+  { name: 'Dr. Mohammad Shaiful Alam Amin', dept: 'Chemical Engineering & Polymer Science', position: 'Professor', phone: '8801717466578' },
+  { name: 'Md. Syamul Bashar', dept: 'Mechanical Engineering', position: 'Assistant Professor', phone: '8801307486552' },
+  { name: 'Shahla Safwat Ravhee', dept: 'Architecture', position: 'Assistant Professor', phone: '8801675868645' },
+  { name: 'Mahabub Alam', dept: 'Food Engineering & Tea Technology', position: 'Assistant Professor', phone: '8801837572299' },
+  { name: 'Md. Mahin Uddin', dept: 'Geography and Environment', position: 'Lecturer', phone: '8801580380279' }
 ];
 
 const DEFAULT_STAFF = [
-  { name: 'Mr. Helan Hossain Dewan', dept: 'Accounts', position: 'Assistant Director' },
-  { name: 'Mr. Md. Hasan Mahmud Khan', dept: 'IICT', position: 'Technician' },
-  { name: 'Mr. Md. Farkul Islam', dept: 'Registrar Office', position: 'Administrative Officer' },
-  { name: 'Mr. Md. Khoka Mia', dept: 'Chemistry', position: 'Senior Lab Assistant' },
-  { name: 'Mr. Md. Nazrul Islam', dept: 'Civil', position: 'Instrument Engineer' },
-  { name: 'Mr. Md. Nasir Uddin Bepari', dept: 'Registrar Office', position: 'Senior Guest House Attendant' },
-  { name: 'Mr. Md. Babul Hossain', dept: 'FES', position: 'Technician Officer' },
-  { name: 'Mr. Abu Yusuf', dept: 'Research Center', position: 'N/A' },
-  { name: 'Mr. Abdul Karim', dept: 'Mathematics', position: 'Office Attendant' },
-  { name: 'Mr. Md. Jakir Hossain', dept: 'Registrar Office', position: 'Office Assistant' },
-  { name: 'Ms. Rina Ferdousi', dept: 'Medical', position: 'Nurse' },
-  { name: 'Mr. Monir Hossain', dept: 'Transport', position: 'Senior Driver' },
-  { name: 'Mr. Alauddin Shah', dept: 'Telephone', position: 'Senior Operator' },
-  { name: 'Ms. Farhana Begum', dept: 'Female Hall', position: 'Assistant' },
-  { name: 'Mr. Md. Jitu Mia', dept: 'Anthropology', position: 'Administrative Officer' },
-  { name: 'Mr. Md. Taslim Dewan', dept: 'Registrar Office', position: 'Senior Guard' },
-  { name: 'Mr. Imam Hossain', dept: '2nd Female Hall', position: 'Senior Guard' },
-  { name: 'Mr. Abdur Rob', dept: 'Registrar Office', position: 'Security Assistant' },
-  { name: 'Mr. Anisur Rahman', dept: 'VC Bungalow', position: 'Senior Gardener' },
-  { name: 'Mr. Shahjahan Molla', dept: 'IPE', position: 'Office Attendant' },
-  { name: 'Mr. Md. Sohel Ahmed', dept: 'IPE', position: 'Office Attendant' }
+  { name: 'Mr. Helan Hossain Dewan', dept: 'Accounts', position: 'Assistant Director', phone: '' },
+  { name: 'Mr. Md. Hasan Mahmud Khan', dept: 'IICT', position: 'Technician', phone: '' },
+  { name: 'Mr. Md. Farkul Islam', dept: 'Registrar Office', position: 'Administrative Officer', phone: '' },
+  { name: 'Mr. Md. Khoka Mia', dept: 'Chemistry', position: 'Senior Lab Assistant', phone: '' },
+  { name: 'Mr. Md. Nazrul Islam', dept: 'Civil & Environmental Engineering', position: 'Instrument Engineer', phone: '' },
+  { name: 'Mr. Md. Nasir Uddin Bepari', dept: 'Registrar Office', position: 'Senior Guest House Attendant', phone: '' },
+  { name: 'Mr. Md. Babul Hossain', dept: 'Forestry & Environmental Science', position: 'Technician Officer', phone: '' },
+  { name: 'Mr. Abu Yusuf', dept: 'Research Center', position: 'Officer', phone: '' },
+  { name: 'Mr. Abdul Karim', dept: 'Mathematics', position: 'Office Attendant', phone: '' },
+  { name: 'Mr. Md. Jakir Hossain', dept: 'Registrar Office', position: 'Office Assistant', phone: '' },
+  { name: 'Ms. Rina Ferdousi', dept: 'Medical Center', position: 'Nurse', phone: '' },
+  { name: 'Mr. Monir Hossain', dept: 'Transport', position: 'Senior Driver', phone: '' },
+  { name: 'Mr. Alauddin Shah', dept: 'Telephone', position: 'Senior Operator', phone: '' },
+  { name: 'Ms. Farhana Begum', dept: 'Female Hall', position: 'Assistant', phone: '' },
+  { name: 'Mr. Md. Jitu Mia', dept: 'Anthropology', position: 'Administrative Officer', phone: '' },
+  { name: 'Mr. Md. Taslim Dewan', dept: 'Registrar Office', position: 'Senior Guard', phone: '' },
+  { name: 'Mr. Imam Hossain', dept: '2nd Female Hall', position: 'Senior Guard', phone: '' },
+  { name: 'Mr. Abdur Rob', dept: 'Registrar Office', position: 'Security Assistant', phone: '' },
+  { name: 'Mr. Anisur Rahman', dept: 'VC Bungalow', position: 'Senior Gardener', phone: '' },
+  { name: 'Mr. Shahjahan Molla', dept: 'Industrial & Production Engineering', position: 'Office Attendant', phone: '' },
+  { name: 'Mr. Md. Sohel Ahmed', dept: 'Industrial & Production Engineering', position: 'Office Attendant', phone: '' }
 ];
 
 const DEFAULT_EVENTS = [
@@ -316,33 +318,102 @@ async function fetchFrontPageData() {
   return { content, culture, purpose };
 }
 
-// 2. PEOPLE DATA
+// 2. PEOPLE DATA (3 Primary Categories: members, teachers, staff)
 async function fetchPeopleData() {
   let executive = [ ...DEFAULT_EXECUTIVE_MEMBERS ];
   let generalOnly = [ ...DEFAULT_GENERAL_MEMBERS ];
   let teachers = [ ...DEFAULT_TEACHERS ];
   let staff = [ ...DEFAULT_STAFF ];
+  let members = [];
 
   if (supabaseClient) {
     try {
       const { data, error } = await supabaseClient.from('people').select('*').order('display_order', { ascending: true });
       if (!error && data && data.length > 0) {
-        executive = data.filter(p => p.category === 'executive');
-        generalOnly = data.filter(p => p.category === 'general');
+        // Unify all student members (member, executive, general)
+        members = data
+          .filter(p => p.category === 'member' || p.category === 'executive' || p.category === 'general')
+          .map(m => {
+            const rawPos = m.position && m.position.trim();
+            const pos = rawPos || (m.category === 'executive' ? (m.position || 'Executive Member') : 'General');
+            return {
+              ...m,
+              category: 'member',
+              position: pos,
+              email: m.email || '',
+              facebook_url: m.facebook_url || ''
+            };
+          });
+
         teachers = data.filter(p => p.category === 'teacher');
         staff = data.filter(p => p.category === 'staff');
+
+        executive = members.filter(m => m.position && m.position.toLowerCase() !== 'general' && m.position.toLowerCase() !== 'general member');
+        generalOnly = members.filter(m => !m.position || m.position.toLowerCase() === 'general' || m.position.toLowerCase() === 'general member');
       }
     } catch (e) {
       console.warn('Error querying people from Supabase, using fallback:', e);
     }
   }
 
-  const allGeneral = [
-    ...executive.map(m => ({ name: m.name, dept: m.dept, area: m.area, session: m.session })),
-    ...generalOnly
-  ];
+  if (!members || members.length === 0) {
+    const execMapped = DEFAULT_EXECUTIVE_MEMBERS.map(m => ({
+      ...m,
+      category: 'member',
+      position: m.position || 'Executive Member',
+      email: m.email || '',
+      facebook_url: m.facebook_url || ''
+    }));
+    const genMapped = DEFAULT_GENERAL_MEMBERS.map(m => ({
+      ...m,
+      category: 'member',
+      position: 'General',
+      email: m.email || '',
+      facebook_url: m.facebook_url || ''
+    }));
+    members = [...execMapped, ...genMapped];
+    teachers = [ ...DEFAULT_TEACHERS ];
+    staff = [ ...DEFAULT_STAFF ];
+  }
+
+  // 1. Sort Members by Session Ascending (e.g. 21-22, 22-23, 23-24, 24-25)
+  members.sort((a, b) => {
+    const sa = (a.session || '').trim();
+    const sb = (b.session || '').trim();
+    if (!sa && !sb) return 0;
+    if (!sa) return 1;
+    if (!sb) return -1;
+    return sa.localeCompare(sb, undefined, { numeric: true });
+  });
+
+  // 2. Sort Teachers Alphabetically by Department Name (Full Form)
+  teachers.sort((a, b) => {
+    const da = (a.dept || '').trim().toLowerCase();
+    const db = (b.dept || '').trim().toLowerCase();
+    return da.localeCompare(db);
+  });
+
+  // 3. Sort Staff Alphabetically by Department Name
+  staff.sort((a, b) => {
+    const da = (a.dept || '').trim().toLowerCase();
+    const db = (b.dept || '').trim().toLowerCase();
+    return da.localeCompare(db);
+  });
+
+  const allGeneral = members.map(m => ({
+    name: m.name,
+    dept: m.dept,
+    area: m.area,
+    session: m.session,
+    position: m.position || 'General',
+    email: m.email || '',
+    facebook_url: m.facebook_url || '',
+    photo_url: m.photo_url || ''
+  }));
 
   return {
+    members,
+    allMembers: members,
     executiveMembers: executive,
     generalMembersOnly: generalOnly,
     allGeneralMembers: allGeneral,
@@ -351,13 +422,13 @@ async function fetchPeopleData() {
   };
 }
 
-// 3. EVENTS DATA
+// 3. EVENTS DATA (Sorted by Date Recency Descending)
 async function fetchEventsData() {
   let events = [ ...DEFAULT_EVENTS ];
 
   if (supabaseClient) {
     try {
-      const { data, error } = await supabaseClient.from('events').select('*').order('display_order', { ascending: true });
+      const { data, error } = await supabaseClient.from('events').select('*');
       if (!error && data && data.length > 0) {
         events = data.map(ev => ({
           title: ev.title,
@@ -374,6 +445,14 @@ async function fetchEventsData() {
       console.warn('Error querying events from Supabase, using fallback:', e);
     }
   }
+
+  // Sort events by date recency (Most recent event first)
+  events.sort((a, b) => {
+    const timeA = new Date(a.date).getTime();
+    const timeB = new Date(b.date).getTime();
+    if (!isNaN(timeA) && !isNaN(timeB)) return timeB - timeA;
+    return 0;
+  });
 
   return events;
 }
@@ -443,9 +522,34 @@ async function applySiteSettings() {
   }
 }
 
+// Automatically apply footer contact information (email, Facebook page) across pages
+async function applyFooterContact() {
+  try {
+    const { content } = await fetchFrontPageData();
+    if (content) {
+      if (content.facebook_page_url) {
+        document.querySelectorAll('a[href*="facebook.com/AssociationOfChandpurSUST"], a.footer-facebook-link').forEach(a => {
+          a.href = content.facebook_page_url;
+        });
+      }
+      if (content.contact_email) {
+        document.querySelectorAll('a[href^="mailto:"], a.footer-email-link').forEach(a => {
+          a.href = `mailto:${content.contact_email}`;
+        });
+      }
+    }
+  } catch (err) {
+    console.debug('Failed to apply footer contacts:', err);
+  }
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', applySiteSettings);
+  document.addEventListener('DOMContentLoaded', () => {
+    applySiteSettings();
+    applyFooterContact();
+  });
 } else {
   applySiteSettings();
+  applyFooterContact();
 }
 
