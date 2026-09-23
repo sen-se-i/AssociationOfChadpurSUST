@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event - Association of Chandpur, SUST</title>
+<meta name="description" content="Event details and photo gallery of the Association of Chandpur at Shahjalal University of Science and Technology.">
+<link rel="icon" type="image/png" href="pictures/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html" id="navLogoLink">
+    <img src="pictures/logo.png" alt="Logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+    <div class="nav-logo-text">Association of Chandpur<span>SUST · Sylhet</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="members.html">Members</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="eventDetail" class="page-section">
+  <div class="page-hero page-hero-events">
+    <div class="page-hero-content">
+      <a href="events.html" class="back-link" id="backLink">← Back to Events</a>
+      <div class="section-label" id="eventDate">Loading...</div>
+      <h1 id="eventTitle">Loading Event...</h1>
+      <p id="eventLocation"></p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="event-detail-container">
+    <div class="event-detail-description" id="eventDescription"></div>
+    
+    <div class="event-detail-gallery-header">
+      <h2>📸 Photo Gallery</h2>
+      <span class="gallery-count" id="galleryCount"></span>
+    </div>
+    <div class="event-detail-gallery" id="eventGallery"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="pictures/logo.png" alt="Logo" style="width:50px;height:50px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+      <p>Association of Chandpur at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul>
+      <li><a href="https://www.facebook.com/AssociationOfChandpurSUST" target="_blank">Facebook Page</a></li>
+      <li><a href="mailto:association.of.chandpur.sust@gmail.com">Email Us</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Association of Chandpur · <span class="sust-tag">SUST, Sylhet</span></p>
+    <p>made by · <span class="sust-tag">Fahim Ahammad Tanvir</span></p>
+    <p>Land of Rivers · Land of Hilsha · Our Home</p>
+  </div>
+</footer>
+
+<!-- Lightbox with Download -->
+<div id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lb-arrow lb-prev" id="lbPrev">&#8592;</button>
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <div class="lightbox-img-wrap" id="lightboxContent"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class="lightbox-actions">
+      <button class="lb-download" id="lbDownload" title="Download Photo">⬇️ Download</button>
+    </div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+    <button class="lb-arrow lb-next" id="lbNext">&#8594;</button>
+  </div>
+  <div class="lightbox-backdrop-click" id="lbBackdrop"></div>
+</div>
+
+<!-- Supabase SDK & Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase_client.js"></script>
+
+<script>
+/* ─── LIGHTBOX STATE ─── */
+let lbItems = [], lbIndex = 0;
+
+function setLightboxItems(items, idx) {
+  lbItems = items; lbIndex = idx;
+  renderLightboxSlide();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderLightboxSlide() {
+  const item = lbItems[lbIndex];
+  const content = document.getElementById('lightboxContent');
+  document.getElementById('lightboxCaption').textContent = item.caption || '';
+  document.getElementById('lightboxCounter').textContent = lbItems.length > 1 ? `${lbIndex + 1} / ${lbItems.length}` : '';
+  document.getElementById('lbPrev').hidden = lbItems.length <= 1 || lbIndex === 0;
+  document.getElementById('lbNext').hidden = lbItems.length <= 1 || lbIndex === lbItems.length - 1;
+
+  if (item.emoji) {
+    content.innerHTML = `<div style="width:400px;height:300px;max-width:85vw;background:linear-gradient(160deg,#0a3d40,#1a6b7a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:3rem;border-radius:4px"><div style="font-size:5rem;opacity:0.5">${item.emoji}</div><div style="font-family:'Josefin Sans',sans-serif;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,216,216,0.45);text-align:center">${item.caption||''}</div></div>`;
+    document.getElementById('lbDownload').style.display = 'none';
+  } else {
+    content.innerHTML = `<img src="pictures/default.jpg" alt="Loading…" style="max-width:85vw;max-height:78vh;object-fit:contain;display:block;border-radius:4px;opacity:0.35">`;
+    document.getElementById('lbDownload').style.display = 'inline-flex';
+    const img = new Image();
+    img.onload = () => { content.innerHTML = `<img src="${item.src}" alt="${item.caption || ''}" style="max-width:85vw;max-height:78vh;object-fit:contain;display:block;border-radius:4px">`; };
+    img.onerror = () => { content.innerHTML = `<img src="pictures/default.jpg" alt="${item.caption || ''}" style="max-width:85vw;max-height:78vh;object-fit:contain;display:block;border-radius:4px">`; };
+    img.src = item.src;
+  }
+}
+
+function lightboxNav(dir) {
+  lbIndex = Math.max(0, Math.min(lbItems.length - 1, lbIndex + dir));
+  renderLightboxSlide();
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => { document.getElementById('lightboxContent').innerHTML = ''; }, 450);
+}
+
+async function downloadCurrentPhoto() {
+  const item = lbItems[lbIndex];
+  if (!item || !item.src) return;
+  try {
+    const response = await fetch(item.src);
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = item.caption ? item.caption.replace(/[^a-zA-Z0-9 ]/g, '').trim().replace(/\s+/g, '_') + '.jpg' : 'photo.jpg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    // Fallback: open in new tab
+    window.open(item.src, '_blank');
+  }
+}
+
+/* ─── LOAD EVENT DETAIL ─── */
+async function loadEventDetail() {
+  const params = new URLSearchParams(window.location.search);
+  const eventId = params.get('id');
+  
+  if (!eventId) {
+    document.getElementById('eventTitle').textContent = 'Event Not Found';
+    document.getElementById('eventDescription').innerHTML = '<p>No event ID provided. <a href="events.html">Go back to events</a></p>';
+    return;
+  }
+
+  // Try fetching by ID from Supabase first, fallback to local data
+  let event = null;
+  
+  if (typeof fetchEventById === 'function') {
+    event = await fetchEventById(parseInt(eventId));
+  }
+  
+  if (!event) {
+    // Fallback: load all events and find by index
+    const allEvents = await fetchEventsData();
+    const idx = parseInt(eventId);
+    // Try matching by id or by index
+    event = allEvents.find(e => e.id === idx) || allEvents[idx];
+  }
+  
+  if (!event) {
+    document.getElementById('eventTitle').textContent = 'Event Not Found';
+    document.getElementById('eventDescription').innerHTML = '<p>This event could not be found. <a href="events.html">Go back to events</a></p>';
+    return;
+  }
+
+  // Set page title
+  document.title = `${event.title} - Association of Chandpur, SUST`;
+  
+  // Populate content
+  document.getElementById('eventTitle').textContent = event.title;
+  document.getElementById('eventDate').textContent = `📅 ${event.date} · 📍 ${event.location}`;
+  document.getElementById('eventLocation').textContent = '';
+  document.getElementById('eventDescription').innerHTML = `<p>${event.description}</p>`;
+  
+  // Build gallery
+  const photos = event.photos || [];
+  const captions = event.captions || [];
+  const galleryItems = photos.map((p, i) => {
+    const isImg = isImageFile(p);
+    const src = isImg ? (p.startsWith('http') ? p : `pictures/events/${p}`) : '';
+    return {
+      src,
+      emoji: isImg ? '' : p,
+      caption: captions[i] || `${event.title} — Photo ${i + 1}`
+    };
+  });
+
+  document.getElementById('galleryCount').textContent = `${photos.filter(p => isImageFile(p)).length} photos`;
+
+  const galleryEl = document.getElementById('eventGallery');
+  galleryEl.innerHTML = photos.map((p, i) => {
+    const isImg = isImageFile(p);
+    if (isImg) {
+      const src = p.startsWith('http') ? p : `pictures/events/${p}`;
+      return `<div class="event-detail-photo" data-idx="${i}" title="Click to view">
+        <img src="${src}" alt="Photo ${i+1}" onerror="this.parentElement.innerHTML='📷'">
+        <div class="photo-overlay"><span>🔍 View</span></div>
+      </div>`;
+    } else {
+      return `<div class="event-detail-photo emoji-photo" data-idx="${i}" title="Click to view">
+        ${p}
+      </div>`;
+    }
+  }).join('');
+
+  // Click handlers for gallery
+  galleryEl.querySelectorAll('.event-detail-photo').forEach(el => {
+    el.addEventListener('click', () => {
+      setLightboxItems(galleryItems, parseInt(el.dataset.idx));
+    });
+  });
+
+  // Reveal animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* ─── INITIALIZATION ─── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  }
+
+  // Lightbox controls
+  document.getElementById('lbPrev').addEventListener('click', () => lightboxNav(-1));
+  document.getElementById('lbNext').addEventListener('click', () => lightboxNav(1));
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbBackdrop').addEventListener('click', closeLightbox);
+  document.getElementById('lbDownload').addEventListener('click', downloadCurrentPhoto);
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('mainNav').classList.add('scrolled');
+
+  loadEventDetail();
+});
+</script>
+</body>
+</html>

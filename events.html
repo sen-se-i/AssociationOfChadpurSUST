@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events - Association of Chandpur, SUST</title>
+<meta name="description" content="Events, tournaments, gatherings, and memories of the Association of Chandpur at Shahjalal University of Science and Technology.">
+<link rel="icon" type="image/png" href="pictures/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html" id="navLogoLink">
+    <img src="pictures/logo.png" alt="Logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+    <div class="nav-logo-text">Association of Chandpur<span>SUST · Sylhet</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="members.html">Members</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="events" class="page-section">
+  <div class="page-hero page-hero-events">
+    <div class="page-hero-content">
+      <div class="section-label">Moments & Memories</div>
+      <h1>Our <em style="font-style:italic;color:var(--gold-light)">Events</em></h1>
+      <p>Every gathering is a reunion. Every event, a celebration of who we are.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="events-container">
+    <div class="events-list" id="eventsList"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="pictures/logo.png" alt="Logo" style="width:50px;height:50px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+      <p>Association of Chandpur at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul>
+      <li><a href="https://www.facebook.com/AssociationOfChandpurSUST" target="_blank">Facebook Page</a></li>
+      <li><a href="mailto:association.of.chandpur.sust@gmail.com">Email Us</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Association of Chandpur · <span class="sust-tag">SUST, Sylhet</span></p>
+    <p>made by · <span class="sust-tag">Fahim Ahammad Tanvir</span></p>
+    <p>Land of Rivers · Land of Hilsha · Our Home</p>
+  </div>
+</footer>
+
+
+
+
+<!-- Supabase SDK & Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase_client.js"></script>
+
+<script>
+/* ─── RENDER EVENTS AS CARDS (link to event.html) ─── */
+async function loadAndRenderEvents() {
+  const events = await fetchEventsData();
+  const listEl = document.getElementById('eventsList');
+
+  // Store events with their IDs for lookup
+  // If events have 'id' from Supabase, use that; otherwise use index
+  listEl.innerHTML = events.map((ev, i) => {
+    const evId = ev.id || i;
+    const thumbHTML = isImageFile(ev.thumb)
+      ? `<div class="event-thumb"><img src="pictures/events/${ev.thumb}" alt=""></div>`
+      : `<div class="event-thumb">${ev.emoji || '🎭'}</div>`;
+
+    const cnt = ev.photos.filter(p => isImageFile(p)).length;
+
+    return `
+    <a href="event.html?id=${evId}" class="event-card-link">
+      <div class="event-card reveal" id="event-${i}">
+        <div class="event-header-static">
+          ${thumbHTML}
+          <div class="event-meta">
+            <div class="event-date">📅 ${ev.date} &nbsp;·&nbsp; 📍 ${ev.location}</div>
+            <h3>${ev.title}</h3>
+            <p>${cnt > 0 ? cnt + ' photos' : ev.photos.length + ' moments'} · click to view details</p>
+          </div>
+          <div class="event-arrow">→</div>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+
+  // Reveal observer
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* ─── INITIALIZATION ─── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile Hamburger
+  const hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  }
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('mainNav').classList.add('scrolled');
+
+  loadAndRenderEvents();
+});
+</script>
+</body>
+</html>

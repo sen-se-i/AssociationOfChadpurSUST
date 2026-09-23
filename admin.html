@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - ACSUST</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="pictures/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep-teal: #0a3d40;
+  --river-blue: #1a6b7a;
+  --gold: #c9963a;
+  --gold-light: #e8b84b;
+  --cream: #f5f0e8;
+  --warm-white: #faf7f2;
+  --dark: #0d1f1f;
+  --bg: #0f1a1a;
+  --bg-card: #142626;
+  --bg-card2: #1a3333;
+  --border: rgba(200,216,216,0.08);
+  --border-gold: rgba(201,150,58,0.3);
+  --text: #e0eeee;
+  --text-dim: rgba(200,216,216,0.6);
+  --text-muted: rgba(200,216,216,0.35);
+  --danger: #e74c3c;
+  --success: #27ae60;
+  --ts: cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--river-blue);border-radius:3px;}
+a{color:var(--gold);text-decoration:none;}
+
+/* ─── LOGIN ─── */
+.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;background:radial-gradient(ellipse at 30% 40%,rgba(26,107,122,0.15),transparent 60%),var(--bg);}
+.login-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:3rem;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.login-card .logo{display:flex;align-items:center;gap:12px;margin-bottom:2.5rem;}
+.login-card .logo img{width:48px;height:48px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.3);}
+.login-card .logo-text{font-weight:700;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream);}
+.login-card .logo-text span{display:block;font-weight:400;font-size:0.7rem;color:var(--gold);letter-spacing:0.15em;}
+.login-card h1{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;color:var(--cream);}
+.login-card p{font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.4rem;}
+.form-input{width:100%;padding:12px 16px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:0.9rem;font-family:inherit;transition:all 0.3s var(--ts);outline:none;}
+.form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,150,58,0.1);}
+.form-input::placeholder{color:var(--text-muted);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border:none;border-radius:8px;font-family:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.3s var(--ts);letter-spacing:0.05em;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep-teal);width:100%;padding:14px;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,150,58,0.35);}
+.btn-gold:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-sm{padding:8px 16px;font-size:0.75rem;border-radius:6px;}
+.btn-outline-gold{background:transparent;border:1.5px solid var(--border-gold);color:var(--gold);}
+.btn-outline-gold:hover{background:rgba(201,150,58,0.1);}
+.btn-teal{background:var(--river-blue);color:white;}
+.btn-teal:hover{background:#1f7d8f;}
+.btn-danger{background:var(--danger);color:white;}
+.btn-danger:hover{background:#c0392b;}
+.btn-ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border);}
+.btn-ghost:hover{background:rgba(255,255,255,0.05);color:var(--text);}
+.login-error{background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;color:#e74c3c;font-size:0.82rem;margin-bottom:1rem;display:none;}
+
+/* ─── DASHBOARD LAYOUT ─── */
+.dashboard{display:none;min-height:100vh;}
+.dash-header{height:60px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);}
+.dash-header .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream);}
+.dash-header .logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;}
+.dash-header-right{display:flex;align-items:center;gap:1rem;}
+.dash-user{font-size:0.78rem;color:var(--text-dim);}
+.dash-body{display:flex;min-height:calc(100vh - 60px);}
+.dash-sidebar{width:240px;background:var(--bg-card);border-right:1px solid var(--border);padding:1.5rem 0;flex-shrink:0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 1.5rem;font-size:0.82rem;font-weight:500;color:var(--text-dim);cursor:pointer;transition:all 0.2s;border-left:3px solid transparent;}
+.sidebar-item:hover{background:rgba(255,255,255,0.03);color:var(--text);}
+.sidebar-item.active{background:rgba(201,150,58,0.08);color:var(--gold);border-left-color:var(--gold);}
+.sidebar-item .icon{font-size:1.1rem;width:24px;text-align:center;}
+.sidebar-divider{height:1px;background:var(--border);margin:1rem 1.5rem;}
+.sidebar-label{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);padding:0.5rem 1.5rem;margin-top:0.5rem;}
+.dash-main{flex:1;padding:2rem;overflow-x:hidden;}
+.dash-section{display:none;}
+.dash-section.active{display:block;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
+.section-header h2{font-size:1.4rem;font-weight:700;color:var(--cream);}
+.section-header p{font-size:0.82rem;color:var(--text-dim);margin-top:0.3rem;}
+
+/* ─── CARDS & TABLES ─── */
+.admin-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.admin-card h3{font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.admin-card h3 .badge{font-size:0.65rem;font-weight:600;background:rgba(201,150,58,0.15);color:var(--gold);padding:3px 8px;border-radius:20px;}
+.content-row{display:flex;align-items:flex-start;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--border);}
+.content-row:last-child{border-bottom:none;}
+.content-row .label{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);min-width:140px;padding-top:0.3rem;}
+.content-row .value{flex:1;}
+.content-row .value textarea,.content-row .value input{width:100%;padding:8px 12px;background:var(--bg);border:1.5px solid var(--border);border-radius:6px;color:var(--text);font-size:0.85rem;font-family:inherit;resize:vertical;outline:none;transition:border-color 0.3s;}
+.content-row .value textarea:focus,.content-row .value input:focus{border-color:var(--gold);}
+.content-row .value textarea{min-height:60px;}
+.content-row .actions{display:flex;gap:0.5rem;padding-top:0.2rem;}
+
+.data-table{width:100%;border-collapse:collapse;}
+.data-table th{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);}
+.data-table td{padding:10px 12px;font-size:0.85rem;border-bottom:1px solid var(--border);vertical-align:middle;}
+.data-table tr:hover{background:rgba(255,255,255,0.02);}
+.member-thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;background:var(--bg-card2);}
+.category-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:20px;display:inline-block;}
+.cat-executive{background:rgba(201,150,58,0.15);color:var(--gold);}
+.cat-general{background:rgba(26,107,122,0.2);color:#5ec6d8;}
+.cat-teacher{background:rgba(39,174,96,0.15);color:#27ae60;}
+.cat-staff{background:rgba(142,68,173,0.15);color:#9b59b6;}
+
+/* ─── MODAL ─── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:2rem;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-card);z-index:1;border-radius:16px 16px 0 0;}
+.modal-header h3{font-size:1.1rem;font-weight:700;color:var(--cream);}
+.modal-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.05);border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
+.modal-close:hover{background:rgba(231,76,60,0.2);color:var(--danger);}
+.modal-body{padding:1.5rem;}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:0.8rem;}
+
+/* ─── TOAST ─── */
+.toast-container{position:fixed;top:72px;right:1rem;z-index:99999;display:flex;flex-direction:column;gap:0.5rem;}
+.toast{padding:12px 20px;border-radius:10px;font-size:0.82rem;font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,0.3);animation:toastIn 0.35s var(--ts) forwards;max-width:360px;}
+.toast.success{background:rgba(39,174,96,0.95);color:white;}
+.toast.error{background:rgba(231,76,60,0.95);color:white;}
+.toast.removing{animation:toastOut 0.3s var(--ts) forwards;}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
+@keyframes toastOut{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(40px);}}
+
+/* ─── PHOTO UPLOAD ─── */
+.photo-upload-area{width:100%;min-height:120px;border:2px dashed var(--border);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;cursor:pointer;transition:all 0.3s;padding:1rem;}
+.photo-upload-area:hover{border-color:var(--gold);background:rgba(201,150,58,0.05);}
+.photo-upload-area .icon{font-size:2rem;opacity:0.5;}
+.photo-upload-area .text{font-size:0.78rem;color:var(--text-dim);}
+.photo-preview{width:80px;height:80px;border-radius:8px;object-fit:cover;border:2px solid var(--border);}
+.photo-preview-lg{width:120px;height:120px;border-radius:12px;object-fit:cover;border:2px solid var(--border);}
+
+/* ─── LOGO SECTION ─── */
+.logo-preview-section{display:flex;align-items:center;gap:2rem;padding:1.5rem;background:var(--bg);border-radius:10px;}
+.logo-preview-section img{width:80px;height:80px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.3);border:2px solid var(--border-gold);}
+
+/* ─── EVENT PHOTOS GRID ─── */
+.event-photos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:0.8rem;margin-top:1rem;}
+.event-photo-item{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.event-photo-item img{width:100%;height:100%;object-fit:cover;}
+.event-photo-item .remove-photo{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(231,76,60,0.9);border:none;color:white;font-size:0.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
+.event-photo-item:hover .remove-photo{opacity:1;}
+
+/* ─── FILTER TABS ─── */
+.filter-tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.filter-tab{padding:7px 16px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;transition:all 0.3s;border:1.5px solid var(--border);background:transparent;color:var(--text-dim);}
+.filter-tab:hover{background:rgba(255,255,255,0.05);}
+.filter-tab.active{background:rgba(201,150,58,0.15);border-color:var(--border-gold);color:var(--gold);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .dash-sidebar{display:none;}
+  .dash-main{padding:1rem;}
+  .modal{max-width:95vw;margin:1rem;}
+  .dash-header{padding:0 1rem;}
+  .content-row{flex-direction:column;}
+  .content-row .label{min-width:unset;}
+}
+
+.loading-spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LOGIN SCREEN ═══════════════ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="logo">
+      <img src="pictures/logo.png" alt="Logo">
+      <div class="logo-text">ACSUST<span>Admin Panel</span></div>
+    </div>
+    <h1>Welcome Back</h1>
+    <p>Sign in to manage the Association of Chandpur SUST website</p>
+    <div class="login-error" id="loginError"></div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-input" id="loginEmail" placeholder="admin@example.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-input" id="loginPassword" placeholder="Enter password" autocomplete="current-password">
+    </div>
+    <button class="btn btn-gold" id="loginBtn" onclick="handleLogin()">Sign In</button>
+  </div>
+</div>
+
+<!-- ═══════════════ DASHBOARD ═══════════════ -->
+<div class="dashboard" id="dashboard">
+  <!-- Header -->
+  <div class="dash-header">
+    <div class="logo">
+      <img src="pictures/logo.png" alt="Logo" id="dashLogo">
+      ACSUST Admin
+    </div>
+    <div class="dash-header-right">
+      <span class="dash-user" id="dashUser"></span>
+      <button class="btn btn-sm btn-ghost" onclick="handleLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <!-- Sidebar -->
+    <div class="dash-sidebar">
+      <div class="sidebar-label">Management</div>
+      <div class="sidebar-item active" data-section="site-settings" onclick="switchSection(this)">
+        <span class="icon">⚙️</span> Site Settings
+      </div>
+      <div class="sidebar-item" data-section="content-mgmt" onclick="switchSection(this)">
+        <span class="icon">📝</span> Page Content
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item" data-section="members-mgmt" onclick="switchSection(this)">
+        <span class="icon">👥</span> Members
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item" data-section="events-mgmt" onclick="switchSection(this)">
+        <span class="icon">📅</span> Events
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="dash-main">
+
+      <!-- ═══ SITE SETTINGS SECTION ═══ -->
+      <div class="dash-section active" id="site-settings">
+        <div class="section-header">
+          <div>
+            <h2>⚙️ Site Settings</h2>
+            <p>Manage logo and global website settings</p>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h3>🖼️ Website Logo</h3>
+          <div class="logo-preview-section">
+            <img src="pictures/logo.png" alt="Current Logo" id="currentLogo">
+            <div>
+              <p style="font-size:0.85rem;margin-bottom:0.8rem;color:var(--text-dim)">Upload a new logo. It will update across all pages.</p>
+              <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="uploadLogo(this)">
+              <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('logoFileInput').click()">📷 Upload New Logo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card" style="margin-top: 1.5rem;">
+          <h3>🌐 Backend API Server URL</h3>
+          <p style="font-size:0.85rem;margin-bottom:1rem;color:var(--text-dim)">Render-এ ডিপ্লয় করার পর আপনার লাইভ ব্যাকএন্ড লিঙ্কটি এখানে দিন (যেমন: <code>https://acsust-backend.onrender.com</code>)। লোকাল টেস্টিংয়ের জন্য <code>http://localhost:3001</code> থাকবে।</p>
+          <div style="display:flex;gap:10px;max-width:550px;">
+            <input type="text" id="apiBaseInput" class="form-input" placeholder="http://localhost:3001">
+            <button class="btn btn-sm btn-gold" onclick="saveApiBase()">Save URL</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ CONTENT MANAGEMENT SECTION ═══ -->
+      <div class="dash-section" id="content-mgmt">
+        <div class="section-header">
+          <div>
+            <h2>📝 Page Content</h2>
+            <p>Edit all text content on the homepage</p>
+          </div>
+        </div>
+        <div id="contentSections"></div>
+      </div>
+
+      <!-- ═══ MEMBERS MANAGEMENT SECTION ═══ -->
+      <div class="dash-section" id="members-mgmt">
+        <div class="section-header">
+          <div>
+            <h2>👥 Members Management</h2>
+            <p>Add, edit, or remove members</p>
+          </div>
+          <button class="btn btn-sm btn-teal" onclick="openMemberModal()">+ Add Member</button>
+        </div>
+        <div class="filter-tabs" id="memberFilterTabs">
+          <button class="filter-tab active" data-cat="all" onclick="filterMembers('all',this)">All</button>
+          <button class="filter-tab" data-cat="executive" onclick="filterMembers('executive',this)">Executive</button>
+          <button class="filter-tab" data-cat="general" onclick="filterMembers('general',this)">General</button>
+          <button class="filter-tab" data-cat="teacher" onclick="filterMembers('teacher',this)">Teachers</button>
+          <button class="filter-tab" data-cat="staff" onclick="filterMembers('staff',this)">Staff</button>
+        </div>
+        <div class="admin-card" style="overflow-x:auto;">
+          <table class="data-table" id="membersTable">
+            <thead>
+              <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Department</th>
+                <th>Position</th>
+                <th>Session</th>
+                <th>Area</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="membersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ EVENTS MANAGEMENT SECTION ═══ -->
+      <div class="dash-section" id="events-mgmt">
+        <div class="section-header">
+          <div>
+            <h2>📅 Events Management</h2>
+            <p>Add, edit, or remove events</p>
+          </div>
+          <button class="btn btn-sm btn-teal" onclick="openEventModal()">+ Add Event</button>
+        </div>
+        <div id="eventsListAdmin"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MEMBER MODAL ═══════════════ -->
+<div class="modal-overlay" id="memberModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="memberModalTitle">Add Member</h3>
+      <button class="modal-close" onclick="closeMemberModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="memberEditId">
+      <div class="form-group">
+        <label>Category *</label>
+        <select class="form-input" id="memberCategory">
+          <option value="executive">Executive</option>
+          <option value="general">General Member</option>
+          <option value="teacher">Teacher</option>
+          <option value="staff">Staff</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Name *</label>
+        <input type="text" class="form-input" id="memberName" placeholder="Full name">
+      </div>
+      <div class="form-group">
+        <label>Department *</label>
+        <input type="text" class="form-input" id="memberDept" placeholder="e.g. Computer Science & Engineering">
+      </div>
+      <div class="form-group">
+        <label>Position</label>
+        <input type="text" class="form-input" id="memberPosition" placeholder="e.g. President, Professor">
+      </div>
+      <div class="form-group">
+        <label>Session</label>
+        <input type="text" class="form-input" id="memberSession" placeholder="e.g. 23-24">
+      </div>
+      <div class="form-group">
+        <label>Area / Home</label>
+        <input type="text" class="form-input" id="memberArea" placeholder="e.g. Chandpur Sadar">
+      </div>
+      <div class="form-group">
+        <label>Display Order</label>
+        <input type="number" class="form-input" id="memberOrder" placeholder="0" value="0">
+      </div>
+      <div class="form-group">
+        <label>Bio</label>
+        <textarea class="form-input" id="memberBio" placeholder="Short bio (optional)" rows="2"></textarea>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:1.2rem 0;padding-top:1.2rem;">
+        <label style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.8rem;display:block;">Social Links</label>
+        <div class="form-group">
+          <label>🔵 Facebook URL</label>
+          <input type="url" class="form-input" id="memberFacebook" placeholder="https://facebook.com/...">
+        </div>
+        <div class="form-group">
+          <label>📸 Instagram URL</label>
+          <input type="url" class="form-input" id="memberInstagram" placeholder="https://instagram.com/...">
+        </div>
+        <div class="form-group">
+          <label>📧 Email</label>
+          <input type="email" class="form-input" id="memberEmail" placeholder="member@email.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Profile Photo</label>
+        <input type="file" id="memberPhotoFile" accept="image/*" style="display:none" onchange="previewMemberPhoto(this)">
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <img src="pictures/default.jpg" alt="" class="photo-preview" id="memberPhotoPreview" onerror="this.src='pictures/default.jpg'">
+          <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('memberPhotoFile').click()">📷 Choose Photo</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-ghost" onclick="closeMemberModal()">Cancel</button>
+      <button class="btn btn-sm btn-gold" id="memberSaveBtn" onclick="saveMember()">Save Member</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ EVENT MODAL ═══════════════ -->
+<div class="modal-overlay" id="eventModal">
+  <div class="modal" style="max-width:700px;">
+    <div class="modal-header">
+      <h3 id="eventModalTitle">Add Event</h3>
+      <button class="modal-close" onclick="closeEventModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="eventEditId">
+      <div class="form-group">
+        <label>Title *</label>
+        <input type="text" class="form-input" id="eventTitle" placeholder="Event name">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group">
+          <label>Date *</label>
+          <input type="text" class="form-input" id="eventDate" placeholder="e.g. July 4, 2026">
+        </div>
+        <div class="form-group">
+          <label>Location *</label>
+          <input type="text" class="form-input" id="eventLocation" placeholder="e.g. SUST Campus">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description *</label>
+        <textarea class="form-input" id="eventDescription" rows="5" placeholder="Event description (HTML allowed, use <br> for line breaks)"></textarea>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group">
+          <label>Emoji</label>
+          <input type="text" class="form-input" id="eventEmoji" placeholder="e.g. ⚽ 🎭">
+        </div>
+        <div class="form-group">
+          <label>Display Order</label>
+          <input type="number" class="form-input" id="eventOrder" placeholder="0" value="0">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Thumbnail</label>
+        <input type="file" id="eventThumbFile" accept="image/*" style="display:none" onchange="previewEventThumb(this)">
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <img src="" alt="" class="photo-preview" id="eventThumbPreview" style="display:none" onerror="this.style.display='none'">
+          <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('eventThumbFile').click()">📷 Choose Thumbnail</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Gallery Photos</label>
+        <input type="file" id="eventPhotosFile" accept="image/*" multiple style="display:none" onchange="addEventPhotos(this)">
+        <button class="btn btn-sm btn-outline-gold" onclick="document.getElementById('eventPhotosFile').click()">📷 Add Photos</button>
+        <div class="event-photos-grid" id="eventPhotosGrid"></div>
+      </div>
+      <div class="form-group">
+        <label>Captions (one per line, matches photo order)</label>
+        <textarea class="form-input" id="eventCaptions" rows="3" placeholder="Caption for photo 1&#10;Caption for photo 2&#10;..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-ghost" onclick="closeEventModal()">Cancel</button>
+      <button class="btn btn-sm btn-gold" id="eventSaveBtn" onclick="saveEvent()">Save Event</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════════
+   CONFIG — Set your backend URL here
+   ══════════════════════════════════════════════════════════════════════════════ */
+const API_BASE = localStorage.getItem('ACS_API_BASE') || 'http://localhost:3001';
+
+let authToken = localStorage.getItem('acs_admin_token') || null;
+let allMembers = [];
+let currentMemberFilter = 'all';
+let eventPhotosList = []; // {url, isNew, file?}
+
+/* ─── HELPER: Fetch with auth ─── */
+async function apiFetch(path, options = {}) {
+  const headers = { 'Content-Type': 'application/json', ...options.headers };
+  if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+  
+  const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  const data = await res.json();
+  
+  if (!res.ok || data.success === false) {
+    throw new Error(data.error || 'Request failed');
+  }
+  return data;
+}
+
+async function apiUpload(path, file, folder) {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('folder', folder);
+  
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${authToken}` },
+    body: formData
+  });
+  const data = await res.json();
+  if (!res.ok || data.success === false) throw new Error(data.error || 'Upload failed');
+  return data;
+}
+
+/* ─── TOAST ─── */
+function showToast(message, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `${type === 'success' ? '✅' : '❌'} ${message}`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.classList.add('removing'); setTimeout(() => toast.remove(), 300); }, 3500);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   AUTH
+   ══════════════════════════════════════════════════════════════════════════════ */
+async function handleLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const errorEl = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+
+  if (!email || !password) {
+    errorEl.textContent = 'Please enter both email and password';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span> Signing in...';
+  errorEl.style.display = 'none';
+
+  try {
+    const result = await apiFetch('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password })
+    });
+    authToken = result.data.access_token;
+    localStorage.setItem('acs_admin_token', authToken);
+    showDashboard(result.data.user.email);
+    showToast('Welcome back!');
+  } catch (err) {
+    errorEl.textContent = err.message || 'Login failed. Check your credentials.';
+    errorEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Sign In';
+  }
+}
+
+async function checkExistingSession() {
+  if (!authToken) return;
+  try {
+    const result = await apiFetch('/api/auth/me');
+    showDashboard(result.data.email);
+  } catch {
+    localStorage.removeItem('acs_admin_token');
+    authToken = null;
+  }
+}
+
+function handleLogout() {
+  localStorage.removeItem('acs_admin_token');
+  authToken = null;
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+function showDashboard(email) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('dashUser').textContent = email;
+  loadAllData();
+}
+
+// Allow Enter key to submit login
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('loginScreen').style.display !== 'none') {
+    handleLogin();
+  }
+});
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   NAVIGATION
+   ══════════════════════════════════════════════════════════════════════════════ */
+function switchSection(el) {
+  document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(el.dataset.section).classList.add('active');
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   DATA LOADING
+   ══════════════════════════════════════════════════════════════════════════════ */
+async function loadAllData() {
+  await Promise.all([
+    loadSettings(),
+    loadContent(),
+    loadMembers(),
+    loadEvents()
+  ]);
+}
+
+/* ─── SETTINGS ─── */
+async function loadSettings() {
+  const apiInput = document.getElementById('apiBaseInput');
+  if (apiInput) apiInput.value = API_BASE;
+
+  try {
+    const result = await apiFetch('/api/settings');
+    const settings = {};
+    (result.data || []).forEach(s => settings[s.key] = s.value);
+    if (settings.logo_url) {
+      document.getElementById('currentLogo').src = settings.logo_url;
+    }
+  } catch (err) {
+    console.warn('Could not load settings:', err);
+  }
+}
+
+function saveApiBase() {
+  const val = document.getElementById('apiBaseInput').value.trim();
+  if (!val) {
+    showToast('Please enter a valid URL', 'error');
+    return;
+  }
+  localStorage.setItem('ACS_API_BASE', val);
+  showToast('Backend API URL saved! Reloading...', 'success');
+  setTimeout(() => location.reload(), 1000);
+}
+
+async function uploadLogo(input) {
+  if (!input.files || !input.files[0]) return;
+  try {
+    showToast('Uploading logo...', 'success');
+    const result = await apiUpload('/api/upload', input.files[0], 'logo');
+    await apiFetch('/api/settings/logo_url', {
+      method: 'PUT',
+      body: JSON.stringify({ value: result.data.url })
+    });
+    document.getElementById('currentLogo').src = result.data.url;
+    showToast('Logo updated successfully!');
+  } catch (err) {
+    showToast('Failed to upload logo: ' + err.message, 'error');
+  }
+}
+
+/* ─── CONTENT ─── */
+async function loadContent() {
+  try {
+    const result = await apiFetch('/api/content');
+    const sections = {};
+    (result.data || []).forEach(item => {
+      const sec = item.section || 'other';
+      if (!sections[sec]) sections[sec] = [];
+      sections[sec].push(item);
+    });
+
+    const container = document.getElementById('contentSections');
+    container.innerHTML = '';
+    
+    const sectionNames = { hero: '🦸 Hero Section', about: '📖 About Section', culture: '🎭 Culture Section', purpose: '🎯 Purpose Section', footer: '🔻 Footer Section' };
+    
+    Object.keys(sections).sort().forEach(sec => {
+      const card = document.createElement('div');
+      card.className = 'admin-card';
+      card.innerHTML = `<h3>${sectionNames[sec] || sec} <span class="badge">${sections[sec].length} items</span></h3>`;
+      
+      sections[sec].forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'content-row';
+        const isLong = item.content.length > 80;
+        row.innerHTML = `
+          <div class="label">${item.label || item.key}</div>
+          <div class="value">
+            ${isLong 
+              ? `<textarea data-key="${item.key}">${item.content}</textarea>`
+              : `<input type="text" data-key="${item.key}" value="${item.content.replace(/"/g,'&quot;')}">`
+            }
+          </div>
+          <div class="actions">
+            <button class="btn btn-sm btn-outline-gold" onclick="saveContent('${item.key}', this)">Save</button>
+          </div>`;
+        card.appendChild(row);
+      });
+      
+      container.appendChild(card);
+    });
+
+    // Also load culture & purpose cards
+    await loadCultureCards();
+    await loadPurposeCards();
+  } catch (err) {
+    showToast('Failed to load content: ' + err.message, 'error');
+  }
+}
+
+async function saveContent(key, btn) {
+  const input = document.querySelector(`[data-key="${key}"]`);
+  if (!input) return;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span>';
+  try {
+    await apiFetch(`/api/content/${key}`, {
+      method: 'PUT',
+      body: JSON.stringify({ content: input.value })
+    });
+    showToast(`"${key}" updated successfully!`);
+  } catch (err) {
+    showToast('Failed to save: ' + err.message, 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Save';
+}
+
+async function loadCultureCards() {
+  try {
+    const result = await apiFetch('/api/culture-cards');
+    const container = document.getElementById('contentSections');
+    const card = document.createElement('div');
+    card.className = 'admin-card';
+    card.innerHTML = `<h3>🎭 Culture Cards <span class="badge">${(result.data||[]).length} cards</span></h3>`;
+    
+    (result.data || []).forEach(c => {
+      const row = document.createElement('div');
+      row.className = 'content-row';
+      row.innerHTML = `
+        <div class="label" style="min-width:40px;font-size:1.5rem;">${c.icon}</div>
+        <div class="value" style="display:flex;flex-direction:column;gap:0.5rem;">
+          <input type="text" value="${c.icon}" placeholder="Icon" style="max-width:80px" data-cc-icon="${c.id}">
+          <input type="text" value="${c.title}" placeholder="Title" data-cc-title="${c.id}">
+          <textarea data-cc-desc="${c.id}" rows="2">${c.description}</textarea>
+        </div>
+        <div class="actions" style="flex-direction:column;gap:0.3rem;">
+          <button class="btn btn-sm btn-outline-gold" onclick="saveCultureCard(${c.id}, this)">Save</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteCultureCard(${c.id})">🗑️</button>
+        </div>`;
+      card.appendChild(row);
+    });
+    container.appendChild(card);
+  } catch (err) { console.warn(err); }
+}
+
+async function saveCultureCard(id, btn) {
+  btn.disabled = true;
+  try {
+    await apiFetch(`/api/culture-cards/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        icon: document.querySelector(`[data-cc-icon="${id}"]`).value,
+        title: document.querySelector(`[data-cc-title="${id}"]`).value,
+        description: document.querySelector(`[data-cc-desc="${id}"]`).value
+      })
+    });
+    showToast('Culture card updated!');
+  } catch (err) { showToast(err.message, 'error'); }
+  btn.disabled = false;
+}
+
+async function deleteCultureCard(id) {
+  if (!confirm('Delete this culture card?')) return;
+  try {
+    await apiFetch(`/api/culture-cards/${id}`, { method: 'DELETE' });
+    showToast('Culture card deleted!');
+    loadContent();
+  } catch (err) { showToast(err.message, 'error'); }
+}
+
+async function loadPurposeCards() {
+  try {
+    const result = await apiFetch('/api/purpose-cards');
+    const container = document.getElementById('contentSections');
+    const card = document.createElement('div');
+    card.className = 'admin-card';
+    card.innerHTML = `<h3>🎯 Purpose Cards <span class="badge">${(result.data||[]).length} cards</span></h3>`;
+    
+    (result.data || []).forEach(c => {
+      const row = document.createElement('div');
+      row.className = 'content-row';
+      row.innerHTML = `
+        <div class="label" style="min-width:40px;font-size:1.5rem;font-weight:800;color:var(--text-muted);">${c.step_num}</div>
+        <div class="value" style="display:flex;flex-direction:column;gap:0.5rem;">
+          <input type="text" value="${c.step_num}" placeholder="Step #" style="max-width:80px" data-pc-num="${c.id}">
+          <input type="text" value="${c.title}" placeholder="Title" data-pc-title="${c.id}">
+          <textarea data-pc-desc="${c.id}" rows="2">${c.description}</textarea>
+        </div>
+        <div class="actions" style="flex-direction:column;gap:0.3rem;">
+          <button class="btn btn-sm btn-outline-gold" onclick="savePurposeCard(${c.id}, this)">Save</button>
+          <button class="btn btn-sm btn-danger" onclick="deletePurposeCard(${c.id})">🗑️</button>
+        </div>`;
+      card.appendChild(row);
+    });
+    container.appendChild(card);
+  } catch (err) { console.warn(err); }
+}
+
+async function savePurposeCard(id, btn) {
+  btn.disabled = true;
+  try {
+    await apiFetch(`/api/purpose-cards/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        step_num: document.querySelector(`[data-pc-num="${id}"]`).value,
+        title: document.querySelector(`[data-pc-title="${id}"]`).value,
+        description: document.querySelector(`[data-pc-desc="${id}"]`).value
+      })
+    });
+    showToast('Purpose card updated!');
+  } catch (err) { showToast(err.message, 'error'); }
+  btn.disabled = false;
+}
+
+async function deletePurposeCard(id) {
+  if (!confirm('Delete this purpose card?')) return;
+  try {
+    await apiFetch(`/api/purpose-cards/${id}`, { method: 'DELETE' });
+    showToast('Purpose card deleted!');
+    loadContent();
+  } catch (err) { showToast(err.message, 'error'); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   MEMBERS
+   ══════════════════════════════════════════════════════════════════════════════ */
+async function loadMembers() {
+  try {
+    const result = await apiFetch('/api/members');
+    allMembers = result.data || [];
+    renderMembersTable();
+  } catch (err) {
+    showToast('Failed to load members: ' + err.message, 'error');
+  }
+}
+
+function renderMembersTable() {
+  const filtered = currentMemberFilter === 'all'
+    ? allMembers
+    : allMembers.filter(m => m.category === currentMemberFilter);
+  
+  const tbody = document.getElementById('membersTableBody');
+  tbody.innerHTML = filtered.map(m => {
+    const photoSrc = m.photo_url || `pictures/${nameToFilename(m.name)}.jpg`;
+    const catClass = `cat-${m.category}`;
+    return `<tr>
+      <td><img src="${photoSrc}" alt="" class="member-thumb" onerror="this.src='pictures/default.jpg'"></td>
+      <td><strong>${m.name}</strong></td>
+      <td><span class="category-tag ${catClass}">${m.category}</span></td>
+      <td>${m.dept}</td>
+      <td>${m.position || '—'}</td>
+      <td>${m.session || '—'}</td>
+      <td>${m.area || '—'}</td>
+      <td>
+        <div style="display:flex;gap:0.4rem;">
+          <button class="btn btn-sm btn-outline-gold" onclick="editMember(${m.id})">✏️</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteMember(${m.id},'${m.name.replace(/'/g,"\\'")}')">🗑️</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function filterMembers(cat, el) {
+  currentMemberFilter = cat;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderMembersTable();
+}
+
+function openMemberModal(member = null) {
+  document.getElementById('memberEditId').value = '';
+  document.getElementById('memberModalTitle').textContent = 'Add Member';
+  document.getElementById('memberCategory').value = 'general';
+  document.getElementById('memberName').value = '';
+  document.getElementById('memberDept').value = '';
+  document.getElementById('memberPosition').value = '';
+  document.getElementById('memberSession').value = '';
+  document.getElementById('memberArea').value = '';
+  document.getElementById('memberOrder').value = '0';
+  document.getElementById('memberBio').value = '';
+  document.getElementById('memberFacebook').value = '';
+  document.getElementById('memberInstagram').value = '';
+  document.getElementById('memberEmail').value = '';
+  document.getElementById('memberPhotoPreview').src = 'pictures/default.jpg';
+  document.getElementById('memberPhotoFile').value = '';
+  
+  if (member) {
+    document.getElementById('memberEditId').value = member.id;
+    document.getElementById('memberModalTitle').textContent = 'Edit Member';
+    document.getElementById('memberCategory').value = member.category;
+    document.getElementById('memberName').value = member.name;
+    document.getElementById('memberDept').value = member.dept;
+    document.getElementById('memberPosition').value = member.position || '';
+    document.getElementById('memberSession').value = member.session || '';
+    document.getElementById('memberArea').value = member.area || '';
+    document.getElementById('memberOrder').value = member.display_order || 0;
+    document.getElementById('memberBio').value = member.bio || '';
+    document.getElementById('memberFacebook').value = member.facebook_url || '';
+    document.getElementById('memberInstagram').value = member.instagram_url || '';
+    document.getElementById('memberEmail').value = member.email || '';
+    const photoSrc = member.photo_url || `pictures/${nameToFilename(member.name)}.jpg`;
+    document.getElementById('memberPhotoPreview').src = photoSrc;
+  }
+  
+  document.getElementById('memberModal').classList.add('active');
+}
+
+function closeMemberModal() {
+  document.getElementById('memberModal').classList.remove('active');
+}
+
+function editMember(id) {
+  const member = allMembers.find(m => m.id === id);
+  if (member) openMemberModal(member);
+}
+
+function previewMemberPhoto(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => document.getElementById('memberPhotoPreview').src = e.target.result;
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+async function saveMember() {
+  const btn = document.getElementById('memberSaveBtn');
+  const editId = document.getElementById('memberEditId').value;
+  const name = document.getElementById('memberName').value.trim();
+  const dept = document.getElementById('memberDept').value.trim();
+  
+  if (!name || !dept) {
+    showToast('Name and Department are required', 'error');
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span> Saving...';
+  
+  try {
+    // Upload photo if new file selected
+    let photoUrl = '';
+    const photoFile = document.getElementById('memberPhotoFile').files[0];
+    if (photoFile) {
+      const uploadResult = await apiUpload('/api/upload', photoFile, 'members');
+      photoUrl = uploadResult.data.url;
+    }
+    
+    const memberData = {
+      category: document.getElementById('memberCategory').value,
+      name, dept,
+      position: document.getElementById('memberPosition').value.trim(),
+      session: document.getElementById('memberSession').value.trim(),
+      area: document.getElementById('memberArea').value.trim(),
+      display_order: parseInt(document.getElementById('memberOrder').value) || 0,
+      bio: document.getElementById('memberBio').value.trim(),
+      facebook_url: document.getElementById('memberFacebook').value.trim(),
+      instagram_url: document.getElementById('memberInstagram').value.trim(),
+      email: document.getElementById('memberEmail').value.trim()
+    };
+    
+    if (photoUrl) memberData.photo_url = photoUrl;
+    
+    if (editId) {
+      await apiFetch(`/api/members/${editId}`, { method: 'PUT', body: JSON.stringify(memberData) });
+      showToast(`${name} updated successfully!`);
+    } else {
+      await apiFetch('/api/members', { method: 'POST', body: JSON.stringify(memberData) });
+      showToast(`${name} added successfully!`);
+    }
+    
+    closeMemberModal();
+    await loadMembers();
+  } catch (err) {
+    showToast('Failed to save: ' + err.message, 'error');
+  }
+  
+  btn.disabled = false;
+  btn.textContent = 'Save Member';
+}
+
+async function deleteMember(id, name) {
+  if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
+  try {
+    await apiFetch(`/api/members/${id}`, { method: 'DELETE' });
+    showToast(`${name} deleted.`);
+    await loadMembers();
+  } catch (err) {
+    showToast('Failed to delete: ' + err.message, 'error');
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   EVENTS
+   ══════════════════════════════════════════════════════════════════════════════ */
+async function loadEvents() {
+  try {
+    const result = await apiFetch('/api/events');
+    renderEventsAdmin(result.data || []);
+  } catch (err) {
+    showToast('Failed to load events: ' + err.message, 'error');
+  }
+}
+
+function renderEventsAdmin(events) {
+  const container = document.getElementById('eventsListAdmin');
+  container.innerHTML = events.map(ev => {
+    const thumbSrc = ev.thumb 
+      ? (ev.thumb.startsWith('http') ? ev.thumb : `pictures/events/${ev.thumb}`)
+      : '';
+    const photoCount = Array.isArray(ev.photos) ? ev.photos.length : 0;
+    return `
+    <div class="admin-card" style="display:flex;gap:1.5rem;align-items:center;">
+      ${thumbSrc ? `<img src="${thumbSrc}" style="width:100px;height:70px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none'">` : `<div style="width:100px;height:70px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">${ev.emoji||'📅'}</div>`}
+      <div style="flex:1;min-width:0;">
+        <h3 style="font-size:1rem;margin-bottom:0.2rem;">${ev.title}</h3>
+        <p style="font-size:0.78rem;color:var(--text-dim);">📅 ${ev.date_text} · 📍 ${ev.location} · 📸 ${photoCount} photos</p>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-shrink:0;">
+        <button class="btn btn-sm btn-outline-gold" onclick="editEvent(${ev.id})">✏️ Edit</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteEvent(${ev.id},'${ev.title.replace(/'/g,"\\'")}')">🗑️</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openEventModal(event = null) {
+  document.getElementById('eventEditId').value = '';
+  document.getElementById('eventModalTitle').textContent = 'Add Event';
+  document.getElementById('eventTitle').value = '';
+  document.getElementById('eventDate').value = '';
+  document.getElementById('eventLocation').value = '';
+  document.getElementById('eventDescription').value = '';
+  document.getElementById('eventEmoji').value = '🎭';
+  document.getElementById('eventOrder').value = '0';
+  document.getElementById('eventCaptions').value = '';
+  document.getElementById('eventThumbPreview').style.display = 'none';
+  document.getElementById('eventThumbFile').value = '';
+  document.getElementById('eventPhotosFile').value = '';
+  eventPhotosList = [];
+  renderEventPhotosGrid();
+  
+  if (event) {
+    document.getElementById('eventEditId').value = event.id;
+    document.getElementById('eventModalTitle').textContent = 'Edit Event';
+    document.getElementById('eventTitle').value = event.title;
+    document.getElementById('eventDate').value = event.date_text;
+    document.getElementById('eventLocation').value = event.location;
+    document.getElementById('eventDescription').value = event.description;
+    document.getElementById('eventEmoji').value = event.emoji || '';
+    document.getElementById('eventOrder').value = event.display_order || 0;
+    
+    const captions = Array.isArray(event.captions) ? event.captions : [];
+    document.getElementById('eventCaptions').value = captions.join('\n');
+    
+    if (event.thumb) {
+      const thumbSrc = event.thumb.startsWith('http') ? event.thumb : `pictures/events/${event.thumb}`;
+      document.getElementById('eventThumbPreview').src = thumbSrc;
+      document.getElementById('eventThumbPreview').style.display = 'block';
+    }
+    
+    const photos = Array.isArray(event.photos) ? event.photos : [];
+    eventPhotosList = photos.map(p => ({
+      url: p.startsWith('http') ? p : `pictures/events/${p}`,
+      path: p,
+      isNew: false
+    }));
+    renderEventPhotosGrid();
+  }
+  
+  document.getElementById('eventModal').classList.add('active');
+}
+
+function closeEventModal() {
+  document.getElementById('eventModal').classList.remove('active');
+}
+
+async function editEvent(id) {
+  try {
+    const result = await apiFetch(`/api/events/${id}`);
+    openEventModal(result.data);
+  } catch (err) {
+    showToast('Failed to load event: ' + err.message, 'error');
+  }
+}
+
+function previewEventThumb(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('eventThumbPreview').src = e.target.result;
+      document.getElementById('eventThumbPreview').style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function addEventPhotos(input) {
+  if (!input.files) return;
+  Array.from(input.files).forEach(file => {
+    const url = URL.createObjectURL(file);
+    eventPhotosList.push({ url, isNew: true, file });
+  });
+  renderEventPhotosGrid();
+  input.value = '';
+}
+
+function removeEventPhoto(index) {
+  eventPhotosList.splice(index, 1);
+  renderEventPhotosGrid();
+}
+
+function renderEventPhotosGrid() {
+  const grid = document.getElementById('eventPhotosGrid');
+  grid.innerHTML = eventPhotosList.map((p, i) => `
+    <div class="event-photo-item">
+      <img src="${p.url}" alt="Photo ${i+1}" onerror="this.src='pictures/default.jpg'">
+      <button class="remove-photo" onclick="removeEventPhoto(${i})">✕</button>
+    </div>
+  `).join('');
+}
+
+async function saveEvent() {
+  const btn = document.getElementById('eventSaveBtn');
+  const editId = document.getElementById('eventEditId').value;
+  const title = document.getElementById('eventTitle').value.trim();
+  const dateText = document.getElementById('eventDate').value.trim();
+  const location = document.getElementById('eventLocation').value.trim();
+  const description = document.getElementById('eventDescription').value.trim();
+  
+  if (!title || !dateText || !location || !description) {
+    showToast('Title, Date, Location, and Description are required', 'error');
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span> Saving...';
+  
+  try {
+    // Upload thumbnail if new file
+    let thumbPath = '';
+    const thumbFile = document.getElementById('eventThumbFile').files[0];
+    if (thumbFile) {
+      const thumbResult = await apiUpload('/api/upload', thumbFile, 'events');
+      thumbPath = thumbResult.data.url;
+    }
+    
+    // Upload new photos
+    const photoPaths = [];
+    for (const p of eventPhotosList) {
+      if (p.isNew && p.file) {
+        const uploadResult = await apiUpload('/api/upload', p.file, 'events');
+        photoPaths.push(uploadResult.data.url);
+      } else {
+        photoPaths.push(p.path || p.url);
+      }
+    }
+    
+    const captionLines = document.getElementById('eventCaptions').value.trim();
+    const captions = captionLines ? captionLines.split('\n').map(c => c.trim()) : [];
+    
+    const eventData = {
+      title, date_text: dateText, location, description,
+      emoji: document.getElementById('eventEmoji').value.trim() || '🎭',
+      display_order: parseInt(document.getElementById('eventOrder').value) || 0,
+      photos: photoPaths,
+      captions
+    };
+    
+    if (thumbPath) eventData.thumb = thumbPath;
+    else if (!editId && photoPaths.length > 0) eventData.thumb = photoPaths[0];
+    
+    if (editId) {
+      await apiFetch(`/api/events/${editId}`, { method: 'PUT', body: JSON.stringify(eventData) });
+      showToast(`"${title}" updated successfully!`);
+    } else {
+      await apiFetch('/api/events', { method: 'POST', body: JSON.stringify(eventData) });
+      showToast(`"${title}" created successfully!`);
+    }
+    
+    closeEventModal();
+    await loadEvents();
+  } catch (err) {
+    showToast('Failed to save event: ' + err.message, 'error');
+  }
+  
+  btn.disabled = false;
+  btn.textContent = 'Save Event';
+}
+
+async function deleteEvent(id, title) {
+  if (!confirm(`Delete event "${title}"? This cannot be undone.`)) return;
+  try {
+    await apiFetch(`/api/events/${id}`, { method: 'DELETE' });
+    showToast(`Event "${title}" deleted.`);
+    await loadEvents();
+  } catch (err) {
+    showToast('Failed to delete: ' + err.message, 'error');
+  }
+}
+
+/* ─── UTILS ─── */
+function nameToFilename(n) {
+  return n.trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+}
+
+/* ─── INIT ─── */
+document.addEventListener('DOMContentLoaded', () => {
+  checkExistingSession();
+});
+</script>
+</body>
+</html>

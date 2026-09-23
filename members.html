@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members - Association of Chandpur, SUST</title>
+<meta name="description" content="Members and leadership of the Association of Chandpur at Shahjalal University of Science and Technology.">
+<link rel="icon" type="image/png" href="pictures/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html" id="navLogoLink">
+    <img src="pictures/logo.png" alt="Logo" style="width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+    <div class="nav-logo-text">Association of Chandpur<span>SUST · Sylhet</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="members.html" class="active">Members</a></li>
+    <li><a href="events.html">Events</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="members" class="page-section">
+  <div class="page-hero page-hero-members">
+    <div class="page-hero-content">
+      <div class="section-label">The People of Chandpur at SUST</div>
+      <h1>Our <em style="font-style:italic;color:var(--gold-light)">Members</em></h1>
+      <p>100+ strong. One community. From every corner of Chandpur district.</p>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="members-section">
+    <h2>Executive Committee</h2>
+    <p class="section-desc">The elected leadership guiding the association</p>
+    <div class="members-grid" id="executiveGrid"></div>
+
+    <hr class="members-divider">
+
+    <h2>General Members</h2>
+    <p class="section-desc">Our vibrant community of students — sorted by session, then name</p>
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label for="deptFilter">Department</label>
+        <select class="filter-select" id="deptFilter"><option value="all">All Departments</option></select>
+      </div>
+      <div class="filter-group">
+        <label for="areaFilter">Area</label>
+        <select class="filter-select" id="areaFilter"><option value="all">All Areas</option></select>
+      </div>
+      <div class="filter-group">
+        <label for="sessionFilter">Session</label>
+        <select class="filter-select" id="sessionFilter"><option value="all">All Sessions</option></select>
+      </div>
+      <button class="filter-reset" id="filterReset">Reset</button>
+      <span class="members-count" id="membersCount"></span>
+    </div>
+
+    <div id="generalMembersContainer"></div>
+
+    <hr class="members-divider">
+
+    <h2>Teachers from Chandpur</h2>
+    <p class="section-desc">Faculty members at SUST hailing from our beloved district</p>
+    <div class="teachers-grid" id="teachersGrid"></div>
+
+    <hr class="members-divider" style="margin-bottom:2rem">
+
+    <h2>Staff from Chandpur</h2>
+    <p class="section-desc">University staff members who are proud Chandpur sons and daughters</p>
+    <div class="teachers-grid" id="staffGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="pictures/logo.png" alt="Logo" style="width:50px;height:50px;border-radius:50%;object-fit:cover;box-shadow:0 4px 16px rgba(201,150,58,0.4);">
+      <p>Association of Chandpur at SUST — uniting the voices of a river district within the halls of Shahjalal University of Science and Technology, Sylhet.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul>
+      <li><a href="https://www.facebook.com/AssociationOfChandpurSUST" target="_blank">Facebook Page</a></li>
+      <li><a href="mailto:association.of.chandpur.sust@gmail.com">Email Us</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Association of Chandpur · <span class="sust-tag">SUST, Sylhet</span></p>
+    <p>made by · <span class="sust-tag">Fahim Ahammad Tanvir</span></p>
+    <p>Land of Rivers · Land of Hilsha · Our Home</p>
+  </div>
+</footer>
+
+<!-- Member Profile Modal -->
+<div id="memberProfileModal" class="member-modal-overlay">
+  <div class="member-modal-backdrop" onclick="closeMemberProfile()"></div>
+  <div class="member-modal">
+    <button class="member-modal-close" onclick="closeMemberProfile()">✕</button>
+    <div class="member-modal-photo" id="profilePhoto">
+      <img src="pictures/default.jpg" alt="">
+    </div>
+    <div class="member-modal-info">
+      <div class="member-modal-position" id="profilePosition"></div>
+      <h2 id="profileName">Member Name</h2>
+      <div class="member-modal-dept" id="profileDept">Department</div>
+      <div class="member-modal-details">
+        <span id="profileSession"></span>
+        <span id="profileArea"></span>
+      </div>
+      <div class="member-modal-bio" id="profileBio"></div>
+      <div class="member-modal-socials" id="profileSocials"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Supabase SDK & Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase_client.js"></script>
+
+<script>
+/* ─── MEMBER PROFILE MODAL ─── */
+let allMembersData = []; // Store all member objects for profile lookup
+
+function openMemberProfile(memberData) {
+  const modal = document.getElementById('memberProfileModal');
+  const photoSrc = memberData.photo_url || `pictures/${nameToFilename(memberData.name)}.jpg`;
+  
+  document.querySelector('#profilePhoto img').src = photoSrc;
+  document.querySelector('#profilePhoto img').onerror = function() { this.src = 'pictures/default.jpg'; };
+  document.getElementById('profileName').textContent = memberData.name;
+  document.getElementById('profileDept').textContent = memberData.dept;
+  
+  const posEl = document.getElementById('profilePosition');
+  if (memberData.position) {
+    posEl.textContent = memberData.position;
+    posEl.style.display = 'inline-block';
+  } else {
+    posEl.style.display = 'none';
+  }
+  
+  const sessEl = document.getElementById('profileSession');
+  if (memberData.session) {
+    sessEl.innerHTML = `🎓 Session ${memberData.session}`;
+    sessEl.style.display = 'inline-flex';
+  } else {
+    sessEl.style.display = 'none';
+  }
+  
+  const areaEl = document.getElementById('profileArea');
+  if (memberData.area) {
+    areaEl.innerHTML = `📍 ${memberData.area}`;
+    areaEl.style.display = 'inline-flex';
+  } else {
+    areaEl.style.display = 'none';
+  }
+
+  const bioEl = document.getElementById('profileBio');
+  if (memberData.bio) {
+    bioEl.textContent = memberData.bio;
+    bioEl.style.display = 'block';
+  } else {
+    bioEl.style.display = 'none';
+  }
+  
+  // Social links
+  const socialsEl = document.getElementById('profileSocials');
+  let socialsHTML = '';
+  if (memberData.facebook_url) {
+    socialsHTML += `<a href="${memberData.facebook_url}" target="_blank" class="social-link social-facebook" title="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>`;
+  }
+  if (memberData.instagram_url) {
+    socialsHTML += `<a href="${memberData.instagram_url}" target="_blank" class="social-link social-instagram" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>`;
+  }
+  if (memberData.email) {
+    socialsHTML += `<a href="mailto:${memberData.email}" class="social-link social-email" title="Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>`;
+  }
+  
+  if (socialsHTML) {
+    socialsEl.innerHTML = socialsHTML;
+    socialsEl.style.display = 'flex';
+  } else {
+    socialsEl.style.display = 'none';
+  }
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMemberProfile() {
+  document.getElementById('memberProfileModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+/* ─── SORT & CARD BUILDERS ─── */
+function sessionKey(s) {
+  if (!s) return 9999;
+  return parseInt(s.replace('-', ''), 10);
+}
+
+function sortMembers(arr) {
+  return [...arr].sort((a, b) => {
+    const sd = sessionKey(a.session) - sessionKey(b.session);
+    return sd !== 0 ? sd : a.name.localeCompare(b.name);
+  });
+}
+
+function memberCardHTML(m, showBadge, memberIdx) {
+  const file = nameToFilename(m.name);
+  const photoSrc = m.photo_url || `pictures/${file}.jpg`;
+  const badge = showBadge && m.position ? `<div class="member-position-badge">${m.position}</div>` : '';
+  const sessTag = m.session ? `<span class="member-session-tag">Session ${m.session}</span>` : '';
+  return `
+  <div class="member-card reveal" data-dept="${m.dept}" data-area="${m.area || ''}" data-session="${m.session || ''}" data-member-idx="${memberIdx}">
+    ${badge}
+    <div class="member-photo-wrap" title="View profile">
+      <img src="${photoSrc}" alt="${m.name}" onerror="this.src='pictures/default.jpg';this.onerror=null;">
+    </div>
+    <div class="member-info">
+      <h3>${m.name}</h3>
+      <span class="member-dept">${m.dept}</span>
+      ${sessTag}
+      <div class="member-home">${m.area || ''}</div>
+    </div>
+  </div>`;
+}
+
+function teacherCardHTML(t, memberIdx) {
+  const file = nameToFilename(t.name);
+  const photoSrc = t.photo_url || `pictures/${file}.jpg`;
+  return `
+  <div class="teacher-card reveal" data-member-idx="${memberIdx}">
+    <div class="teacher-photo-wrap" title="View profile">
+      <img src="${photoSrc}" alt="${t.name}" onerror="this.src='pictures/default.jpg';this.onerror=null;">
+    </div>
+    <div class="teacher-info">
+      <h3>${t.name}</h3>
+      <span class="teacher-dept">${t.dept}</span>
+      <span class="teacher-position">${t.position}</span>
+    </div>
+  </div>`;
+}
+
+let allGeneralMembersList = [];
+
+/* ─── RENDER MEMBERS FROM DATA ─── */
+async function loadAndRenderMembers() {
+  const data = await fetchPeopleData();
+  const executiveMembers = data.executiveMembers;
+  const teachers = data.teachers;
+  const staffMembers = data.staffMembers;
+  allGeneralMembersList = data.allGeneralMembers;
+
+  // Store ALL members for profile lookup
+  allMembersData = [...executiveMembers, ...data.generalMembersOnly, ...teachers, ...staffMembers];
+
+  document.getElementById('executiveGrid').innerHTML =
+    executiveMembers.map((m, i) => {
+      const idx = allMembersData.indexOf(m);
+      return memberCardHTML(m, true, idx);
+    }).join('');
+
+  const sorted = sortMembers(allGeneralMembersList);
+
+  const sessions = [...new Set(sorted.map(m => m.session || 'Unknown'))];
+  const container = document.getElementById('generalMembersContainer');
+  container.innerHTML = sessions.map(sess => {
+    const group = sorted.filter(m => (m.session || 'Unknown') === sess);
+    const grid = group.map(m => {
+      // Find index in allMembersData
+      let idx = allMembersData.findIndex(am => am.name === m.name && am.dept === m.dept);
+      if (idx === -1) { allMembersData.push(m); idx = allMembersData.length - 1; }
+      return memberCardHTML(m, false, idx);
+    }).join('');
+    return `<div class="session-group" data-session-group="${sess}">
+      <div class="session-header">
+        <span class="session-label-tag">Session ${sess}</span>
+        <div class="session-line"></div>
+      </div>
+      <div class="members-grid">${grid}</div>
+    </div>`;
+  }).join('');
+
+  populateFilters(sorted);
+  updateCount(sorted.length, sorted.length);
+
+  document.getElementById('teachersGrid').innerHTML =
+    teachers.map((t, i) => {
+      const idx = allMembersData.indexOf(t);
+      return teacherCardHTML(t, idx);
+    }).join('');
+
+  document.getElementById('staffGrid').innerHTML =
+    staffMembers.map((s, i) => {
+      const idx = allMembersData.indexOf(s);
+      return teacherCardHTML(s, idx);
+    }).join('');
+
+  // Attach click listeners to open profile modal
+  document.querySelectorAll('.member-card, .teacher-card').forEach(el => {
+    el.addEventListener('click', function() {
+      const idx = parseInt(this.dataset.memberIdx);
+      if (!isNaN(idx) && allMembersData[idx]) {
+        openMemberProfile(allMembersData[idx]);
+      }
+    });
+  });
+
+  // Reveal observer
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+function populateFilters(sorted) {
+  const depts = [...new Set(sorted.map(m => m.dept))].sort();
+  const areas = [...new Set(sorted.map(m => m.area).filter(Boolean))].sort();
+  const sessions = [...new Set(sorted.map(m => m.session).filter(Boolean))];
+
+  const dSel = document.getElementById('deptFilter');
+  dSel.innerHTML = '<option value="all">All Departments</option>';
+  depts.forEach(d => { const o = document.createElement('option'); o.value = d; o.textContent = d; dSel.appendChild(o); });
+
+  const aSel = document.getElementById('areaFilter');
+  aSel.innerHTML = '<option value="all">All Areas</option>';
+  areas.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = a; aSel.appendChild(o); });
+
+  const sSel = document.getElementById('sessionFilter');
+  sSel.innerHTML = '<option value="all">All Sessions</option>';
+  sessions.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = `Session ${s}`; sSel.appendChild(o); });
+}
+
+function applyFilters() {
+  const dept = document.getElementById('deptFilter').value;
+  const area = document.getElementById('areaFilter').value;
+  const sess = document.getElementById('sessionFilter').value;
+  let vis = 0, tot = 0;
+  document.querySelectorAll('.session-group').forEach(grp => {
+    const sm = sess === 'all' || grp.dataset.sessionGroup === sess;
+    let gv = 0;
+    grp.querySelectorAll('.member-card').forEach(card => {
+      tot++;
+      const show = (dept === 'all' || card.dataset.dept === dept) && (area === 'all' || card.dataset.area === area) && sm;
+      card.style.display = show ? '' : 'none';
+      if (show) { vis++; gv++; }
+    });
+    grp.style.display = gv > 0 ? '' : 'none';
+  });
+  updateCount(vis, tot);
+}
+
+function resetFilters() {
+  ['deptFilter', 'areaFilter', 'sessionFilter'].forEach(id => document.getElementById(id).value = 'all');
+  document.querySelectorAll('.session-group').forEach(g => g.style.display = '');
+  document.querySelectorAll('.member-card').forEach(c => c.style.display = '');
+  updateCount(allGeneralMembersList.length, allGeneralMembersList.length);
+}
+
+function updateCount(v, t) {
+  document.getElementById('membersCount').textContent = v === t ? `${t} members` : `${v} of ${t} members`;
+}
+
+/* ─── INITIALIZATION ─── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile Hamburger
+  const hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  }
+
+  // Filter dropdown listeners
+  document.getElementById('deptFilter').addEventListener('change', applyFilters);
+  document.getElementById('areaFilter').addEventListener('change', applyFilters);
+  document.getElementById('sessionFilter').addEventListener('change', applyFilters);
+  document.getElementById('filterReset').addEventListener('click', resetFilters);
+
+  // Profile modal close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMemberProfile();
+  });
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  document.getElementById('mainNav').classList.add('scrolled');
+
+  loadAndRenderMembers();
+});
+</script>
+</body>
+</html>
