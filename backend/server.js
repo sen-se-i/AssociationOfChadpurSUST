@@ -327,33 +327,50 @@ app.get('/api/members/:id', async (req, res) => {
 
 // POST /api/members — Add new member
 app.post('/api/members', requireAuth, async (req, res) => {
-  const { category, name, dept, area, position, session, photo_url, display_order, facebook_url, instagram_url, email, bio } = req.body;
-  const { data, error } = await supabaseAdmin
-    .from('people')
-    .insert({
-      category, name, dept,
-      area: area || '', position: position || '', session: session || '',
-      photo_url: photo_url || '', display_order: display_order || 0,
-      facebook_url: facebook_url || '', instagram_url: instagram_url || '',
-      email: email || '', bio: bio || ''
-    })
-    .select();
+  const { category, name, dept, area, position, session, photo_url, display_order, facebook_url, instagram_url, email, bio, phone } = req.body;
+  const payload = {
+    category, name, dept,
+    area: area || '', position: position || '', session: session || '',
+    photo_url: photo_url || '', display_order: display_order || 0,
+    facebook_url: facebook_url || '', instagram_url: instagram_url || '',
+    email: email || '', bio: bio || ''
+  };
+  if (phone !== undefined) payload.phone = phone || '';
+
+  let { data, error } = await supabaseAdmin.from('people').insert(payload).select();
+  if (error && error.message && error.message.includes("'phone'")) {
+    delete payload.phone;
+    const retry = await supabaseAdmin.from('people').insert(payload).select();
+    data = retry.data;
+    error = retry.error;
+  }
   sendResult(res, data, error);
 });
 
 // PUT /api/members/:id — Update member
 app.put('/api/members/:id', requireAuth, async (req, res) => {
   const updates = {};
-  const fields = ['category', 'name', 'dept', 'area', 'position', 'session', 'photo_url', 'display_order', 'facebook_url', 'instagram_url', 'email', 'bio'];
+  const fields = ['category', 'name', 'dept', 'area', 'position', 'session', 'photo_url', 'display_order', 'facebook_url', 'instagram_url', 'email', 'bio', 'phone'];
   fields.forEach(f => {
     if (req.body[f] !== undefined) updates[f] = req.body[f];
   });
 
-  const { data, error } = await supabaseAdmin
+  let { data, error } = await supabaseAdmin
     .from('people')
     .update(updates)
     .eq('id', req.params.id)
     .select();
+    
+  if (error && error.message && error.message.includes("'phone'")) {
+    delete updates.phone;
+    const retry = await supabaseAdmin
+      .from('people')
+      .update(updates)
+      .eq('id', req.params.id)
+      .select();
+    data = retry.data;
+    error = retry.error;
+  }
   sendResult(res, data, error);
 });
 

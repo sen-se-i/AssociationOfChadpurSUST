@@ -1440,7 +1440,17 @@ a { color: var(--gold-light); text-decoration: none; }
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div class="form-group">
           <label>Area / Upazila</label>
-          <input type="text" class="form-input" id="memberArea" placeholder="e.g. Chandpur Sadar / Matlab / Haziganj">
+          <select class="form-input" id="memberArea">
+            <option value="">Select Upazila</option>
+            <option value="Chandpur Sadar">Chandpur Sadar</option>
+            <option value="Faridganj">Faridganj</option>
+            <option value="Haimchar">Haimchar</option>
+            <option value="Hajiganj">Hajiganj</option>
+            <option value="Kachua">Kachua</option>
+            <option value="Matlab Dakshin">Matlab Dakshin</option>
+            <option value="Matlab Uttar">Matlab Uttar</option>
+            <option value="Shahrasti">Shahrasti</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Phone / Contact Number</label>
@@ -2258,6 +2268,35 @@ const SUST_DEPARTMENTS = [
   'Statistics'
 ];
 
+const DEFAULT_TEACHER_PHONES = {
+  'saiful': '8801972448030',
+  'zakir': '8801711140801',
+  'nazmul': '8801767013458',
+  'jasim': '8801715055869',
+  'hannan': '8801731247170',
+  'masud': '8801770340474',
+  'majumder': '8801815107547',
+  'nilufa': '8801711013131',
+  'rezaul': '8801750200968',
+  'razaul': '8801750200968',
+  'towfiq': '8801715018035',
+  'shoeb': '8801787501398',
+  'shaiful': '8801717466578',
+  'syamul': '8801307486552',
+  'ravhee': '8801675868645',
+  'mahabub': '8801837572299',
+  'mahin': '8801580380279'
+};
+
+function resolveTeacherPhone(name, phone) {
+  if (phone && phone.trim()) return phone.trim();
+  const lower = (name || '').toLowerCase();
+  for (const [key, p] of Object.entries(DEFAULT_TEACHER_PHONES)) {
+    if (lower.includes(key)) return p;
+  }
+  return '';
+}
+
 async function loadMembers() {
   try {
     const result = await apiFetch('/api/members');
@@ -2266,11 +2305,12 @@ async function loadMembers() {
       let cat = m.category;
       if (cat === 'executive' || cat === 'general') cat = 'member';
       const pos = m.position && m.position.trim() ? m.position.trim() : (cat === 'member' ? 'General Member' : '');
+      const phone = cat === 'teacher' ? resolveTeacherPhone(m.name, m.phone) : (m.phone || '');
       return { 
         ...m, 
         category: cat, 
         position: pos,
-        phone: m.phone || ''
+        phone: phone
       };
     });
   } catch (err) {
@@ -2291,14 +2331,14 @@ async function loadMembers() {
 
 function applyDefaultMemberSort() {
   if (currentMemberFilter === 'member') {
-    // Sort students by session ascending (e.g. 21-22 < 22-23 < 23-24)
+    // Sort students by session descending (newest first, e.g. 26-27, 25-26, 24-25, 23-24, 22-23, 21-22)
     allMembers.sort((a, b) => {
       const sa = (a.session || '').trim();
       const sb = (b.session || '').trim();
       if (!sa && !sb) return 0;
       if (!sa) return 1;
       if (!sb) return -1;
-      return sa.localeCompare(sb, undefined, { numeric: true });
+      return sb.localeCompare(sa, undefined, { numeric: true });
     });
   } else {
     // Sort teachers & staff alphabetically by department name
@@ -2530,7 +2570,20 @@ function openMemberModal(member = null) {
     }
 
     document.getElementById('memberSession').value = member.session || '';
-    document.getElementById('memberArea').value = member.area || '';
+    const areaVal = (member.area || '').trim();
+    const areaEl = document.getElementById('memberArea');
+    if (areaVal.toLowerCase() === 'haziganj' || areaVal.toLowerCase() === 'hajiganj') {
+      areaEl.value = 'Hajiganj';
+    } else {
+      areaEl.value = areaVal;
+    }
+    if (areaVal && !areaEl.value) {
+      const opt = document.createElement('option');
+      opt.value = areaVal;
+      opt.textContent = areaVal;
+      areaEl.appendChild(opt);
+      areaEl.value = areaVal;
+    }
     document.getElementById('memberPhone').value = member.phone || '';
     document.getElementById('memberEmail').value = member.email || '';
     document.getElementById('memberFacebook').value = member.facebook_url || '';

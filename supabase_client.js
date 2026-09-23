@@ -152,7 +152,31 @@ const DEFAULT_GENERAL_MEMBERS = [
   {name:'Mishkat Jahan Mithila', dept:'Public Administration', area:'Chandpur Sadar', session:'24-25'},
   {name:'Md Sabbir Ahmed Osmani', dept:'Political Studies', area:'Kachua', session:'24-25'},
   {name:'Sabrina Sarmin Tanisha', dept:'Social Work', area:'Chandpur Sadar', session:'24-25'},
-  {name:'Saiem Qibria', dept:'Industrial & Production Engineering', area:'Matlab Uttar', session:'24-25'}
+  {name:'Saiem Qibria', dept:'Industrial & Production Engineering', area:'Matlab Uttar', session:'24-25'},
+  {name:'Bushra Ahmed', dept:'Sociology', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Ishrat Jahan Esha', dept:'Civil & Environmental Engineering', area:'Hajiganj', session:'25-26'},
+  {name:'Tahiyat Nuren Ohi', dept:'Statistics', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Fouzia Farook', dept:'Mechanical Engineering', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Rouzatun rumman', dept:'Petroleum & Mining Engineering', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Nusaiba Binte Zaman', dept:'Industrial & Production Engineering', area:'Shahrasti', session:'25-26'},
+  {name:'Sushanto das', dept:'Bangla', area:'Shahrasti', session:'25-26'},
+  {name:'Apurbo Raihan', dept:'Physics', area:'Shahrasti', session:'25-26'},
+  {name:'Md Sajjadul Karim Sinha', dept:'Physics', area:'Matlab Uttar', session:'25-26'},
+  {name:'Sadman Sakib Sami', dept:'English', area:'Matlab Uttar', session:'25-26'},
+  {name:'MD Wasif Patwary', dept:'Software Engineering', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Abrar Zahin', dept:'Business Administration', area:'Matlab Uttar', session:'25-26'},
+  {name:'Tasin Ibrahim', dept:'Business Administration', area:'Kachua', session:'25-26'},
+  {name:'Abdullah Al Noman Bhuiyan', dept:'Sociology', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Tahsin Mostofa', dept:'Civil & Environmental Engineering', area:'Shahrasti', session:'25-26'},
+  {name:'Pronoy Shil Om', dept:'Civil & Environmental Engineering', area:'Hajiganj', session:'25-26'},
+  {name:'Simanta biswas', dept:'Chemistry', area:'Matlab Uttar', session:'25-26'},
+  {name:'Joynal Abedin', dept:'Biochemistry and Molecular Biology', area:'Matlab Uttar', session:'25-26'},
+  {name:'Mahmudul Alam Anik', dept:'Electrical & Electronic Engineering', area:'Hajiganj', session:'25-26'},
+  {name:'Ashraful Alam Ishti', dept:'Computer Science & Engineering', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Nabil ahmad talukder', dept:'Statistics', area:'Matlab Uttar', session:'25-26'},
+  {name:'Aurnob Saha', dept:'Statistics', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Ahmed Farhaz Khan', dept:'Statistics', area:'Chandpur Sadar', session:'25-26'},
+  {name:'Md. Fahmi Alam', dept:'Industrial & Production Engineering', area:'Shahrasti', session:'25-26'}
 ];
 
 const DEFAULT_TEACHERS = [
@@ -345,7 +369,19 @@ async function fetchPeopleData() {
             };
           });
 
-        teachers = data.filter(p => p.category === 'teacher');
+        teachers = data.filter(p => p.category === 'teacher').map(t => {
+          const normT = (t.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+          const matched = DEFAULT_TEACHERS.find(dt => {
+            const normDT = dt.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+            return normDT === normT || normDT.includes(normT) || normT.includes(normDT)
+              || normDT.replace('rezaul', 'razaul') === normT || normDT === normT.replace('razaul', 'rezaul')
+              || normDT.replace('pradhan', '').trim() === normT;
+          });
+          return {
+            ...t,
+            phone: (t.phone && t.phone.trim()) ? t.phone.trim() : (matched ? matched.phone : '')
+          };
+        });
         staff = data.filter(p => p.category === 'staff');
 
         executive = members.filter(m => m.position && m.position.toLowerCase() !== 'general' && m.position.toLowerCase() !== 'general member');
@@ -376,14 +412,14 @@ async function fetchPeopleData() {
     staff = [ ...DEFAULT_STAFF ];
   }
 
-  // 1. Sort Members by Session Ascending (e.g. 21-22, 22-23, 23-24, 24-25)
+  // 1. Sort Members by Session Descending (Newest first, e.g. 26-27, 25-26, 24-25, 23-24, 22-23, 21-22)
   members.sort((a, b) => {
     const sa = (a.session || '').trim();
     const sb = (b.session || '').trim();
     if (!sa && !sb) return 0;
     if (!sa) return 1;
     if (!sb) return -1;
-    return sa.localeCompare(sb, undefined, { numeric: true });
+    return sb.localeCompare(sa, undefined, { numeric: true });
   });
 
   // 2. Sort Teachers Alphabetically by Department Name (Full Form)

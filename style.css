@@ -216,7 +216,8 @@ nav.scrolled{background:rgba(10,61,64,0.97);backdrop-filter:blur(20px);box-shado
 .teacher-info{padding:1.2rem;flex:1;}
 .teacher-info h3{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--deep-teal);margin-bottom:0.35rem;}
 .teacher-position{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#111827;font-weight:700;display:block;margin-bottom:0.25rem;}
-.teacher-dept{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:#4b6366;display:block;}
+.teacher-dept{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:#4b6366;display:block;margin-bottom:0.25rem;}
+.teacher-phone{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;letter-spacing:0.05em;color:#4b6366;display:block;}
 
 .events-container{padding:5rem 3rem;max-width:1200px;margin:0 auto;}
 .events-list{display:flex;flex-direction:column;gap:1.5rem;}
@@ -324,7 +325,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 .member-modal-info{padding:1.5rem 2rem 2rem;position:relative;margin-top:-30px;z-index:2;}
 .member-modal-position{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep-teal);font-family:'Josefin Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:0.8rem;}
 .member-modal-info h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--cream);margin-bottom:0.4rem;line-height:1.2;}
-.member-modal-dept{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--river-blue);margin-bottom:0.8rem;}
+.member-modal-dept{font-family:'Josefin Sans',sans-serif;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:#ffffff !important;margin-bottom:0.8rem;font-weight:600;}
 .member-modal-details{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;}
 .member-modal-details span{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;color:rgba(200,216,216,0.6);display:inline-flex;align-items:center;gap:4px;}
 .member-modal-bio{font-size:0.88rem;line-height:1.7;color:rgba(200,216,216,0.6);margin-bottom:1rem;border-top:1px solid rgba(200,216,216,0.08);padding-top:1rem;}
