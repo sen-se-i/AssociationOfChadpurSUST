@@ -256,7 +256,7 @@ a{color:var(--gold);text-decoration:none;}
           <h3>🌐 Backend API Server URL</h3>
           <p style="font-size:0.85rem;margin-bottom:1rem;color:var(--text-dim)">Render-এ ডিপ্লয় করার পর আপনার লাইভ ব্যাকএন্ড লিঙ্কটি এখানে দিন (যেমন: <code>https://acsust-backend.onrender.com</code>)। লোকাল টেস্টিংয়ের জন্য <code>http://localhost:3001</code> থাকবে।</p>
           <div style="display:flex;gap:10px;max-width:550px;">
-            <input type="text" id="apiBaseInput" class="form-input" placeholder="http://localhost:3001">
+            <input type="text" id="apiBaseInput" class="form-input" placeholder="https://associationofchadpursust.onrender.com">
             <button class="btn btn-sm btn-gold" onclick="saveApiBase()">Save URL</button>
           </div>
         </div>
@@ -474,7 +474,7 @@ a{color:var(--gold);text-decoration:none;}
 /* ══════════════════════════════════════════════════════════════════════════════
    CONFIG — Set your backend URL here
    ══════════════════════════════════════════════════════════════════════════════ */
-const API_BASE = localStorage.getItem('ACS_API_BASE') || 'http://localhost:3001';
+const API_BASE = localStorage.getItem('ACS_API_BASE') || 'https://associationofchadpursust.onrender.com';
 
 let authToken = localStorage.getItem('acs_admin_token') || null;
 let allMembers = [];

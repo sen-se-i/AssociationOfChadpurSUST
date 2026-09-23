@@ -410,8 +410,23 @@ app.delete('/api/events/:id', requireAuth, async (req, res) => {
 });
 
 // ==============================================================================
-// HEALTH CHECK
+// HEALTH CHECK & ROOT
 // ==============================================================================
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    message: 'Association of Chandpur SUST - Backend API is running successfully',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      members: '/api/members',
+      events: '/api/events',
+      settings: '/api/settings',
+      content: '/api/front-page-content'
+    }
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
