@@ -27,15 +27,54 @@
 </nav>
 
 <style>
-.events-container { max-width: 1240px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+/* ─── Fully Centered & Responsive Layout (Balanced on Zoom In, Normal & Zoom Out) ─── */
+nav {
+  padding: 0 clamp(1.5rem, 3.5vw, 4.5rem) !important;
+}
+.page-hero-events {
+  padding: 10rem clamp(1.5rem, 3.5vw, 4.5rem) 5rem !important;
+}
+.page-hero-events .page-hero-content {
+  max-width: 1680px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+.events-container { 
+  width: 100% !important;
+  max-width: 1680px !important;
+  margin: 0 auto !important; /* জুম আউট করলে কার্ডগুলো স্ক্রিনের মাঝখানে (center) সুন্দরভাবে থাকবে */
+  padding: 3.5rem clamp(1.5rem, 3.5vw, 3.5rem) clamp(160px, 14vw, 220px) !important; /* ক্যাকটাসের জন্য নিচে যথেষ্ট ক্লিয়ারেন্স */
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
 .events-showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 410px), 1fr)) !important; /* ওয়াইড ও প্রিমিয়াম প্রপোরশন */
+  justify-content: center !important;
+  gap: clamp(1.6rem, 2.2vw, 2.6rem);
+  width: 100%;
 }
 @media (max-width: 768px) {
-  .events-showcase-grid { grid-template-columns: 1fr; gap: 1.8rem; }
-  .events-container { padding: 2.5rem 1.2rem 4rem; }
+  .events-showcase-grid { grid-template-columns: 1fr !important; gap: 1.8rem; }
+  .events-container { padding: 2.5rem 1.2rem clamp(120px, 15vw, 160px) !important; }
+}
+
+/* Footer Centered Alignment (Hero এবং Cards এর সাথে নিখুঁত সেন্টারিং) */
+footer {
+  padding: 5rem clamp(1.5rem, 3.5vw, 4.5rem) 3rem !important;
+}
+.footer-grid {
+  max-width: 1680px !important;
+  width: 100% !important;
+  margin: 0 auto 4rem auto !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+.footer-bottom {
+  max-width: 1680px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
 }
 .event-showcase-card {
   background: #ffffff;
@@ -50,6 +89,7 @@
   text-decoration: none;
   color: inherit;
   position: relative;
+  z-index: 2; /* কার্ড সবসময় ক্যাকটাসের ওপরে থাকবে, লেখা কোনোভাবেই ঢাকবে না */
 }
 .event-showcase-card:hover {
   transform: translateY(-8px);
@@ -59,9 +99,10 @@
 .event-showcase-banner {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/10;
+  height: 265px; /* ব্যবহারকারীর রিকুয়েস্ট অনুযায়ী থাম্বনেইলের উচ্চতা সুন্দর ও স্পষ্ট করা হয়েছে */
   min-height: 250px;
-  max-height: 320px;
+  max-height: 290px;
   overflow: hidden;
   background: linear-gradient(135deg, var(--deep-teal), var(--river-blue));
   display: flex;
@@ -119,12 +160,373 @@
   z-index: 2;
 }
 .event-showcase-body {
-  padding: 1.8rem 2rem 2.2rem;
+  padding: 1.4rem 1.65rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 0.8rem;
+  gap: 0.65rem;
   background: #ffffff;
+}
+.event-showcase-card.card-cat-sports .event-showcase-body {
+  padding-bottom: 0.5rem;
+}
+.event-card-bottom-banner {
+  width: 100%;
+  margin-top: auto;
+  overflow: hidden;
+  line-height: 0;
+  display: block;
+  background: transparent;
+  border-radius: 0 0 14px 14px;
+}
+.event-card-bottom-banner img {
+  width: 100%;
+  height: auto; /* সম্পূর্ণ খেলোয়াড়দের ছবি ও মাথা অক্ষুণ্ণ থাকবে, কোনো অংশই কাটবে না */
+  display: block;
+}
+.event-showcase-card.card-cat-social-dining .event-showcase-body {
+  background: url('pictures/events/mandala_bg.png') no-repeat right bottom / cover;
+  padding: 0 1.8rem 3.2rem 1.8rem;
+  position: relative;
+}
+.event-showcase-card.card-cat-social-dining .cat-lanterns-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.event-showcase-card.card-cat-social-dining .cat-lanterns-img {
+  height: 68px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  margin-top: 0;
+  display: block;
+  flex-shrink: 0;
+}
+.event-showcase-card.card-cat-social-dining .cat-lanterns-wrapper .event-meta-tags {
+  padding-top: 14px;
+}
+.event-showcase-card.card-cat-social-dining .event-showcase-title {
+  max-width: 65%;
+  color: var(--deep-teal);
+  position: relative;
+  z-index: 2;
+}
+.event-showcase-card.card-cat-social-dining .event-showcase-desc {
+  max-width: 62%;
+  color: #3f4a4a;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+/* ─── Category 5: Iftar Mahfil ─── */
+.event-showcase-card.card-cat-iftar .event-showcase-body {
+  background: linear-gradient(180deg, #b8defc 0%, #d4ebfd 45%, #e8f4fd 70%, #d0e7fa 100%);
+  padding: 1.4rem 1.65rem 5.5rem; /* মসজিদের ওপর যেন লেখা না পড়ে তাই নিচে ক্লিয়ারেন্স */
+  position: relative;
+  overflow: hidden;
+  min-height: 240px;
+}
+.cat-iftar-calligraphy {
+  position: absolute;
+  top: -55px;
+  left: -80px;
+  height: 245px;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 1;
+}
+.cat-iftar-mosque-overlay {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 85px;
+  object-fit: cover; /* বাম থেকে ডান পর্যন্ত সম্পূর্ণ কার্ডের প্রস্থে সুন্দরভাবে এজ-টু-এজ সেট হবে */
+  object-position: center bottom; /* মসজিদের সম্পূর্ণ ভিত্তি, গম্বুজ ও মিনার নিখুঁতভাবে দৃশ্যমান */
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+}
+.event-showcase-card.card-cat-iftar .event-showcase-desc {
+  -webkit-line-clamp: 2;
+  position: relative;
+  z-index: 3;
+}
+.cat-iftar-lanterns {
+  position: absolute;
+  top: 0;
+  right: 12px;
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.35; /* লণ্ঠনের অপাসিটি এখান থেকে পরিবর্তন করতে পারবেন (0.1 থেকে 1.0) */
+  transform: scaleX(-1);
+  filter: drop-shadow(0 2px 6px rgba(10, 50, 70, 0.1));
+  z-index: 3;
+}
+.event-showcase-card.card-cat-iftar .event-meta-tags,
+.event-showcase-card.card-cat-iftar .event-showcase-title,
+.event-showcase-card.card-cat-iftar .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+}
+.event-showcase-card.card-cat-iftar .event-showcase-title {
+  color: #0c3d52;
+}
+.event-showcase-card.card-cat-iftar .event-showcase-desc {
+  color: #384e5a;
+  line-height: 1.68;
+}
+/* ─── Category 2: Orientation ─── */
+.event-showcase-card.card-cat-orientation .event-showcase-body {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 7.2rem 1.8rem 2.6rem; /* টেক্সট নিচে নামানোর জন্য টপ প্যাডিং বাড়ানো হয়েছে */
+  min-height: 310px;
+}
+.event-showcase-card.card-cat-orientation .event-showcase-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('pictures/events/orientation_confetti_bg.png') no-repeat center top / cover;
+  opacity: 0.10; /* <--- বেলুন ও কনফেটি ব্যাকগ্রাউন্ডের অপাসিটি এখান থেকে পরিবর্তন করতে পারবেন (যেমন 0.12, 0.18, 0.25) */
+  pointer-events: none;
+  z-index: 1;
+}
+.cat-orientation-bunting {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 98px;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+}
+.event-showcase-card.card-cat-orientation .event-meta-tags,
+.event-showcase-card.card-cat-orientation .event-showcase-title,
+.event-showcase-card.card-cat-orientation .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+}
+.event-showcase-card.card-cat-orientation .event-showcase-title {
+  color: #0d4650;
+}
+.event-showcase-card.card-cat-orientation .event-showcase-desc {
+  color: #384c52;
+  line-height: 1.65;
+}
+/* ─── Category 6: Get Together ─── */
+.event-showcase-card.card-cat-get-together .event-showcase-body {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 1rem 1.6rem 2rem 2.8rem;
+  min-height: 220px;
+}
+.cat-together-hands {
+  position: absolute;
+  right: -35px;
+  top: 0px;
+  bottom: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 900px;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+  opacity: 0.45; /* হাতের ইলাস্ট্রেশনের অপাসিটি এখান থেকে পরিবর্তন করতে পারবেন */
+  z-index: 1;
+}
+.cat-together-corner {
+  position: absolute;
+  left: -25px;
+  bottom: -30px;
+  width: 94%;
+  max-width: 215px;
+  height: 175px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+}
+.cat-together-side {
+  position: absolute;
+  left: 8px;
+  top: 16px;
+  width: 24px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+}
+.event-showcase-card.card-cat-get-together .event-meta-tags,
+.event-showcase-card.card-cat-get-together .event-showcase-title,
+.event-showcase-card.card-cat-get-together .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+  max-width: 66%;
+}
+.event-showcase-card.card-cat-get-together .event-showcase-title {
+  color: #0c4349;
+}
+.event-showcase-card.card-cat-get-together .event-showcase-desc {
+  color: #3f4e52;
+  line-height: 1.65;
+}
+/* ─── Category 1: BBQ Night & Freshers' Orientation ─── */
+.event-showcase-card.card-cat-bbq .event-showcase-body {
+  position: relative;
+  overflow: hidden;
+  background: #fbf5e8 url('pictures/events/bbq_warm_sky.png') no-repeat center center / cover;
+  padding: 1.4rem 1.65rem 1.6rem 1.6rem;
+  min-height: 220px;
+}
+.cat-bbq-grill {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42%;
+  max-width: 175px;
+  height: auto;
+  max-height: 195px;
+  object-fit: contain;
+  object-position: right center;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.12));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.event-showcase-card.card-cat-bbq:hover .cat-bbq-grill {
+  transform: translateY(-50%) scale(1.05);
+}
+.event-showcase-card.card-cat-bbq .event-meta-tags,
+.event-showcase-card.card-cat-bbq .event-showcase-title,
+.event-showcase-card.card-cat-bbq .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+  max-width: 58%;
+}
+.event-showcase-card.card-cat-bbq .event-showcase-title {
+  color: #0c3e44;
+}
+.event-showcase-card.card-cat-bbq .event-showcase-desc {
+  color: #3d5054;
+  line-height: 1.65;
+}
+/* ─── Category: Normal (Biennial Conference, Scholarship Ceremony & Formal Events) ─── */
+.event-showcase-card.card-cat-normal {
+  border: 1px solid rgba(201, 150, 58, 0.28);
+  background: #ffffff;
+}
+.event-showcase-card.card-cat-normal .event-showcase-body {
+  background: #ffffff;
+  position: relative;
+  padding: 1.4rem 1.65rem 1.6rem;
+  min-height: 210px;
+}
+.event-showcase-card.card-cat-normal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  z-index: 5;
+}
+.event-showcase-card.card-cat-normal .event-showcase-title {
+  color: #0b383e;
+  font-weight: 700;
+}
+/* ─── Static Page Decorative Art (Cactus, Truck Art, Tea Kettle, Hand Fans, Sunglasses) ─── */
+#events.page-section {
+  position: relative;
+  overflow: hidden;
+}
+.page-deco-art {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1; /* কার্ডের নিচে থাকবে, কোনো অবস্থাতেই কার্ড বা টেক্সট ঢাকবে না */
+  opacity: 0.88;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.08));
+  transition: opacity 0.3s;
+}
+
+/* ক্যাকটাস ও গিটার - নিচে ডানে */
+.deco-cactus {
+  bottom: 25px;
+  right: clamp(25px, 4vw, 65px);
+  width: clamp(130px, 10.5vw, 175px);
+  height: auto;
+}
+
+/* ট্রাক আর্ট - নিচে বামে */
+.deco-truck {
+  bottom: 25px;
+  left: clamp(25px, 4vw, 65px);
+  width: clamp(140px, 12vw, 195px);
+  height: auto;
+}
+
+/* ঐতিহ্যবাহী হাতপাখা - ওপরে ডানে */
+.deco-fans {
+  top: 45px;
+  right: clamp(20px, 3.5vw, 60px);
+  width: clamp(110px, 9vw, 150px);
+  height: auto;
+  transform: rotate(8deg);
+}
+
+/* চশমা (ট্যুর ও ল্যান্ডস্কেপ আর্ট) - ওপরে বামে */
+.deco-sunglasses {
+  top: 50px;
+  left: clamp(20px, 3.5vw, 60px);
+  width: clamp(100px, 8vw, 140px);
+  height: auto;
+  transform: rotate(-6deg);
+}
+
+/* চায়ের কেটলি ও কাচের গ্লাস - মাঝের বামে */
+.deco-tea {
+  top: 48%;
+  left: clamp(15px, 2.5vw, 45px);
+  width: clamp(105px, 8.5vw, 145px);
+  height: auto;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1400px) {
+  .deco-tea, .deco-sunglasses, .deco-fans {
+    display: none; /* সাইড গাটার পর্যাপ্ত না থাকলে এগুলো লুকানো থাকবে যাতে কার্ডের গায়ে না ঠেকে */
+  }
+}
+@media (max-width: 850px) {
+  .deco-truck, .deco-cactus {
+    width: 120px;
+    opacity: 0.75;
+  }
+}
+@media (max-width: 550px) {
+  .deco-truck, .deco-cactus {
+    display: none;
+  }
 }
 .event-meta-tags {
   display: flex;
@@ -146,7 +548,7 @@
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--river-blue); /* স্থান লেখার কালার অনুযায়ী ম্যাচ করা হয়েছে */
   letter-spacing: 0.06em;
   text-transform: uppercase;
   display: flex;
@@ -220,6 +622,13 @@
   <div class="events-container">
     <div class="events-showcase-grid" id="eventsList"></div>
   </div>
+
+  <!-- Page Decorative Elements (Cultural Motifs & Illustrations) -->
+  <img src="pictures/events/truck_art.png" alt="Bangladeshi Truck Art" class="page-deco-art deco-truck">
+  <img src="pictures/events/tea_kettle.png" alt="Traditional Tea Kettle & Glass" class="page-deco-art deco-tea">
+  <img src="pictures/events/hand_fans.png" alt="Traditional Hand Fans" class="page-deco-art deco-fans">
+  <img src="pictures/events/sunglasses_art.png" alt="Tour Sunglasses Art" class="page-deco-art deco-sunglasses">
+  <img src="pictures/events/cactus_guitar.png" alt="Decorative Cactus & Guitar" class="page-deco-art deco-cactus">
 </section>
 
 <footer>
@@ -274,15 +683,89 @@ async function loadAndRenderEvents() {
     // Strip HTML tags for clean card description preview
     const cleanDesc = (ev.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 
-    return `
-    <a href="event.html?id=${evId}" class="event-showcase-card reveal" id="event-${i}">
-      <div class="event-showcase-banner">
-        ${bannerContent}
-        <div class="banner-overlay"></div>
-      </div>
-      <div class="event-showcase-body">
+    // Category detection
+    const cat = ev.category || '';
+    const titleLower = (ev.title || '').toLowerCase();
+    const locLower = (ev.location || '').toLowerCase();
+
+    // Sports (Category 3 & 4)
+    const isSports = cat.toLowerCase().includes('sport') ||
+                     titleLower.includes('football') ||
+                     titleLower.includes('sport') ||
+                     locLower.includes('sports center');
+
+    // Social and dining Event (Category 7, Sha-Pa Day)
+    const isSocialDining = cat === 'Social and dining Event' ||
+                           titleLower.includes('sha-pa') ||
+                           titleLower.includes('shapa');
+
+    // Iftar Mahfil (Category 5)
+    const isIftar = cat === 'Iftar Mahfil' || titleLower.includes('iftar');
+
+    // Orientation (Category 2)
+    const isOrientation = (cat.toLowerCase() === 'orientation') ||
+                          (!cat && titleLower.includes('orientation') && !titleLower.includes('bbq'));
+
+    // Normal / Conference & Scholarship Ceremony (Category: Normal)
+    const isNormal = cat.toLowerCase().includes('conference') ||
+                     cat.toLowerCase().includes('scholarship') ||
+                     cat.toLowerCase() === 'normal' ||
+                     titleLower.includes('conference') ||
+                     titleLower.includes('scholarship');
+
+    // Get Together (Category 6) - strictly exclude conference & scholarship!
+    const isGetTogether = !isNormal && (
+                          cat.toLowerCase().includes('get together') ||
+                          titleLower.includes('get together') ||
+                          titleLower.includes('get-together'));
+
+    // BBQ Night & Freshers' Reception (Category 1)
+    const isBbq = cat.toLowerCase().includes('bbq') ||
+                  titleLower.includes('bbq');
+
+    const bottomGraphic = isSports ? `
+      <div class="event-card-bottom-banner">
+        <img src="pictures/events/sports_banner_transparent.png" alt="Sports theme" onerror="this.onerror=null;this.src='pictures/events/sports_banner_edge_to_edge.png';">
+      </div>` : '';
+
+    let cardCustomClass = '';
+    if (isSports) cardCustomClass = 'card-cat-sports';
+    else if (isSocialDining) cardCustomClass = 'card-cat-social-dining';
+    else if (isIftar) cardCustomClass = 'card-cat-iftar';
+    else if (isOrientation) cardCustomClass = 'card-cat-orientation';
+    else if (isBbq) cardCustomClass = 'card-cat-bbq';
+    else if (isGetTogether) cardCustomClass = 'card-cat-get-together';
+    else if (isNormal) cardCustomClass = 'card-cat-normal';
+    else cardCustomClass = 'card-cat-normal';
+
+    let extraBodyArt = '';
+    if (isIftar) {
+      extraBodyArt = `
+        <img src="pictures/events/iftar_calligraphy_clean.png" alt="Calligraphy" class="cat-iftar-calligraphy">
+        <img src="pictures/events/iftar_mosque_panorama.png" alt="Mosque Silhouettes" class="cat-iftar-mosque-overlay">
+        <img src="pictures/events/iftar_lanterns_clean.png" alt="Islamic Lanterns" class="cat-iftar-lanterns">
+      `;
+    } else if (isOrientation) {
+      extraBodyArt = `
+        <img src="pictures/events/orientation_bunting.png" alt="Festive Bunting Flags" class="cat-orientation-bunting">
+      `;
+    } else if (isGetTogether) {
+      extraBodyArt = `
+        <img src="pictures/events/get_together_hands.png" alt="Hands Together" class="cat-together-hands">
+        <img src="pictures/events/get_together_corner.png" alt="Corner Folk Embroidery" class="cat-together-corner">
+        <img src="pictures/events/get_together_side.png" alt="Side Ornament" class="cat-together-side">
+      `;
+    } else if (isBbq) {
+      extraBodyArt = `
+        <img src="pictures/events/bbq_grill.png" alt="BBQ Grill" class="cat-bbq-grill">
+      `;
+    }
+
+    const metaSection = isSocialDining ? `
+      <div class="cat-lanterns-wrapper">
+        <img src="pictures/events/lanterns_clean.png" alt="Decorative Lanterns" class="cat-lanterns-img">
         <div class="event-meta-tags">
-          <div class="event-location-tag">
+          <div class="event-location-tag" style="color:#1a6b7a;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             ${ev.location}
           </div>
@@ -291,13 +774,31 @@ async function loadAndRenderEvents() {
             ${ev.date}
           </div>
         </div>
+      </div>` : `
+      <div class="event-meta-tags">
+        <div class="event-location-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          ${ev.location}
+        </div>
+        <div class="event-date-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          ${ev.date}
+        </div>
+      </div>`;
+
+    return `
+    <a href="event.html?id=${evId}" class="event-showcase-card ${cardCustomClass} reveal" id="event-${i}">
+      <div class="event-showcase-banner">
+        ${bannerContent}
+        <div class="banner-overlay"></div>
+      </div>
+      <div class="event-showcase-body">
+        ${extraBodyArt}
+        ${metaSection}
         <h2 class="event-showcase-title">${ev.title}</h2>
         ${cleanDesc ? `<p class="event-showcase-desc">${cleanDesc}</p>` : ''}
-        <div class="event-showcase-cta">
-          <span>View Moments & Gallery (${cnt > 0 ? cnt + ' Photos' : (photoList.length || 0) + ' Photos'})</span>
-          <span class="cta-arrow">→</span>
-        </div>
       </div>
+      ${bottomGraphic}
     </a>`;
   }).join('');
 
@@ -329,3 +830,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+

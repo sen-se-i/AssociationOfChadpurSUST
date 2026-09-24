@@ -224,6 +224,7 @@ const DEFAULT_STAFF = [
 
 const DEFAULT_EVENTS = [
   {
+    category: 'Outdoor Sports',
     title: 'Intra Association Football Tournament 2026',
     date: 'July 4, 2026',
     location: 'Mahmudabad Sports Center',
@@ -234,6 +235,7 @@ const DEFAULT_EVENTS = [
     captions: []
   },
   {
+    category: 'Social and dining Event',
     title: '✨ Sha-Pa Day 2026 ✨',
     date: 'May 05, 2026',
     location: 'London Inn',
@@ -244,6 +246,7 @@ const DEFAULT_EVENTS = [
     captions: ['8th Executive Committee','Batch 22','Batch 23','Batch 24','Batch 23 Boys','President Omio and GS Tanvir Bhai','A Moment of Togetherness']
   },
   {
+    category: 'Conference & Ceremony',
     title: 'Biennial Conference and Scholarship Ceremony',
     date: 'March 6, 2026',
     location: 'Malancha Community Center , Kumarpara',
@@ -254,6 +257,7 @@ const DEFAULT_EVENTS = [
     captions: []
   },
   {
+    category: 'Iftar Mahfil',
     title: 'Iftar Mahfil 2025 and General Meeing',
     date: 'February 28, 2026',
     location: 'D Builiding',
@@ -264,6 +268,7 @@ const DEFAULT_EVENTS = [
     captions: []
   },
   {
+    category: 'BBQ',
     title: 'BBQ Night and Freshers Orientation',
     date: 'November 28, 2025',
     location: 'SUST Basketball Ground',
@@ -274,6 +279,7 @@ const DEFAULT_EVENTS = [
     captions: []
   },
   {
+    category: 'Get Together',
     title: 'Get together',
     date: 'April 01, 2025',
     location: 'Chandpur Boro Station',
@@ -284,6 +290,7 @@ const DEFAULT_EVENTS = [
     captions: []
   },
   {
+    category: 'Outdoor Sports',
     title: 'Intra-association football tournament',
     date: 'June 27, 2025',
     location: 'Green Valley Sports Center',
@@ -294,6 +301,7 @@ const DEFAULT_EVENTS = [
     captions: []
   },
   {
+    category: 'Orientation',
     title: 'Orientation Programm 2023',
     date: 'December 6th, 2023',
     location: 'SUST Research Center, Library',
@@ -393,7 +401,9 @@ async function fetchPeopleData() {
   }
 
   if (!members || members.length === 0) {
+    let currentId = 113;
     const execMapped = DEFAULT_EXECUTIVE_MEMBERS.map(m => ({
+      id: currentId++,
       ...m,
       category: 'member',
       position: m.position || 'Executive Member',
@@ -401,6 +411,7 @@ async function fetchPeopleData() {
       facebook_url: m.facebook_url || ''
     }));
     const genMapped = DEFAULT_GENERAL_MEMBERS.map(m => ({
+      id: currentId++,
       ...m,
       category: 'member',
       position: 'General',
@@ -408,8 +419,14 @@ async function fetchPeopleData() {
       facebook_url: m.facebook_url || ''
     }));
     members = [...execMapped, ...genMapped];
-    teachers = [ ...DEFAULT_TEACHERS ];
-    staff = [ ...DEFAULT_STAFF ];
+    teachers = DEFAULT_TEACHERS.map(t => ({
+      id: currentId++,
+      ...t
+    }));
+    staff = DEFAULT_STAFF.map(s => ({
+      id: currentId++,
+      ...s
+    }));
   }
 
   // 1. Sort Members by Session Descending (Newest first, e.g. 26-27, 25-26, 24-25, 23-24, 22-23, 21-22)
