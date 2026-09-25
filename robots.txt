@@ -1,0 +1,18 @@
+# Robots.txt for Association of Chandpur, SUST (ACSUST)
+# https://sen-se-i.github.io/AssociationOfChadpurSUST/
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /members.html
+Allow: /events.html
+Allow: /event.html
+Allow: /style.css
+Allow: /supabase_client.js
+Allow: /pictures/
+
+# Disallow private admin management screens
+Disallow: /admin.html
+
+# Sitemap location for Googlebot, Bingbot, etc.
+Sitemap: https://sen-se-i.github.io/AssociationOfChadpurSUST/sitemap.xml
