@@ -4000,11 +4000,6 @@ function renderEventsAdmin(events) {
     const titleLower = (ev.title || '').toLowerCase();
     const locLower = (ev.location || '').toLowerCase();
 
-    const isSports = cat.toLowerCase().includes('sport') ||
-                     titleLower.includes('football') ||
-                     titleLower.includes('sport') ||
-                     locLower.includes('sports center');
-
     // 1. BBQ Night & Freshers' Reception (Category 1)
     const isBbq = cat.includes('bbq') || titleLower.includes('bbq');
 
