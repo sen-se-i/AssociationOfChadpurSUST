@@ -1,5 +1,5 @@
 # Robots.txt for Association of Chandpur, SUST (ACSUST)
-# https://sen-se-i.github.io/AssociationOfChadpurSUST/
+# https://association-of-chandpur-sust.vercel.app/
 
 User-agent: *
 Allow: /
@@ -15,4 +15,4 @@ Allow: /pictures/
 Disallow: /admin.html
 
 # Sitemap location for Googlebot, Bingbot, etc.
-Sitemap: https://sen-se-i.github.io/AssociationOfChadpurSUST/sitemap.xml
+Sitemap: https://association-of-chandpur-sust.vercel.app/sitemap.xml
