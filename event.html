@@ -181,7 +181,7 @@
 
 <!-- Supabase SDK & Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase_client.js"></script>
+<script src="supabase_client.js?v=2"></script>
 
 <script>
 /* ─── LIGHTBOX STATE ─── */
@@ -283,10 +283,11 @@ async function loadEventDetail() {
   
   // Set hero thumbnail background with translucent deep teal/green overlay
   const heroEl = document.getElementById('eventHero');
+  const checkImg = s => (typeof isImageFile === 'function' && isImageFile(s)) || (typeof s === 'string' && (s.startsWith('http://') || s.startsWith('https://') || s.startsWith('data:image')));
   let thumbSrc = '';
-  if (event.thumb && isImageFile(event.thumb)) {
+  if (event.thumb && checkImg(event.thumb)) {
     thumbSrc = event.thumb.startsWith('http') ? event.thumb : `pictures/events/${event.thumb}`;
-  } else if (event.photos && event.photos.length > 0 && isImageFile(event.photos[0])) {
+  } else if (event.photos && event.photos.length > 0 && checkImg(event.photos[0])) {
     thumbSrc = event.photos[0].startsWith('http') ? event.photos[0] : `pictures/events/${event.photos[0]}`;
   }
 
@@ -328,7 +329,7 @@ async function loadEventDetail() {
   const photos = event.photos || [];
   const captions = event.captions || [];
   const galleryItems = photos.map((p, i) => {
-    const isImg = isImageFile(p);
+    const isImg = checkImg(p);
     const src = isImg ? (p.startsWith('http') ? p : `pictures/events/${p}`) : '';
     return {
       src,
@@ -337,11 +338,11 @@ async function loadEventDetail() {
     };
   });
 
-  document.getElementById('galleryCount').textContent = `${photos.filter(p => isImageFile(p)).length} photos`;
+  document.getElementById('galleryCount').textContent = `${photos.filter(p => checkImg(p)).length} photos`;
 
   const galleryEl = document.getElementById('eventGallery');
   galleryEl.innerHTML = photos.map((p, i) => {
-    const isImg = isImageFile(p);
+    const isImg = checkImg(p);
     if (isImg) {
       const src = p.startsWith('http') ? p : `pictures/events/${p}`;
       return `<div class="event-detail-photo" data-idx="${i}" title="Click to view">

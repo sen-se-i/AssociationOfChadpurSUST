@@ -589,7 +589,18 @@ function nameToFilename(n) {
   return n.trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
 }
 function isImageFile(s) {
-  return /\.(jpg|jpeg|png|webp|gif)$/i.test(s || '');
+  if (!s || typeof s !== 'string') return false;
+  const str = s.trim();
+  if (str.startsWith('data:image/')) return true;
+  const clean = str.split('?')[0].split('#')[0];
+  if (/\.(jpg|jpeg|png|webp|gif|svg|avif)$/i.test(clean)) return true;
+  if (/^https?:\/\//i.test(str) && (str.includes('/storage/') || str.includes('/images/') || str.includes('/photos/') || str.includes('/assets/'))) {
+    return true;
+  }
+  return false;
+}
+if (typeof window !== 'undefined') {
+  window.isImageFile = isImageFile;
 }
 
 // Automatically apply site settings (e.g. logo, favicon) across pages

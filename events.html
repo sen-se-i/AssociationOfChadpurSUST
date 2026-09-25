@@ -662,7 +662,7 @@ footer {
 
 <!-- Supabase SDK & Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase_client.js"></script>
+<script src="supabase_client.js?v=2"></script>
 
 <script>
 /* ─── RENDER EVENTS AS LARGE SHOWCASE CARDS ─── */
@@ -673,13 +673,14 @@ async function loadAndRenderEvents() {
   listEl.innerHTML = events.map((ev, i) => {
     const evId = ev.id || i;
     const photoList = ev.photos || [];
-    const cnt = photoList.filter(p => isImageFile(p)).length;
+    const checkImg = s => (typeof isImageFile === 'function' && isImageFile(s)) || (typeof s === 'string' && (s.startsWith('http://') || s.startsWith('https://') || s.startsWith('data:image')));
+    const cnt = photoList.filter(p => checkImg(p)).length;
 
     let bannerContent = '';
-    if (ev.thumb && isImageFile(ev.thumb)) {
+    if (ev.thumb && checkImg(ev.thumb)) {
       const src = ev.thumb.startsWith('http') ? ev.thumb : `pictures/events/${ev.thumb}`;
       bannerContent = `<img src="${src}" alt="${ev.title}" onerror="this.onerror=null;this.src='pictures/logo.jpeg';">`;
-    } else if (photoList.length > 0 && isImageFile(photoList[0])) {
+    } else if (photoList.length > 0 && checkImg(photoList[0])) {
       const first = photoList[0].startsWith('http') ? photoList[0] : `pictures/events/${photoList[0]}`;
       bannerContent = `<img src="${first}" alt="${ev.title}" onerror="this.onerror=null;this.src='pictures/logo.jpeg';">`;
     } else {

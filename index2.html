@@ -528,7 +528,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 <script>
 /* ─── UTILITY ─── */
 function nameToFilename(n){return n.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');}
-function isImageFile(s){return /\.(jpg|jpeg|png|webp|gif)$/i.test(s||'');}
+function isImageFile(s){if(!s||typeof s!=='string')return false;const str=s.trim();if(str.startsWith('data:image/'))return true;const clean=str.split('?')[0].split('#')[0];if(/\.(jpg|jpeg|png|webp|gif|svg|avif)$/i.test(clean))return true;if(/^https?:\/\//i.test(str)&&(str.includes('/storage/')||str.includes('/images/')||str.includes('/photos/')||str.includes('/assets/')))return true;return false;}
 
 /* ─── DATA ─── */
 const executiveMembers = [
