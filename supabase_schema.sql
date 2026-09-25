@@ -383,9 +383,20 @@ INSERT INTO public.people (category, name, dept, position) VALUES
 -- ==============================================================================
 DELETE FROM public.events;
 
-INSERT INTO public.events (title, date_text, location, description, thumb, emoji, photos, captions, display_order) VALUES
+-- Migration helper for existing live databases:
+-- ALTER TABLE public.events ADD COLUMN IF NOT EXISTS category TEXT DEFAULT 'Normal';
+-- UPDATE public.events SET category = 'Outdoor Sports' WHERE title ILIKE '%football%' OR title ILIKE '%sport%';
+-- UPDATE public.events SET category = 'Social and dining Event' WHERE title ILIKE '%sha-pa%' OR title ILIKE '%shapa%';
+-- UPDATE public.events SET category = 'Conference & Ceremony' WHERE title ILIKE '%conference%' OR title ILIKE '%scholarship%';
+-- UPDATE public.events SET category = 'Iftar Mahfil' WHERE title ILIKE '%iftar%';
+-- UPDATE public.events SET category = 'BBQ' WHERE title ILIKE '%bbq%';
+-- UPDATE public.events SET category = 'Get Together' WHERE title ILIKE '%get together%' OR title ILIKE '%get-together%';
+-- UPDATE public.events SET category = 'Orientation' WHERE title ILIKE '%orientation%' AND title NOT ILIKE '%bbq%';
+
+INSERT INTO public.events (title, category, date_text, location, description, thumb, emoji, photos, captions, display_order) VALUES
 (
     'Intra Association Football Tournament 2026',
+    'Outdoor Sports',
     'July 4, 2026',
     'Mahmudabad Sports Center',
     'From the first whistle to the final blow—every match was filled with excitement, emotion, battle, and memorable moments.Great goals, incredible saves, intense competition, and every moment on the field made this tournament truly special.<br> However, beyond victory and defeat, the greatest achievement of this season was friendship, unity, sportsmanship, and bringing everyone together on one stage.<br> 📸Thank you to all the players, organizers, volunteers, and spectators, whose cooperation and love made the AoC Football Tournament 2026 a grand success<br>.We will meet again with a bigger event, more intense competition, and many more memorable moments.Until then, let the love for football remain unbroken.',
@@ -397,6 +408,7 @@ INSERT INTO public.events (title, date_text, location, description, thumb, emoji
 ),
 (
     '✨ Sha-Pa Day 2026 ✨',
+    'Social and dining Event',
     'May 05, 2026',
     'London Inn',
     'The much-awaited Sha-Pa Day 2026 of our association was successfully celebrated with the enthusiastic participation of students from different batches.<br>The event took place at London Inn Restaurant in Sylhet, creating a warm and memorable atmosphere for everyone present.<br>The program began with a vibrant photo session, followed by a delightful lunch and meaningful interaction among the members. Throughout the event, the spirit of unity, friendship, and shared belonging was beautifully reflected.<br>The day concluded with a renewed commitment to remain connected and work together to make the association even more dynamic, active, and strong in the days ahead.<br>',
@@ -408,6 +420,7 @@ INSERT INTO public.events (title, date_text, location, description, thumb, emoji
 ),
 (
     'Biennial Conference and Scholarship Ceremony',
+    'Conference & Ceremony',
     'March 6, 2026',
     'Malancha Community Center , Kumarpara',
     'On 6 March 2026, the Chandpur District Welfare Association, Sylhet, hosted its biennial conference and scholarship award ceremony, attended by Zakaria Talukdar Amio, President of the 8th Executive Committee of the Chandpur Association, Shahjalal University of Science and Technology (SUST), and Organizing Secretary Tahsin Arnav.<br>At the beginning of the event, a commemorative magazine was presented to the President and Organizing Secretary of the Chandpur Association by Mohammad Abu Yusuf, Executive Member of the Chandpur District Welfare Association and Assistant Administrative Officer of SUST. The program also included an Iftar gathering in celebration of the holy month of Ramadan. 🌙<br>After the conference, the President and Organizing Secretary of the Chandpur Association paid a courtesy visit to Professor Dr. S. M. Saiful Islam, Chief Advisor of the Chandpur Association, SUST and Chandpur District Welfare Association, Sylhet, during which they informed him about the association''s current and future activities. Dr. Islam assured full support for the association''s initiatives.<br>Courtesy meetings were also held with Gazi Mohammad Zahirul Islam, President, and Mohammad Mohsin Bhuiya, General Secretary of the Chandpur District Welfare Association, Sylhet. They were informed about the association''s future plans and assured their full support while inviting participation in upcoming events.<br>Additionally, a courtesy visit was made to Gazi Mohammad Zahirul Islam, esteemed advisor of the Chandpur District Student Association, Sylhet Agricultural University, who emphasized the importance of collaboration between the two organizations and invited the association for a meeting at Sylhet Agricultural University.<br>Other distinguished attendees included Engr. Mohammad Abdul Haque Miazi, Assistant Engineer, Sylhet City Corporation; Shah Mohammad Fazle Alam Patwari, Police Inspector, PBI, Sylhet; Mohammad Shahjahan, D.G.M., Jalalabad Gas T&D System Limited; and Engr. Abul Hasnat, Assistant Engineer, Jalalabad Ragib-Rabeya Medical College & Hospital, Sylhet.<br>✨ Through mutual cooperation and unity, it is hoped that the bonds among Chandpur students will grow even stronger.',
@@ -419,6 +432,7 @@ INSERT INTO public.events (title, date_text, location, description, thumb, emoji
 ),
 (
     'Iftar Mahfil 2025 and General Meeing',
+    'Iftar Mahfil',
     'February 28, 2026',
     'D Builiding',
     'Association of Chandpur''s Iftar Gathering and General Meeting Successfully Held<br>On February 28, 2026, the Iftar gathering and general meeting of the Association of Chandpur, SUST, were held with great enthusiasm. At the event, the 8th Executive Committee of the organization was officially announced, and important discussions were conducted regarding the future activities of the association.<br>The chief guest of the ceremony was Dr. Saiful Islam, Professor of the Department of Chemistry and Chief Advisor of the Association of Chandpur. The special guest was Mohammad Shaiful Alam Amin, Professor of the Department of Chemical Engineering and Polymer Science and an advisor. Also present was Md. Mahin Uddin, Lecturer of the Department of Geography and Environment and an advisor.<br>Among others present were Gazi Md. Jahirul Islam, President of the Chandpur District Welfare Association, and Md. Mohsin Bhuiyan, General Secretary. Current and former members of the organization, officers and staff, students from various departments, and invited guests spent a lively and cordial time together.<br>Heartfelt thanks are extended to everyone involved for the successful completion of this event. The Association of Chandpur will continue to organize such gatherings and general meetings in the future, further strengthening the bonds of friendship, brotherhood, and unity.',
@@ -430,6 +444,7 @@ INSERT INTO public.events (title, date_text, location, description, thumb, emoji
 ),
 (
     'BBQ Night and Freshers Orientation',
+    'BBQ',
     'November 28, 2025',
     'SUST Basketball Ground',
     'On 28 November 2025, the Association of Chandpur, SUST, organized a grand Freshers'' Reception and BBQ event. Alongside warmly welcoming the new students from Chandpur of the 2024–25 session, the event turned into a vibrant festival of joy, harmony, and reunion.<br>Distinguished guests present at the event included Professor Dr. Saiful Islam, Professor of the Department of Chemistry and esteemed advisor of the Association of Chandpur; Professor Rezaul Karim, Professor of the Department of Chemistry and advisor; Professor Dr. Mirza Nazmul Hasan, Professor of the Department of Statistics and advisor; Professor Dr. Roksana Begum, Professor of the Department of Chemistry and advisor; and Md. Mahin Uddin, Lecturer of the Department of Geography and Environment and advisor.<br>In addition, the event was attended by current and former members of the association, students from various departments, officers and staff, and invited guests. With everyone''s active participation, the program became lively and truly memorable.<br>In the final segment of the event, a musical performance was presented by the newly admitted and current students, making the colorful cultural evening even more enjoyable.<br>Heartfelt thanks to everyone involved for making this event a success. The Association of Chandpur hopes to continue strengthening the bonds of friendship, unity, and cooperation through such gatherings in the future.<br>— Chandpur Association, SUST',
@@ -441,6 +456,7 @@ INSERT INTO public.events (title, date_text, location, description, thumb, emoji
 ),
 (
     'Get together',
+    'Get Together',
     'April 01, 2025',
     'Chandpur Boro Station',
     'On the second day of Eid, 2nd Shawwal 1446, it was quite a delightful and memorable day. The Chandpur Association had been determined to ceremony a get-together event during Eid, and finally, on this day, both current and former SUSTians from Chandpur came together and were bound by a beautiful bond of shared memories and togetherness.<br>',
@@ -452,6 +468,7 @@ INSERT INTO public.events (title, date_text, location, description, thumb, emoji
 ),
 (
     'Intra-association football tournament',
+    'Outdoor Sports',
     'June 27, 2025',
     'Green Valley Sports Center',
     'Our flagship annual event celebrating Chandpur''s rich culture. An evening filled with traditional music, dance, Ilish-themed cuisine, and heartfelt reunions. Students dressed in traditional attire, performed baul songs, and shared stories from the banks of Meghna.',
@@ -463,6 +480,7 @@ INSERT INTO public.events (title, date_text, location, description, thumb, emoji
 ),
 (
     'Orientation Programm 2023',
+    'Orientation',
     'December 6th, 2023',
     'SUST Research Center, Library',
     'Welcoming our fresh faces and new minds from Chandpur to SUST with warm guidance and mentorship.',

@@ -313,6 +313,34 @@ const DEFAULT_EVENTS = [
   }
 ];
 
+/* ─── HELPER: RESOLVE EVENT THEMATIC CATEGORY ─── */
+function resolveEventCategory(ev) {
+  if (!ev) return 'Normal';
+  const cat = (ev.category || '').trim();
+  // If explicitly specified in database and is not generic 'Normal', trust it
+  if (cat && cat.toLowerCase() !== 'normal') {
+    return cat;
+  }
+  // Try matching against default seeded events by title
+  const titleLower = (ev.title || '').toLowerCase().trim();
+  const matched = DEFAULT_EVENTS.find(de => de.title && de.title.toLowerCase().trim() === titleLower);
+  if (matched && matched.category) {
+    return matched.category;
+  }
+  // Robust pattern matching on title / location
+  if (titleLower.includes('bbq')) return 'BBQ';
+  if (titleLower.includes('orientation') && !titleLower.includes('bbq')) return 'Orientation';
+  if (titleLower.includes('get together') || titleLower.includes('get-together')) return 'Get Together';
+  if (titleLower.includes('iftar')) return 'Iftar Mahfil';
+  if (titleLower.includes('sha-pa') || titleLower.includes('shapa')) return 'Social and dining Event';
+  if (titleLower.includes('football') || titleLower.includes('sport') || (ev.location || '').toLowerCase().includes('sports center')) return 'Outdoor Sports';
+  if (titleLower.includes('conference') || titleLower.includes('scholarship')) return 'Conference & Ceremony';
+  return cat || 'Normal';
+}
+if (typeof window !== 'undefined') {
+  window.resolveEventCategory = resolveEventCategory;
+}
+
 /* ──────────────────────────────────────────────────────────────────────────────
    DATA FETCHING APIS WITH AUTOMATIC FALLBACK
    ────────────────────────────────────────────────────────────────────────────── */
@@ -485,7 +513,7 @@ async function fetchEventsData() {
       if (!error && data && data.length > 0) {
         events = data.map(ev => ({
           id: ev.id,
-          category: ev.category || 'Normal',
+          category: resolveEventCategory(ev),
           title: ev.title,
           date: ev.date_text,
           date_text: ev.date_text,
@@ -521,7 +549,7 @@ async function fetchEventById(id) {
       if (!error && data) {
         return {
           id: data.id,
-          category: data.category || 'Normal',
+          category: resolveEventCategory(data),
           title: data.title,
           date: data.date_text,
           date_text: data.date_text,

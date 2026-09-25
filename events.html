@@ -286,12 +286,15 @@ footer {
   line-height: 1.68;
 }
 /* ─── Category 2: Orientation ─── */
+.event-showcase-card.card-cat-orientation {
+  border-color: rgba(13, 148, 136, 0.28);
+}
 .event-showcase-card.card-cat-orientation .event-showcase-body {
   position: relative;
   overflow: hidden;
   background: #ffffff;
-  padding: 7.2rem 1.8rem 2.6rem; /* টেক্সট নিচে নামানোর জন্য টপ প্যাডিং বাড়ানো হয়েছে */
-  min-height: 310px;
+  padding: 6.2rem 1.8rem 2.2rem;
+  min-height: 250px;
 }
 .event-showcase-card.card-cat-orientation .event-showcase-body::before {
   content: '';
@@ -301,7 +304,7 @@ footer {
   right: 0;
   bottom: 0;
   background: url('pictures/events/orientation_confetti_bg.png') no-repeat center top / cover;
-  opacity: 0.10; /* <--- বেলুন ও কনফেটি ব্যাকগ্রাউন্ডের অপাসিটি এখান থেকে পরিবর্তন করতে পারবেন (যেমন 0.12, 0.18, 0.25) */
+  opacity: 0.16;
   pointer-events: none;
   z-index: 1;
 }
@@ -311,7 +314,7 @@ footer {
   left: 0;
   width: 100%;
   height: auto;
-  max-height: 98px;
+  max-height: 92px;
   object-fit: cover;
   object-position: top center;
   pointer-events: none;
@@ -332,11 +335,14 @@ footer {
   line-height: 1.65;
 }
 /* ─── Category 6: Get Together ─── */
+.event-showcase-card.card-cat-get-together {
+  border-color: rgba(201, 150, 58, 0.32);
+}
 .event-showcase-card.card-cat-get-together .event-showcase-body {
   position: relative;
   overflow: hidden;
   background: #ffffff;
-  padding: 1rem 1.6rem 2rem 2.8rem;
+  padding: 1.2rem 1.6rem 2rem 2.8rem;
   min-height: 220px;
 }
 .cat-together-hands {
@@ -683,45 +689,47 @@ async function loadAndRenderEvents() {
     // Strip HTML tags for clean card description preview
     const cleanDesc = (ev.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 
-    // Category detection
-    const cat = ev.category || '';
+    // Category detection - robust matching
+    const cat = ((ev.category || '') + '').toLowerCase();
     const titleLower = (ev.title || '').toLowerCase();
     const locLower = (ev.location || '').toLowerCase();
 
-    // Sports (Category 3 & 4)
-    const isSports = cat.toLowerCase().includes('sport') ||
+    // 1. BBQ Night & Freshers' Reception (Category 1)
+    const isBbq = cat.includes('bbq') || titleLower.includes('bbq');
+
+    // 2. Freshers' Orientation & Welcome (Category 2)
+    const isOrientation = !isBbq && (
+      cat === 'orientation' ||
+      cat.includes('orientation') ||
+      titleLower.includes('orientation')
+    );
+
+    // 3. Get Together & Re-unions (Category 6)
+    const isGetTogether = !isBbq && !isOrientation && (
+      cat === 'get together' ||
+      cat.includes('get together') ||
+      cat.includes('get-together') ||
+      titleLower.includes('get together') ||
+      titleLower.includes('get-together')
+    );
+
+    // 4. Iftar Mahfil (Category 5)
+    const isIftar = cat.includes('iftar') || titleLower.includes('iftar');
+
+    // 5. Social and dining Event (Category 7, Sha-Pa Day)
+    const isSocialDining = cat === 'social and dining event' ||
+                           cat.includes('social') ||
+                           titleLower.includes('sha-pa') ||
+                           titleLower.includes('shapa');
+
+    // 6. Sports (Category 3 & 4)
+    const isSports = cat.includes('sport') ||
                      titleLower.includes('football') ||
                      titleLower.includes('sport') ||
                      locLower.includes('sports center');
 
-    // Social and dining Event (Category 7, Sha-Pa Day)
-    const isSocialDining = cat === 'Social and dining Event' ||
-                           titleLower.includes('sha-pa') ||
-                           titleLower.includes('shapa');
-
-    // Iftar Mahfil (Category 5)
-    const isIftar = cat === 'Iftar Mahfil' || titleLower.includes('iftar');
-
-    // Orientation (Category 2)
-    const isOrientation = (cat.toLowerCase() === 'orientation') ||
-                          (!cat && titleLower.includes('orientation') && !titleLower.includes('bbq'));
-
-    // Normal / Conference & Scholarship Ceremony (Category: Normal)
-    const isNormal = cat.toLowerCase().includes('conference') ||
-                     cat.toLowerCase().includes('scholarship') ||
-                     cat.toLowerCase() === 'normal' ||
-                     titleLower.includes('conference') ||
-                     titleLower.includes('scholarship');
-
-    // Get Together (Category 6) - strictly exclude conference & scholarship!
-    const isGetTogether = !isNormal && (
-                          cat.toLowerCase().includes('get together') ||
-                          titleLower.includes('get together') ||
-                          titleLower.includes('get-together'));
-
-    // BBQ Night & Freshers' Reception (Category 1)
-    const isBbq = cat.toLowerCase().includes('bbq') ||
-                  titleLower.includes('bbq');
+    // 7. Normal / Conference & Scholarship Ceremony (Category: Normal)
+    const isNormal = !isBbq && !isOrientation && !isGetTogether && !isIftar && !isSocialDining && !isSports;
 
     const bottomGraphic = isSports ? `
       <div class="event-card-bottom-banner">
@@ -735,7 +743,6 @@ async function loadAndRenderEvents() {
     else if (isOrientation) cardCustomClass = 'card-cat-orientation';
     else if (isBbq) cardCustomClass = 'card-cat-bbq';
     else if (isGetTogether) cardCustomClass = 'card-cat-get-together';
-    else if (isNormal) cardCustomClass = 'card-cat-normal';
     else cardCustomClass = 'card-cat-normal';
 
     let extraBodyArt = '';

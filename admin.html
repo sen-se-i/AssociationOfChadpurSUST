@@ -4005,28 +4005,42 @@ function renderEventsAdmin(events) {
                      titleLower.includes('sport') ||
                      locLower.includes('sports center');
 
-    const isSocialDining = cat === 'Social and dining Event' ||
+    // 1. BBQ Night & Freshers' Reception (Category 1)
+    const isBbq = cat.includes('bbq') || titleLower.includes('bbq');
+
+    // 2. Freshers' Orientation & Welcome (Category 2)
+    const isOrientation = !isBbq && (
+      cat === 'orientation' ||
+      cat.includes('orientation') ||
+      titleLower.includes('orientation')
+    );
+
+    // 3. Get Together & Re-unions (Category 6)
+    const isGetTogether = !isBbq && !isOrientation && (
+      cat === 'get together' ||
+      cat.includes('get together') ||
+      cat.includes('get-together') ||
+      titleLower.includes('get together') ||
+      titleLower.includes('get-together')
+    );
+
+    // 4. Iftar Mahfil (Category 5)
+    const isIftar = cat.includes('iftar') || titleLower.includes('iftar');
+
+    // 5. Social and dining Event (Category 7, Sha-Pa Day)
+    const isSocialDining = cat === 'social and dining event' ||
+                           cat.includes('social') ||
                            titleLower.includes('sha-pa') ||
                            titleLower.includes('shapa');
 
-    const isIftar = cat === 'Iftar Mahfil' || titleLower.includes('iftar');
+    // 6. Sports (Category 3 & 4)
+    const isSports = cat.includes('sport') ||
+                     titleLower.includes('football') ||
+                     titleLower.includes('sport') ||
+                     locLower.includes('sports center');
 
-    const isOrientation = (cat.toLowerCase() === 'orientation') ||
-                          (!cat && titleLower.includes('orientation') && !titleLower.includes('bbq'));
-
-    const isNormal = cat.toLowerCase().includes('conference') ||
-                     cat.toLowerCase().includes('scholarship') ||
-                     cat.toLowerCase() === 'normal' ||
-                     titleLower.includes('conference') ||
-                     titleLower.includes('scholarship');
-
-    const isGetTogether = !isNormal && (
-                          cat.toLowerCase().includes('get together') ||
-                          titleLower.includes('get together') ||
-                          titleLower.includes('get-together'));
-
-    const isBbq = cat.toLowerCase().includes('bbq') ||
-                  titleLower.includes('bbq');
+    // 7. Normal / Conference & Scholarship Ceremony
+    const isNormal = !isBbq && !isOrientation && !isGetTogether && !isIftar && !isSocialDining && !isSports;
 
     const bottomGraphic = isSports ? `
       <div class="event-card-bottom-banner">
@@ -4141,18 +4155,22 @@ function openEventModal(event = null) {
     document.getElementById('eventModalTitle').textContent = 'Edit Event';
 
     // Populate category or infer from title
-    if (event.category) {
-      document.getElementById('eventCategory').value = event.category;
+    let catVal = 'Normal';
+    if (typeof resolveEventCategory === 'function') {
+      catVal = resolveEventCategory(event);
+    } else if (event.category && event.category.toLowerCase() !== 'normal') {
+      catVal = event.category;
     } else {
       const t = (event.title || '').toLowerCase();
-      if (t.includes('football') || t.includes('sport')) document.getElementById('eventCategory').value = 'Outdoor Sports';
-      else if (t.includes('sha-pa') || t.includes('shapa')) document.getElementById('eventCategory').value = 'Social and dining Event';
-      else if (t.includes('iftar')) document.getElementById('eventCategory').value = 'Iftar Mahfil';
-      else if (t.includes('orientation') && !t.includes('bbq')) document.getElementById('eventCategory').value = 'Orientation';
-      else if (t.includes('bbq')) document.getElementById('eventCategory').value = 'BBQ';
-      else if (t.includes('get together')) document.getElementById('eventCategory').value = 'Get Together';
-      else document.getElementById('eventCategory').value = 'Normal';
+      if (t.includes('football') || t.includes('sport')) catVal = 'Outdoor Sports';
+      else if (t.includes('sha-pa') || t.includes('shapa')) catVal = 'Social and dining Event';
+      else if (t.includes('iftar')) catVal = 'Iftar Mahfil';
+      else if (t.includes('orientation') && !t.includes('bbq')) catVal = 'Orientation';
+      else if (t.includes('bbq')) catVal = 'BBQ';
+      else if (t.includes('get together') || t.includes('get-together')) catVal = 'Get Together';
+      else catVal = 'Normal';
     }
+    document.getElementById('eventCategory').value = catVal;
 
     document.getElementById('eventTitle').value = event.title;
     document.getElementById('eventDate').value = event.date_text || event.date || '';
