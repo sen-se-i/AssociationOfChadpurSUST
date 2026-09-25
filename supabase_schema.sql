@@ -87,10 +87,13 @@ CREATE TABLE IF NOT EXISTS public.people (
 );
 
 -- 5. EVENT INFORMATION
+-- If your table already exists, run this migration in Supabase SQL Editor:
+-- ALTER TABLE public.events ADD COLUMN IF NOT EXISTS category TEXT DEFAULT 'Normal';
 -- ------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS public.events (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
+    category TEXT DEFAULT 'Normal',
     date_text TEXT NOT NULL,
     location TEXT NOT NULL,
     description TEXT NOT NULL,

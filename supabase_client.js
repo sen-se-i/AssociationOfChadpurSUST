@@ -484,8 +484,11 @@ async function fetchEventsData() {
       const { data, error } = await supabaseClient.from('events').select('*');
       if (!error && data && data.length > 0) {
         events = data.map(ev => ({
+          id: ev.id,
+          category: ev.category || 'Normal',
           title: ev.title,
           date: ev.date_text,
+          date_text: ev.date_text,
           location: ev.location,
           description: ev.description,
           thumb: ev.thumb || '',
@@ -518,8 +521,10 @@ async function fetchEventById(id) {
       if (!error && data) {
         return {
           id: data.id,
+          category: data.category || 'Normal',
           title: data.title,
           date: data.date_text,
+          date_text: data.date_text,
           location: data.location,
           description: data.description,
           thumb: data.thumb || '',

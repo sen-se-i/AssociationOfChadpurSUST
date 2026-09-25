@@ -408,32 +408,56 @@ app.get('/api/events/:id', async (req, res) => {
 
 // POST /api/events — Add new event
 app.post('/api/events', requireAuth, async (req, res) => {
-  const { title, date_text, location, description, thumb, emoji, photos, captions, display_order } = req.body;
-  const { data, error } = await supabaseAdmin
+  const { title, date_text, location, description, thumb, emoji, photos, captions, display_order, category } = req.body;
+  const insertPayload = {
+    title, date_text, location, description,
+    thumb: thumb || '', emoji: emoji || '🎭',
+    photos: photos || [], captions: captions || [],
+    display_order: display_order || 0,
+    category: category || 'Normal'
+  };
+
+  let { data, error } = await supabaseAdmin
     .from('events')
-    .insert({
-      title, date_text, location, description,
-      thumb: thumb || '', emoji: emoji || '🎭',
-      photos: photos || [], captions: captions || [],
-      display_order: display_order || 0
-    })
+    .insert(insertPayload)
     .select();
+
+  if (error && error.message && error.message.includes("'category'")) {
+    delete insertPayload.category;
+    const retry = await supabaseAdmin
+      .from('events')
+      .insert(insertPayload)
+      .select();
+    data = retry.data;
+    error = retry.error;
+  }
   sendResult(res, data, error);
 });
 
 // PUT /api/events/:id — Update event
 app.put('/api/events/:id', requireAuth, async (req, res) => {
   const updates = {};
-  const fields = ['title', 'date_text', 'location', 'description', 'thumb', 'emoji', 'photos', 'captions', 'display_order'];
+  const fields = ['title', 'date_text', 'location', 'description', 'thumb', 'emoji', 'photos', 'captions', 'display_order', 'category'];
   fields.forEach(f => {
     if (req.body[f] !== undefined) updates[f] = req.body[f];
   });
 
-  const { data, error } = await supabaseAdmin
+  let { data, error } = await supabaseAdmin
     .from('events')
     .update(updates)
     .eq('id', req.params.id)
     .select();
+
+  if (error && error.message && error.message.includes("'category'")) {
+    delete updates.category;
+    const retry = await supabaseAdmin
+      .from('events')
+      .update(updates)
+      .eq('id', req.params.id)
+      .select();
+    data = retry.data;
+    error = retry.error;
+  }
   sendResult(res, data, error);
 });
 

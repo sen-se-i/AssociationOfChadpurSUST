@@ -880,6 +880,705 @@ a { color: var(--gold-light); text-decoration: none; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ─── ADMIN MEMBERS SHOWCASE GRID ─── */
+.admin-members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+.admin-member-card {
+  background: var(--warm-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(201, 150, 58, 0.2);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+.admin-member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  border-color: var(--gold);
+}
+.admin-member-photo-wrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #081e20;
+}
+.admin-member-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.admin-member-card:hover .admin-member-photo-wrap img {
+  transform: scale(1.08);
+}
+.admin-member-ribbon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 8px 6px;
+  background: linear-gradient(to top, rgba(4, 20, 21, 0.95) 0%, rgba(7, 25, 26, 0.6) 60%, transparent 100%);
+  color: var(--gold-light);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.event-card-actions,
+.admin-member-actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+.admin-circle-edit-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(7, 25, 26, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(201, 150, 58, 0.6);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  outline: none;
+}
+.admin-circle-edit-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--gold-light);
+  transition: transform 0.25s, stroke 0.25s;
+}
+.admin-circle-edit-btn:hover {
+  background: var(--gold);
+  border-color: #ffffff;
+  color: var(--deep-teal);
+  transform: scale(1.15) rotate(10deg);
+  box-shadow: 0 6px 20px rgba(201, 150, 58, 0.65);
+}
+.admin-circle-edit-btn:hover svg {
+  stroke: var(--deep-teal);
+}
+.admin-member-card:hover .admin-circle-edit-btn,
+.event-showcase-card:hover .admin-circle-edit-btn {
+  border-color: var(--gold);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+.admin-member-info {
+  padding: 0.9rem 1rem 1.1rem;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.admin-member-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  margin-bottom: 2px;
+  line-height: 1.25;
+}
+.admin-member-dept {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--river-blue);
+  font-weight: 600;
+}
+.admin-member-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+.admin-member-session {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--river-blue);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.admin-member-area {
+  font-size: 0.72rem;
+  color: #555;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 0;
+  margin-left: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 58%;
+}
+.admin-member-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #eef2f2;
+}
+.admin-member-contact a {
+  font-size: 0.74rem;
+  color: var(--river-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ─── ADMIN EVENTS SHOWCASE GRID & CARDS ─── */
+.admin-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+.event-showcase-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(201, 150, 58, 0.22);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: #111;
+  position: relative;
+  cursor: pointer;
+}
+.event-showcase-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+  border-color: var(--gold);
+}
+.event-card-actions {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  display: flex;
+}
+
+/* ─── MODAL LIVE PREVIEW & DRAGGABLE PHOTO LIST STYLES ─── */
+#memberModal .modal {
+  max-width: 960px !important;
+  width: 95vw;
+}
+.member-modal-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 840px) {
+  .member-modal-grid { grid-template-columns: 1fr; }
+}
+.member-live-preview-box {
+  position: sticky;
+  top: 0;
+  background: rgba(7, 21, 22, 0.92);
+  border: 1px solid var(--border-gold);
+  border-radius: 14px;
+  padding: 1.4rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+.preview-box-header {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.6rem;
+}
+.preview-box-header .pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+}
+
+/* Draggable Event Photo Rows */
+.event-photos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.event-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(7, 21, 22, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: all 0.2s;
+  cursor: grab;
+}
+.event-photo-row:active {
+  cursor: grabbing;
+}
+.event-photo-row.dragging {
+  opacity: 0.4;
+  border-color: var(--gold);
+}
+.event-photo-row.drag-over {
+  border-color: var(--gold);
+  background: rgba(201, 150, 58, 0.12);
+  transform: scale(1.01);
+}
+.event-photo-row.is-cover-row {
+  border-color: var(--gold);
+  background: rgba(201, 150, 58, 0.08);
+}
+.photo-drag-handle {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  cursor: grab;
+  user-select: none;
+}
+.photo-order-num {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  min-width: 22px;
+}
+.photo-row-thumb {
+  width: 65px;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--border-gold);
+}
+.photo-row-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-row-caption {
+  flex: 1;
+}
+.photo-row-caption input {
+  padding: 8px 12px;
+  font-size: 0.82rem;
+}
+.photo-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Executive vs Session Admin Dividers */
+.admin-section-divider {
+  margin: 2.2rem 0 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1.5px solid rgba(201, 150, 58, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.admin-section-divider h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.admin-section-divider p {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+.admin-session-badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201, 150, 58, 0.15);
+  padding: 3px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 150, 58, 0.35);
+}
+
+.event-showcase-banner {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--deep-teal), var(--river-blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.event-showcase-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+.event-showcase-card:hover .event-showcase-banner img {
+  transform: scale(1.06);
+}
+.event-showcase-banner .banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 25, 26, 0.75) 0%, rgba(7, 25, 26, 0.1) 50%, transparent 100%);
+  pointer-events: none;
+}
+.event-badge-count {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(10, 61, 64, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 4px 11px;
+  border-radius: 30px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+
+.event-showcase-body {
+  padding: 1.3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.6rem;
+  background: #ffffff;
+}
+.event-meta-tags {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.event-location-tag, .event-date-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--river-blue);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.event-date-tag {
+  color: var(--gold);
+}
+.event-showcase-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--deep-teal);
+  margin: 0;
+}
+.event-showcase-desc {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: #4b5858;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+/* Event Category Overlays & Artworks */
+.event-showcase-card.card-cat-sports .event-showcase-body {
+  padding-bottom: 0.5rem;
+}
+.event-card-bottom-banner {
+  width: 100%;
+  margin-top: auto;
+  overflow: hidden;
+  line-height: 0;
+  display: block;
+  background: transparent;
+  border-radius: 0 0 14px 14px;
+}
+.event-card-bottom-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.event-showcase-card.card-cat-social-dining .event-showcase-body {
+  background: url('pictures/events/mandala_bg.png') no-repeat right bottom / cover;
+  padding: 0 1.6rem 2.8rem 1.6rem;
+  position: relative;
+}
+.event-showcase-card.card-cat-social-dining .cat-lanterns-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+}
+.event-showcase-card.card-cat-social-dining .cat-lanterns-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  display: block;
+  flex-shrink: 0;
+}
+.event-showcase-card.card-cat-social-dining .cat-lanterns-wrapper .event-meta-tags {
+  padding-top: 12px;
+}
+.event-showcase-card.card-cat-social-dining .event-showcase-title,
+.event-showcase-card.card-cat-social-dining .event-showcase-desc {
+  max-width: 68%;
+  position: relative;
+  z-index: 2;
+}
+
+.event-showcase-card.card-cat-iftar .event-showcase-body {
+  background: linear-gradient(180deg, #b8defc 0%, #d4ebfd 45%, #e8f4fd 70%, #d0e7fa 100%);
+  padding: 1.3rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+}
+.cat-iftar-calligraphy {
+  position: absolute;
+  top: -50px;
+  left: -70px;
+  height: 220px;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 1;
+}
+.cat-iftar-mosque-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 75px;
+  object-fit: cover;
+  object-position: center bottom;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+}
+.cat-iftar-lanterns {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 75px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.35;
+  transform: scaleX(-1);
+  z-index: 3;
+}
+.event-showcase-card.card-cat-iftar .event-meta-tags,
+.event-showcase-card.card-cat-iftar .event-showcase-title,
+.event-showcase-card.card-cat-iftar .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+}
+.event-showcase-card.card-cat-iftar .event-showcase-title { color: #0c3d52; }
+.event-showcase-card.card-cat-iftar .event-showcase-desc { color: #384e5a; }
+
+.event-showcase-card.card-cat-orientation .event-showcase-body {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 6.5rem 1.6rem 2.2rem;
+  min-height: 280px;
+}
+.event-showcase-card.card-cat-orientation .event-showcase-body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('pictures/events/orientation_confetti_bg.png') no-repeat center top / cover;
+  opacity: 0.10;
+  pointer-events: none;
+  z-index: 1;
+}
+.cat-orientation-bunting {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 85px;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 2;
+}
+.event-showcase-card.card-cat-orientation .event-meta-tags,
+.event-showcase-card.card-cat-orientation .event-showcase-title,
+.event-showcase-card.card-cat-orientation .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+}
+.event-showcase-card.card-cat-orientation .event-showcase-title { color: #0d4650; }
+.event-showcase-card.card-cat-orientation .event-showcase-desc { color: #384c52; }
+
+.event-showcase-card.card-cat-get-together .event-showcase-body {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 1rem 1.5rem 1.8rem 2.4rem;
+  min-height: 200px;
+}
+.cat-together-hands {
+  position: absolute;
+  right: -30px;
+  bottom: 0;
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+  opacity: 0.45;
+  z-index: 1;
+}
+.cat-together-corner {
+  position: absolute;
+  left: -20px;
+  bottom: -25px;
+  width: 90%;
+  max-width: 180px;
+  height: 150px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+}
+.cat-together-side {
+  position: absolute;
+  left: 6px;
+  top: 14px;
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+}
+.event-showcase-card.card-cat-get-together .event-meta-tags,
+.event-showcase-card.card-cat-get-together .event-showcase-title,
+.event-showcase-card.card-cat-get-together .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+  max-width: 68%;
+}
+
+.event-showcase-card.card-cat-bbq .event-showcase-body {
+  position: relative;
+  overflow: hidden;
+  background: #fbf5e8 url('pictures/events/bbq_warm_sky.png') no-repeat center center / cover;
+  padding: 1.3rem 1.5rem;
+  min-height: 200px;
+}
+.cat-bbq-grill {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38%;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+}
+.event-showcase-card.card-cat-bbq .event-meta-tags,
+.event-showcase-card.card-cat-bbq .event-showcase-title,
+.event-showcase-card.card-cat-bbq .event-showcase-desc {
+  position: relative;
+  z-index: 3;
+  max-width: 60%;
+}
+
+.event-showcase-card.card-cat-normal {
+  border: 1px solid rgba(201, 150, 58, 0.28);
+}
+.event-showcase-card.card-cat-normal .event-showcase-body {
+  background: #ffffff;
+  position: relative;
+  padding: 1.3rem 1.5rem;
+  min-height: 200px;
+}
+.event-showcase-card.card-cat-normal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, var(--gold), var(--river-blue));
+  z-index: 3;
+}
+
 @media (max-width: 900px) {
   .v-about-block { grid-template-columns: 1fr; }
   .v-footer-grid { grid-template-columns: 1fr; }
@@ -887,6 +1586,19 @@ a { color: var(--gold-light); text-decoration: none; }
   .dash-sidebar .sidebar-item { padding: 12px; justify-content: center; }
   .dash-sidebar .sidebar-item span:not(.icon), .dash-sidebar .sidebar-label, .dash-sidebar .sidebar-divider { display: none; }
   .dash-main { padding: 1.5rem; }
+}
+@media (max-width: 680px) {
+  .admin-members-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.85rem !important; }
+  .admin-events-grid { grid-template-columns: 1fr !important; }
+  .admin-member-photo-wrap { aspect-ratio: 1 / 1.18 !important; }
+  .admin-member-info { padding: 0.7rem 0.65rem 0.85rem !important; }
+  .admin-member-info h3 { font-size: 0.85rem !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+  .admin-member-dept { font-size: 0.6rem !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+  .admin-member-session { font-size: 0.58rem !important; }
+  .admin-member-ribbon { font-size: 0.54rem !important; padding: 16px 4px 4px !important; }
+  .admin-member-area { font-size: 0.68rem !important; }
+  .admin-circle-edit-btn { width: 30px !important; height: 30px !important; top: 8px !important; right: 8px !important; }
+  .admin-circle-edit-btn svg { width: 13px !important; height: 13px !important; }
 }
 </style>
 </head>
@@ -1124,36 +1836,44 @@ a { color: var(--gold-light); text-decoration: none; }
         <div class="section-header">
           <div>
             <h2>Members Management</h2>
-            <p>Manage community members across 3 categories: Members, Teachers, and Staff.</p>
+            <p>Manage community members with live interactive cards. Click any card to edit details & photos.</p>
           </div>
           <button class="btn btn-sm btn-teal" onclick="openMemberModal()">+ Add New Member</button>
         </div>
 
-        <!-- 3 Primary Category Tabs (No All tab) -->
-        <div class="filter-tabs" id="memberFilterTabs">
-          <button class="filter-tab active" data-cat="member" onclick="filterMembers('member',this)">Members (Students)</button>
-          <button class="filter-tab" data-cat="teacher" onclick="filterMembers('teacher',this)">Teachers (Faculty)</button>
-          <button class="filter-tab" data-cat="staff" onclick="filterMembers('staff',this)">Staff</button>
+        <!-- 3 Primary Category Tabs + Search & Upazila Controls -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.8rem;">
+          <div class="filter-tabs" id="memberFilterTabs" style="margin-bottom:0;">
+            <button class="filter-tab active" data-cat="member" onclick="filterMembers('member',this)">Members (Students)</button>
+            <button class="filter-tab" data-cat="teacher" onclick="filterMembers('teacher',this)">Teachers (Faculty)</button>
+            <button class="filter-tab" data-cat="staff" onclick="filterMembers('staff',this)">Staff</button>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <input type="text" id="adminMemberSearch" class="form-input" placeholder="🔍 Search name, dept, area..." style="width:210px;padding:8px 12px;font-size:0.82rem;" oninput="renderMembersCards()">
+            <select id="adminMemberUpazila" class="form-input" style="width:150px;padding:8px 10px;font-size:0.82rem;" onchange="renderMembersCards()">
+              <option value="">All Upazilas</option>
+              <option value="Chandpur Sadar">Chandpur Sadar</option>
+              <option value="Faridganj">Faridganj</option>
+              <option value="Haimchar">Haimchar</option>
+              <option value="Hajiganj">Hajiganj</option>
+              <option value="Kachua">Kachua</option>
+              <option value="Matlab Dakshin">Matlab Dakshin</option>
+              <option value="Matlab Uttar">Matlab Uttar</option>
+              <option value="Shahrasti">Shahrasti</option>
+            </select>
+            <select id="adminMemberSort" class="form-input" style="width:175px;padding:8px 10px;font-size:0.82rem;" onchange="renderMembersCards()">
+              <option value="session-desc">Session: Newest First</option>
+              <option value="session-asc">Session: Oldest First</option>
+              <option value="name-asc">Name: A ➔ Z</option>
+              <option value="name-desc">Name: Z ➔ A</option>
+              <option value="dept-asc">Department: A ➔ Z</option>
+            </select>
+          </div>
         </div>
 
-        <div class="admin-card" style="overflow-x:auto;">
-          <table class="data-table" id="membersTable">
-            <thead>
-              <tr>
-                <th>Photo</th>
-                <th onclick="sortMembersTable('name')" style="cursor:pointer;user-select:none;" title="Click to sort">Name <span id="sortIcon-name"></span></th>
-                <th onclick="sortMembersTable('category')" style="cursor:pointer;user-select:none;" title="Click to sort">Category <span id="sortIcon-category"></span></th>
-                <th onclick="sortMembersTable('position')" style="cursor:pointer;user-select:none;" title="Click to sort">Position / Designation <span id="sortIcon-position"></span></th>
-                <th onclick="sortMembersTable('dept')" style="cursor:pointer;user-select:none;" title="Click to sort">Department <span id="sortIcon-dept"></span></th>
-                <th onclick="sortMembersTable('session')" id="thSessionCol" style="cursor:pointer;user-select:none;" title="Click to sort">Session <span id="sortIcon-session"></span></th>
-                <th onclick="sortMembersTable('area')" style="cursor:pointer;user-select:none;" title="Click to sort">Area <span id="sortIcon-area"></span></th>
-                <th>Contact</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="membersTableBody"></tbody>
-          </table>
-        </div>
+        <!-- Visual Member Cards Container (Executive Committee + Sessions) -->
+        <div id="membersContainerAdmin"></div>
       </div>
 
       <!-- ═══ 3. EVENTS MANAGEMENT SECTION ═══ -->
@@ -1161,11 +1881,11 @@ a { color: var(--gold-light); text-decoration: none; }
         <div class="section-header">
           <div>
             <h2>Events Management</h2>
-            <p>Create and update events. Descriptions support natural line breaks without typing &lt;br&gt; tags.</p>
+            <p>Live category-themed cards. Click any event card to view and edit details, descriptions & photos.</p>
           </div>
           <button class="btn btn-sm btn-teal" onclick="openEventModal()">+ Create Event</button>
         </div>
-        <div id="eventsListAdmin"></div>
+        <div class="admin-events-grid" id="eventsListAdmin"></div>
       </div>
 
       <!-- ═══ 4. SITE SETTINGS SECTION ═══ -->
@@ -1347,153 +2067,230 @@ a { color: var(--gold-light); text-decoration: none; }
     <div class="modal-body">
       <input type="hidden" id="memberEditId">
 
-      <div class="form-group">
-        <label>Category *</label>
-        <select class="form-input" id="memberCategory" onchange="onCategoryChange(this.value)">
-          <option value="member">Member (Student)</option>
-          <option value="teacher">Teacher (Faculty)</option>
-          <option value="staff">Staff (University)</option>
-        </select>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" class="form-input" id="memberName" placeholder="e.g. Dr. SM Saiful Islam">
-        </div>
-        
-        <!-- Dynamic Designation Container -->
-        <div class="form-group" id="designationGroup">
-          <label id="positionLabel">Position / Designation *</label>
-          <!-- 1. Member Position Dropdown -->
-          <div id="memberPositionWrap">
-            <select class="form-input" id="memberPositionSelect" onchange="checkPresidentGsAssignment(this.value)"></select>
-            <span id="presidentGsNotice" style="display:none;font-size:0.72rem;color:var(--gold-light);margin-top:3px;"></span>
-          </div>
-          <!-- 2. Teacher Designation Dropdown -->
-          <div id="teacherDesignationWrap" style="display:none;">
-            <select class="form-input" id="teacherDesignationSelect">
-              <option value="Professor">Professor</option>
-              <option value="Associate Professor">Associate Professor</option>
-              <option value="Assistant Professor">Assistant Professor</option>
-              <option value="Lecturer">Lecturer</option>
+      <div class="member-modal-grid">
+        <!-- Left: Form inputs -->
+        <div class="member-modal-form">
+          <div class="form-group">
+            <label>Category *</label>
+            <select class="form-input" id="memberCategory" onchange="onCategoryChange(this.value); updateMemberLivePreview();">
+              <option value="member">Member (Student)</option>
+              <option value="teacher">Teacher (Faculty)</option>
+              <option value="staff">Staff (University)</option>
             </select>
           </div>
-          <!-- 3. Staff Designation Free Text -->
-          <div id="staffDesignationWrap" style="display:none;">
-            <input type="text" class="form-input" id="staffDesignationInput" placeholder="e.g. Administrative Officer">
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" class="form-input" id="memberName" placeholder="e.g. Zakaria Talukdar Omio" oninput="updateMemberLivePreview()">
+            </div>
+            
+            <!-- Dynamic Designation Container -->
+            <div class="form-group" id="designationGroup">
+              <label id="positionLabel">Position / Designation *</label>
+              <!-- 1. Member Position Dropdown -->
+              <div id="memberPositionWrap">
+                <select class="form-input" id="memberPositionSelect" onchange="checkPresidentGsAssignment(this.value); updateMemberLivePreview();"></select>
+                <span id="presidentGsNotice" style="display:none;font-size:0.72rem;color:var(--gold-light);margin-top:3px;"></span>
+              </div>
+              <!-- 2. Teacher Designation Dropdown -->
+              <div id="teacherDesignationWrap" style="display:none;">
+                <select class="form-input" id="teacherDesignationSelect" onchange="updateMemberLivePreview()">
+                  <option value="Professor">Professor</option>
+                  <option value="Associate Professor">Associate Professor</option>
+                  <option value="Assistant Professor">Assistant Professor</option>
+                  <option value="Lecturer">Lecturer</option>
+                </select>
+              </div>
+              <!-- 3. Staff Designation Free Text -->
+              <div id="staffDesignationWrap" style="display:none;">
+                <input type="text" class="form-input" id="staffDesignationInput" placeholder="e.g. Administrative Officer" oninput="updateMemberLivePreview()">
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <!-- 28 Official SUST Departments Dropdown + Dynamic Other/Workplace -->
+            <div class="form-group">
+              <label id="deptLabel">Department *</label>
+              <select class="form-input" id="memberDept" onchange="onDeptChange(this.value); updateMemberLivePreview();">
+                <option value="">Select Department *</option>
+                <option value="Anthropology">Anthropology</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Bangla">Bangla</option>
+                <option value="Biochemistry and Molecular Biology">Biochemistry and Molecular Biology</option>
+                <option value="Business Administration">Business Administration</option>
+                <option value="Chemical Engineering & Polymer Science">Chemical Engineering & Polymer Science</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Civil & Environmental Engineering">Civil & Environmental Engineering</option>
+                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                <option value="Economics">Economics</option>
+                <option value="Electrical & Electronic Engineering">Electrical & Electronic Engineering</option>
+                <option value="English">English</option>
+                <option value="Food Engineering & Tea Technology">Food Engineering & Tea Technology</option>
+                <option value="Forestry & Environmental Science">Forestry & Environmental Science</option>
+                <option value="Genetic Engineering & Biotechnology">Genetic Engineering & Biotechnology</option>
+                <option value="Geography and Environment">Geography and Environment</option>
+                <option value="Industrial & Production Engineering">Industrial & Production Engineering</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Oceanography">Oceanography</option>
+                <option value="Petroleum & Mining Engineering">Petroleum & Mining Engineering</option>
+                <option value="Physics">Physics</option>
+                <option value="Political Studies">Political Studies</option>
+                <option value="Public Administration">Public Administration</option>
+                <option value="Social Work">Social Work</option>
+                <option value="Sociology">Sociology</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Statistics">Statistics</option>
+                <option value="Other">Other / Workplace...</option>
+              </select>
+            </div>
+
+            <!-- Session Field: Only shown for Member (Student) -->
+            <div class="form-group" id="memberSessionWrap">
+              <label>Session (Students only)</label>
+              <input type="text" class="form-input" id="memberSession" placeholder="e.g. 21-22" oninput="updateMemberLivePreview()">
+            </div>
+
+            <!-- Other Workplace/Office Input: appears beside Department when 'Other' is selected -->
+            <div class="form-group" id="memberDeptOtherWrap" style="display:none;">
+              <label style="color:var(--gold-light);">Specify Other / Workplace *</label>
+              <input type="text" class="form-input" id="memberDeptOther" placeholder="e.g. VC Bungalow, Accounts, Registrar Office" oninput="updateMemberLivePreview()">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+              <label>Area / Upazila</label>
+              <select class="form-input" id="memberArea" onchange="updateMemberLivePreview()">
+                <option value="">Select Upazila</option>
+                <option value="Chandpur Sadar">Chandpur Sadar</option>
+                <option value="Faridganj">Faridganj</option>
+                <option value="Haimchar">Haimchar</option>
+                <option value="Hajiganj">Hajiganj</option>
+                <option value="Kachua">Kachua</option>
+                <option value="Matlab Dakshin">Matlab Dakshin</option>
+                <option value="Matlab Uttar">Matlab Uttar</option>
+                <option value="Shahrasti">Shahrasti</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Phone / Contact Number</label>
+              <input type="tel" class="form-input" id="memberPhone" placeholder="e.g. 88017XXXXXXXX" oninput="updateMemberLivePreview()">
+            </div>
+          </div>
+
+          <!-- Contact Info: Email & Facebook Link -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-input" id="memberEmail" placeholder="student@example.com">
+            </div>
+            <div class="form-group">
+              <label>Facebook Profile URL</label>
+              <input type="url" class="form-input" id="memberFacebook" placeholder="https://facebook.com/username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Photo</label>
+            <div style="display:flex;align-items:center;gap:1.2rem;">
+              <img src="pictures/default.jpg" alt="" class="member-thumb" id="memberPhotoPreview" style="width:60px;height:60px;border-radius:10px;">
+              <input type="file" id="memberPhotoFile" accept="image/*" onchange="previewMemberPhoto(this)">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <!-- 28 Official SUST Departments Dropdown + Dynamic Other/Workplace -->
-        <div class="form-group">
-          <label id="deptLabel">Department *</label>
-          <select class="form-input" id="memberDept" onchange="onDeptChange(this.value)">
-            <option value="">Select Department *</option>
-            <option value="Anthropology">Anthropology</option>
-            <option value="Architecture">Architecture</option>
-            <option value="Bangla">Bangla</option>
-            <option value="Biochemistry and Molecular Biology">Biochemistry and Molecular Biology</option>
-            <option value="Business Administration">Business Administration</option>
-            <option value="Chemical Engineering & Polymer Science">Chemical Engineering & Polymer Science</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="Civil & Environmental Engineering">Civil & Environmental Engineering</option>
-            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
-            <option value="Economics">Economics</option>
-            <option value="Electrical & Electronic Engineering">Electrical & Electronic Engineering</option>
-            <option value="English">English</option>
-            <option value="Food Engineering & Tea Technology">Food Engineering & Tea Technology</option>
-            <option value="Forestry & Environmental Science">Forestry & Environmental Science</option>
-            <option value="Genetic Engineering & Biotechnology">Genetic Engineering & Biotechnology</option>
-            <option value="Geography and Environment">Geography and Environment</option>
-            <option value="Industrial & Production Engineering">Industrial & Production Engineering</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Mechanical Engineering">Mechanical Engineering</option>
-            <option value="Oceanography">Oceanography</option>
-            <option value="Petroleum & Mining Engineering">Petroleum & Mining Engineering</option>
-            <option value="Physics">Physics</option>
-            <option value="Political Studies">Political Studies</option>
-            <option value="Public Administration">Public Administration</option>
-            <option value="Social Work">Social Work</option>
-            <option value="Sociology">Sociology</option>
-            <option value="Software Engineering">Software Engineering</option>
-            <option value="Statistics">Statistics</option>
-            <option value="Other">Other / Workplace...</option>
-          </select>
-        </div>
-
-        <!-- Session Field: Only shown for Member (Student) -->
-        <div class="form-group" id="memberSessionWrap">
-          <label>Session (Students only)</label>
-          <input type="text" class="form-input" id="memberSession" placeholder="e.g. 21-22">
-        </div>
-
-        <!-- Other Workplace/Office Input: appears beside Department when 'Other' is selected -->
-        <div class="form-group" id="memberDeptOtherWrap" style="display:none;">
-          <label style="color:var(--gold-light);">Specify Other / Workplace *</label>
-          <input type="text" class="form-input" id="memberDeptOther" placeholder="e.g. VC Bungalow, Accounts, Registrar Office">
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="form-group">
-          <label>Area / Upazila</label>
-          <select class="form-input" id="memberArea">
-            <option value="">Select Upazila</option>
-            <option value="Chandpur Sadar">Chandpur Sadar</option>
-            <option value="Faridganj">Faridganj</option>
-            <option value="Haimchar">Haimchar</option>
-            <option value="Hajiganj">Hajiganj</option>
-            <option value="Kachua">Kachua</option>
-            <option value="Matlab Dakshin">Matlab Dakshin</option>
-            <option value="Matlab Uttar">Matlab Uttar</option>
-            <option value="Shahrasti">Shahrasti</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Phone / Contact Number</label>
-          <input type="tel" class="form-input" id="memberPhone" placeholder="e.g. 88017XXXXXXXX">
-        </div>
-      </div>
-
-      <!-- Contact Info: Email & Facebook Link -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" class="form-input" id="memberEmail" placeholder="student@example.com">
-        </div>
-        <div class="form-group">
-          <label>Facebook Profile URL</label>
-          <input type="url" class="form-input" id="memberFacebook" placeholder="https://facebook.com/username">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Photo</label>
-        <div style="display:flex;align-items:center;gap:1.2rem;">
-          <img src="pictures/default.jpg" alt="" class="member-thumb" id="memberPhotoPreview" style="width:60px;height:60px;border-radius:10px;">
-          <input type="file" id="memberPhotoFile" accept="image/*" onchange="previewMemberPhoto(this)">
+        <!-- Right: Live Visual Preview Card -->
+        <div class="member-modal-preview-col">
+          <div class="member-live-preview-box">
+            <div class="preview-box-header">
+              <span>👁 Live Website Preview</span>
+              <span class="pulse-dot"></span>
+            </div>
+            <div id="memberLivePreviewCard"></div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="modal-footer" style="display:flex;justify-content:space-between;align-items:center;">
+      <button type="button" class="btn btn-sm btn-danger" id="memberDeleteBtn" onclick="deleteCurrentMember()" style="display:none;padding:8px 16px;">🗑️ Delete Member</button>
+      <div style="display:flex;gap:0.8rem;margin-left:auto;">
+        <button class="btn btn-sm btn-ghost" onclick="closeMemberModal()">Cancel</button>
+        <button class="btn btn-sm btn-gold" id="memberSaveBtn" onclick="saveMember()">Save Member</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ DESIGNATION QUICK CHANGE MODAL ═══════════════ -->
+<div class="modal-overlay" id="designationModal">
+  <div class="modal" style="max-width:500px;">
+    <div class="modal-header">
+      <h3 style="font-family:'Playfair Display',serif;">Change Designation</h3>
+      <button class="modal-close" onclick="closeDesignationModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="designationMemberId">
+      <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem;padding:1rem;background:rgba(7,21,22,0.85);border-radius:12px;border:1px solid var(--border-gold);">
+        <img id="designationMemberPhoto" src="pictures/default.jpg" alt="" style="width:65px;height:65px;border-radius:10px;object-fit:cover;border:1.5px solid var(--gold);">
+        <div>
+          <h4 id="designationMemberName" style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);margin-bottom:3px;"></h4>
+          <span id="designationMemberDept" style="font-size:0.75rem;color:var(--river-blue);text-transform:uppercase;font-weight:600;display:block;"></span>
+          <span id="designationMemberCurrent" style="font-size:0.75rem;color:var(--gold-light);font-weight:700;display:block;margin-top:2px;"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Change Position To *</label>
+        <select class="form-input" id="newDesignationSelect" onchange="checkDesignationConflict(this.value)">
+          <option value="President">President</option>
+          <option value="Vice President">Vice President</option>
+          <option value="General Secretary">General Secretary</option>
+          <option value="Joint Secretary">Joint Secretary</option>
+          <option value="Organizing Secretary">Organizing Secretary</option>
+          <option value="Treasurer">Treasurer</option>
+          <option value="Cultural Secretary">Cultural Secretary</option>
+          <option value="Sports Secretary">Sports Secretary</option>
+          <option value="Publicity & Publication Secretary">Publicity & Publication Secretary</option>
+          <option value="Office Secretary">Office Secretary</option>
+          <option value="Executive Member">Executive Member</option>
+          <option value="General Member">General Member (Remove from Executive Committee)</option>
+        </select>
+        <div id="designationConflictNotice" style="display:none;margin-top:8px;padding:8px 12px;background:rgba(201,150,58,0.15);border:1px solid var(--gold);border-radius:8px;font-size:0.75rem;color:var(--gold-light);line-height:1.4;"></div>
+      </div>
+    </div>
     <div class="modal-footer">
-      <button class="btn btn-sm btn-ghost" onclick="closeMemberModal()">Cancel</button>
-      <button class="btn btn-sm btn-gold" id="memberSaveBtn" onclick="saveMember()">Save Member</button>
+      <button class="btn btn-sm btn-ghost" onclick="closeDesignationModal()">Cancel</button>
+      <button class="btn btn-sm btn-gold" id="saveDesignationBtn" onclick="saveDesignationChange()">Update Designation</button>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════ EVENT ADD/EDIT MODAL ═══════════════ -->
 <div class="modal-overlay" id="eventModal">
-  <div class="modal">
+  <div class="modal" style="max-width:720px;">
     <div class="modal-header">
       <h3 id="eventModalTitle">Add Event</h3>
       <button class="modal-close" onclick="closeEventModal()">✕</button>
     </div>
     <div class="modal-body">
       <input type="hidden" id="eventEditId">
+
+      <div class="form-group">
+        <label>Event Category (Theme & Design) *</label>
+        <select class="form-input" id="eventCategory">
+          <option value="Normal">🎓 Conference, Ceremony & Formal (Classic Minimal)</option>
+          <option value="Outdoor Sports">⚽ Outdoor Sports (Football, Cricket, Tournaments)</option>
+          <option value="Social and dining Event">🎭 Social & Dining Event (Sha-Pa Day, Banquets)</option>
+          <option value="Iftar Mahfil">🌙 Iftar Mahfil & Ramadan Gatherings</option>
+          <option value="Orientation">🚩 Freshers' Orientation & Welcome</option>
+          <option value="Get Together">🤝 Get Together & Re-unions</option>
+          <option value="BBQ">🍖 BBQ Night & Cookouts</option>
+        </select>
+        <span style="font-size:0.75rem;color:var(--text-muted);display:block;margin-top:4px;">Determines background theme art, overlays, and banner. Hidden from public card preview.</span>
+      </div>
 
       <div class="form-group">
         <label>Event Title *</label>
@@ -1513,7 +2310,7 @@ a { color: var(--gold-light); text-decoration: none; }
 
       <div class="form-group">
         <label>Description (Natural Newlines - No &lt;br&gt; needed!)</label>
-        <textarea class="form-input" id="eventDescription" rows="6" placeholder="Write event description here. Simply press Enter for new paragraphs. No <br> tags needed!"></textarea>
+        <textarea class="form-input" id="eventDescription" rows="5" placeholder="Write event description here. Simply press Enter for new paragraphs. No <br> tags needed!"></textarea>
       </div>
 
       <div class="form-group">
@@ -1526,19 +2323,20 @@ a { color: var(--gold-light); text-decoration: none; }
       </div>
 
       <div class="form-group">
-        <label>Gallery Photos</label>
-        <input type="file" id="eventPhotosFile" accept="image/*" multiple onchange="addEventPhotos(this)">
-        <div class="event-photos-grid" id="eventPhotosGrid"></div>
-      </div>
-
-      <div class="form-group">
-        <label>Photo Captions (one per line, matching photo order)</label>
-        <textarea class="form-input" id="eventCaptions" rows="3" placeholder="Photo 1 caption&#10;Photo 2 caption"></textarea>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem;">
+          <label style="margin-bottom:0;">Gallery Photos & Captions (Drag ☰ to re-order)</label>
+          <button type="button" class="btn btn-sm btn-outline-gold" onclick="document.getElementById('eventPhotosFile').click()" style="padding:4px 12px;font-size:0.7rem;">+ Upload Photos</button>
+          <input type="file" id="eventPhotosFile" accept="image/*" multiple onchange="addEventPhotos(this)" style="display:none;">
+        </div>
+        <div class="event-photos-list" id="eventPhotosList"></div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-sm btn-ghost" onclick="closeEventModal()">Cancel</button>
-      <button class="btn btn-sm btn-gold" id="eventSaveBtn" onclick="saveEvent()">Save Event</button>
+    <div class="modal-footer" style="display:flex;justify-content:space-between;align-items:center;">
+      <button type="button" class="btn btn-sm btn-danger" id="eventDeleteBtn" onclick="deleteCurrentEvent()" style="display:none;padding:8px 16px;">🗑️ Delete Event</button>
+      <div style="display:flex;gap:0.8rem;margin-left:auto;">
+        <button class="btn btn-sm btn-ghost" onclick="closeEventModal()">Cancel</button>
+        <button class="btn btn-sm btn-gold" id="eventSaveBtn" onclick="saveEvent()">Save Event</button>
+      </div>
     </div>
   </div>
 </div>
@@ -2385,55 +3183,224 @@ function getMemberPhotoSrc(m) {
   return `pictures/${nameToFilename(m.name)}.jpg`;
 }
 
-function renderMembersTable() {
-  const filtered = allMembers.filter(m => m.category === currentMemberFilter);
+let currentEditingMemberId = null;
+let currentEditingMemberName = '';
+let currentDesignationMember = null;
+let currentEditingEventId = null;
+let currentEditingEventTitle = '';
+let draggedPhotoIndex = null;
 
-  // Toggle session column header visibility based on filter
-  const thSession = document.getElementById('thSessionCol');
-  if (thSession) thSession.style.display = (currentMemberFilter === 'member') ? '' : 'none';
-
-  const tbody = document.getElementById('membersTableBody');
-  tbody.innerHTML = filtered.map(m => {
-    const photoSrc = getMemberPhotoSrc(m);
-    const catDisplay = m.category === 'member' ? 'Member' : (m.category === 'teacher' ? 'Teacher' : 'Staff');
-    const catClass = `cat-${m.category}`;
-    const pos = m.position || (m.category === 'member' ? 'General Member' : '—');
-    
-    // Contact icons: Phone, Email, Facebook
-    let contactHTML = [];
-    if (m.phone) contactHTML.push(`<a href="tel:${m.phone}" style="color:var(--gold-light);" title="Call: ${m.phone}">📞 ${m.phone}</a>`);
-    if (m.email) contactHTML.push(`<a href="mailto:${m.email}" style="color:var(--text-dim);" title="${m.email}">✉️</a>`);
-    if (m.facebook_url) contactHTML.push(`<a href="${m.facebook_url}" target="_blank" style="color:var(--text-dim);" title="Facebook">🌐</a>`);
-
-    const sessionCell = (currentMemberFilter === 'member') 
-      ? `<td><span style="font-family:'Josefin Sans',sans-serif;font-weight:600;color:var(--gold);">${m.session || '—'}</span></td>`
-      : '';
-
-    return `<tr>
-      <td><img src="${photoSrc}" alt="" class="member-thumb" onerror="this.src='pictures/default.jpg'"></td>
-      <td><strong>${m.name}</strong></td>
-      <td><span class="category-tag ${catClass}">${catDisplay}</span></td>
-      <td><span style="font-weight:600;color:var(--gold-light);">${pos}</span></td>
-      <td><strong>${m.dept}</strong></td>
-      ${sessionCell}
-      <td>${m.area || '—'}</td>
-      <td>${contactHTML.length > 0 ? contactHTML.join('<br>') : '<span style="color:var(--text-muted);">—</span>'}</td>
-      <td>
-        <div style="display:flex;gap:0.4rem;">
-          <button class="btn btn-sm btn-outline-gold" style="padding:4px 10px;" onclick="editMember(${m.id})">Edit</button>
-          <button class="btn btn-sm btn-danger" style="padding:4px 10px;" onclick="deleteMember(${m.id},'${m.name.replace(/'/g,"\\'")}')">✕</button>
-        </div>
-      </td>
-    </tr>`;
-  }).join('');
+function compareMembers(a, b, sortMode) {
+  if (sortMode === 'name-asc') {
+    return (a.name || '').localeCompare(b.name || '');
+  }
+  if (sortMode === 'name-desc') {
+    return (b.name || '').localeCompare(a.name || '');
+  }
+  if (sortMode === 'dept-asc') {
+    return (a.dept || '').localeCompare(b.dept || '');
+  }
+  if (sortMode === 'session-asc') {
+    const sa = (a.session || '').trim();
+    const sb = (b.session || '').trim();
+    if (!sa && !sb) return (a.name || '').localeCompare(b.name || '');
+    if (!sa) return 1;
+    if (!sb) return -1;
+    const cmp = sa.localeCompare(sb, undefined, { numeric: true });
+    return cmp !== 0 ? cmp : (a.name || '').localeCompare(b.name || '');
+  }
+  // Default: session-desc
+  const sa = (a.session || '').trim();
+  const sb = (b.session || '').trim();
+  if (!sa && !sb) return (a.name || '').localeCompare(b.name || '');
+  if (!sa) return 1;
+  if (!sb) return -1;
+  const cmp = sb.localeCompare(sa, undefined, { numeric: true });
+  return cmp !== 0 ? cmp : (a.name || '').localeCompare(b.name || '');
 }
+
+function renderMemberCardHTML(m, isExecutiveSection = false) {
+  const photoSrc = getMemberPhotoSrc(m);
+  const pos = m.position || (m.category === 'member' ? 'General Member' : (m.category === 'teacher' ? 'Faculty' : 'Staff'));
+  const sessTag = (!isExecutiveSection && m.category === 'member' && m.session) ? `<span class="admin-member-session">Session ${m.session}</span>` : '';
+  const ribbonHTML = isExec ? `<div class="admin-member-ribbon">${pos}</div>` : '';
+
+  let extraBadge = '';
+  if (m.category === 'teacher') {
+    extraBadge = `<span style="font-size:0.65rem;font-weight:700;color:#2ecc71;letter-spacing:0.06em;text-transform:uppercase;">${m.position || 'Faculty'}</span>`;
+  } else if (m.category === 'staff') {
+    extraBadge = `<span style="font-size:0.65rem;font-weight:700;color:#c39bd3;letter-spacing:0.06em;text-transform:uppercase;">${m.position || 'Staff'}</span>`;
+  }
+
+  let contactLinks = [];
+  if (m.phone) contactLinks.push(`<a href="tel:${m.phone}" onclick="event.stopPropagation()" title="Call ${m.phone}">📞 ${m.phone}</a>`);
+  if (m.email) contactLinks.push(`<a href="mailto:${m.email}" onclick="event.stopPropagation()" title="${m.email}">✉️</a>`);
+  if (m.facebook_url) contactLinks.push(`<a href="${m.facebook_url}" target="_blank" onclick="event.stopPropagation()" title="Facebook Profile">🌐</a>`);
+
+  const clickHandler = isExecutiveSection ? `openDesignationModal(${m.id})` : `editMember(${m.id})`;
+  const badgeLabel = isExecutiveSection ? `✎ Change Designation` : `✎ Edit Details`;
+  const cardTitle = isExecutiveSection ? `Click to change designation for ${m.name}` : `Click to edit ${m.name}`;
+
+  const areaTag = (!isExecutiveSection && m.area) ? `<div class="admin-member-area">📍 ${m.area}</div>` : '';
+
+  return `
+  <div class="admin-member-card" onclick="${clickHandler}" title="${cardTitle}">
+    <div class="admin-member-actions" onclick="event.stopPropagation()">
+      <button type="button" class="admin-circle-edit-btn" onclick="${clickHandler}" title="${cardTitle}" aria-label="${badgeLabel}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="admin-member-photo-wrap">
+      <img src="${photoSrc}" alt="${m.name}" onerror="this.src='pictures/default.jpg';this.onerror=null;">
+      ${ribbonHTML}
+    </div>
+
+    <div class="admin-member-info">
+      <h3>${m.name}</h3>
+      ${extraBadge}
+      <span class="admin-member-dept">${m.dept || ''}</span>
+      ${(sessTag || areaTag) ? `
+      <div class="admin-member-meta-row">
+        ${sessTag}
+        ${areaTag}
+      </div>` : ''}
+      ${contactLinks.length > 0 ? `<div class="admin-member-contact">${contactLinks.join('')}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+function renderMembersCards() {
+  const query = (document.getElementById('adminMemberSearch')?.value || '').trim().toLowerCase();
+  const upazila = (document.getElementById('adminMemberUpazila')?.value || '').trim().toLowerCase();
+  const sortVal = document.getElementById('adminMemberSort')?.value || 'session-desc';
+
+  let filtered = allMembers.filter(m => m.category === currentMemberFilter);
+
+  if (query) {
+    filtered = filtered.filter(m => 
+      (m.name || '').toLowerCase().includes(query) ||
+      (m.dept || '').toLowerCase().includes(query) ||
+      (m.area || '').toLowerCase().includes(query) ||
+      (m.session || '').toLowerCase().includes(query) ||
+      (m.position || '').toLowerCase().includes(query)
+    );
+  }
+
+  if (upazila) {
+    filtered = filtered.filter(m => (m.area || '').toLowerCase().includes(upazila));
+  }
+
+  const container = document.getElementById('membersContainerAdmin');
+  if (!container) return;
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="text-align:center;padding:3.5rem 1rem;color:var(--text-dim);background:var(--bg-card);border-radius:12px;border:1px dashed var(--border);">No members found matching your search. Try adjusting the search filters or switch category tab.</div>`;
+    return;
+  }
+
+  if (currentMemberFilter === 'member') {
+    // If active search query or upazila filter is applied, show search results
+    if (query || upazila) {
+      filtered.sort((a, b) => compareMembers(a, b, sortVal));
+      container.innerHTML = `
+        <div class="admin-section-divider">
+          <span>🔍 Filtered Members (${filtered.length} found)</span>
+        </div>
+        <div class="admin-members-grid">
+          ${filtered.map(m => renderMemberCardHTML(m, false)).join('')}
+        </div>
+      `;
+      return;
+    }
+
+    // Default student view: Executive Committee at top, followed by Session-wise sections
+    const execMembers = allMembers.filter(m => 
+      m.category === 'member' && 
+      m.position && 
+      m.position.toLowerCase() !== 'general member' && 
+      m.position.toLowerCase() !== 'general'
+    );
+
+    // Sort executives by role hierarchy in MEMBER_POSITIONS
+    execMembers.sort((a, b) => {
+      const ia = MEMBER_POSITIONS.indexOf(a.position);
+      const ib = MEMBER_POSITIONS.indexOf(b.position);
+      return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+    });
+
+    // Group members by session (students belong to both executive section and their session)
+    const sessionMap = new Map();
+    allMembers.filter(m => m.category === 'member').forEach(m => {
+      const sess = (m.session || 'Unassigned Session').trim();
+      if (!sessionMap.has(sess)) sessionMap.set(sess, []);
+      sessionMap.get(sess).push(m);
+    });
+
+    const sessionKeys = Array.from(sessionMap.keys());
+    sessionKeys.sort((a, b) => {
+      if (sortVal === 'session-asc') {
+        return a.localeCompare(b, undefined, { numeric: true });
+      } else {
+        return b.localeCompare(a, undefined, { numeric: true });
+      }
+    });
+
+    let html = '';
+
+    // 1. Executive Committee Section
+    if (execMembers.length > 0) {
+      html += `
+        <div class="admin-section-divider">
+          <span>★ Executive Committee</span>
+          <span class="admin-session-badge">${execMembers.length} Leaders · Click to change role</span>
+        </div>
+        <div class="admin-members-grid">
+          ${execMembers.map(m => renderMemberCardHTML(m, true)).join('')}
+        </div>
+      `;
+    }
+
+    // 2. Session Wise Sections
+    sessionKeys.forEach(sessKey => {
+      const membersInSess = sessionMap.get(sessKey);
+      membersInSess.sort((a, b) => compareMembers(a, b, sortVal));
+      html += `
+        <div class="admin-section-divider">
+          <span>Session ${sessKey}</span>
+          <span class="admin-session-badge">${membersInSess.length} Members</span>
+        </div>
+        <div class="admin-members-grid">
+          ${membersInSess.map(m => renderMemberCardHTML(m, false)).join('')}
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+  } else {
+    // Teacher or Staff view
+    filtered.sort((a, b) => compareMembers(a, b, sortVal));
+    const label = currentMemberFilter === 'teacher' ? 'Faculty & Teachers' : 'Staff Members';
+    container.innerHTML = `
+      <div class="admin-section-divider">
+        <span>${label}</span>
+        <span class="admin-session-badge">${filtered.length} Members</span>
+      </div>
+      <div class="admin-members-grid">
+        ${filtered.map(m => renderMemberCardHTML(m, false)).join('')}
+      </div>
+    `;
+  }
+}
+const renderMembersTable = renderMembersCards;
 
 function filterMembers(cat, el) {
   currentMemberFilter = cat;
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  applyDefaultMemberSort();
-  renderMembersTable();
+  renderMembersCards();
 }
 
 function populateMemberPositionSelect(selectedPosition = '', currentMemberId = null) {
@@ -2463,14 +3430,14 @@ function checkPresidentGsAssignment(val) {
   if (val === 'President') {
     const existing = allMembers.find(m => m.category === 'member' && m.position === 'President' && m.id !== editId);
     if (existing) {
-      notice.textContent = `ℹ️ ${existing.name} is currently President. Saving will reassign the President role.`;
+      notice.textContent = `ℹ️ ${existing.name} is currently President. Saving will reassign ${existing.name} to Executive Member.`;
       notice.style.display = 'block';
       return;
     }
   } else if (val === 'General Secretary') {
     const existing = allMembers.find(m => m.category === 'member' && m.position === 'General Secretary' && m.id !== editId);
     if (existing) {
-      notice.textContent = `ℹ️ ${existing.name} is currently General Secretary. Saving will reassign the General Secretary role.`;
+      notice.textContent = `ℹ️ ${existing.name} is currently General Secretary. Saving will reassign ${existing.name} to Executive Member.`;
       notice.style.display = 'block';
       return;
     }
@@ -2531,6 +3498,69 @@ function onCategoryChange(cat) {
   }
 }
 
+/* ─── LIVE MEMBER CARD PREVIEW IN MODAL ─── */
+function updateMemberLivePreview() {
+  const container = document.getElementById('memberLivePreviewCard');
+  if (!container) return;
+
+  const category = document.getElementById('memberCategory')?.value || 'member';
+  const name = document.getElementById('memberName')?.value.trim() || 'Member Name';
+  const deptSelect = document.getElementById('memberDept')?.value || '';
+  const deptOther = document.getElementById('memberDeptOther')?.value.trim() || '';
+  const dept = (deptSelect === 'Other') ? (deptOther || 'Custom Workplace') : (deptSelect || 'Department');
+  const session = document.getElementById('memberSession')?.value.trim() || '';
+  const area = document.getElementById('memberArea')?.value.trim() || '';
+  const phone = document.getElementById('memberPhone')?.value.trim() || '';
+  const email = document.getElementById('memberEmail')?.value.trim() || '';
+  const fb = document.getElementById('memberFacebook')?.value.trim() || '';
+  const photoSrc = document.getElementById('memberPhotoPreview')?.src || 'pictures/default.jpg';
+
+  let position = '';
+  if (category === 'member') {
+    position = document.getElementById('memberPositionSelect')?.value || 'General Member';
+  } else if (category === 'teacher') {
+    position = document.getElementById('teacherDesignationSelect')?.value || 'Professor';
+  } else {
+    position = document.getElementById('staffDesignationInput')?.value.trim() || 'Staff';
+  }
+
+  const isExec = (category === 'member') && position.toLowerCase() !== 'general' && position.toLowerCase() !== 'general member';
+  const sessTag = (category === 'member' && session) ? `<span class="admin-member-session">Session ${session}</span>` : '';
+  const ribbonHTML = isExec ? `<div class="admin-member-ribbon">${position}</div>` : '';
+
+  let extraBadge = '';
+  if (category === 'teacher') {
+    extraBadge = `<span style="font-size:0.65rem;font-weight:700;color:#2ecc71;letter-spacing:0.06em;text-transform:uppercase;">${position}</span>`;
+  } else if (category === 'staff') {
+    extraBadge = `<span style="font-size:0.65rem;font-weight:700;color:#c39bd3;letter-spacing:0.06em;text-transform:uppercase;">${position}</span>`;
+  }
+
+  let contactLinks = [];
+  if (phone) contactLinks.push(`<span>📞 ${phone}</span>`);
+  if (email) contactLinks.push(`<span>✉️</span>`);
+  if (fb) contactLinks.push(`<span>🌐</span>`);
+
+  container.innerHTML = `
+    <div class="admin-member-card" style="box-shadow:none;border-color:var(--border-gold);max-width:100%;margin:0 auto;cursor:default;">
+      <div class="admin-member-photo-wrap">
+        <img src="${photoSrc}" alt="${name}" onerror="this.src='pictures/default.jpg';">
+        ${ribbonHTML}
+      </div>
+      <div class="admin-member-info">
+        <h3>${name}</h3>
+        ${extraBadge}
+        <span class="admin-member-dept">${dept}</span>
+        ${(sessTag || area) ? `
+        <div class="admin-member-meta-row">
+          ${sessTag}
+          ${area ? `<div class="admin-member-area">📍 ${area}</div>` : ''}
+        </div>` : ''}
+        ${contactLinks.length > 0 ? `<div class="admin-member-contact">${contactLinks.join('')}</div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
 function openMemberModal(member = null) {
   document.getElementById('memberEditId').value = '';
   document.getElementById('memberModalTitle').textContent = 'Add Member';
@@ -2552,7 +3582,13 @@ function openMemberModal(member = null) {
   const memberId = member ? member.id : null;
   populateMemberPositionSelect(member ? member.position : 'General Member', memberId);
 
+  const delBtn = document.getElementById('memberDeleteBtn');
+
   if (member) {
+    currentEditingMemberId = member.id;
+    currentEditingMemberName = member.name || '';
+    if (delBtn) delBtn.style.display = 'inline-flex';
+
     document.getElementById('memberEditId').value = member.id;
     document.getElementById('memberModalTitle').textContent = 'Edit Member';
     document.getElementById('memberCategory').value = member.category;
@@ -2598,14 +3634,21 @@ function openMemberModal(member = null) {
 
     const photoSrc = member ? getMemberPhotoSrc(member) : 'pictures/default.jpg';
     document.getElementById('memberPhotoPreview').src = photoSrc;
+  } else {
+    currentEditingMemberId = null;
+    currentEditingMemberName = '';
+    if (delBtn) delBtn.style.display = 'none';
   }
 
   onCategoryChange(document.getElementById('memberCategory').value);
+  updateMemberLivePreview();
   document.getElementById('memberModal').classList.add('active');
 }
 
 function closeMemberModal() {
   document.getElementById('memberModal').classList.remove('active');
+  currentEditingMemberId = null;
+  currentEditingMemberName = '';
 }
 
 function editMember(id) {
@@ -2616,7 +3659,10 @@ function editMember(id) {
 function previewMemberPhoto(input) {
   if (input.files && input.files[0]) {
     const reader = new FileReader();
-    reader.onload = e => document.getElementById('memberPhotoPreview').src = e.target.result;
+    reader.onload = e => {
+      document.getElementById('memberPhotoPreview').src = e.target.result;
+      updateMemberLivePreview();
+    };
     reader.readAsDataURL(input.files[0]);
   }
 }
@@ -2659,7 +3705,7 @@ async function saveMember() {
       try {
         await apiFetch(`/api/members/${existingHolder.id}`, {
           method: 'PUT',
-          body: JSON.stringify({ ...existingHolder, position: 'General Member', category: 'general' })
+          body: JSON.stringify({ ...existingHolder, position: 'Executive Member', category: 'executive' })
         });
       } catch (e) {
         console.warn('Reassigned previous role:', e);
@@ -2733,7 +3779,6 @@ async function saveMember() {
         }
       }
 
-      // If photo was selected for brand new member, upload with createdId and save photo_url
       if (photoFile && createdId) {
         try {
           const upRes = await apiUpload('/api/upload', photoFile, 'members', createdId);
@@ -2759,7 +3804,6 @@ async function saveMember() {
 }
 
 async function deleteMember(id, name) {
-  if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
   try {
     try {
       await apiFetch(`/api/members/${id}`, { method: 'DELETE' });
@@ -2779,8 +3823,131 @@ async function deleteMember(id, name) {
   }
 }
 
+async function deleteCurrentMember() {
+  if (!currentEditingMemberId) return;
+  const name = currentEditingMemberName || document.getElementById('memberName').value.trim() || 'this member';
+  if (!confirm(`Are you sure you want to delete "${name}"? This cannot be undone.`)) return;
+
+  const id = currentEditingMemberId;
+  closeMemberModal();
+  await deleteMember(id, name);
+}
+
+/* ─── DESIGNATION MODAL HANDLERS ─── */
+function openDesignationModal(memberId) {
+  const m = allMembers.find(mem => mem.id === memberId);
+  if (!m) return;
+  currentDesignationMember = m;
+
+  document.getElementById('designationMemberId').value = m.id;
+  document.getElementById('designationMemberName').textContent = m.name;
+  document.getElementById('designationMemberDept').textContent = `${m.dept || ''} ${m.session ? '· Session ' + m.session : ''}`;
+  document.getElementById('designationMemberCurrent').textContent = `Current Role: ${m.position || 'General Member'}`;
+  document.getElementById('designationMemberPhoto').src = getMemberPhotoSrc(m);
+
+  const sel = document.getElementById('newDesignationSelect');
+  if (sel) {
+    sel.value = m.position || 'Executive Member';
+    checkDesignationConflict(sel.value);
+  }
+
+  document.getElementById('designationModal').classList.add('active');
+}
+
+function closeDesignationModal() {
+  document.getElementById('designationModal').classList.remove('active');
+  currentDesignationMember = null;
+}
+
+function checkDesignationConflict(newPos) {
+  const notice = document.getElementById('designationConflictNotice');
+  if (!notice) return;
+  const currentId = currentDesignationMember ? currentDesignationMember.id : null;
+
+  if (newPos === 'President') {
+    const existing = allMembers.find(m => m.category === 'member' && m.position === 'President' && m.id !== currentId);
+    if (existing) {
+      notice.textContent = `ℹ️ ${existing.name} is currently President. Selecting this will automatically reassign ${existing.name} to Executive Member.`;
+      notice.style.display = 'block';
+      return;
+    }
+  } else if (newPos === 'General Secretary') {
+    const existing = allMembers.find(m => m.category === 'member' && m.position === 'General Secretary' && m.id !== currentId);
+    if (existing) {
+      notice.textContent = `ℹ️ ${existing.name} is currently General Secretary. Selecting this will automatically reassign ${existing.name} to Executive Member.`;
+      notice.style.display = 'block';
+      return;
+    }
+  } else if (newPos === 'General Member') {
+    notice.textContent = `ℹ️ Selecting General Member will remove this member from the Executive Committee. They will remain in their session list.`;
+    notice.style.display = 'block';
+    return;
+  }
+  notice.style.display = 'none';
+}
+
+async function saveDesignationChange() {
+  if (!currentDesignationMember) return;
+  const btn = document.getElementById('saveDesignationBtn');
+  const newPos = document.getElementById('newDesignationSelect').value;
+  const m = currentDesignationMember;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span> Updating...';
+
+  try {
+    if (newPos === 'President' || newPos === 'General Secretary') {
+      const existing = allMembers.find(mem => mem.category === 'member' && mem.position === newPos && mem.id !== m.id);
+      if (existing) {
+        try {
+          await apiFetch(`/api/members/${existing.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ ...existing, position: 'Executive Member', category: 'executive' })
+          });
+        } catch (reErr) {
+          console.warn('Reassigned previous executive role:', reErr);
+        }
+      }
+    }
+
+    const isDemotedToGeneral = (newPos === 'General Member');
+    const updateData = {
+      ...m,
+      position: isDemotedToGeneral ? 'General Member' : newPos,
+      category: isDemotedToGeneral ? 'general' : 'executive'
+    };
+
+    try {
+      await apiFetch(`/api/members/${m.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(updateData)
+      });
+    } catch (apiErr) {
+      console.warn('apiFetch designation update failed, trying fallback:', apiErr);
+      if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+        const { error } = await supabaseClient.from('people').update({
+          position: updateData.position,
+          category: updateData.category
+        }).eq('id', m.id);
+        if (error) throw new Error(error.message || apiErr.message);
+      } else {
+        throw apiErr;
+      }
+    }
+
+    showToast(`Designation for ${m.name} changed to ${newPos}!`);
+    closeDesignationModal();
+    await loadMembers();
+  } catch (err) {
+    showToast('Failed to change designation: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Update Designation';
+  }
+}
+
 /* ══════════════════════════════════════════════════════════════════════════════
-   EVENTS MANAGEMENT (Recency Sort, Gallery Cover Select, Clean Thumbnails)
+   EVENTS MANAGEMENT (Recency Sort, Draggable Gallery List with Captions)
    ══════════════════════════════════════════════════════════════════════════════ */
 let selectedEventCoverPath = '';
 
@@ -2808,26 +3975,143 @@ async function loadEvents() {
 
 function renderEventsAdmin(events) {
   const container = document.getElementById('eventsListAdmin');
-  container.innerHTML = events.map(ev => {
+  if (!events || events.length === 0) {
+    container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3.5rem 1rem;color:var(--text-dim);background:var(--bg-card);border-radius:12px;border:1px dashed var(--border);">No events created yet. Click "+ Create Event" above to create one.</div>`;
+    return;
+  }
+
+  container.innerHTML = events.map((ev, i) => {
+    const evId = ev.id || i;
     const thumbSrc = ev.thumb 
       ? (ev.thumb.startsWith('http') ? ev.thumb : `pictures/events/${ev.thumb}`)
-      : '';
-    const photoCount = Array.isArray(ev.photos) ? ev.photos.length : 0;
+      : (ev.photos && ev.photos[0] ? (ev.photos[0].startsWith('http') ? ev.photos[0] : `pictures/events/${ev.photos[0]}`) : '');
+
+    const photoList = Array.isArray(ev.photos) ? ev.photos : (typeof ev.photos === 'string' ? JSON.parse(ev.photos) : []);
+    const cnt = photoList.length;
+
+    const bannerContent = thumbSrc
+      ? `<img src="${thumbSrc}" alt="${ev.title}" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\\'font-size:3rem;\\'>${ev.emoji || '🎭'}</div>';">`
+      : `<div style="font-size:3rem;">${ev.emoji || '🎭'}</div>`;
+
+    const cleanDesc = (ev.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+
+    // Category detection & theme mapping
+    const cat = ev.category || '';
+    const titleLower = (ev.title || '').toLowerCase();
+    const locLower = (ev.location || '').toLowerCase();
+
+    const isSports = cat.toLowerCase().includes('sport') ||
+                     titleLower.includes('football') ||
+                     titleLower.includes('sport') ||
+                     locLower.includes('sports center');
+
+    const isSocialDining = cat === 'Social and dining Event' ||
+                           titleLower.includes('sha-pa') ||
+                           titleLower.includes('shapa');
+
+    const isIftar = cat === 'Iftar Mahfil' || titleLower.includes('iftar');
+
+    const isOrientation = (cat.toLowerCase() === 'orientation') ||
+                          (!cat && titleLower.includes('orientation') && !titleLower.includes('bbq'));
+
+    const isNormal = cat.toLowerCase().includes('conference') ||
+                     cat.toLowerCase().includes('scholarship') ||
+                     cat.toLowerCase() === 'normal' ||
+                     titleLower.includes('conference') ||
+                     titleLower.includes('scholarship');
+
+    const isGetTogether = !isNormal && (
+                          cat.toLowerCase().includes('get together') ||
+                          titleLower.includes('get together') ||
+                          titleLower.includes('get-together'));
+
+    const isBbq = cat.toLowerCase().includes('bbq') ||
+                  titleLower.includes('bbq');
+
+    const bottomGraphic = isSports ? `
+      <div class="event-card-bottom-banner">
+        <img src="pictures/events/sports_banner_transparent.png" alt="Sports theme" onerror="this.onerror=null;this.src='pictures/events/sports_banner_edge_to_edge.png';">
+      </div>` : '';
+
+    let cardCustomClass = '';
+    if (isSports) cardCustomClass = 'card-cat-sports';
+    else if (isSocialDining) cardCustomClass = 'card-cat-social-dining';
+    else if (isIftar) cardCustomClass = 'card-cat-iftar';
+    else if (isOrientation) cardCustomClass = 'card-cat-orientation';
+    else if (isBbq) cardCustomClass = 'card-cat-bbq';
+    else if (isGetTogether) cardCustomClass = 'card-cat-get-together';
+    else cardCustomClass = 'card-cat-normal';
+
+    let extraBodyArt = '';
+    if (isIftar) {
+      extraBodyArt = `
+        <img src="pictures/events/iftar_calligraphy_clean.png" alt="Calligraphy" class="cat-iftar-calligraphy">
+        <img src="pictures/events/iftar_mosque_panorama.png" alt="Mosque Silhouettes" class="cat-iftar-mosque-overlay">
+        <img src="pictures/events/iftar_lanterns_clean.png" alt="Islamic Lanterns" class="cat-iftar-lanterns">
+      `;
+    } else if (isOrientation) {
+      extraBodyArt = `
+        <img src="pictures/events/orientation_bunting.png" alt="Festive Bunting Flags" class="cat-orientation-bunting">
+      `;
+    } else if (isGetTogether) {
+      extraBodyArt = `
+        <img src="pictures/events/get_together_hands.png" alt="Hands Together" class="cat-together-hands">
+        <img src="pictures/events/get_together_corner.png" alt="Corner Folk Embroidery" class="cat-together-corner">
+        <img src="pictures/events/get_together_side.png" alt="Side Ornament" class="cat-together-side">
+      `;
+    } else if (isBbq) {
+      extraBodyArt = `
+        <img src="pictures/events/bbq_grill.png" alt="BBQ Grill" class="cat-bbq-grill">
+      `;
+    }
+
+    const metaSection = isSocialDining ? `
+      <div class="cat-lanterns-wrapper">
+        <img src="pictures/events/lanterns_clean.png" alt="Decorative Lanterns" class="cat-lanterns-img">
+        <div class="event-meta-tags">
+          <div class="event-location-tag" style="color:#1a6b7a;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            ${ev.location}
+          </div>
+          <div class="event-date-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            ${ev.date_text || ev.date || ''}
+          </div>
+        </div>
+      </div>` : `
+      <div class="event-meta-tags">
+        <div class="event-location-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          ${ev.location}
+        </div>
+        <div class="event-date-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          ${ev.date_text || ev.date || ''}
+        </div>
+      </div>`;
+
     return `
-    <div class="admin-card" style="display:flex;gap:1.5rem;align-items:center;">
-      ${thumbSrc ? `<img src="${thumbSrc}" style="width:140px;height:85px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--border-gold);" onerror="this.style.display='none'">` : `<div style="width:140px;height:85px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--gold-light);flex-shrink:0;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>`}
-      <div style="flex:1;min-width:0;">
-        <h3 style="font-size:1.15rem;margin-bottom:0.4rem;font-family:'Playfair Display',serif;">${ev.title}</h3>
-        <p style="font-size:0.82rem;color:var(--text-dim);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-          <span>📍 ${ev.location}</span>
-          <span>📅 ${ev.date_text}</span>
-          <span>📸 ${photoCount} photos</span>
-        </p>
+    <div class="event-showcase-card ${cardCustomClass}" onclick="editEvent(${evId})" title="Click to view & edit event">
+      <div class="event-card-actions" onclick="event.stopPropagation()">
+        <button type="button" class="admin-circle-edit-btn" onclick="editEvent(${evId})" title="Edit event" aria-label="Edit event">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+          </svg>
+        </button>
       </div>
-      <div style="display:flex;gap:0.6rem;flex-shrink:0;">
-        <button class="btn btn-sm btn-outline-gold" onclick="editEvent(${ev.id})">Edit</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteEvent(${ev.id},'${ev.title.replace(/'/g,"\\'")}')">✕</button>
+
+      <div class="event-showcase-banner">
+        ${bannerContent}
+        <div class="banner-overlay"></div>
+        <div class="event-badge-count">📸 ${cnt} Photos</div>
       </div>
+      <div class="event-showcase-body">
+        ${extraBodyArt}
+        ${metaSection}
+        <h2 class="event-showcase-title">${ev.title}</h2>
+        ${cleanDesc ? `<p class="event-showcase-desc">${cleanDesc}</p>` : ''}
+      </div>
+      ${bottomGraphic}
     </div>`;
   }).join('');
 }
@@ -2835,6 +4119,7 @@ function renderEventsAdmin(events) {
 function openEventModal(event = null) {
   document.getElementById('eventEditId').value = '';
   document.getElementById('eventModalTitle').textContent = 'Add Event';
+  document.getElementById('eventCategory').value = 'Normal';
   document.getElementById('eventTitle').value = '';
   document.getElementById('eventDate').value = '';
   document.getElementById('eventLocation').value = '';
@@ -2844,16 +4129,36 @@ function openEventModal(event = null) {
   document.getElementById('eventPhotosFile').value = '';
   selectedEventCoverPath = '';
   eventPhotosList = [];
-  renderEventPhotosGrid();
+
+  const delBtn = document.getElementById('eventDeleteBtn');
 
   if (event) {
+    currentEditingEventId = event.id;
+    currentEditingEventTitle = event.title || '';
+    if (delBtn) delBtn.style.display = 'inline-flex';
+
     document.getElementById('eventEditId').value = event.id;
     document.getElementById('eventModalTitle').textContent = 'Edit Event';
+
+    // Populate category or infer from title
+    if (event.category) {
+      document.getElementById('eventCategory').value = event.category;
+    } else {
+      const t = (event.title || '').toLowerCase();
+      if (t.includes('football') || t.includes('sport')) document.getElementById('eventCategory').value = 'Outdoor Sports';
+      else if (t.includes('sha-pa') || t.includes('shapa')) document.getElementById('eventCategory').value = 'Social and dining Event';
+      else if (t.includes('iftar')) document.getElementById('eventCategory').value = 'Iftar Mahfil';
+      else if (t.includes('orientation') && !t.includes('bbq')) document.getElementById('eventCategory').value = 'Orientation';
+      else if (t.includes('bbq')) document.getElementById('eventCategory').value = 'BBQ';
+      else if (t.includes('get together')) document.getElementById('eventCategory').value = 'Get Together';
+      else document.getElementById('eventCategory').value = 'Normal';
+    }
+
     document.getElementById('eventTitle').value = event.title;
-    document.getElementById('eventDate').value = event.date_text;
+    document.getElementById('eventDate').value = event.date_text || event.date || '';
     document.getElementById('eventLocation').value = event.location;
     
-    // Automatically strip any <br> tags so user types/edits natural multiline text!
+    // Naturally format multiline description
     const cleanDesc = (event.description || '').replace(/<br\s*\/?>/gi, '\n');
     document.getElementById('eventDescription').value = cleanDesc;
 
@@ -2865,25 +4170,49 @@ function openEventModal(event = null) {
     }
 
     const photos = Array.isArray(event.photos) ? event.photos : [];
-    eventPhotosList = photos.map(p => ({
+    const captions = Array.isArray(event.captions) ? event.captions : [];
+    eventPhotosList = photos.map((p, idx) => ({
       url: p.startsWith('http') ? p : `pictures/events/${p}`,
       path: p,
-      isNew: false
+      isNew: false,
+      caption: captions[idx] || ''
     }));
-    renderEventPhotosGrid();
+  } else {
+    currentEditingEventId = null;
+    currentEditingEventTitle = '';
+    if (delBtn) delBtn.style.display = 'none';
   }
 
+  renderEventPhotosList();
   document.getElementById('eventModal').classList.add('active');
 }
 
 function closeEventModal() {
   document.getElementById('eventModal').classList.remove('active');
+  currentEditingEventId = null;
+  currentEditingEventTitle = '';
 }
 
 async function editEvent(id) {
   try {
-    const result = await apiFetch(`/api/events/${id}`);
-    openEventModal(result.data);
+    let ev = null;
+    try {
+      const result = await apiFetch(`/api/events/${id}`);
+      if (result && result.data) ev = result.data;
+    } catch {
+      // Fallback
+    }
+
+    if (!ev) {
+      const allEvs = await fetchEventsData();
+      ev = allEvs.find(e => e.id == id || e.title === id);
+    }
+
+    if (ev) {
+      openEventModal(ev);
+    } else {
+      showToast('Could not load event data', 'error');
+    }
   } catch (err) {
     showToast('Failed to load event: ' + err.message, 'error');
   }
@@ -2902,41 +4231,115 @@ function previewEventThumb(input) {
 }
 
 function addEventPhotos(input) {
-  if (!input.files) return;
+  if (!input.files || input.files.length === 0) return;
   Array.from(input.files).forEach(file => {
     const url = URL.createObjectURL(file);
-    eventPhotosList.push({ url, isNew: true, file });
+    eventPhotosList.push({ url, isNew: true, file, caption: '' });
   });
-  renderEventPhotosGrid();
+  renderEventPhotosList();
   input.value = '';
 }
 
 function removeEventPhoto(index) {
   eventPhotosList.splice(index, 1);
-  renderEventPhotosGrid();
+  renderEventPhotosList();
 }
 
 function setCoverFromPhoto(url, path) {
   selectedEventCoverPath = path || url;
   document.getElementById('eventThumbPreview').src = url;
   document.getElementById('eventThumbPreview').style.display = 'block';
-  showToast('Cover thumbnail selected from gallery!');
+  renderEventPhotosList();
+  showToast('Cover thumbnail selected!');
 }
 
-function renderEventPhotosGrid() {
-  const grid = document.getElementById('eventPhotosGrid');
-  grid.innerHTML = eventPhotosList.map((p, i) => `
-    <div class="event-photo-item" style="position:relative;">
-      <img src="${p.url}" alt="Photo ${i+1}" onerror="this.src='pictures/default.jpg'">
-      <button type="button" class="btn btn-sm btn-gold" style="position:absolute;bottom:4px;left:4px;right:4px;font-size:0.62rem;padding:3px 4px;z-index:2;line-height:1.1;" onclick="setCoverFromPhoto('${p.url}','${p.path || ''}')">★ Set Cover</button>
-      <button type="button" class="remove-photo" onclick="removeEventPhoto(${i})">✕</button>
-    </div>
-  `).join('');
+function updatePhotoCaption(idx, val) {
+  if (eventPhotosList[idx]) {
+    eventPhotosList[idx].caption = val;
+  }
+}
+
+function renderEventPhotosList() {
+  const container = document.getElementById('eventPhotosList');
+  if (!container) return;
+
+  if (eventPhotosList.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:1.5rem;color:var(--text-muted);background:rgba(255,255,255,0.02);border:1px dashed var(--border);border-radius:8px;font-size:0.85rem;">
+        No gallery photos added yet. Click <strong>+ Upload Photos</strong> above to add photos.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = eventPhotosList.map((p, i) => {
+    const isCover = (selectedEventCoverPath && (selectedEventCoverPath === p.path || selectedEventCoverPath === p.url));
+    const captionVal = p.caption || '';
+    const safeCaption = captionVal.replace(/"/g, '&quot;');
+
+    return `
+      <div class="event-photo-row" draggable="true" data-index="${i}">
+        <div class="photo-drag-handle" title="Drag to reorder photos">☰</div>
+        <img class="photo-row-thumb" src="${p.url}" alt="Photo ${i + 1}" onerror="this.src='pictures/default.jpg';">
+        <div class="photo-row-info">
+          <span class="photo-row-num">Photo #${i + 1}</span>
+          <input type="text" class="form-input photo-caption-input" placeholder="Enter photo caption..." value="${safeCaption}" oninput="updatePhotoCaption(${i}, this.value)">
+        </div>
+        <div class="photo-row-actions">
+          <button type="button" class="btn btn-sm ${isCover ? 'btn-gold' : 'btn-outline-gold'}" style="font-size:0.7rem;padding:4px 10px;" onclick="setCoverFromPhoto('${p.url}','${p.path || ''}')" title="Set this photo as event cover">
+            ${isCover ? '★ Cover' : 'Set Cover'}
+          </button>
+          <button type="button" class="btn btn-sm btn-ghost" style="color:#e74c3c;padding:4px 8px;font-size:0.85rem;" onclick="removeEventPhoto(${i})" title="Remove photo">✕</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  setupPhotoDragEvents();
+}
+
+function setupPhotoDragEvents() {
+  const rows = document.querySelectorAll('.event-photo-row');
+  rows.forEach(row => {
+    row.addEventListener('dragstart', e => {
+      draggedPhotoIndex = parseInt(row.getAttribute('data-index'));
+      row.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    row.addEventListener('dragend', () => {
+      row.classList.remove('dragging');
+      rows.forEach(r => r.classList.remove('drag-over'));
+      draggedPhotoIndex = null;
+    });
+
+    row.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      row.classList.add('drag-over');
+    });
+
+    row.addEventListener('dragleave', () => {
+      row.classList.remove('drag-over');
+    });
+
+    row.addEventListener('drop', e => {
+      e.preventDefault();
+      row.classList.remove('drag-over');
+      const targetIndex = parseInt(row.getAttribute('data-index'));
+      if (draggedPhotoIndex !== null && draggedPhotoIndex !== targetIndex) {
+        const movedItem = eventPhotosList.splice(draggedPhotoIndex, 1)[0];
+        eventPhotosList.splice(targetIndex, 0, movedItem);
+        renderEventPhotosList();
+      }
+    });
+  });
 }
 
 async function saveEvent() {
   const btn = document.getElementById('eventSaveBtn');
   const editId = document.getElementById('eventEditId').value;
+  const category = document.getElementById('eventCategory').value || 'Normal';
   const title = document.getElementById('eventTitle').value.trim();
   const dateText = document.getElementById('eventDate').value.trim();
   const location = document.getElementById('eventLocation').value.trim();
@@ -2959,6 +4362,7 @@ async function saveEvent() {
     }
 
     const photoPaths = [];
+    const captions = [];
     for (const p of eventPhotosList) {
       if (p.isNew && p.file) {
         const uploadResult = await apiUpload('/api/upload', p.file, 'events');
@@ -2966,14 +4370,17 @@ async function saveEvent() {
       } else {
         photoPaths.push(p.path || p.url);
       }
+      captions.push(p.caption || '');
     }
 
     const eventData = {
+      category,
       title,
       date_text: dateText,
       location,
       description: rawDescription,
-      photos: photoPaths
+      photos: photoPaths,
+      captions
     };
 
     if (thumbPath) {
@@ -3001,7 +4408,6 @@ async function saveEvent() {
 }
 
 async function deleteEvent(id, title) {
-  if (!confirm(`Delete event "${title}"? This cannot be undone.`)) return;
   try {
     await apiFetch(`/api/events/${id}`, { method: 'DELETE' });
     showToast(`Event "${title}" deleted.`);
@@ -3009,6 +4415,16 @@ async function deleteEvent(id, title) {
   } catch (err) {
     showToast('Failed to delete: ' + err.message, 'error');
   }
+}
+
+async function deleteCurrentEvent() {
+  if (!currentEditingEventId) return;
+  const title = currentEditingEventTitle || document.getElementById('eventTitle').value.trim() || 'this event';
+  if (!confirm(`Are you sure you want to delete event "${title}"? This cannot be undone.`)) return;
+
+  const id = currentEditingEventId;
+  closeEventModal();
+  await deleteEvent(id, title);
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
